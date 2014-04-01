@@ -123,15 +123,16 @@
 {
     self.method = @"debit";
     self.handler = handler;
+    NSString *ipaddress = [self getIPAddress ];
     NSString *url;
     if (isDev)
         url = [URL_DEV stringByAppendingString:@"/api/cc/debit/"];
     else
         url = [URL_PROD stringByAppendingString:@"/api/cc/debit/"];
     NSString *authTimestamp = [self generateAuthTimestamp];
-    NSString *parameters = [NSString stringWithFormat:@"application_code=%@&card_reference=%@&product_amount=%@&product_description=%@&dev_reference=%@&email=%@&uid=%@",  self.appCode, cardReference, [amount stringValue], description, devReference,  email, userId];
+    NSString *parameters = [NSString stringWithFormat:@"application_code=%@&card_reference=%@&ip_address=%@&product_amount=%@&product_description=%@&dev_reference=%@&email=%@&uid=%@",  self.appCode, cardReference,ipaddress, [amount stringValue], description, devReference,  email, userId];
     NSString *authToken = [self generateAuthTokenPaymentez:authTimestamp withParameters:parameters];
-    NSString *completeParameters =[NSString stringWithFormat:@"application_code=%@&card_reference=%@&product_amount=%@&product_description=%@&dev_reference=%@&email=%@&uid=%@&auth_timestamp=%@&auth_token=%@",  self.appCode, cardReference, [amount stringValue], description, devReference,  email, userId, authTimestamp, authToken];
+    NSString *completeParameters =[NSString stringWithFormat:@"application_code=%@&card_reference=%@&ip_address=%@&product_amount=%@&product_description=%@&dev_reference=%@&email=%@&uid=%@&auth_timestamp=%@&auth_token=%@",  self.appCode, cardReference, ipaddress, [amount stringValue], description, devReference,  email, userId, authTimestamp, authToken];
     
     NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
     [urlRequest setHTTPMethod: @"POST"];
@@ -247,6 +248,18 @@
                   willCacheResponse:(NSCachedURLResponse*)cachedResponse {
     // Return nil to indicate not necessary to store a cached response for this connection
     return nil;
+}
+-(NSString*) getIPAddress {
+    id myhost =[NSClassFromString(@"NSHost") performSelector:@selector(currentHost)];
+    if (myhost) {
+        for (NSString* address in [myhost performSelector:@selector(addresses)]) {
+            if ([address rangeOfString:@"::"].location == NSNotFound) {
+                return address;
+            }
+        }
+    }
+    
+    return @"127.0.0.1";
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
