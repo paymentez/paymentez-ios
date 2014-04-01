@@ -31,5 +31,6 @@
 -(void) listCards:(NSString * )userId completionHandler:(void (^)(NSDictionary*, NSError*))handler;
 -(void) debitCard:(NSString * )cardReference amount:(NSNumber*)amount description:(NSString*)description devReference:(NSString*)devReference userId:(NSString*)userId email:(NSString*)email completionHandler:(void (^)(NSDictionary*, NSError*))handler;
 -(void) deleteCard:(NSString * )cardReference userId:(NSString*)userId completionHandler:(void (^)(NSDictionary*, NSError*))handler;
+-(NSString*) generateSessionID;
 
 @end
