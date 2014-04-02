@@ -125,11 +125,10 @@
     [urlRequest setHTTPBody: requestBodyData];*/
     self.urlConnection = [[NSURLConnection alloc] initWithRequest:urlRequest delegate:self];
 }
-- (void) debitCard:(NSString * )cardReference amount:(NSNumber*)amount description:(NSString*)description devReference:(NSString*)devReference userId:(NSString*)userId email:(NSString*)email completionHandler:(void (^)(NSDictionary*, NSError*))handler
+- (void) debitCard:(NSString * )cardReference amount:(NSNumber*)amount description:(NSString*)description devReference:(NSString*)devReference userId:(NSString*)userId email:(NSString*)email ipaddress:(NSString*)ipaddress completionHandler:(void (^)(NSDictionary*, NSError*))handler
 {
     self.method = @"debit";
     self.handler = handler;
-    NSString *ipaddress = [self getIPAddress ];
     NSString *url;
     if (isDev)
         url = [URL_DEV stringByAppendingString:@"/api/cc/debit/"];
@@ -177,15 +176,10 @@
 
 - (NSString*) generateSessionID
 {
-    NSString *sessionId;
-    CFUUIDRef uuidRef = CFUUIDCreate(nil);
-    CFStringRef uuidStrRef = CFUUIDCreateString(nil, uuidRef);
-    CFRelease(uuidRef);
-    // - Strip the hyphens out of the generated string
-    sessionId = [(__bridge NSString *)uuidStrRef
-                 stringByReplacingOccurrencesOfString:@"-"
-                 withString:@""];
-    CFRelease(uuidStrRef);
+    NSUUID  *uuid = [NSUUID UUID];
+    NSLog(@"UUID: %@", [uuid UUIDString]);
+    NSString *uuidstring = [uuid UUIDString];
+    NSString *sessionId = [uuidstring stringByReplacingOccurrencesOfString:@"-" withString:@""];;
     NSRange range = NSMakeRange(0,1);
     NSLog(@"%@",sessionId);
     return [sessionId stringByReplacingCharactersInRange:range withString:@"i"];
@@ -270,6 +264,7 @@
     // Return nil to indicate not necessary to store a cached response for this connection
     return nil;
 }
+/*
 -(NSString*) getIPAddress {
     id myhost =[NSClassFromString(@"NSHost") performSelector:@selector(currentHost)];
     if (myhost) {
@@ -282,7 +277,7 @@
     
     return @"127.0.0.1";
 }
-
+*/
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     // The request is complete and data has been received
     // You can parse the stuff in your instance variable now
