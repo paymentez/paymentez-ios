@@ -26,6 +26,7 @@
 @property(nonatomic, strong) NSURLConnection *apiConnection;
 @property(nonatomic, assign) BOOL isDev;
 
++(PaymentezCCSDK *)sdkManager;
 +(PaymentezCCSDK *)sdkManagerWithDevConf:(BOOL)isDev withAppCode:(NSString*)appCode andAppKey:(NSString*)appKey digestUsername:(NSString*)digestUsername digestPassword:(NSString*)digestPassword;
 -(void) addCard:(NSString*)userId email:(NSString*)email completionHandler:(void (^)(NSDictionary *,NSError*))handler;
 -(void) listCards:(NSString * )userId completionHandler:(void (^)(NSDictionary*, NSError*))handler;

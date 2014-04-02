@@ -49,6 +49,12 @@
     sdkM._requestData = [[NSMutableDictionary alloc] init];
     return sdkM;
 }
++(PaymentezCCSDK *)sdkManager{
+    static PaymentezCCSDK *sdkM = nil;
+    sdkM = [[PaymentezCCSDK alloc]init];
+    sdkM._requestData = [[NSMutableDictionary alloc] init];
+    return sdkM;
+}
 #pragma mark Paymentez API Methods
 -(void) addCard:(NSString*)userId email:(NSString*)email completionHandler:(void (^)(NSDictionary  *response, NSError*))handler
 {
@@ -188,7 +194,6 @@
 {
    self._requestData = [[NSMutableDictionary alloc] init];
    self.handler = handler;
-    self.handler = handler;
     self.isDev = devConf;
     NSString *sessionID = [self generateSessionID];
     [[self _requestData] setValue:sessionID forKey:@"session_id"];
