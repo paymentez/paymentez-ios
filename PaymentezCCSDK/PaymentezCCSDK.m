@@ -52,7 +52,7 @@
 +(PaymentezCCSDK *)sdkManager{
     static PaymentezCCSDK *sdkM = nil;
     sdkM = [[PaymentezCCSDK alloc]init];
-    sdkM._requestData = [[NSMutableDictionary alloc] init];
+    //sdkM._requestData = [[NSMutableDictionary alloc] init];
     return sdkM;
 }
 #pragma mark Paymentez API Methods
