@@ -184,11 +184,23 @@
     NSLog(@"%@",sessionId);
     return [sessionId stringByReplacingCharactersInRange:range withString:@"i"];
 }
+- (void) generateSessionIDWithCollect:(BOOL)devConf completionHandler:(void (^)(NSDictionary*, NSError*))handler
+{
+   self._requestData = [[NSMutableDictionary alloc] init];
+   self.handler = handler;
+    self.handler = handler;
+    self.isDev = devConf;
+    NSString *sessionID = [self generateSessionID];
+    [[self _requestData] setValue:sessionID forKey:@"session_id"];
+    [[self deviceCollector] collect:sessionID];
+}
 
 - (DeviceCollectorSDK *) deviceCollector {
     if (!_deviceCollector) {
         if ([self isDev])
         _deviceCollector = [[DeviceCollectorSDK alloc] initWithDebugOn:YES ];
+        else
+            _deviceCollector = [[DeviceCollectorSDK alloc] initWithDebugOn:NO ];
         if (![self isDev])
             [_deviceCollector setCollectorUrl:DC_TARGET_URL];
         else
@@ -210,6 +222,10 @@
     if ([self.method isEqualToString:@"add"])
     {
         self.handler(self._requestData,nil);
+    }
+    else
+    {
+        self.handler(self._requestData, nil);
     }
     /*if ([method isEqualToString:@"debit"])
     {

@@ -15,8 +15,8 @@
 #define PAYMENTEZ_API_DIGEST @"PM2.0-API" //REPLACE WITH YOUR DIGEST
 
 // KOUNT
-#define DC_TARGET_URL @"https://tst.kaptcha.com/logo.htm"
-#define DC_TARGET_URL_DEV @"https://ssl.kaptcha.com/logo.htm"
+#define DC_TARGET_URL_DEV @"https://tst.kaptcha.com/logo.htm"
+#define DC_TARGET_URL @"https://ssl.kaptcha.com/logo.htm"
 #define DC_MERCHANT_ID @"500005"
 
 
@@ -31,6 +31,6 @@
 -(void) listCards:(NSString * )userId completionHandler:(void (^)(NSDictionary*, NSError*))handler;
 -(void) debitCard:(NSString * )cardReference amount:(NSNumber*)amount description:(NSString*)description devReference:(NSString*)devReference userId:(NSString*)userId email:(NSString*)email completionHandler:(void (^)(NSDictionary*, NSError*))handler;
 -(void) deleteCard:(NSString * )cardReference userId:(NSString*)userId completionHandler:(void (^)(NSDictionary*, NSError*))handler;
--(NSString*) generateSessionID;
+- (void) generateSessionIDWithCollect:(BOOL)isDev completionHandler:(void (^)(NSDictionary*, NSError*))handler;
 
 @end

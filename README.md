@@ -89,3 +89,16 @@ apiManager listCards:@"1234" completionHandler:^(NSDictionary *response, NSError
     }];
 
 ```
+### Generate SESSION ID WITH COLLECT
+```
+[apiManager generateSessionIDWithCollect:YES completionHandler:^(NSDictionary *response, NSError *error) {
+        NSLog(@"response:%@",response);
+        NSLog(@"error:%@",error);
+        if(!error)
+        {
+            NSString *sessionId = (NSString*)[response objectForKey:@"sessionId"];
+            
+        }
+    }];
+```
+First Parameter YES for dev environment, NO for production
