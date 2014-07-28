@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import <CommonCrypto/CommonDigest.h>
-#define URL_PROD @"https://pmntzsec.paymentez.com"
-#define URL_DEV @"https://pmntzsec-stg.paymentez.com"
+#define URL_PROD @"https://ccapi.paymentez.com"
+#define URL_DEV @"https://ccapi-stg.paymentez.com"
 
 
 #define PAYMENTEZ_API_DIGEST @"PM2.0-API" //REPLACE WITH YOUR DIGEST
