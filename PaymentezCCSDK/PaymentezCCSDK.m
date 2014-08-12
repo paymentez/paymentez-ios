@@ -119,25 +119,30 @@
     NSString *authToken = [self generateAuthTokenPaymentez:authTimestamp withParameters:parameters];
     NSString *completeParameters = [NSString stringWithFormat:@"?application_code=%@&uid=%@&auth_timestamp=%@&auth_token=%@",  self.appCode, userId, authTimestamp, authToken];
     url = [url stringByAppendingString:[completeParameters stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-    NSLog(@"%@",url);
+    
    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
-    /*NSData *requestBodyData = [completeParameters dataUsingEncoding:NSUTF8StringEncoding];
-    [urlRequest setHTTPBody: requestBodyData];*/
     self.urlConnection = [[NSURLConnection alloc] initWithRequest:urlRequest delegate:self];
 }
-- (void) debitCard:(NSString * )cardReference amount:(NSNumber*)amount description:(NSString*)description devReference:(NSString*)devReference userId:(NSString*)userId email:(NSString*)email ipaddress:(NSString*)ipaddress completionHandler:(void (^)(NSDictionary*, NSError*))handler
+- (void) debitCard:(NSString * )cardReference amount:(NSNumber*)amount description:(NSString*)description devReference:(NSString*)devReference userId:(NSString*)userId email:(NSString*)email sellerId:(NSString*)sellerId ipaddress:(NSString*)ipaddress completionHandler:(void (^)(NSDictionary*, NSError*))handler
 {
+    
     self.method = @"debit";
     self.handler = handler;
+    NSString *sessionID = [self generateSessionID];
     NSString *url;
     if (isDev)
         url = [URL_DEV stringByAppendingString:@"/api/cc/debit/"];
     else
         url = [URL_PROD stringByAppendingString:@"/api/cc/debit/"];
     NSString *authTimestamp = [self generateAuthTimestamp];
-    NSString *parameters = [NSString stringWithFormat:@"application_code=%@&card_reference=%@&ip_address=%@&product_amount=%@&product_description=%@&dev_reference=%@&email=%@&uid=%@",  self.appCode, cardReference,ipaddress, [amount stringValue], description, devReference,  email, userId];
+    
+    NSString *parameters = [NSString stringWithFormat:@"application_code=%@&card_reference=%@&dev_reference=%@&email=%@&ip_address=%@&product_amount=%.02f&product_description=%@&seller_id=%@&session_id=%@&uid=%@",  self.appCode, cardReference,devReference,[self urlEncodeUsingEncoding:email],ipaddress,[amount floatValue],[self urlEncodeUsingEncoding:description], sellerId, sessionID, userId];
+//    if ([sellerId isEqualToString: @""])
+//        parameters = [NSString stringWithFormat:@"application_code=%@&card_reference=%@&dev_reference=%@&email=%@&ip_address=%@&product_amount=%.02f&product_description=%@&session_id=%@&uid=%@",  self.appCode, cardReference,devReference,email,ipaddress,[amount floatValue],description,  sessionID, userId];
     NSString *authToken = [self generateAuthTokenPaymentez:authTimestamp withParameters:parameters];
-    NSString *completeParameters =[NSString stringWithFormat:@"application_code=%@&card_reference=%@&ip_address=%@&product_amount=%@&product_description=%@&dev_reference=%@&email=%@&uid=%@&auth_timestamp=%@&auth_token=%@",  self.appCode, cardReference, ipaddress, [amount stringValue], description, devReference,  email, userId, authTimestamp, authToken];
+    NSString *completeParameters =[NSString stringWithFormat:@"application_code=%@&card_reference=%@&ip_address=%@&session_id=%@&product_amount=%.02f&product_description=%@&dev_reference=%@&email=%@&uid=%@&auth_timestamp=%@&auth_token=%@&seller_id=%@",  self.appCode, cardReference, ipaddress, sessionID,[amount floatValue], description, devReference,  email, userId, authTimestamp, authToken, sellerId];
+//    if ([sellerId isEqualToString: @""])
+//    completeParameters =[NSString stringWithFormat:@"application_code=%@&card_reference=%@&ip_address=%@&session_id=%@&product_amount=%1.2f&product_description=%@&dev_reference=%@&email=%@&uid=%@&auth_timestamp=%@&auth_token=%@",  self.appCode, cardReference, ipaddress, sessionID,[amount floatValue], description, devReference,  email, userId, authTimestamp, authToken];
     
     NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
     [urlRequest setHTTPMethod: @"POST"];
@@ -145,7 +150,8 @@
     [urlRequest setHTTPBody: requestBodyData];
     [[self _requestData] setValue:urlRequest forKey:@"urlRequest"];
     [[self _requestData] setValue:@"debit" forKey:@"method"];
-    self.urlConnection = [[NSURLConnection alloc] initWithRequest:urlRequest delegate:self];
+    [[self deviceCollector] collect:sessionID];
+    
 }
 /*
 -(void) debitCardWithRequest:(NSURLRequest *)request
@@ -221,6 +227,10 @@
     if ([self.method isEqualToString:@"add"])
     {
         self.handler(self._requestData,nil);
+    }
+    if([self.method isEqualToString:@"debit"])
+    {
+        self.urlConnection = [[NSURLConnection alloc] initWithRequest:(NSMutableURLRequest*)[self._requestData objectForKey:@"urlRequest"] delegate:self];
     }
     else
     {

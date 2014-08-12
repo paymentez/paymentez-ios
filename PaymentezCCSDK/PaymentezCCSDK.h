@@ -30,7 +30,7 @@
 +(PaymentezCCSDK *)sdkManagerWithDevConf:(BOOL)isDev withAppCode:(NSString*)appCode andAppKey:(NSString*)appKey digestUsername:(NSString*)digestUsername digestPassword:(NSString*)digestPassword;
 -(void) addCard:(NSString*)userId email:(NSString*)email completionHandler:(void (^)(NSDictionary *,NSError*))handler;
 -(void) listCards:(NSString * )userId completionHandler:(void (^)(NSDictionary*, NSError*))handler;
--(void) debitCard:(NSString * )cardReference amount:(NSNumber*)amount description:(NSString*)description devReference:(NSString*)devReference userId:(NSString*)userId email:(NSString*)email completionHandler:(void (^)(NSDictionary*, NSError*))handler;
+- (void) debitCard:(NSString * )cardReference amount:(NSNumber*)amount description:(NSString*)description devReference:(NSString*)devReference userId:(NSString*)userId email:(NSString*)email sellerId:(NSString*)sellerId ipaddress:(NSString*)ipaddress completionHandler:(void (^)(NSDictionary*, NSError*))handler;
 -(void) deleteCard:(NSString * )cardReference userId:(NSString*)userId completionHandler:(void (^)(NSDictionary*, NSError*))handler;
 - (void) generateSessionIDWithCollect:(BOOL)isDev completionHandler:(void (^)(NSDictionary*, NSError*))handler;
 
