@@ -123,8 +123,11 @@
    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
     self.urlConnection = [[NSURLConnection alloc] initWithRequest:urlRequest delegate:self];
 }
-- (void) debitCard:(NSString * )cardReference amount:(NSNumber*)amount description:(NSString*)description devReference:(NSString*)devReference userId:(NSString*)userId email:(NSString*)email sellerId:(NSString*)sellerId ipaddress:(NSString*)ipaddress completionHandler:(void (^)(NSDictionary*, NSError*))handler
+// seller_id, shipping_street, shipping_house_number, shipping_city, shipping_zip, shipping_state, shipping_district, shipping_additional_address_info
+- (void) debitCard:(NSString * )cardReference amount:(NSNumber*)amount description:(NSString*)description devReference:(NSString*)devReference userId:(NSString*)userId email:(NSString*)email sellerId:(NSString*)sellerId ipaddress:(NSString*)ipaddress shippingStreet:(NSString*)shippingStreet shippingNumber:(NSString*)shippingNumber shippingCity:(NSString*)shippingCity shippingZip:(NSString*)shippingZip shippingState:(NSString*)shippingState shippingDistrict:(NSString*)shippingDistrict shippingAdditionalInfo:(NSString*)shippingAdditionalInfo completionHandler:(void (^)(NSDictionary*, NSError*))handler
 {
+    //shipping_additional_address_info
+    
     
     self.method = @"debit";
     self.handler = handler;
@@ -136,13 +139,54 @@
         url = [URL_PROD stringByAppendingString:@"/api/cc/debit/"];
     NSString *authTimestamp = [self generateAuthTimestamp];
     
-    NSString *parameters = [NSString stringWithFormat:@"application_code=%@&card_reference=%@&dev_reference=%@&email=%@&ip_address=%@&product_amount=%.02f&product_description=%@&seller_id=%@&session_id=%@&uid=%@",  self.appCode, cardReference,devReference,[self urlEncodeUsingEncoding:email],ipaddress,[amount floatValue],[self urlEncodeUsingEncoding:description], sellerId, sessionID, userId];
-//    if ([sellerId isEqualToString: @""])
-//        parameters = [NSString stringWithFormat:@"application_code=%@&card_reference=%@&dev_reference=%@&email=%@&ip_address=%@&product_amount=%.02f&product_description=%@&session_id=%@&uid=%@",  self.appCode, cardReference,devReference,email,ipaddress,[amount floatValue],description,  sessionID, userId];
-    NSString *authToken = [self generateAuthTokenPaymentez:authTimestamp withParameters:parameters];
-    NSString *completeParameters =[NSString stringWithFormat:@"application_code=%@&card_reference=%@&ip_address=%@&session_id=%@&product_amount=%.02f&product_description=%@&dev_reference=%@&email=%@&uid=%@&auth_timestamp=%@&auth_token=%@&seller_id=%@",  self.appCode, cardReference, ipaddress, sessionID,[amount floatValue], description, devReference,  email, userId, authTimestamp, authToken, sellerId];
-//    if ([sellerId isEqualToString: @""])
-//    completeParameters =[NSString stringWithFormat:@"application_code=%@&card_reference=%@&ip_address=%@&session_id=%@&product_amount=%1.2f&product_description=%@&dev_reference=%@&email=%@&uid=%@&auth_timestamp=%@&auth_token=%@",  self.appCode, cardReference, ipaddress, sessionID,[amount floatValue], description, devReference,  email, userId, authTimestamp, authToken];
+    NSDictionary *params =   @{ @"application_code"     : self.appCode,
+                                        @"card_reference" : cardReference,
+                                        @"dev_reference": devReference,
+                                        @"email" :   [self urlEncodeUsingEncoding:email],
+                                        @"ip_address": ipaddress,
+                                        @"product_amount": [NSString stringWithFormat:@"%.02f",[amount floatValue]],
+                                        @"product_description": [self urlEncodeUsingEncoding:description],
+                                        @"session_id":sessionID,
+                                        @"uid": userId,
+             
+                                };
+    NSMutableDictionary *parametersDict = [params mutableCopy];
+    if (sellerId)
+        [parametersDict setObject:sellerId forKey:@"seller_id"];
+    if (shippingStreet)
+        [parametersDict setObject:shippingStreet forKey:@"shipping_street"];
+    if (shippingNumber)
+        [parametersDict setObject:shippingNumber forKey:@"shipping_number"];
+    if (shippingCity)
+        [parametersDict setObject:shippingCity forKey:@"shipping_city"];
+    if (shippingZip)
+        [parametersDict setObject:shippingZip forKey:@"shipping_zip"];
+    if (shippingState)
+        [parametersDict setObject:shippingState forKey:@"shipping_state"];
+    if (shippingDistrict)
+        [parametersDict setObject:shippingDistrict forKey:@"shipping_district"];
+    if (shippingAdditionalInfo)
+        [parametersDict setObject:shippingAdditionalInfo forKey:@"shipping_additional_address_info"];
+    
+    NSArray *keys  = [[parametersDict allKeys] sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        return [[parametersDict objectForKey:obj1] compare:[parametersDict objectForKey:obj2]];
+    }];
+    NSString *parametersStr = @"";
+    int n= 0;
+    keys = [[parametersDict allKeys]
+     sortedArrayUsingSelector:
+     @selector(caseInsensitiveCompare:)];
+    
+    for(NSString *key in keys)
+    {
+        if (n == 0)
+            parametersStr = [parametersStr stringByAppendingString:[NSString stringWithFormat:@"%@=%@",key, [parametersDict objectForKey:key]]];
+        else
+            parametersStr = [parametersStr stringByAppendingString:[NSString stringWithFormat:@"&%@=%@",key, [parametersDict objectForKey:key]]];
+        n++;
+    }
+    NSString *authToken = [self generateAuthTokenPaymentez:authTimestamp withParameters:parametersStr];
+    NSString *completeParameters = [parametersStr stringByAppendingString:[NSString stringWithFormat:@"&auth_token=%@&auth_timestamp=%@",authToken, authTimestamp]];
     
     NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
     [urlRequest setHTTPMethod: @"POST"];
@@ -153,6 +197,7 @@
     [[self deviceCollector] collect:sessionID];
     
 }
+
 /*
 -(void) debitCardWithRequest:(NSURLRequest *)request
 {
