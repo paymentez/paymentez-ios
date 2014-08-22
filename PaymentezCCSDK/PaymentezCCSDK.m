@@ -123,6 +123,11 @@
    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
     self.urlConnection = [[NSURLConnection alloc] initWithRequest:urlRequest delegate:self];
 }
+
+- (void) debitCard:(NSString * )cardReference amount:(NSNumber*)amount description:(NSString*)description devReference:(NSString*)devReference userId:(NSString*)userId email:(NSString*)email ipaddress:(NSString*)ipaddress completionHandler:(void (^)(NSDictionary*, NSError*))handler
+{
+    [self debitCard:cardReference amount:amount description:description devReference:devReference userId:userId email:email sellerId:nil ipaddress:ipaddress shippingStreet:nil shippingNumber:nil shippingCity:nil shippingZip:nil shippingState:nil shippingDistrict:nil shippingAdditionalInfo:nil completionHandler:handler];
+}
 // seller_id, shipping_street, shipping_house_number, shipping_city, shipping_zip, shipping_state, shipping_district, shipping_additional_address_info
 - (void) debitCard:(NSString * )cardReference amount:(NSNumber*)amount description:(NSString*)description devReference:(NSString*)devReference userId:(NSString*)userId email:(NSString*)email sellerId:(NSString*)sellerId ipaddress:(NSString*)ipaddress shippingStreet:(NSString*)shippingStreet shippingNumber:(NSString*)shippingNumber shippingCity:(NSString*)shippingCity shippingZip:(NSString*)shippingZip shippingState:(NSString*)shippingState shippingDistrict:(NSString*)shippingDistrict shippingAdditionalInfo:(NSString*)shippingAdditionalInfo completionHandler:(void (^)(NSDictionary*, NSError*))handler
 {
@@ -139,7 +144,9 @@
         url = [URL_PROD stringByAppendingString:@"/api/cc/debit/"];
     NSString *authTimestamp = [self generateAuthTimestamp];
     
-    NSDictionary *params =   @{ @"application_code"     : self.appCode,
+    NSDictionary *params;
+    @try{
+    params =   @{ @"application_code"     : self.appCode,
                                         @"card_reference" : cardReference,
                                         @"dev_reference": devReference,
                                         @"email" :   [self urlEncodeUsingEncoding:email],
@@ -150,6 +157,14 @@
                                         @"uid": userId,
              
                                 };
+    }
+    @catch (NSException *e)
+    {
+        NSLog(@"%@",e);
+        NSError *error = [NSError errorWithDomain:@"com.paymentez.ErrorParameters" code:61 userInfo:[NSDictionary dictionaryWithObject:@"one or more mandatory parameters are sent as nil" forKey:@"message"]];
+        handler(nil,error);
+        return;
+    }
     NSMutableDictionary *parametersDict = [params mutableCopy];
     if (sellerId)
         [parametersDict setObject:sellerId forKey:@"seller_id"];
@@ -345,6 +360,7 @@
     else
     {
         NSDictionary *res = [NSJSONSerialization JSONObjectWithData:self._urlResponse options:NSJSONReadingMutableLeaves error:&myError];
+        
         self.handler(res,myError);
     }
     
