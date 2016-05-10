@@ -39,22 +39,22 @@ class PaymentezCard
         {
             return PaymentezCardType.NotSupported
         }
-        let predicateAmex = NSPredicate(format: "%@", REGEX_AMEX)
+        let predicateAmex = NSPredicate(format: "SELF MATCHES %@", REGEX_AMEX)
         if predicateAmex.evaluateWithObject(cardNumber)
         {
             return PaymentezCardType.Amex
         }
-        let predicateVisa = NSPredicate(format: "%@", REGEX_VISA)
+        let predicateVisa = NSPredicate(format: "SELF MATCHES %@", REGEX_VISA)
         if predicateVisa.evaluateWithObject(cardNumber)
         {
             return PaymentezCardType.Visa
         }
-        let predicateMC = NSPredicate(format: "%@", REGEX_MASTERCARD)
+        let predicateMC = NSPredicate(format: "SELF MATCHES %@", REGEX_MASTERCARD)
         if predicateMC.evaluateWithObject(cardNumber)
         {
             return PaymentezCardType.MasterCard
         }
-        let predicateDiners = NSPredicate(format: "%@", REGEX_DINERS)
+        let predicateDiners = NSPredicate(format: "SELF MATCHES %@", REGEX_DINERS)
         if predicateDiners.evaluateWithObject(cardNumber)
         {
             return PaymentezCardType.Diners
@@ -65,4 +65,33 @@ class PaymentezCard
     }
     
     
+}
+
+class PaymentezTransaction
+{
+    var amount:Double?
+    var paymentDate: NSDate?
+    var status:Int?
+    var statusDetail:Int?
+    var transactionId:String?
+    var carrierData:[String:AnyObject]?
+    
+    static func parseTransaction(data:AnyObject?) ->PaymentezTransaction
+    {
+        _ = data as! [String:AnyObject]
+        let trx = PaymentezTransaction()
+        trx.amount = data!["amount"] as? Double
+        trx.status = data!["status"] as? Int
+        trx.statusDetail = data!["status_detail"] as? Int
+        trx.transactionId = data!["transaction_id"] as? String
+        
+        trx.carrierData = data!["carrier_data"] as? [String:AnyObject]
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+        
+        trx.paymentDate = dateFormatter.dateFromString(data!["payment_date"] as! String)
+        return trx
+        
+    }
 }

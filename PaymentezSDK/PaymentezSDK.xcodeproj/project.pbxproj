@@ -7,21 +7,48 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		40245CAF1CE19924001A21DE /* PaymentezResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40245CAB1CE19924001A21DE /* PaymentezResponse.swift */; };
+		40245CB01CE19924001A21DE /* PaymentezSecure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40245CAC1CE19924001A21DE /* PaymentezSecure.swift */; };
+		40245CB11CE19924001A21DE /* PaymentezCardScan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40245CAD1CE19924001A21DE /* PaymentezCardScan.swift */; };
+		40245CBF1CE199CF001A21DE /* CardIO.h in Headers */ = {isa = PBXBuildFile; fileRef = 40245CB41CE199CF001A21DE /* CardIO.h */; };
+		40245CC01CE199CF001A21DE /* CardIOCreditCardInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 40245CB51CE199CF001A21DE /* CardIOCreditCardInfo.h */; };
+		40245CC11CE199CF001A21DE /* CardIODetectionMode.h in Headers */ = {isa = PBXBuildFile; fileRef = 40245CB61CE199CF001A21DE /* CardIODetectionMode.h */; };
+		40245CC21CE199CF001A21DE /* CardIOPaymentViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 40245CB71CE199CF001A21DE /* CardIOPaymentViewController.h */; };
+		40245CC31CE199CF001A21DE /* CardIOPaymentViewControllerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 40245CB81CE199CF001A21DE /* CardIOPaymentViewControllerDelegate.h */; };
+		40245CC41CE199CF001A21DE /* CardIOUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 40245CB91CE199CF001A21DE /* CardIOUtilities.h */; };
+		40245CC51CE199CF001A21DE /* CardIOView.h in Headers */ = {isa = PBXBuildFile; fileRef = 40245CBA1CE199CF001A21DE /* CardIOView.h */; };
+		40245CC61CE199CF001A21DE /* CardIOViewDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 40245CBB1CE199CF001A21DE /* CardIOViewDelegate.h */; };
+		40245CC71CE199CF001A21DE /* libCardIO.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 40245CBC1CE199CF001A21DE /* libCardIO.a */; };
+		40245CC81CE199CF001A21DE /* libopencv_core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 40245CBD1CE199CF001A21DE /* libopencv_core.a */; };
+		40245CC91CE199CF001A21DE /* libopencv_imgproc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 40245CBE1CE199CF001A21DE /* libopencv_imgproc.a */; };
 		4099AADE1CD9570E000FEB8C /* DeviceCollectorSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 4099AADC1CD9570E000FEB8C /* DeviceCollectorSDK.h */; };
 		4099AADF1CD9570E000FEB8C /* libDeviceCollectorLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4099AADD1CD9570E000FEB8C /* libDeviceCollectorLibrary.a */; };
 		4099AAE11CD959ED000FEB8C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4099AAE01CD959ED000FEB8C /* SystemConfiguration.framework */; };
-		40A368B11CD923EF008C0FEA /* PaymentezSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 40A368B01CD923EF008C0FEA /* PaymentezSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		40A368BC1CD9240B008C0FEA /* PaymentezSDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A368B91CD9240B008C0FEA /* PaymentezSDK.swift */; };
 		40A368BD1CD9240B008C0FEA /* PaymentezCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A368BA1CD9240B008C0FEA /* PaymentezCard.swift */; };
 		40A368BE1CD9240B008C0FEA /* PaymentezRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A368BB1CD9240B008C0FEA /* PaymentezRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		40245CAB1CE19924001A21DE /* PaymentezResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentezResponse.swift; sourceTree = "<group>"; };
+		40245CAC1CE19924001A21DE /* PaymentezSecure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentezSecure.swift; sourceTree = "<group>"; };
+		40245CAD1CE19924001A21DE /* PaymentezCardScan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentezCardScan.swift; sourceTree = "<group>"; };
+		40245CB41CE199CF001A21DE /* CardIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardIO.h; sourceTree = "<group>"; };
+		40245CB51CE199CF001A21DE /* CardIOCreditCardInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardIOCreditCardInfo.h; sourceTree = "<group>"; };
+		40245CB61CE199CF001A21DE /* CardIODetectionMode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardIODetectionMode.h; sourceTree = "<group>"; };
+		40245CB71CE199CF001A21DE /* CardIOPaymentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardIOPaymentViewController.h; sourceTree = "<group>"; };
+		40245CB81CE199CF001A21DE /* CardIOPaymentViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardIOPaymentViewControllerDelegate.h; sourceTree = "<group>"; };
+		40245CB91CE199CF001A21DE /* CardIOUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardIOUtilities.h; sourceTree = "<group>"; };
+		40245CBA1CE199CF001A21DE /* CardIOView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardIOView.h; sourceTree = "<group>"; };
+		40245CBB1CE199CF001A21DE /* CardIOViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardIOViewDelegate.h; sourceTree = "<group>"; };
+		40245CBC1CE199CF001A21DE /* libCardIO.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libCardIO.a; sourceTree = "<group>"; };
+		40245CBD1CE199CF001A21DE /* libopencv_core.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopencv_core.a; sourceTree = "<group>"; };
+		40245CBE1CE199CF001A21DE /* libopencv_imgproc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopencv_imgproc.a; sourceTree = "<group>"; };
+		40245CCA1CE19C9A001A21DE /* CommonCrypto.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = CommonCrypto.xcconfig; sourceTree = "<group>"; };
 		4099AADC1CD9570E000FEB8C /* DeviceCollectorSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceCollectorSDK.h; sourceTree = "<group>"; };
 		4099AADD1CD9570E000FEB8C /* libDeviceCollectorLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libDeviceCollectorLibrary.a; sourceTree = "<group>"; };
 		4099AAE01CD959ED000FEB8C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		40A368AD1CD923EF008C0FEA /* PaymentezSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PaymentezSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		40A368B01CD923EF008C0FEA /* PaymentezSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PaymentezSDK.h; sourceTree = "<group>"; };
 		40A368B21CD923EF008C0FEA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		40A368B91CD9240B008C0FEA /* PaymentezSDK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentezSDK.swift; sourceTree = "<group>"; };
 		40A368BA1CD9240B008C0FEA /* PaymentezCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentezCard.swift; sourceTree = "<group>"; };
@@ -34,13 +61,34 @@
 			buildActionMask = 2147483647;
 			files = (
 				4099AAE11CD959ED000FEB8C /* SystemConfiguration.framework in Frameworks */,
+				40245CC81CE199CF001A21DE /* libopencv_core.a in Frameworks */,
+				40245CC71CE199CF001A21DE /* libCardIO.a in Frameworks */,
 				4099AADF1CD9570E000FEB8C /* libDeviceCollectorLibrary.a in Frameworks */,
+				40245CC91CE199CF001A21DE /* libopencv_imgproc.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		40245CB31CE199CF001A21DE /* CardIO */ = {
+			isa = PBXGroup;
+			children = (
+				40245CB41CE199CF001A21DE /* CardIO.h */,
+				40245CB51CE199CF001A21DE /* CardIOCreditCardInfo.h */,
+				40245CB61CE199CF001A21DE /* CardIODetectionMode.h */,
+				40245CB71CE199CF001A21DE /* CardIOPaymentViewController.h */,
+				40245CB81CE199CF001A21DE /* CardIOPaymentViewControllerDelegate.h */,
+				40245CB91CE199CF001A21DE /* CardIOUtilities.h */,
+				40245CBA1CE199CF001A21DE /* CardIOView.h */,
+				40245CBB1CE199CF001A21DE /* CardIOViewDelegate.h */,
+				40245CBC1CE199CF001A21DE /* libCardIO.a */,
+				40245CBD1CE199CF001A21DE /* libopencv_core.a */,
+				40245CBE1CE199CF001A21DE /* libopencv_imgproc.a */,
+			);
+			path = CardIO;
+			sourceTree = "<group>";
+		};
 		4099AADB1CD9570E000FEB8C /* DeviceCollectorLibrary */ = {
 			isa = PBXGroup;
 			children = (
@@ -53,6 +101,8 @@
 		40A368A31CD923EF008C0FEA = {
 			isa = PBXGroup;
 			children = (
+				40245CCA1CE19C9A001A21DE /* CommonCrypto.xcconfig */,
+				40245CB31CE199CF001A21DE /* CardIO */,
 				4099AAE01CD959ED000FEB8C /* SystemConfiguration.framework */,
 				40A368AF1CD923EF008C0FEA /* PaymentezSDK */,
 				40A368AE1CD923EF008C0FEA /* Products */,
@@ -70,11 +120,13 @@
 		40A368AF1CD923EF008C0FEA /* PaymentezSDK */ = {
 			isa = PBXGroup;
 			children = (
+				40245CAB1CE19924001A21DE /* PaymentezResponse.swift */,
+				40245CAC1CE19924001A21DE /* PaymentezSecure.swift */,
+				40245CAD1CE19924001A21DE /* PaymentezCardScan.swift */,
 				4099AADB1CD9570E000FEB8C /* DeviceCollectorLibrary */,
 				40A368B91CD9240B008C0FEA /* PaymentezSDK.swift */,
 				40A368BA1CD9240B008C0FEA /* PaymentezCard.swift */,
 				40A368BB1CD9240B008C0FEA /* PaymentezRequest.swift */,
-				40A368B01CD923EF008C0FEA /* PaymentezSDK.h */,
 				40A368B21CD923EF008C0FEA /* Info.plist */,
 			);
 			path = PaymentezSDK;
@@ -87,8 +139,15 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				40A368B11CD923EF008C0FEA /* PaymentezSDK.h in Headers */,
+				40245CBF1CE199CF001A21DE /* CardIO.h in Headers */,
+				40245CC51CE199CF001A21DE /* CardIOView.h in Headers */,
+				40245CC11CE199CF001A21DE /* CardIODetectionMode.h in Headers */,
+				40245CC61CE199CF001A21DE /* CardIOViewDelegate.h in Headers */,
+				40245CC31CE199CF001A21DE /* CardIOPaymentViewControllerDelegate.h in Headers */,
 				4099AADE1CD9570E000FEB8C /* DeviceCollectorSDK.h in Headers */,
+				40245CC41CE199CF001A21DE /* CardIOUtilities.h in Headers */,
+				40245CC21CE199CF001A21DE /* CardIOPaymentViewController.h in Headers */,
+				40245CC01CE199CF001A21DE /* CardIOCreditCardInfo.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -159,8 +218,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40245CB11CE19924001A21DE /* PaymentezCardScan.swift in Sources */,
 				40A368BC1CD9240B008C0FEA /* PaymentezSDK.swift in Sources */,
+				40245CB01CE19924001A21DE /* PaymentezSecure.swift in Sources */,
 				40A368BD1CD9240B008C0FEA /* PaymentezCard.swift in Sources */,
+				40245CAF1CE19924001A21DE /* PaymentezResponse.swift in Sources */,
 				40A368BE1CD9240B008C0FEA /* PaymentezRequest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -170,6 +232,7 @@
 /* Begin XCBuildConfiguration section */
 		40A368B31CD923EF008C0FEA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 40245CCA1CE19C9A001A21DE /* CommonCrypto.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -206,7 +269,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -219,6 +282,7 @@
 		};
 		40A368B41CD923EF008C0FEA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 40245CCA1CE19C9A001A21DE /* CommonCrypto.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -249,7 +313,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -261,6 +325,7 @@
 		};
 		40A368B61CD923EF008C0FEA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 40245CCA1CE19C9A001A21DE /* CommonCrypto.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
@@ -274,17 +339,20 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/PaymentezSDK/DeviceCollectorLibrary",
+					"$(PROJECT_DIR)/CardIO",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.paymentez.PaymentezSDK;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_INCLUDE_PATHS = "${SRCROOT}/CommonCrypto";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		40A368B71CD923EF008C0FEA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 40245CCA1CE19C9A001A21DE /* CommonCrypto.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
@@ -298,11 +366,13 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/PaymentezSDK/DeviceCollectorLibrary",
+					"$(PROJECT_DIR)/CardIO",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.paymentez.PaymentezSDK;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_INCLUDE_PATHS = "${SRCROOT}/CommonCrypto";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 			};
 			name = Release;
 		};

@@ -1,0 +1,492 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		408C1BA81CE1AA9600B9A2F0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408C1BA71CE1AA9600B9A2F0 /* AppDelegate.swift */; };
+		408C1BAA1CE1AA9600B9A2F0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408C1BA91CE1AA9600B9A2F0 /* ViewController.swift */; };
+		408C1BAD1CE1AA9600B9A2F0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 408C1BAB1CE1AA9600B9A2F0 /* Main.storyboard */; };
+		408C1BAF1CE1AA9600B9A2F0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 408C1BAE1CE1AA9600B9A2F0 /* Assets.xcassets */; };
+		408C1BB21CE1AA9600B9A2F0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 408C1BB01CE1AA9600B9A2F0 /* LaunchScreen.storyboard */; };
+		408C1BBD1CE1AA9600B9A2F0 /* PaymentezSDKSwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408C1BBC1CE1AA9600B9A2F0 /* PaymentezSDKSwiftUITests.swift */; };
+		408C1BCC1CE1AD1500B9A2F0 /* ListCardsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408C1BCB1CE1AD1500B9A2F0 /* ListCardsTableViewController.swift */; };
+		408C1BDF1CE1B1D200B9A2F0 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 408C1BD11CE1B1D200B9A2F0 /* Accelerate.framework */; };
+		408C1BE01CE1B1D200B9A2F0 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 408C1BD21CE1B1D200B9A2F0 /* AudioToolbox.framework */; };
+		408C1BE11CE1B1D200B9A2F0 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 408C1BD31CE1B1D200B9A2F0 /* AVFoundation.framework */; };
+		408C1BE21CE1B1D200B9A2F0 /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 408C1BD41CE1B1D200B9A2F0 /* AVKit.framework */; };
+		408C1BE31CE1B1D200B9A2F0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 408C1BD51CE1B1D200B9A2F0 /* CoreGraphics.framework */; };
+		408C1BE41CE1B1D200B9A2F0 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 408C1BD61CE1B1D200B9A2F0 /* CoreImage.framework */; };
+		408C1BE51CE1B1D200B9A2F0 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 408C1BD71CE1B1D200B9A2F0 /* CoreLocation.framework */; };
+		408C1BE61CE1B1D200B9A2F0 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 408C1BD81CE1B1D200B9A2F0 /* CoreMedia.framework */; };
+		408C1BE71CE1B1D200B9A2F0 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 408C1BD91CE1B1D200B9A2F0 /* CoreVideo.framework */; };
+		408C1BE81CE1B1D200B9A2F0 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 408C1BDA1CE1B1D200B9A2F0 /* MobileCoreServices.framework */; };
+		408C1BE91CE1B1D200B9A2F0 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 408C1BDB1CE1B1D200B9A2F0 /* OpenGLES.framework */; };
+		408C1BEA1CE1B1D200B9A2F0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 408C1BDC1CE1B1D200B9A2F0 /* QuartzCore.framework */; };
+		408C1BEB1CE1B1D200B9A2F0 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 408C1BDD1CE1B1D200B9A2F0 /* Security.framework */; };
+		408C1BEC1CE1B1D200B9A2F0 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 408C1BDE1CE1B1D200B9A2F0 /* SystemConfiguration.framework */; };
+		408C1BEF1CE1B30300B9A2F0 /* PaymentezSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 408C1BED1CE1B2A200B9A2F0 /* PaymentezSDK.framework */; };
+		408C1C2B1CE238EE00B9A2F0 /* PaymentezSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 408C1C2A1CE238EE00B9A2F0 /* PaymentezSDK.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		408C1BB91CE1AA9600B9A2F0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 408C1B9C1CE1AA9600B9A2F0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 408C1BA31CE1AA9600B9A2F0;
+			remoteInfo = PaymentezSDKSwift;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		408C1BF11CE1B30300B9A2F0 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		408C1BA41CE1AA9600B9A2F0 /* PaymentezSDKSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PaymentezSDKSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		408C1BA71CE1AA9600B9A2F0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		408C1BA91CE1AA9600B9A2F0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		408C1BAC1CE1AA9600B9A2F0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		408C1BAE1CE1AA9600B9A2F0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		408C1BB11CE1AA9600B9A2F0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		408C1BB31CE1AA9600B9A2F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		408C1BB81CE1AA9600B9A2F0 /* PaymentezSDKSwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PaymentezSDKSwiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		408C1BBC1CE1AA9600B9A2F0 /* PaymentezSDKSwiftUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentezSDKSwiftUITests.swift; sourceTree = "<group>"; };
+		408C1BBE1CE1AA9600B9A2F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		408C1BCB1CE1AD1500B9A2F0 /* ListCardsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListCardsTableViewController.swift; sourceTree = "<group>"; };
+		408C1BD11CE1B1D200B9A2F0 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		408C1BD21CE1B1D200B9A2F0 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		408C1BD31CE1B1D200B9A2F0 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		408C1BD41CE1B1D200B9A2F0 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
+		408C1BD51CE1B1D200B9A2F0 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		408C1BD61CE1B1D200B9A2F0 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		408C1BD71CE1B1D200B9A2F0 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		408C1BD81CE1B1D200B9A2F0 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		408C1BD91CE1B1D200B9A2F0 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		408C1BDA1CE1B1D200B9A2F0 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		408C1BDB1CE1B1D200B9A2F0 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		408C1BDC1CE1B1D200B9A2F0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		408C1BDD1CE1B1D200B9A2F0 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		408C1BDE1CE1B1D200B9A2F0 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		408C1BED1CE1B2A200B9A2F0 /* PaymentezSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PaymentezSDK.framework; path = /Users/guxsotelo/Documents/paymentez/pmtz_proys/paymentezsdk/PaymentezSDKSwift/PaymentezSDK.framework; sourceTree = "<absolute>"; };
+		408C1C2A1CE238EE00B9A2F0 /* PaymentezSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PaymentezSDK.framework; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		408C1BA11CE1AA9600B9A2F0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				408C1BDF1CE1B1D200B9A2F0 /* Accelerate.framework in Frameworks */,
+				408C1C2B1CE238EE00B9A2F0 /* PaymentezSDK.framework in Frameworks */,
+				408C1BEF1CE1B30300B9A2F0 /* PaymentezSDK.framework in Frameworks */,
+				408C1BE01CE1B1D200B9A2F0 /* AudioToolbox.framework in Frameworks */,
+				408C1BE11CE1B1D200B9A2F0 /* AVFoundation.framework in Frameworks */,
+				408C1BE21CE1B1D200B9A2F0 /* AVKit.framework in Frameworks */,
+				408C1BE31CE1B1D200B9A2F0 /* CoreGraphics.framework in Frameworks */,
+				408C1BE41CE1B1D200B9A2F0 /* CoreImage.framework in Frameworks */,
+				408C1BE51CE1B1D200B9A2F0 /* CoreLocation.framework in Frameworks */,
+				408C1BE61CE1B1D200B9A2F0 /* CoreMedia.framework in Frameworks */,
+				408C1BE71CE1B1D200B9A2F0 /* CoreVideo.framework in Frameworks */,
+				408C1BE81CE1B1D200B9A2F0 /* MobileCoreServices.framework in Frameworks */,
+				408C1BE91CE1B1D200B9A2F0 /* OpenGLES.framework in Frameworks */,
+				408C1BEA1CE1B1D200B9A2F0 /* QuartzCore.framework in Frameworks */,
+				408C1BEB1CE1B1D200B9A2F0 /* Security.framework in Frameworks */,
+				408C1BEC1CE1B1D200B9A2F0 /* SystemConfiguration.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		408C1BB51CE1AA9600B9A2F0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		408C1B9B1CE1AA9600B9A2F0 = {
+			isa = PBXGroup;
+			children = (
+				408C1C2A1CE238EE00B9A2F0 /* PaymentezSDK.framework */,
+				408C1BD11CE1B1D200B9A2F0 /* Accelerate.framework */,
+				408C1BD21CE1B1D200B9A2F0 /* AudioToolbox.framework */,
+				408C1BD31CE1B1D200B9A2F0 /* AVFoundation.framework */,
+				408C1BD41CE1B1D200B9A2F0 /* AVKit.framework */,
+				408C1BD51CE1B1D200B9A2F0 /* CoreGraphics.framework */,
+				408C1BD61CE1B1D200B9A2F0 /* CoreImage.framework */,
+				408C1BD71CE1B1D200B9A2F0 /* CoreLocation.framework */,
+				408C1BD81CE1B1D200B9A2F0 /* CoreMedia.framework */,
+				408C1BD91CE1B1D200B9A2F0 /* CoreVideo.framework */,
+				408C1BDA1CE1B1D200B9A2F0 /* MobileCoreServices.framework */,
+				408C1BDB1CE1B1D200B9A2F0 /* OpenGLES.framework */,
+				408C1BDC1CE1B1D200B9A2F0 /* QuartzCore.framework */,
+				408C1BDD1CE1B1D200B9A2F0 /* Security.framework */,
+				408C1BDE1CE1B1D200B9A2F0 /* SystemConfiguration.framework */,
+				408C1BA61CE1AA9600B9A2F0 /* PaymentezSDKSwift */,
+				408C1BBB1CE1AA9600B9A2F0 /* PaymentezSDKSwiftUITests */,
+				408C1BA51CE1AA9600B9A2F0 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		408C1BA51CE1AA9600B9A2F0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				408C1BA41CE1AA9600B9A2F0 /* PaymentezSDKSwift.app */,
+				408C1BB81CE1AA9600B9A2F0 /* PaymentezSDKSwiftUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		408C1BA61CE1AA9600B9A2F0 /* PaymentezSDKSwift */ = {
+			isa = PBXGroup;
+			children = (
+				408C1BCB1CE1AD1500B9A2F0 /* ListCardsTableViewController.swift */,
+				408C1BA71CE1AA9600B9A2F0 /* AppDelegate.swift */,
+				408C1BA91CE1AA9600B9A2F0 /* ViewController.swift */,
+				408C1BAB1CE1AA9600B9A2F0 /* Main.storyboard */,
+				408C1BAE1CE1AA9600B9A2F0 /* Assets.xcassets */,
+				408C1BB01CE1AA9600B9A2F0 /* LaunchScreen.storyboard */,
+				408C1BB31CE1AA9600B9A2F0 /* Info.plist */,
+			);
+			path = PaymentezSDKSwift;
+			sourceTree = "<group>";
+		};
+		408C1BBB1CE1AA9600B9A2F0 /* PaymentezSDKSwiftUITests */ = {
+			isa = PBXGroup;
+			children = (
+				408C1BBC1CE1AA9600B9A2F0 /* PaymentezSDKSwiftUITests.swift */,
+				408C1BBE1CE1AA9600B9A2F0 /* Info.plist */,
+			);
+			path = PaymentezSDKSwiftUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		408C1BA31CE1AA9600B9A2F0 /* PaymentezSDKSwift */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 408C1BC11CE1AA9600B9A2F0 /* Build configuration list for PBXNativeTarget "PaymentezSDKSwift" */;
+			buildPhases = (
+				408C1BA01CE1AA9600B9A2F0 /* Sources */,
+				408C1BA11CE1AA9600B9A2F0 /* Frameworks */,
+				408C1BA21CE1AA9600B9A2F0 /* Resources */,
+				408C1BF11CE1B30300B9A2F0 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PaymentezSDKSwift;
+			productName = PaymentezSDKSwift;
+			productReference = 408C1BA41CE1AA9600B9A2F0 /* PaymentezSDKSwift.app */;
+			productType = "com.apple.product-type.application";
+		};
+		408C1BB71CE1AA9600B9A2F0 /* PaymentezSDKSwiftUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 408C1BC41CE1AA9600B9A2F0 /* Build configuration list for PBXNativeTarget "PaymentezSDKSwiftUITests" */;
+			buildPhases = (
+				408C1BB41CE1AA9600B9A2F0 /* Sources */,
+				408C1BB51CE1AA9600B9A2F0 /* Frameworks */,
+				408C1BB61CE1AA9600B9A2F0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				408C1BBA1CE1AA9600B9A2F0 /* PBXTargetDependency */,
+			);
+			name = PaymentezSDKSwiftUITests;
+			productName = PaymentezSDKSwiftUITests;
+			productReference = 408C1BB81CE1AA9600B9A2F0 /* PaymentezSDKSwiftUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		408C1B9C1CE1AA9600B9A2F0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = Paymentez;
+				TargetAttributes = {
+					408C1BA31CE1AA9600B9A2F0 = {
+						CreatedOnToolsVersion = 7.3;
+					};
+					408C1BB71CE1AA9600B9A2F0 = {
+						CreatedOnToolsVersion = 7.3;
+						TestTargetID = 408C1BA31CE1AA9600B9A2F0;
+					};
+				};
+			};
+			buildConfigurationList = 408C1B9F1CE1AA9600B9A2F0 /* Build configuration list for PBXProject "PaymentezSDKSwift" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 408C1B9B1CE1AA9600B9A2F0;
+			productRefGroup = 408C1BA51CE1AA9600B9A2F0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				408C1BA31CE1AA9600B9A2F0 /* PaymentezSDKSwift */,
+				408C1BB71CE1AA9600B9A2F0 /* PaymentezSDKSwiftUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		408C1BA21CE1AA9600B9A2F0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				408C1BB21CE1AA9600B9A2F0 /* LaunchScreen.storyboard in Resources */,
+				408C1BAF1CE1AA9600B9A2F0 /* Assets.xcassets in Resources */,
+				408C1BAD1CE1AA9600B9A2F0 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		408C1BB61CE1AA9600B9A2F0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		408C1BA01CE1AA9600B9A2F0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				408C1BAA1CE1AA9600B9A2F0 /* ViewController.swift in Sources */,
+				408C1BCC1CE1AD1500B9A2F0 /* ListCardsTableViewController.swift in Sources */,
+				408C1BA81CE1AA9600B9A2F0 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		408C1BB41CE1AA9600B9A2F0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				408C1BBD1CE1AA9600B9A2F0 /* PaymentezSDKSwiftUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		408C1BBA1CE1AA9600B9A2F0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 408C1BA31CE1AA9600B9A2F0 /* PaymentezSDKSwift */;
+			targetProxy = 408C1BB91CE1AA9600B9A2F0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		408C1BAB1CE1AA9600B9A2F0 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				408C1BAC1CE1AA9600B9A2F0 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		408C1BB01CE1AA9600B9A2F0 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				408C1BB11CE1AA9600B9A2F0 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		408C1BBF1CE1AA9600B9A2F0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		408C1BC01CE1AA9600B9A2F0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		408C1BC21CE1AA9600B9A2F0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = PaymentezSDKSwift/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.paymentez.PaymentezSDKSwift;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		408C1BC31CE1AA9600B9A2F0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = PaymentezSDKSwift/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.paymentez.PaymentezSDKSwift;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		408C1BC51CE1AA9600B9A2F0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = PaymentezSDKSwiftUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.paymentez.PaymentezSDKSwiftUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = PaymentezSDKSwift;
+			};
+			name = Debug;
+		};
+		408C1BC61CE1AA9600B9A2F0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = PaymentezSDKSwiftUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.paymentez.PaymentezSDKSwiftUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = PaymentezSDKSwift;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		408C1B9F1CE1AA9600B9A2F0 /* Build configuration list for PBXProject "PaymentezSDKSwift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				408C1BBF1CE1AA9600B9A2F0 /* Debug */,
+				408C1BC01CE1AA9600B9A2F0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		408C1BC11CE1AA9600B9A2F0 /* Build configuration list for PBXNativeTarget "PaymentezSDKSwift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				408C1BC21CE1AA9600B9A2F0 /* Debug */,
+				408C1BC31CE1AA9600B9A2F0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		408C1BC41CE1AA9600B9A2F0 /* Build configuration list for PBXNativeTarget "PaymentezSDKSwiftUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				408C1BC51CE1AA9600B9A2F0 /* Debug */,
+				408C1BC61CE1AA9600B9A2F0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 408C1B9C1CE1AA9600B9A2F0 /* Project object */;
+}

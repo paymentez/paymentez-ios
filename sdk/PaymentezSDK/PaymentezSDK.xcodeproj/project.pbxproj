@@ -1,0 +1,474 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		408C1B941CE1A78100B9A2F0 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 408C1B8D1CE1A78100B9A2F0 /* Accelerate.framework */; };
+		408C1B951CE1A78100B9A2F0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 408C1B8E1CE1A78100B9A2F0 /* CoreGraphics.framework */; };
+		408C1B961CE1A78100B9A2F0 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 408C1B8F1CE1A78100B9A2F0 /* CoreMedia.framework */; };
+		408C1B971CE1A78100B9A2F0 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 408C1B901CE1A78100B9A2F0 /* CoreVideo.framework */; };
+		408C1B981CE1A78100B9A2F0 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 408C1B911CE1A78100B9A2F0 /* MobileCoreServices.framework */; };
+		408C1B991CE1A78100B9A2F0 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 408C1B921CE1A78100B9A2F0 /* OpenGLES.framework */; };
+		408C1B9A1CE1A78100B9A2F0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 408C1B931CE1A78100B9A2F0 /* QuartzCore.framework */; };
+		409159161CE1A09100FE316B /* DeviceCollector-Bridging-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = 409158FC1CE1A09000FE316B /* DeviceCollector-Bridging-Header.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		409159171CE1A09100FE316B /* DeviceCollectorSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 409158FD1CE1A09000FE316B /* DeviceCollectorSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		409159181CE1A09100FE316B /* libDeviceCollectorLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 409158FE1CE1A09000FE316B /* libDeviceCollectorLibrary.a */; };
+		409159191CE1A09100FE316B /* DeviceCollectorSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 409158FF1CE1A09100FE316B /* DeviceCollectorSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4091591A1CE1A09100FE316B /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 409159001CE1A09100FE316B /* Info.plist */; };
+		4091591B1CE1A09100FE316B /* libDeviceCollectorLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 409159011CE1A09100FE316B /* libDeviceCollectorLibrary.a */; };
+		4091591C1CE1A09100FE316B /* PaymentezCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409159021CE1A09100FE316B /* PaymentezCard.swift */; };
+		4091591D1CE1A09100FE316B /* PaymentezCardScan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409159031CE1A09100FE316B /* PaymentezCardScan.swift */; };
+		4091591E1CE1A09100FE316B /* PaymentezRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409159041CE1A09100FE316B /* PaymentezRequest.swift */; };
+		4091591F1CE1A09100FE316B /* PaymentezResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409159051CE1A09100FE316B /* PaymentezResponse.swift */; };
+		409159201CE1A09100FE316B /* PaymentezSDK-Bridging-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = 409159061CE1A09100FE316B /* PaymentezSDK-Bridging-Header.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		409159211CE1A09100FE316B /* PaymentezSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 409159071CE1A09100FE316B /* PaymentezSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		409159221CE1A09100FE316B /* PaymentezSDKClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409159081CE1A09100FE316B /* PaymentezSDKClient.swift */; };
+		409159231CE1A09100FE316B /* PaymentezSecure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409159091CE1A09100FE316B /* PaymentezSecure.swift */; };
+		409159241CE1A09100FE316B /* CardIO.h in Headers */ = {isa = PBXBuildFile; fileRef = 4091590B1CE1A09100FE316B /* CardIO.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		409159251CE1A09100FE316B /* CardIOCreditCardInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 4091590C1CE1A09100FE316B /* CardIOCreditCardInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		409159261CE1A09100FE316B /* CardIODetectionMode.h in Headers */ = {isa = PBXBuildFile; fileRef = 4091590D1CE1A09100FE316B /* CardIODetectionMode.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		409159271CE1A09100FE316B /* CardIOPaymentViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 4091590E1CE1A09100FE316B /* CardIOPaymentViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		409159281CE1A09100FE316B /* CardIOPaymentViewControllerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 4091590F1CE1A09100FE316B /* CardIOPaymentViewControllerDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		409159291CE1A09100FE316B /* CardIOUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 409159101CE1A09100FE316B /* CardIOUtilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4091592A1CE1A09100FE316B /* CardIOView.h in Headers */ = {isa = PBXBuildFile; fileRef = 409159111CE1A09100FE316B /* CardIOView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4091592B1CE1A09100FE316B /* CardIOViewDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 409159121CE1A09100FE316B /* CardIOViewDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4091592C1CE1A09100FE316B /* libCardIO.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 409159131CE1A09100FE316B /* libCardIO.a */; };
+		4091592D1CE1A09100FE316B /* libopencv_core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 409159141CE1A09100FE316B /* libopencv_core.a */; };
+		4091592E1CE1A09100FE316B /* libopencv_imgproc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 409159151CE1A09100FE316B /* libopencv_imgproc.a */; };
+		409159321CE1A57500FE316B /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 409159311CE1A57500FE316B /* Security.framework */; };
+		409159341CE1A58000FE316B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 409159331CE1A58000FE316B /* UIKit.framework */; };
+		409159361CE1A58900FE316B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 409159351CE1A58900FE316B /* SystemConfiguration.framework */; };
+		409159381CE1A59100FE316B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 409159371CE1A59100FE316B /* CoreLocation.framework */; };
+		4091593C1CE1A6A300FE316B /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 409159391CE1A6A300FE316B /* AudioToolbox.framework */; };
+		4091593E1CE1A6A300FE316B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4091593B1CE1A6A300FE316B /* AVFoundation.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		408C1B8D1CE1A78100B9A2F0 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		408C1B8E1CE1A78100B9A2F0 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		408C1B8F1CE1A78100B9A2F0 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		408C1B901CE1A78100B9A2F0 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		408C1B911CE1A78100B9A2F0 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		408C1B921CE1A78100B9A2F0 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		408C1B931CE1A78100B9A2F0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		409158DF1CE1A01000FE316B /* PaymentezSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PaymentezSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		409158E21CE1A01000FE316B /* PaymentezSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PaymentezSDK.h; sourceTree = "<group>"; };
+		409158E41CE1A01000FE316B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		409158FC1CE1A09000FE316B /* DeviceCollector-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DeviceCollector-Bridging-Header.h"; sourceTree = "<group>"; };
+		409158FD1CE1A09000FE316B /* DeviceCollectorSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceCollectorSDK.h; sourceTree = "<group>"; };
+		409158FE1CE1A09000FE316B /* libDeviceCollectorLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libDeviceCollectorLibrary.a; sourceTree = "<group>"; };
+		409158FF1CE1A09100FE316B /* DeviceCollectorSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceCollectorSDK.h; sourceTree = "<group>"; };
+		409159001CE1A09100FE316B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		409159011CE1A09100FE316B /* libDeviceCollectorLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libDeviceCollectorLibrary.a; sourceTree = "<group>"; };
+		409159021CE1A09100FE316B /* PaymentezCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentezCard.swift; sourceTree = "<group>"; };
+		409159031CE1A09100FE316B /* PaymentezCardScan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentezCardScan.swift; sourceTree = "<group>"; };
+		409159041CE1A09100FE316B /* PaymentezRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentezRequest.swift; sourceTree = "<group>"; };
+		409159051CE1A09100FE316B /* PaymentezResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentezResponse.swift; sourceTree = "<group>"; };
+		409159061CE1A09100FE316B /* PaymentezSDK-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PaymentezSDK-Bridging-Header.h"; sourceTree = "<group>"; };
+		409159071CE1A09100FE316B /* PaymentezSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentezSDK.h; sourceTree = "<group>"; };
+		409159081CE1A09100FE316B /* PaymentezSDKClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentezSDKClient.swift; sourceTree = "<group>"; };
+		409159091CE1A09100FE316B /* PaymentezSecure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentezSecure.swift; sourceTree = "<group>"; };
+		4091590B1CE1A09100FE316B /* CardIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardIO.h; sourceTree = "<group>"; };
+		4091590C1CE1A09100FE316B /* CardIOCreditCardInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardIOCreditCardInfo.h; sourceTree = "<group>"; };
+		4091590D1CE1A09100FE316B /* CardIODetectionMode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardIODetectionMode.h; sourceTree = "<group>"; };
+		4091590E1CE1A09100FE316B /* CardIOPaymentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardIOPaymentViewController.h; sourceTree = "<group>"; };
+		4091590F1CE1A09100FE316B /* CardIOPaymentViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardIOPaymentViewControllerDelegate.h; sourceTree = "<group>"; };
+		409159101CE1A09100FE316B /* CardIOUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardIOUtilities.h; sourceTree = "<group>"; };
+		409159111CE1A09100FE316B /* CardIOView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardIOView.h; sourceTree = "<group>"; };
+		409159121CE1A09100FE316B /* CardIOViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardIOViewDelegate.h; sourceTree = "<group>"; };
+		409159131CE1A09100FE316B /* libCardIO.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libCardIO.a; sourceTree = "<group>"; };
+		409159141CE1A09100FE316B /* libopencv_core.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopencv_core.a; sourceTree = "<group>"; };
+		409159151CE1A09100FE316B /* libopencv_imgproc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libopencv_imgproc.a; sourceTree = "<group>"; };
+		409159311CE1A57500FE316B /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		409159331CE1A58000FE316B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		409159351CE1A58900FE316B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		409159371CE1A59100FE316B /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		409159391CE1A6A300FE316B /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		4091593A1CE1A6A300FE316B /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
+		4091593B1CE1A6A300FE316B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		409158DB1CE1A01000FE316B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				408C1B941CE1A78100B9A2F0 /* Accelerate.framework in Frameworks */,
+				408C1B951CE1A78100B9A2F0 /* CoreGraphics.framework in Frameworks */,
+				408C1B961CE1A78100B9A2F0 /* CoreMedia.framework in Frameworks */,
+				408C1B971CE1A78100B9A2F0 /* CoreVideo.framework in Frameworks */,
+				408C1B981CE1A78100B9A2F0 /* MobileCoreServices.framework in Frameworks */,
+				408C1B991CE1A78100B9A2F0 /* OpenGLES.framework in Frameworks */,
+				408C1B9A1CE1A78100B9A2F0 /* QuartzCore.framework in Frameworks */,
+				409159321CE1A57500FE316B /* Security.framework in Frameworks */,
+				4091593C1CE1A6A300FE316B /* AudioToolbox.framework in Frameworks */,
+				4091593E1CE1A6A300FE316B /* AVFoundation.framework in Frameworks */,
+				409159381CE1A59100FE316B /* CoreLocation.framework in Frameworks */,
+				409159361CE1A58900FE316B /* SystemConfiguration.framework in Frameworks */,
+				409159341CE1A58000FE316B /* UIKit.framework in Frameworks */,
+				409159181CE1A09100FE316B /* libDeviceCollectorLibrary.a in Frameworks */,
+				4091592D1CE1A09100FE316B /* libopencv_core.a in Frameworks */,
+				4091592C1CE1A09100FE316B /* libCardIO.a in Frameworks */,
+				4091591B1CE1A09100FE316B /* libDeviceCollectorLibrary.a in Frameworks */,
+				4091592E1CE1A09100FE316B /* libopencv_imgproc.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		409158D51CE1A01000FE316B = {
+			isa = PBXGroup;
+			children = (
+				408C1B8D1CE1A78100B9A2F0 /* Accelerate.framework */,
+				408C1B8E1CE1A78100B9A2F0 /* CoreGraphics.framework */,
+				408C1B8F1CE1A78100B9A2F0 /* CoreMedia.framework */,
+				408C1B901CE1A78100B9A2F0 /* CoreVideo.framework */,
+				408C1B911CE1A78100B9A2F0 /* MobileCoreServices.framework */,
+				408C1B921CE1A78100B9A2F0 /* OpenGLES.framework */,
+				408C1B931CE1A78100B9A2F0 /* QuartzCore.framework */,
+				409159391CE1A6A300FE316B /* AudioToolbox.framework */,
+				4091593A1CE1A6A300FE316B /* AudioUnit.framework */,
+				4091593B1CE1A6A300FE316B /* AVFoundation.framework */,
+				409159371CE1A59100FE316B /* CoreLocation.framework */,
+				409159351CE1A58900FE316B /* SystemConfiguration.framework */,
+				409159331CE1A58000FE316B /* UIKit.framework */,
+				409159311CE1A57500FE316B /* Security.framework */,
+				409158FA1CE1A09000FE316B /* PaymentezSDK */,
+				4091590A1CE1A09100FE316B /* CardIO */,
+				409158E01CE1A01000FE316B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		409158E01CE1A01000FE316B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				409158DF1CE1A01000FE316B /* PaymentezSDK.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		409158FA1CE1A09000FE316B /* PaymentezSDK */ = {
+			isa = PBXGroup;
+			children = (
+				409158FB1CE1A09000FE316B /* DeviceCollectorLibrary */,
+				409158FF1CE1A09100FE316B /* DeviceCollectorSDK.h */,
+				409159001CE1A09100FE316B /* Info.plist */,
+				409159011CE1A09100FE316B /* libDeviceCollectorLibrary.a */,
+				409159021CE1A09100FE316B /* PaymentezCard.swift */,
+				409159031CE1A09100FE316B /* PaymentezCardScan.swift */,
+				409159041CE1A09100FE316B /* PaymentezRequest.swift */,
+				409159051CE1A09100FE316B /* PaymentezResponse.swift */,
+				409159061CE1A09100FE316B /* PaymentezSDK-Bridging-Header.h */,
+				409159071CE1A09100FE316B /* PaymentezSDK.h */,
+				409159081CE1A09100FE316B /* PaymentezSDKClient.swift */,
+				409159091CE1A09100FE316B /* PaymentezSecure.swift */,
+				409158E21CE1A01000FE316B /* PaymentezSDK.h */,
+				409158E41CE1A01000FE316B /* Info.plist */,
+			);
+			path = PaymentezSDK;
+			sourceTree = "<group>";
+		};
+		409158FB1CE1A09000FE316B /* DeviceCollectorLibrary */ = {
+			isa = PBXGroup;
+			children = (
+				409158FC1CE1A09000FE316B /* DeviceCollector-Bridging-Header.h */,
+				409158FD1CE1A09000FE316B /* DeviceCollectorSDK.h */,
+				409158FE1CE1A09000FE316B /* libDeviceCollectorLibrary.a */,
+			);
+			path = DeviceCollectorLibrary;
+			sourceTree = "<group>";
+		};
+		4091590A1CE1A09100FE316B /* CardIO */ = {
+			isa = PBXGroup;
+			children = (
+				4091590B1CE1A09100FE316B /* CardIO.h */,
+				4091590C1CE1A09100FE316B /* CardIOCreditCardInfo.h */,
+				4091590D1CE1A09100FE316B /* CardIODetectionMode.h */,
+				4091590E1CE1A09100FE316B /* CardIOPaymentViewController.h */,
+				4091590F1CE1A09100FE316B /* CardIOPaymentViewControllerDelegate.h */,
+				409159101CE1A09100FE316B /* CardIOUtilities.h */,
+				409159111CE1A09100FE316B /* CardIOView.h */,
+				409159121CE1A09100FE316B /* CardIOViewDelegate.h */,
+				409159131CE1A09100FE316B /* libCardIO.a */,
+				409159141CE1A09100FE316B /* libopencv_core.a */,
+				409159151CE1A09100FE316B /* libopencv_imgproc.a */,
+			);
+			path = CardIO;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		409158DC1CE1A01000FE316B /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				409159271CE1A09100FE316B /* CardIOPaymentViewController.h in Headers */,
+				409159241CE1A09100FE316B /* CardIO.h in Headers */,
+				409159261CE1A09100FE316B /* CardIODetectionMode.h in Headers */,
+				409159281CE1A09100FE316B /* CardIOPaymentViewControllerDelegate.h in Headers */,
+				4091592B1CE1A09100FE316B /* CardIOViewDelegate.h in Headers */,
+				409159291CE1A09100FE316B /* CardIOUtilities.h in Headers */,
+				409159211CE1A09100FE316B /* PaymentezSDK.h in Headers */,
+				4091592A1CE1A09100FE316B /* CardIOView.h in Headers */,
+				409159171CE1A09100FE316B /* DeviceCollectorSDK.h in Headers */,
+				409159201CE1A09100FE316B /* PaymentezSDK-Bridging-Header.h in Headers */,
+				409159161CE1A09100FE316B /* DeviceCollector-Bridging-Header.h in Headers */,
+				409159191CE1A09100FE316B /* DeviceCollectorSDK.h in Headers */,
+				409159251CE1A09100FE316B /* CardIOCreditCardInfo.h in Headers */,
+				409159211CE1A09100FE316B /* PaymentezSDK.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		409158DE1CE1A01000FE316B /* PaymentezSDK */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 409158E71CE1A01000FE316B /* Build configuration list for PBXNativeTarget "PaymentezSDK" */;
+			buildPhases = (
+				409158DA1CE1A01000FE316B /* Sources */,
+				409158DB1CE1A01000FE316B /* Frameworks */,
+				409158DC1CE1A01000FE316B /* Headers */,
+				409158DD1CE1A01000FE316B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PaymentezSDK;
+			productName = PaymentezSDK;
+			productReference = 409158DF1CE1A01000FE316B /* PaymentezSDK.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		409158D61CE1A01000FE316B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = Paymentez;
+				TargetAttributes = {
+					409158DE1CE1A01000FE316B = {
+						CreatedOnToolsVersion = 7.3;
+					};
+				};
+			};
+			buildConfigurationList = 409158D91CE1A01000FE316B /* Build configuration list for PBXProject "PaymentezSDK" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 409158D51CE1A01000FE316B;
+			productRefGroup = 409158E01CE1A01000FE316B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				409158DE1CE1A01000FE316B /* PaymentezSDK */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		409158DD1CE1A01000FE316B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4091591A1CE1A09100FE316B /* Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		409158DA1CE1A01000FE316B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				409159231CE1A09100FE316B /* PaymentezSecure.swift in Sources */,
+				4091591D1CE1A09100FE316B /* PaymentezCardScan.swift in Sources */,
+				409159221CE1A09100FE316B /* PaymentezSDKClient.swift in Sources */,
+				4091591C1CE1A09100FE316B /* PaymentezCard.swift in Sources */,
+				4091591F1CE1A09100FE316B /* PaymentezResponse.swift in Sources */,
+				4091591E1CE1A09100FE316B /* PaymentezRequest.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		409158E51CE1A01000FE316B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		409158E61CE1A01000FE316B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		409158E81CE1A01000FE316B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = PaymentezSDK/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/PaymentezSDK",
+					"$(PROJECT_DIR)/PaymentezSDK/DeviceCollectorLibrary",
+					"$(PROJECT_DIR)/CardIO",
+				);
+				OTHER_LDFLAGS = "-lc++";
+				PRODUCT_BUNDLE_IDENTIFIER = com.paymentez.PaymentezSDK;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_INCLUDE_PATHS = "${SRCROOT}/CommonCrypto/";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		409158E91CE1A01000FE316B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = PaymentezSDK/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/PaymentezSDK",
+					"$(PROJECT_DIR)/PaymentezSDK/DeviceCollectorLibrary",
+					"$(PROJECT_DIR)/CardIO",
+				);
+				OTHER_LDFLAGS = "-lc++";
+				PRODUCT_BUNDLE_IDENTIFIER = com.paymentez.PaymentezSDK;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_INCLUDE_PATHS = "${SRCROOT}/CommonCrypto/";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		409158D91CE1A01000FE316B /* Build configuration list for PBXProject "PaymentezSDK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				409158E51CE1A01000FE316B /* Debug */,
+				409158E61CE1A01000FE316B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		409158E71CE1A01000FE316B /* Build configuration list for PBXNativeTarget "PaymentezSDK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				409158E81CE1A01000FE316B /* Debug */,
+				409158E91CE1A01000FE316B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 409158D61CE1A01000FE316B /* Project object */;
+}
