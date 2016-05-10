@@ -1,0 +1,679 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		402356311CE1572900CFD6B1 /* ListCardsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402356301CE1572900CFD6B1 /* ListCardsTableViewController.swift */; };
+		40873CA51CD1348D00F67721 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40873CA41CD1348D00F67721 /* AppDelegate.swift */; };
+		40873CA71CD1348D00F67721 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40873CA61CD1348D00F67721 /* ViewController.swift */; };
+		40873CAA1CD1348D00F67721 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40873CA81CD1348D00F67721 /* Main.storyboard */; };
+		40873CAC1CD1348D00F67721 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40873CAB1CD1348D00F67721 /* Assets.xcassets */; };
+		40873CAF1CD1348D00F67721 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40873CAD1CD1348D00F67721 /* LaunchScreen.storyboard */; };
+		40873CBA1CD1348E00F67721 /* PaymentezSDKSampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40873CB91CD1348E00F67721 /* PaymentezSDKSampleTests.swift */; };
+		40873CC51CD1348E00F67721 /* PaymentezSDKSampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40873CC41CD1348E00F67721 /* PaymentezSDKSampleUITests.swift */; };
+		409685AC1CD801F4005DE989 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 409685AB1CD801F4005DE989 /* Security.framework */; };
+		4099AAEB1CD95C4F000FEB8C /* libDeviceCollectorLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4099AAE51CD95C4F000FEB8C /* libDeviceCollectorLibrary.a */; };
+		4099AAEC1CD95C4F000FEB8C /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4099AAE61CD95C4F000FEB8C /* Info.plist */; };
+		4099AAED1CD95C4F000FEB8C /* PaymentezCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4099AAE71CD95C4F000FEB8C /* PaymentezCard.swift */; };
+		4099AAEE1CD95C4F000FEB8C /* PaymentezRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4099AAE81CD95C4F000FEB8C /* PaymentezRequest.swift */; };
+		4099AAEF1CD95C4F000FEB8C /* PaymentezSDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4099AAEA1CD95C4F000FEB8C /* PaymentezSDK.swift */; };
+		4099AAF11CDA54BE000FEB8C /* PaymentezSecure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4099AAF01CDA54BE000FEB8C /* PaymentezSecure.swift */; };
+		40AC2A871CDA6917004246F7 /* PaymentezResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40AC2A861CDA6917004246F7 /* PaymentezResponse.swift */; };
+		40AC2A8A1CDA7B80004246F7 /* PaymentezCardScan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40AC2A891CDA7B80004246F7 /* PaymentezCardScan.swift */; };
+		40E930A01CD7A9C600A758DA /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40E9309F1CD7A9C600A758DA /* CoreLocation.framework */; };
+		40E930A21CD7A9D200A758DA /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40E930A11CD7A9D200A758DA /* SystemConfiguration.framework */; };
+		40E930A41CD7A9E400A758DA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40E930A31CD7A9E400A758DA /* UIKit.framework */; };
+		551FA3C31971A6949FE0A2E5 /* Pods_PaymentezSDKSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13A27CA8663CC0E0324A600A /* Pods_PaymentezSDKSample.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		40873CB61CD1348E00F67721 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 40873C991CD1348D00F67721 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 40873CA01CD1348D00F67721;
+			remoteInfo = PaymentezSDKSample;
+		};
+		40873CC11CD1348E00F67721 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 40873C991CD1348D00F67721 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 40873CA01CD1348D00F67721;
+			remoteInfo = PaymentezSDKSample;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		13A27CA8663CC0E0324A600A /* Pods_PaymentezSDKSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PaymentezSDKSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		402356301CE1572900CFD6B1 /* ListCardsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListCardsTableViewController.swift; sourceTree = "<group>"; };
+		40873CA11CD1348D00F67721 /* PaymentezSDKSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PaymentezSDKSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		40873CA41CD1348D00F67721 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		40873CA61CD1348D00F67721 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		40873CA91CD1348D00F67721 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		40873CAB1CD1348D00F67721 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		40873CAE1CD1348D00F67721 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		40873CB01CD1348D00F67721 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		40873CB51CD1348E00F67721 /* PaymentezSDKSampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PaymentezSDKSampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		40873CB91CD1348E00F67721 /* PaymentezSDKSampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentezSDKSampleTests.swift; sourceTree = "<group>"; };
+		40873CBB1CD1348E00F67721 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		40873CC01CD1348E00F67721 /* PaymentezSDKSampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PaymentezSDKSampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		40873CC41CD1348E00F67721 /* PaymentezSDKSampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentezSDKSampleUITests.swift; sourceTree = "<group>"; };
+		40873CC61CD1348E00F67721 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		409685AB1CD801F4005DE989 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		4099AAE41CD95C4F000FEB8C /* DeviceCollectorSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceCollectorSDK.h; sourceTree = "<group>"; };
+		4099AAE51CD95C4F000FEB8C /* libDeviceCollectorLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libDeviceCollectorLibrary.a; sourceTree = "<group>"; };
+		4099AAE61CD95C4F000FEB8C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4099AAE71CD95C4F000FEB8C /* PaymentezCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentezCard.swift; sourceTree = "<group>"; };
+		4099AAE81CD95C4F000FEB8C /* PaymentezRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentezRequest.swift; sourceTree = "<group>"; };
+		4099AAEA1CD95C4F000FEB8C /* PaymentezSDK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentezSDK.swift; sourceTree = "<group>"; };
+		4099AAF01CDA54BE000FEB8C /* PaymentezSecure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentezSecure.swift; sourceTree = "<group>"; };
+		4099AAF21CDA5775000FEB8C /* DeviceCollector-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DeviceCollector-Bridging-Header.h"; sourceTree = "<group>"; };
+		40AC2A861CDA6917004246F7 /* PaymentezResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentezResponse.swift; sourceTree = "<group>"; };
+		40AC2A881CDA7A0B004246F7 /* PaymentezSDK-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PaymentezSDK-Bridging-Header.h"; sourceTree = "<group>"; };
+		40AC2A891CDA7B80004246F7 /* PaymentezCardScan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentezCardScan.swift; sourceTree = "<group>"; };
+		40E9309F1CD7A9C600A758DA /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		40E930A11CD7A9D200A758DA /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		40E930A31CD7A9E400A758DA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		A0C976B65ACE4B42C977AF20 /* Pods-PaymentezSDKSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PaymentezSDKSample.release.xcconfig"; path = "Pods/Target Support Files/Pods-PaymentezSDKSample/Pods-PaymentezSDKSample.release.xcconfig"; sourceTree = "<group>"; };
+		BDB1D15EE5CBD87D1CC15909 /* Pods-PaymentezSDKSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PaymentezSDKSample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PaymentezSDKSample/Pods-PaymentezSDKSample.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		40873C9E1CD1348D00F67721 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				409685AC1CD801F4005DE989 /* Security.framework in Frameworks */,
+				4099AAEB1CD95C4F000FEB8C /* libDeviceCollectorLibrary.a in Frameworks */,
+				40E930A41CD7A9E400A758DA /* UIKit.framework in Frameworks */,
+				40E930A21CD7A9D200A758DA /* SystemConfiguration.framework in Frameworks */,
+				40E930A01CD7A9C600A758DA /* CoreLocation.framework in Frameworks */,
+				551FA3C31971A6949FE0A2E5 /* Pods_PaymentezSDKSample.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		40873CB21CD1348E00F67721 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		40873CBD1CD1348E00F67721 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		40873C981CD1348D00F67721 = {
+			isa = PBXGroup;
+			children = (
+				4099AAE21CD95C4F000FEB8C /* PaymentezSDK */,
+				40873CA31CD1348D00F67721 /* PaymentezSDKSample */,
+				40873CB81CD1348E00F67721 /* PaymentezSDKSampleTests */,
+				40873CC31CD1348E00F67721 /* PaymentezSDKSampleUITests */,
+				40873CA21CD1348D00F67721 /* Products */,
+				7F311E8EDB38A220B7DDCC63 /* Pods */,
+				FAF9B0C6328D8B043C4DED1C /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		40873CA21CD1348D00F67721 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				40873CA11CD1348D00F67721 /* PaymentezSDKSample.app */,
+				40873CB51CD1348E00F67721 /* PaymentezSDKSampleTests.xctest */,
+				40873CC01CD1348E00F67721 /* PaymentezSDKSampleUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		40873CA31CD1348D00F67721 /* PaymentezSDKSample */ = {
+			isa = PBXGroup;
+			children = (
+				40873CA41CD1348D00F67721 /* AppDelegate.swift */,
+				40873CA61CD1348D00F67721 /* ViewController.swift */,
+				40873CA81CD1348D00F67721 /* Main.storyboard */,
+				40873CAB1CD1348D00F67721 /* Assets.xcassets */,
+				40873CAD1CD1348D00F67721 /* LaunchScreen.storyboard */,
+				40873CB01CD1348D00F67721 /* Info.plist */,
+				402356301CE1572900CFD6B1 /* ListCardsTableViewController.swift */,
+			);
+			path = PaymentezSDKSample;
+			sourceTree = "<group>";
+		};
+		40873CB81CD1348E00F67721 /* PaymentezSDKSampleTests */ = {
+			isa = PBXGroup;
+			children = (
+				40873CB91CD1348E00F67721 /* PaymentezSDKSampleTests.swift */,
+				40873CBB1CD1348E00F67721 /* Info.plist */,
+			);
+			path = PaymentezSDKSampleTests;
+			sourceTree = "<group>";
+		};
+		40873CC31CD1348E00F67721 /* PaymentezSDKSampleUITests */ = {
+			isa = PBXGroup;
+			children = (
+				40873CC41CD1348E00F67721 /* PaymentezSDKSampleUITests.swift */,
+				40873CC61CD1348E00F67721 /* Info.plist */,
+			);
+			path = PaymentezSDKSampleUITests;
+			sourceTree = "<group>";
+		};
+		4099AAE21CD95C4F000FEB8C /* PaymentezSDK */ = {
+			isa = PBXGroup;
+			children = (
+				4099AAE31CD95C4F000FEB8C /* DeviceCollectorLibrary */,
+				4099AAE61CD95C4F000FEB8C /* Info.plist */,
+				4099AAE71CD95C4F000FEB8C /* PaymentezCard.swift */,
+				4099AAE81CD95C4F000FEB8C /* PaymentezRequest.swift */,
+				4099AAEA1CD95C4F000FEB8C /* PaymentezSDK.swift */,
+				4099AAF01CDA54BE000FEB8C /* PaymentezSecure.swift */,
+				40AC2A861CDA6917004246F7 /* PaymentezResponse.swift */,
+				40AC2A881CDA7A0B004246F7 /* PaymentezSDK-Bridging-Header.h */,
+				40AC2A891CDA7B80004246F7 /* PaymentezCardScan.swift */,
+			);
+			path = PaymentezSDK;
+			sourceTree = "<group>";
+		};
+		4099AAE31CD95C4F000FEB8C /* DeviceCollectorLibrary */ = {
+			isa = PBXGroup;
+			children = (
+				4099AAE41CD95C4F000FEB8C /* DeviceCollectorSDK.h */,
+				4099AAE51CD95C4F000FEB8C /* libDeviceCollectorLibrary.a */,
+				4099AAF21CDA5775000FEB8C /* DeviceCollector-Bridging-Header.h */,
+			);
+			path = DeviceCollectorLibrary;
+			sourceTree = "<group>";
+		};
+		7F311E8EDB38A220B7DDCC63 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BDB1D15EE5CBD87D1CC15909 /* Pods-PaymentezSDKSample.debug.xcconfig */,
+				A0C976B65ACE4B42C977AF20 /* Pods-PaymentezSDKSample.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		FAF9B0C6328D8B043C4DED1C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				409685AB1CD801F4005DE989 /* Security.framework */,
+				40E930A31CD7A9E400A758DA /* UIKit.framework */,
+				40E930A11CD7A9D200A758DA /* SystemConfiguration.framework */,
+				40E9309F1CD7A9C600A758DA /* CoreLocation.framework */,
+				13A27CA8663CC0E0324A600A /* Pods_PaymentezSDKSample.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		40873CA01CD1348D00F67721 /* PaymentezSDKSample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 40873CC91CD1348E00F67721 /* Build configuration list for PBXNativeTarget "PaymentezSDKSample" */;
+			buildPhases = (
+				88E2FE2A8515F70F358063AE /* Check Pods Manifest.lock */,
+				40873C9D1CD1348D00F67721 /* Sources */,
+				40873C9E1CD1348D00F67721 /* Frameworks */,
+				40873C9F1CD1348D00F67721 /* Resources */,
+				66E2C1651D1DAFAC4889038D /* Embed Pods Frameworks */,
+				C3C361A2E4C8B8D12BA6221C /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PaymentezSDKSample;
+			productName = PaymentezSDKSample;
+			productReference = 40873CA11CD1348D00F67721 /* PaymentezSDKSample.app */;
+			productType = "com.apple.product-type.application";
+		};
+		40873CB41CD1348E00F67721 /* PaymentezSDKSampleTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 40873CCC1CD1348E00F67721 /* Build configuration list for PBXNativeTarget "PaymentezSDKSampleTests" */;
+			buildPhases = (
+				40873CB11CD1348E00F67721 /* Sources */,
+				40873CB21CD1348E00F67721 /* Frameworks */,
+				40873CB31CD1348E00F67721 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				40873CB71CD1348E00F67721 /* PBXTargetDependency */,
+			);
+			name = PaymentezSDKSampleTests;
+			productName = PaymentezSDKSampleTests;
+			productReference = 40873CB51CD1348E00F67721 /* PaymentezSDKSampleTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		40873CBF1CD1348E00F67721 /* PaymentezSDKSampleUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 40873CCF1CD1348E00F67721 /* Build configuration list for PBXNativeTarget "PaymentezSDKSampleUITests" */;
+			buildPhases = (
+				40873CBC1CD1348E00F67721 /* Sources */,
+				40873CBD1CD1348E00F67721 /* Frameworks */,
+				40873CBE1CD1348E00F67721 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				40873CC21CD1348E00F67721 /* PBXTargetDependency */,
+			);
+			name = PaymentezSDKSampleUITests;
+			productName = PaymentezSDKSampleUITests;
+			productReference = 40873CC01CD1348E00F67721 /* PaymentezSDKSampleUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		40873C991CD1348D00F67721 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = Paymentez;
+				TargetAttributes = {
+					40873CA01CD1348D00F67721 = {
+						CreatedOnToolsVersion = 7.3;
+					};
+					40873CB41CD1348E00F67721 = {
+						CreatedOnToolsVersion = 7.3;
+						TestTargetID = 40873CA01CD1348D00F67721;
+					};
+					40873CBF1CD1348E00F67721 = {
+						CreatedOnToolsVersion = 7.3;
+						TestTargetID = 40873CA01CD1348D00F67721;
+					};
+				};
+			};
+			buildConfigurationList = 40873C9C1CD1348D00F67721 /* Build configuration list for PBXProject "PaymentezSDKSample" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 40873C981CD1348D00F67721;
+			productRefGroup = 40873CA21CD1348D00F67721 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				40873CA01CD1348D00F67721 /* PaymentezSDKSample */,
+				40873CB41CD1348E00F67721 /* PaymentezSDKSampleTests */,
+				40873CBF1CD1348E00F67721 /* PaymentezSDKSampleUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		40873C9F1CD1348D00F67721 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4099AAEC1CD95C4F000FEB8C /* Info.plist in Resources */,
+				40873CAF1CD1348D00F67721 /* LaunchScreen.storyboard in Resources */,
+				40873CAC1CD1348D00F67721 /* Assets.xcassets in Resources */,
+				40873CAA1CD1348D00F67721 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		40873CB31CD1348E00F67721 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		40873CBE1CD1348E00F67721 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		66E2C1651D1DAFAC4889038D /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PaymentezSDKSample/Pods-PaymentezSDKSample-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		88E2FE2A8515F70F358063AE /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		C3C361A2E4C8B8D12BA6221C /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PaymentezSDKSample/Pods-PaymentezSDKSample-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		40873C9D1CD1348D00F67721 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4099AAF11CDA54BE000FEB8C /* PaymentezSecure.swift in Sources */,
+				40873CA71CD1348D00F67721 /* ViewController.swift in Sources */,
+				40AC2A871CDA6917004246F7 /* PaymentezResponse.swift in Sources */,
+				4099AAEF1CD95C4F000FEB8C /* PaymentezSDK.swift in Sources */,
+				40873CA51CD1348D00F67721 /* AppDelegate.swift in Sources */,
+				4099AAED1CD95C4F000FEB8C /* PaymentezCard.swift in Sources */,
+				40AC2A8A1CDA7B80004246F7 /* PaymentezCardScan.swift in Sources */,
+				402356311CE1572900CFD6B1 /* ListCardsTableViewController.swift in Sources */,
+				4099AAEE1CD95C4F000FEB8C /* PaymentezRequest.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		40873CB11CD1348E00F67721 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				40873CBA1CD1348E00F67721 /* PaymentezSDKSampleTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		40873CBC1CD1348E00F67721 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				40873CC51CD1348E00F67721 /* PaymentezSDKSampleUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		40873CB71CD1348E00F67721 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 40873CA01CD1348D00F67721 /* PaymentezSDKSample */;
+			targetProxy = 40873CB61CD1348E00F67721 /* PBXContainerItemProxy */;
+		};
+		40873CC21CD1348E00F67721 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 40873CA01CD1348D00F67721 /* PaymentezSDKSample */;
+			targetProxy = 40873CC11CD1348E00F67721 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		40873CA81CD1348D00F67721 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				40873CA91CD1348D00F67721 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		40873CAD1CD1348D00F67721 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				40873CAE1CD1348D00F67721 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		40873CC71CD1348E00F67721 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "CommonCrypto-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		40873CC81CD1348E00F67721 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "CommonCrypto-Bridging-Header.h";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		40873CCA1CD1348E00F67721 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BDB1D15EE5CBD87D1CC15909 /* Pods-PaymentezSDKSample.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = PaymentezSDKSample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/DeviceCollectorLibrary",
+					"$(PROJECT_DIR)/PaymentezSDK/DeviceCollectorLibrary",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.paymentez.PaymentezSDKSample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_INCLUDE_PATHS = "${SRCROOT}/CommonCrypto";
+				SWIFT_OBJC_BRIDGING_HEADER = "${SRCROOT}/PaymentezSDK/PaymentezSDK-Bridging-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
+			};
+			name = Debug;
+		};
+		40873CCB1CD1348E00F67721 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A0C976B65ACE4B42C977AF20 /* Pods-PaymentezSDKSample.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = PaymentezSDKSample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/DeviceCollectorLibrary",
+					"$(PROJECT_DIR)/PaymentezSDK/DeviceCollectorLibrary",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.paymentez.PaymentezSDKSample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_INCLUDE_PATHS = "${SRCROOT}/CommonCrypto";
+				SWIFT_OBJC_BRIDGING_HEADER = "${SRCROOT}/PaymentezSDK/PaymentezSDK-Bridging-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
+			};
+			name = Release;
+		};
+		40873CCD1CD1348E00F67721 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = PaymentezSDKSampleTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.paymentez.PaymentezSDKSampleTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PaymentezSDKSample.app/PaymentezSDKSample";
+			};
+			name = Debug;
+		};
+		40873CCE1CD1348E00F67721 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = PaymentezSDKSampleTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.paymentez.PaymentezSDKSampleTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PaymentezSDKSample.app/PaymentezSDKSample";
+			};
+			name = Release;
+		};
+		40873CD01CD1348E00F67721 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = PaymentezSDKSampleUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.paymentez.PaymentezSDKSampleUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = PaymentezSDKSample;
+			};
+			name = Debug;
+		};
+		40873CD11CD1348E00F67721 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = PaymentezSDKSampleUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.paymentez.PaymentezSDKSampleUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = PaymentezSDKSample;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		40873C9C1CD1348D00F67721 /* Build configuration list for PBXProject "PaymentezSDKSample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				40873CC71CD1348E00F67721 /* Debug */,
+				40873CC81CD1348E00F67721 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		40873CC91CD1348E00F67721 /* Build configuration list for PBXNativeTarget "PaymentezSDKSample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				40873CCA1CD1348E00F67721 /* Debug */,
+				40873CCB1CD1348E00F67721 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		40873CCC1CD1348E00F67721 /* Build configuration list for PBXNativeTarget "PaymentezSDKSampleTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				40873CCD1CD1348E00F67721 /* Debug */,
+				40873CCE1CD1348E00F67721 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		40873CCF1CD1348E00F67721 /* Build configuration list for PBXNativeTarget "PaymentezSDKSampleUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				40873CD01CD1348E00F67721 /* Debug */,
+				40873CD11CD1348E00F67721 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 40873C991CD1348D00F67721 /* Project object */;
+}
