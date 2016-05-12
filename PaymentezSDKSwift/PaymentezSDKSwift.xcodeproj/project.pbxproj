@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		407B44521CE4E52800CC9C12 /* AddCustomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407B44511CE4E52800CC9C12 /* AddCustomViewController.swift */; };
+		407B44551CE4E57F00CC9C12 /* PaymentezSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 407B44541CE4E57F00CC9C12 /* PaymentezSDK.framework */; };
+		407B44581CE4E59100CC9C12 /* PaymentezSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 408C1C2A1CE238EE00B9A2F0 /* PaymentezSDK.framework */; };
+		407B44591CE4E59100CC9C12 /* PaymentezSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 408C1C2A1CE238EE00B9A2F0 /* PaymentezSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		407B445B1CE4F31E00CC9C12 /* VerifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407B445A1CE4F31E00CC9C12 /* VerifyViewController.swift */; };
 		408C1BA81CE1AA9600B9A2F0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408C1BA71CE1AA9600B9A2F0 /* AppDelegate.swift */; };
 		408C1BAA1CE1AA9600B9A2F0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408C1BA91CE1AA9600B9A2F0 /* ViewController.swift */; };
 		408C1BAD1CE1AA9600B9A2F0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 408C1BAB1CE1AA9600B9A2F0 /* Main.storyboard */; };
@@ -49,6 +54,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				407B44591CE4E59100CC9C12 /* PaymentezSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -56,6 +62,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		407B44511CE4E52800CC9C12 /* AddCustomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCustomViewController.swift; sourceTree = "<group>"; };
+		407B44541CE4E57F00CC9C12 /* PaymentezSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PaymentezSDK.framework; path = /Users/guxsotelo/Documents/paymentez/pmtz_proys/paymentezsdk/PaymentezSDKSwift/simulator/PaymentezSDK.framework; sourceTree = "<absolute>"; };
+		407B445A1CE4F31E00CC9C12 /* VerifyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerifyViewController.swift; sourceTree = "<group>"; };
 		408C1BA41CE1AA9600B9A2F0 /* PaymentezSDKSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PaymentezSDKSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		408C1BA71CE1AA9600B9A2F0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		408C1BA91CE1AA9600B9A2F0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -95,6 +104,7 @@
 				408C1BEF1CE1B30300B9A2F0 /* PaymentezSDK.framework in Frameworks */,
 				408C1BE01CE1B1D200B9A2F0 /* AudioToolbox.framework in Frameworks */,
 				408C1BE11CE1B1D200B9A2F0 /* AVFoundation.framework in Frameworks */,
+				407B44551CE4E57F00CC9C12 /* PaymentezSDK.framework in Frameworks */,
 				408C1BE21CE1B1D200B9A2F0 /* AVKit.framework in Frameworks */,
 				408C1BE31CE1B1D200B9A2F0 /* CoreGraphics.framework in Frameworks */,
 				408C1BE41CE1B1D200B9A2F0 /* CoreImage.framework in Frameworks */,
@@ -102,6 +112,7 @@
 				408C1BE61CE1B1D200B9A2F0 /* CoreMedia.framework in Frameworks */,
 				408C1BE71CE1B1D200B9A2F0 /* CoreVideo.framework in Frameworks */,
 				408C1BE81CE1B1D200B9A2F0 /* MobileCoreServices.framework in Frameworks */,
+				407B44581CE4E59100CC9C12 /* PaymentezSDK.framework in Frameworks */,
 				408C1BE91CE1B1D200B9A2F0 /* OpenGLES.framework in Frameworks */,
 				408C1BEA1CE1B1D200B9A2F0 /* QuartzCore.framework in Frameworks */,
 				408C1BEB1CE1B1D200B9A2F0 /* Security.framework in Frameworks */,
@@ -162,6 +173,8 @@
 				408C1BAE1CE1AA9600B9A2F0 /* Assets.xcassets */,
 				408C1BB01CE1AA9600B9A2F0 /* LaunchScreen.storyboard */,
 				408C1BB31CE1AA9600B9A2F0 /* Info.plist */,
+				407B44511CE4E52800CC9C12 /* AddCustomViewController.swift */,
+				407B445A1CE4F31E00CC9C12 /* VerifyViewController.swift */,
 			);
 			path = PaymentezSDKSwift;
 			sourceTree = "<group>";
@@ -280,6 +293,8 @@
 				408C1BAA1CE1AA9600B9A2F0 /* ViewController.swift in Sources */,
 				408C1BCC1CE1AD1500B9A2F0 /* ListCardsTableViewController.swift in Sources */,
 				408C1BA81CE1AA9600B9A2F0 /* AppDelegate.swift in Sources */,
+				407B445B1CE4F31E00CC9C12 /* VerifyViewController.swift in Sources */,
+				407B44521CE4E52800CC9C12 /* AddCustomViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,6 +426,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/simulator",
 				);
 				INFOPLIST_FILE = PaymentezSDKSwift/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
@@ -427,6 +443,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/simulator",
 				);
 				INFOPLIST_FILE = PaymentezSDKSwift/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
@@ -477,6 +494,7 @@
 				408C1BC31CE1AA9600B9A2F0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		408C1BC41CE1AA9600B9A2F0 /* Build configuration list for PBXNativeTarget "PaymentezSDKSwiftUITests" */ = {
 			isa = XCConfigurationList;
@@ -485,6 +503,7 @@
 				408C1BC61CE1AA9600B9A2F0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

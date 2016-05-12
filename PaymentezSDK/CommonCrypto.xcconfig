@@ -1,9 +1,0 @@
-//
-//  CommonCrypto.xcconfig
-//  PaymentezSDK
-//
-//  Created by Gustavo Sotelo on 09/05/16.
-//  Copyright © 2016 Paymentez. All rights reserved.
-//
-MODULEMAP_FILE[sdk=iphoneos*]        = $(SRCROOT)/CommonCrypto/iphoneos.modulemap
-MODULEMAP_FILE[sdk=iphonesimulator*] = $(SRCROOT)/CommonCrypto/iphonesimulator.modulemap

@@ -6,7 +6,24 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		407B445C1CE5008000CC9C12 /* PaymentezSDKFramework */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 407B445F1CE5008000CC9C12 /* Build configuration list for PBXAggregateTarget "PaymentezSDKFramework" */;
+			buildPhases = (
+				407B44621CE500DE00CC9C12 /* ShellScript */,
+			);
+			dependencies = (
+				407B44611CE500A400CC9C12 /* PBXTargetDependency */,
+			);
+			name = PaymentezSDKFramework;
+			productName = PaymentezSDKFramework;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
+		402544CB1CE3E06A00F35B23 /* PaymentezAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402544C91CE3E06A00F35B23 /* PaymentezAddViewController.swift */; };
+		402544CC1CE3E06A00F35B23 /* PaymentezAddViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 402544CA1CE3E06A00F35B23 /* PaymentezAddViewController.xib */; };
 		408C1B941CE1A78100B9A2F0 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 408C1B8D1CE1A78100B9A2F0 /* Accelerate.framework */; };
 		408C1B951CE1A78100B9A2F0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 408C1B8E1CE1A78100B9A2F0 /* CoreGraphics.framework */; };
 		408C1B961CE1A78100B9A2F0 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 408C1B8F1CE1A78100B9A2F0 /* CoreMedia.framework */; };
@@ -47,7 +64,19 @@
 		4091593E1CE1A6A300FE316B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4091593B1CE1A6A300FE316B /* AVFoundation.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		407B44601CE500A400CC9C12 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 409158D61CE1A01000FE316B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 409158DE1CE1A01000FE316B;
+			remoteInfo = PaymentezSDK;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		402544C91CE3E06A00F35B23 /* PaymentezAddViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentezAddViewController.swift; sourceTree = "<group>"; };
+		402544CA1CE3E06A00F35B23 /* PaymentezAddViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaymentezAddViewController.xib; sourceTree = "<group>"; };
 		408C1B8D1CE1A78100B9A2F0 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		408C1B8E1CE1A78100B9A2F0 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		408C1B8F1CE1A78100B9A2F0 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
@@ -169,6 +198,8 @@
 				409159091CE1A09100FE316B /* PaymentezSecure.swift */,
 				409158E21CE1A01000FE316B /* PaymentezSDK.h */,
 				409158E41CE1A01000FE316B /* Info.plist */,
+				402544C91CE3E06A00F35B23 /* PaymentezAddViewController.swift */,
+				402544CA1CE3E06A00F35B23 /* PaymentezAddViewController.xib */,
 			);
 			path = PaymentezSDK;
 			sourceTree = "<group>";
@@ -255,6 +286,9 @@
 				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = Paymentez;
 				TargetAttributes = {
+					407B445C1CE5008000CC9C12 = {
+						CreatedOnToolsVersion = 7.3;
+					};
 					409158DE1CE1A01000FE316B = {
 						CreatedOnToolsVersion = 7.3;
 					};
@@ -273,6 +307,7 @@
 			projectRoot = "";
 			targets = (
 				409158DE1CE1A01000FE316B /* PaymentezSDK */,
+				407B445C1CE5008000CC9C12 /* PaymentezSDKFramework */,
 			);
 		};
 /* End PBXProject section */
@@ -282,11 +317,28 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				402544CC1CE3E06A00F35B23 /* PaymentezAddViewController.xib in Resources */,
 				4091591A1CE1A09100FE316B /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		407B44621CE500DE00CC9C12 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "######################\n# Options\n######################\n\nREVEAL_ARCHIVE_IN_FINDER=false\n\nFRAMEWORK_NAME=\"${PROJECT_NAME}\"\n\nSIMULATOR_LIBRARY_PATH=\"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${FRAMEWORK_NAME}.framework\"\n\nDEVICE_LIBRARY_PATH=\"${BUILD_DIR}/${CONFIGURATION}-iphoneos/${FRAMEWORK_NAME}.framework\"\n\nUNIVERSAL_LIBRARY_DIR=\"${BUILD_DIR}/${CONFIGURATION}-iphoneuniversal\"\n\nFRAMEWORK=\"${UNIVERSAL_LIBRARY_DIR}/${FRAMEWORK_NAME}.framework\"\n\n\n######################\n# Build Frameworks\n######################\n\nxcodebuild -workspace ${PROJECT_NAME}.xcworkspace -scheme ${PROJECT_NAME} -sdk iphonesimulator -configuration ${CONFIGURATION} clean build CONFIGURATION_BUILD_DIR=${BUILD_DIR}/${CONFIGURATION}-iphonesimulator 2>&1\n\nxcodebuild -workspace ${PROJECT_NAME}.xcworkspace -scheme ${PROJECT_NAME} -sdk iphoneos -configuration ${CONFIGURATION} clean build CONFIGURATION_BUILD_DIR=${BUILD_DIR}/${CONFIGURATION}-iphoneos 2>&1\n\n######################\n# Create directory for universal\n######################\n\nrm -rf \"${UNIVERSAL_LIBRARY_DIR}\"\n\nmkdir \"${UNIVERSAL_LIBRARY_DIR}\"\n\nmkdir \"${FRAMEWORK}\"\n\n\n######################\n# Copy files Framework\n######################\n\ncp -r \"${DEVICE_LIBRARY_PATH}/.\" \"${FRAMEWORK}\"\n\n\n######################\n# Make an universal binary\n######################\n\nlipo \"${SIMULATOR_LIBRARY_PATH}/${FRAMEWORK_NAME}\" \"${DEVICE_LIBRARY_PATH}/${FRAMEWORK_NAME}\" -create -output \"${FRAMEWORK}/${FRAMEWORK_NAME}\" | echo\n\n# For Swift framework, Swiftmodule needs to be copied in the universal framework\nif [ -d \"${SIMULATOR_LIBRARY_PATH}/Modules/${FRAMEWORK_NAME}.swiftmodule/\" ]; then\ncp -f ${SIMULATOR_LIBRARY_PATH}/Modules/${FRAMEWORK_NAME}.swiftmodule/* \"${FRAMEWORK}/Modules/${FRAMEWORK_NAME}.swiftmodule/\" | echo\n                                                                      fi\n                                                                      \n                                                                      if [ -d \"${DEVICE_LIBRARY_PATH}/Modules/${FRAMEWORK_NAME}.swiftmodule/\" ]; then\n                                                                      cp -f ${DEVICE_LIBRARY_PATH}/Modules/${FRAMEWORK_NAME}.swiftmodule/* \"${FRAMEWORK}/Modules/${FRAMEWORK_NAME}.swiftmodule/\" | echo\n                                                                      fi\n                                                                      \n                                                                      ######################\n                                                                      # On Release, copy the result to release directory\n                                                                      ######################\n                                                                      OUTPUT_DIR=\"${PROJECT_DIR}/Output/${FRAMEWORK_NAME}-${CONFIGURATION}-iphoneuniversal/\"\n                                                                      \n                                                                      rm -rf \"$OUTPUT_DIR\"\n                                                                      mkdir -p \"$OUTPUT_DIR\"\n                                                                      \n                                                                      cp -r \"${FRAMEWORK}\" \"$OUTPUT_DIR\"\n                                                                      \n                                                                      if [ ${REVEAL_ARCHIVE_IN_FINDER} = true ]; then\n                                                                      open \"${OUTPUT_DIR}/\"\n                                                                      fi";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		409158DA1CE1A01000FE316B /* Sources */ = {
@@ -294,6 +346,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				409159231CE1A09100FE316B /* PaymentezSecure.swift in Sources */,
+				402544CB1CE3E06A00F35B23 /* PaymentezAddViewController.swift in Sources */,
 				4091591D1CE1A09100FE316B /* PaymentezCardScan.swift in Sources */,
 				409159221CE1A09100FE316B /* PaymentezSDKClient.swift in Sources */,
 				4091591C1CE1A09100FE316B /* PaymentezCard.swift in Sources */,
@@ -304,7 +357,29 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		407B44611CE500A400CC9C12 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 409158DE1CE1A01000FE316B /* PaymentezSDK */;
+			targetProxy = 407B44601CE500A400CC9C12 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		407B445D1CE5008000CC9C12 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		407B445E1CE5008000CC9C12 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		409158E51CE1A01000FE316B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -413,7 +488,10 @@
 					"$(PROJECT_DIR)/PaymentezSDK/DeviceCollectorLibrary",
 					"$(PROJECT_DIR)/CardIO",
 				);
-				OTHER_LDFLAGS = "-lc++";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lc++",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.paymentez.PaymentezSDK;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -439,7 +517,10 @@
 					"$(PROJECT_DIR)/PaymentezSDK/DeviceCollectorLibrary",
 					"$(PROJECT_DIR)/CardIO",
 				);
-				OTHER_LDFLAGS = "-lc++";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lc++",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.paymentez.PaymentezSDK;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -450,6 +531,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		407B445F1CE5008000CC9C12 /* Build configuration list for PBXAggregateTarget "PaymentezSDKFramework" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				407B445D1CE5008000CC9C12 /* Debug */,
+				407B445E1CE5008000CC9C12 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		409158D91CE1A01000FE316B /* Build configuration list for PBXProject "PaymentezSDK" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

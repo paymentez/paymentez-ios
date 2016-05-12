@@ -58,7 +58,7 @@ class PaymentezSecure: NSObject,DeviceCollectorSDKDelegate
         self.callback!(err:nil)
     }
     func onCollectorError(errorCode: Int32, withError error: NSError!) {
-        print("error collection")
+        
         self.callback!(err:error)
         
     }

@@ -48,8 +48,21 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="smh-n0-QjS">
                         <rightBarButtonItems>
-                            <barButtonItem title="Add Custom" id="coX-dI-o5f"/>
-                            <barButtonItem title="Add" id="ZzM-kD-phV"/>
+                            <barButtonItem title="Add Custom" id="coX-dI-o5f">
+                                <connections>
+                                    <segue destination="KVV-oE-lno" kind="push" id="p43-6N-sJG"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Add" id="ZzM-kD-phV">
+                                <connections>
+                                    <action selector="addAction:" destination="oFT-PU-HbM" id="vme-ff-8XU"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Verify" id="yKA-mD-Z8B">
+                                <connections>
+                                    <segue destination="FwY-Sj-WX9" kind="push" id="LeR-sa-KR8"/>
+                                </connections>
+                            </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
@@ -60,6 +73,123 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mth-d6-QZk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="492.80000000000001" y="585.98666666666668"/>
+        </scene>
+        <!--Add Custom View Controller-->
+        <scene sceneID="51q-QE-sGS">
+            <objects>
+                <viewController id="KVV-oE-lno" customClass="AddCustomViewController" customModule="PaymentezSDKSwift" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Khb-rF-YuT"/>
+                        <viewControllerLayoutGuide type="bottom" id="HyU-KG-Ji6"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="6pt-tJ-cqx">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Card Holder" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZWe-CA-2Oc">
+                                <rect key="frame" x="29" y="109" width="246" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Card Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wIn-cO-pli">
+                                <rect key="frame" x="29" y="162" width="246" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="EXP MONTH XX" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hy8-vQ-08Q">
+                                <rect key="frame" x="29" y="214" width="114" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ExpYear XXXX" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2oP-qv-vuR">
+                                <rect key="frame" x="164" y="214" width="111" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="CVC" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="u4k-in-dcZ">
+                                <rect key="frame" x="29" y="262" width="85" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="czx-zU-qsf">
+                                <rect key="frame" x="87" y="347" width="131" height="30"/>
+                                <state key="normal" title="Add"/>
+                                <connections>
+                                    <action selector="addCard:" destination="KVV-oE-lno" eventType="touchUpInside" id="zb4-FO-g3p"/>
+                                </connections>
+                            </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="DPd-kQ-3Cg">
+                                <rect key="frame" x="134" y="415" width="37" height="37"/>
+                                <color key="color" red="0.25098040700000002" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="vRF-dJ-wIZ">
+                        <barButtonItem key="rightBarButtonItem" title="Scan Card" id="67w-pl-9mj">
+                            <connections>
+                                <action selector="scanCard:" destination="KVV-oE-lno" id="3RT-bX-ugN"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="activityIndicator" destination="DPd-kQ-3Cg" id="xXe-AA-2My"/>
+                        <outlet property="cardHolder" destination="ZWe-CA-2Oc" id="rdm-8S-JyH"/>
+                        <outlet property="cardNumber" destination="wIn-cO-pli" id="NPp-Qw-lmx"/>
+                        <outlet property="cvcText" destination="u4k-in-dcZ" id="Ykx-4r-FhB"/>
+                        <outlet property="expiryMonth" destination="Hy8-vQ-08Q" id="U0O-f8-Ibt"/>
+                        <outlet property="expiryYear" destination="2oP-qv-vuR" id="lzt-q4-ejx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Gwc-8n-Vmf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1013" y="494"/>
+        </scene>
+        <!--Verify-->
+        <scene sceneID="mPJ-eO-7YK">
+            <objects>
+                <viewController id="FwY-Sj-WX9" customClass="VerifyViewController" customModule="PaymentezSDKSwift" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="0SC-Hz-FkN"/>
+                        <viewControllerLayoutGuide type="bottom" id="M5C-Db-lqS"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="qRg-EY-22X">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Transaction Id" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AX4-HS-qNl">
+                                <rect key="frame" x="84" y="163" width="153" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Aw-7i-4Bc">
+                                <rect key="frame" x="98" y="224" width="125" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VSm-U8-n0h">
+                                <rect key="frame" x="140" y="290" width="40" height="30"/>
+                                <state key="normal" title="Verify"/>
+                                <connections>
+                                    <action selector="verifyTrx:" destination="FwY-Sj-WX9" eventType="touchUpInside" id="Piy-S8-Haf"/>
+                                </connections>
+                            </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="IZM-8U-Bhe">
+                                <rect key="frame" x="150" y="356" width="20" height="20"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Verify" id="NCu-ck-OxT"/>
+                    <connections>
+                        <outlet property="activityIndicator" destination="IZM-8U-Bhe" id="oer-tz-fh4"/>
+                        <outlet property="transactionId" destination="AX4-HS-qNl" id="5eo-Np-c7w"/>
+                        <outlet property="verifyCodetxt" destination="1Aw-7i-4Bc" id="be0-t4-RBO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ACu-eD-Esy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1374" y="821"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="JCe-Vh-dZ2">
@@ -91,11 +221,15 @@
                                     <action selector="debitAction:" destination="CBp-Ib-0dV" eventType="touchUpInside" id="mKJ-g5-J8M"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="3om-7y-CJN">
+                                <rect key="frame" x="150" y="250" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="dVd-J3-gYl"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="3om-7y-CJN" id="oe9-Gt-jpb"/>
                         <outlet property="amountTextfield" destination="orI-Qq-fga" id="PUA-SY-KJg"/>
                     </connections>
                 </viewController>

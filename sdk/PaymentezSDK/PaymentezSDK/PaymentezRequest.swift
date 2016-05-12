@@ -36,7 +36,7 @@ import Foundation
         
     }
     
-    func toDict() -> [String:AnyObject]
+    func requiredDict() -> [String:AnyObject]
     {
         var dic = [String:AnyObject]()
         dic["card_reference"] =  self.cardReference
@@ -52,24 +52,43 @@ import Foundation
         }
         if self.installments > 1
         {
-           dic["installments"] = self.installments
+            dic["installments"] = self.installments
         }
-        
-        //dic["buyer_fiscal_number"] = self.buyerFiscalNumber
-        /*dic["seller_id"] = self.sellerId
-        dic["shipping_street"] = self.shippingStreet
-        dic["shipping_house_number"] = self.shippingHouseNumber
-        dic["shipping_city"] = self.shippingCity
-        dic["shipping_zip"] = self.shippingZip
-        dic["shipping_state"] = self.shippingState
-        dic["shipping_country"] = self.shippingCountry
-        dic["shipping_district"] = self.shippingDistrict
-        dic["shipping_additional_address_info"] = self.shippingAdditionalAddressInfo*/
         
         return dic
         
     }
-    
+    func allParamsDict() -> [String:AnyObject]
+    {
+        var dic = [String:AnyObject]()
+        dic["card_reference"] =  self.cardReference
+        dic["product_amount"] = String(format: "%.2f", self.productAmount)
+        dic["product_description"] = self.productDescription
+        dic["dev_reference"] = self.devReference
+        dic["vat"] = String(format: "%.2f", self.vat)
+        dic["email"] = self.email
+        dic["uid"] = self.uid
+        if productDiscount > 0.0
+        {
+            dic["product_discount"] = String(format: "%.2f", self.productDiscount)
+        }
+        if self.installments > 1
+        {
+            dic["installments"] = self.installments
+        }
+        if self.buyerFiscalNumber != ""{dic["buyer_fiscal_number"] = self.buyerFiscalNumber}
+        if self.sellerId != ""{dic["seller_id"] = self.sellerId}
+        if self.shippingStreet != ""{dic["shipping_street"] = self.shippingStreet}
+        if self.shippingHouseNumber != ""{dic["shipping_house_number"] = self.shippingHouseNumber}
+        if self.shippingCity != ""{dic["shipping_city"] = self.shippingCity}
+        if self.shippingZip != ""{dic["shipping_zip"] = self.shippingZip}
+        if self.shippingState != ""{dic["shipping_state"] = self.shippingState}
+        if self.shippingCountry != ""{dic["shipping_country"] = self.shippingCountry}
+        if self.shippingDistrict != ""{dic["shipping_district"] = self.shippingDistrict}
+        if self.shippingAdditionalAddressInfo != ""{dic["shipping_additional_address_info"] = self.shippingAdditionalAddressInfo}
+        return dic
+    }
+ 
 }
 
 class PaymentezRequest
@@ -81,6 +100,15 @@ class PaymentezRequest
     {
         
     }
+    func getUrl(base:String, parameters:NSDictionary) -> String
+    {
+        var completeUrl = self.testUrl + base
+        if !testMode{
+            completeUrl = self.prodUrl + base
+        }
+        completeUrl += "?" + encodeParamsGet(parameters)
+        return completeUrl
+    }
     func encodeParams(parameters:NSDictionary) ->NSData?
     {
         var bodyData = ""
@@ -91,7 +119,7 @@ class PaymentezRequest
                 .URLHostAllowedCharacterSet())!
             bodyData += "\(scapedKey)=\(scapedValue)&"
         }
-        
+        print(bodyData)
         return bodyData.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
     }
     func encodeParamsGet(parameters:NSDictionary) -> String!
@@ -113,6 +141,7 @@ class PaymentezRequest
         if !testMode{
             completeUrl = self.prodUrl + urlToRequest
         }
+        
         let url:NSURL? = NSURL(string: completeUrl)
         let session = NSURLSession.sharedSession()
         
@@ -214,7 +243,7 @@ class PaymentezRequest
                 else
                 {
                     
-                    print(json)
+                    
                     responseCallback(error: err, statusCode: (resp as! NSHTTPURLResponse).statusCode, responseData:json)
                 }
             }

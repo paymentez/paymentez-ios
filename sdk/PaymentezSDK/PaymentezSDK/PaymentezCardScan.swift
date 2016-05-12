@@ -21,6 +21,7 @@ class PaymentezCardScan:NSObject, CardIOPaymentViewControllerDelegate
     {
         super.init()
         self.scanVc = CardIOPaymentViewController(paymentDelegate: self)
+        self.scanVc?.hideCardIOLogo = true
     }
     
     func showScan(vc:UIViewController, callback:(infoCard:CardIOCreditCardInfo?)->Void)

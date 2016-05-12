@@ -9,9 +9,19 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>PaymentezSDKFramework.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>407B445C1CE5008000CC9C12</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>409158DE1CE1A01000FE316B</key>
 		<dict>
 			<key>primary</key>

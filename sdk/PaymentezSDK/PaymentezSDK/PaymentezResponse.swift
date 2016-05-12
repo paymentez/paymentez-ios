@@ -99,7 +99,7 @@ class PaymentezDebitResponse
                 let json = try NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers) as? [String:AnyObject]
                 return json
             } catch {
-                print("Something went wrong")
+                print("Something went wrong with Params")
             }
         }
         return nil

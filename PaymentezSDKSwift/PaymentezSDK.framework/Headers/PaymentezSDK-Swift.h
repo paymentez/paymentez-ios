@@ -135,14 +135,21 @@ SWIFT_CLASS("_TtC12PaymentezSDK24PaymentezDebitParameters")
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 
+@class UIViewController;
 @class PaymentezSDKError;
 @class PaymentezTransaction;
 
 SWIFT_CLASS_NAMED("PaymentezSDKClient")
 @interface PaymentezSDKClient : NSObject
 + (void)setEnvironment:(NSString * _Nonnull)apiCode secretKey:(NSString * _Nonnull)secretKey testMode:(BOOL)testMode;
++ (void)showAddViewControllerForUser:(NSString * _Nonnull)uid email:(NSString * _Nonnull)email presenter:(UIViewController * _Nonnull)presenter callback:(void (^ _Nonnull)(PaymentezSDKError * _Nullable, BOOL, BOOL))callback;
++ (void)addCardForUser:(NSString * _Nonnull)uid email:(NSString * _Nonnull)email expiryYear:(NSInteger)expiryYear expiryMonth:(NSInteger)expiryMonth holderName:(NSString * _Nonnull)holderName cardNumber:(NSString * _Nonnull)cardNumber cvc:(NSString * _Nonnull)cvc callback:(void (^ _Nonnull)(PaymentezSDKError * _Nullable, BOOL))callback;
 + (void)listCards:(NSString * _Null_unspecified)uid callback:(void (^ _Nonnull)(PaymentezSDKError * _Nullable, NSArray<PaymentezCard *> * _Nullable))callback;
-+ (void)debitCard:(PaymentezDebitParameters * _Null_unspecified)parameters callback:(void (^ _Nonnull)(PaymentezSDKError * _Nullable, PaymentezTransaction * _Nullable))callback;
++ (void)deleteCard:(NSString * _Nonnull)uid cardReference:(NSString * _Nonnull)cardReference callback:(void (^ _Nonnull)(PaymentezSDKError * _Nullable, BOOL))callback;
++ (void)debitCard:(PaymentezDebitParameters * _Nonnull)parameters callback:(void (^ _Nonnull)(PaymentezSDKError * _Nullable, PaymentezTransaction * _Nullable))callback;
++ (void)verifyWithCode:(NSString * _Nonnull)transactionId uid:(NSString * _Nonnull)uid verificationCode:(NSString * _Nonnull)verificationCode callback:(void (^ _Nonnull)(PaymentezSDKError * _Nullable, NSInteger, PaymentezTransaction * _Nullable))callback;
++ (void)verifyWithAmount:(NSString * _Nonnull)transactionId uid:(NSString * _Nonnull)uid amount:(double)amount callback:(void (^ _Nonnull)(PaymentezSDKError * _Nullable, NSInteger, PaymentezTransaction * _Nullable))callback;
++ (void)scanCard:(UIViewController * _Nonnull)presenterViewController callback:(void (^ _Nonnull)(BOOL, NSString * _Nullable, NSString * _Nullable, NSString * _Nullable))callback;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 

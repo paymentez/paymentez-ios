@@ -25,24 +25,42 @@
     }
     return _cardList;
 }
+- (IBAction)addAction:(id)sender {
+    
+    //Show an activity indicator
+    [PaymentezSDKClient showAddViewControllerForUser:@"gus" email:@"gsotelo@paymentez.com" presenter:self callback:^(PaymentezSDKError *error, BOOL closed, BOOL added) {
+        
+        NSLog(@"%@", error.description);
+        
+    }];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    
-    [PaymentezSDKClient listCards:@"gus" callback:^(PaymentezSDKError * error, NSArray<PaymentezCard *> * list) {
-        if(error == nil)
-        {
-            self.cardList = [list mutableCopy];
-            [self.tableView reloadData];
-        }
-    } ];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self refreshTable];
+}
+
+- (void) refreshTable
+{
+    [PaymentezSDKClient listCards:@"gus" callback:^(PaymentezSDKError * error, NSArray<PaymentezCard *> * list) {
+        if(error == nil)
+        {
+            self.cardList = [list mutableCopy];
+            
+            [self.tableView reloadData];
+        }
+    } ];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -115,6 +133,22 @@
 }
 */
 
+// Override to support editing the table view.
+- (void)tableView:(UITableView *)tableView commitEditingStyle: (UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        PaymentezCard *card = self.cardList[indexPath.row];
+        
+        [PaymentezSDKClient deleteCard:@"gus" cardReference:card.cardReference callback:^(PaymentezSDKError *error, BOOL deleted) {
+           
+            [self refreshTable];
+            
+            
+        }];
+        
+    }
+}
 
 #pragma mark - Navigation
 
@@ -123,9 +157,11 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
     
+    if ([segue.identifier isEqualToString:@"debitSegue"])
+    {
     ViewController *vc = (ViewController*)segue.destinationViewController;
     vc.cardReference  = self.cardReference;
-    
+    }
 }
 
 

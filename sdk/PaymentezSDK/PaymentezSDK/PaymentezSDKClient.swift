@@ -38,6 +38,59 @@ public class PaymentezSDKClient:NSObject
     
     
     @objc
+    public static func showAddViewControllerForUser(uid:String, email:String, presenter:UIViewController, callback:(error:PaymentezSDKError?, closed:Bool, added:Bool)->Void)
+    {
+        let vc = PaymentezAddViewController(callback: { (error, isClose, added) in
+            
+            callback(error:error, closed:isClose, added:added)
+            
+        })
+        presenter.presentViewController(vc, animated: true, completion: {
+            PaymentezSecure.getIpAddress { (ipAddress) in
+                dispatch_sync(dispatch_get_main_queue())
+                {
+                    
+                    let sessionId = self.kountHandler.generateSessionId()
+                    var parameters = ["application_code" : apiCode,
+                        "uid" : uid,
+                        "email" : email,
+                        "session_id": sessionId]
+                    let authTimestamp = generateAuthTimestamp()
+                    let authToken = generateAuthToken(parameters, authTimestamp: authTimestamp)
+                    parameters["auth_timestamp"] = authTimestamp
+                    parameters["ip_address"] = ipAddress
+                    parameters["auth_token"] = authToken
+                    
+                    kountHandler.collect(sessionId) { (err) in
+                        
+                        if err == nil
+                        {
+                            
+                            
+                            
+                            let url = self.request.getUrl("/api/cc/add/", parameters:parameters)
+                            
+                            vc.loadUrl(url)
+                            
+                        }
+                        else
+                        {
+                            callback(error: PaymentezSDKError.createError(err!), closed:false, added: false)
+                            
+                        }
+                    }
+                    
+                }
+            }
+        })
+        
+        
+    }
+    
+    
+    
+    
+    @objc
     public static func addCardForUser(uid:String,
                                       email:String,
                                       expiryYear:Int,
@@ -114,8 +167,6 @@ public class PaymentezSDKClient:NSObject
                     {
                         self.request.makeRequest("/api/cc/add/creditcard", parameters: parameters) { (error, statusCode, responseData) in
                             
-                            print(error)
-                            print(responseData)
                             
                             if error == nil
                             {
@@ -141,6 +192,7 @@ public class PaymentezSDKClient:NSObject
                     }
                     else
                     {
+                        callback(error: PaymentezSDKError.createError(err!), added: false)
                         
                     }
                 }
@@ -160,8 +212,7 @@ public class PaymentezSDKClient:NSObject
         parameters["auth_timestamp"] = authTimestamp
         self.request.makeRequestGet("/api/cc/list/", parameters: parameters) { (error, statusCode, responseData) in
             
-            print(error)
-            print(responseData)
+            
             
             if error == nil
             {
@@ -203,8 +254,7 @@ public class PaymentezSDKClient:NSObject
         parameters["auth_timestamp"] = authTimestamp
         
         self.request.makeRequest("/api/cc/delete/", parameters:parameters) { (error, statusCode, responseData) in
-            print(responseData)
-            print(error)
+            
             if error == nil
             {
                 if statusCode! != 200
@@ -237,48 +287,72 @@ public class PaymentezSDKClient:NSObject
         PaymentezSecure.getIpAddress { (ipAddress) in
             dispatch_sync(dispatch_get_main_queue())
             {
-                var parametersDic = parameters.toDict()
+                var parametersDic = parameters.allParamsDict()
+                var requireDict = parameters.requiredDict()
                 parametersDic["application_code"] = apiCode
                 let sessionId = self.kountHandler.generateSessionId()
                 parametersDic["session_id"] = sessionId
                 parametersDic["ip_address"] = ipAddress
                 
+                requireDict["application_code"] = apiCode
+                requireDict["session_id"] = sessionId
+                requireDict["ip_address"] = ipAddress
+                
                 let authTimestamp = generateAuthTimestamp()
-                let autToken = generateAuthToken(parametersDic, authTimestamp: authTimestamp)
+                let autToken = generateAuthToken(requireDict, authTimestamp: authTimestamp)
                 parametersDic["auth_timestamp"] = authTimestamp
                 parametersDic["auth_token"] = autToken
-                parametersDic["buyer_fiscal_number"] = parameters.buyerFiscalNumber
-                
-                self.request.makeRequest("/api/cc/debit/", parameters: parametersDic, responseCallback: { (error, statusCode, responseData) in
-                    print(responseData)
-                    print(statusCode)
-                    if error == nil
+                kountHandler.collect(sessionId) { (err) in
+                    
+                    if err == nil
                     {
-                        if statusCode == 200
-                        {
-                            let response = PaymentezTransaction.parseTransaction(responseData as! [String:AnyObject])
+                        self.request.makeRequest("/api/cc/debit/", parameters: parametersDic, responseCallback: { (error, statusCode, responseData) in
+                            print(responseData)
+                            if error == nil
+                            {
+                                if statusCode == 200
+                                {
+                                    let response = PaymentezTransaction.parseTransaction(responseData as! [String:AnyObject])
+                                    
+                                    callback(error: nil, transaction: response)
+                                    
+                                    
+                                    
+                                }
+                                else
+                                {
+                                    do {
+                                        var dataR = (responseData as! [String:AnyObject])
+                                        if dataR["errors"] != nil
+                                        {
+                                            dataR = dataR["errors"] as! [String:AnyObject]
+                                        }
+                                        let errorPa =  PaymentezSDKError.createError(dataR["code"] as! Int, description: dataR["description"] as! String, details: dataR["details"])
+                                        
+                                        callback(error:errorPa, transaction: nil)
+                                    }
+                                    catch {
+                                        
+                                        callback(error:PaymentezSDKError.createError(3, description:"System Error", details:nil), transaction: nil)
+                                    }
+                                    
+                                }
+                            }
+                            else
+                            {
+                                callback(error: PaymentezSDKError.createError(error!), transaction:nil)
+                            }
                             
-                            callback(error: nil, transaction: response)
                             
-                            
-                            
-                        }
-                        else
-                        {
-                            let dataR = (responseData as! [String:AnyObject])
-                            let errorPa =  PaymentezSDKError.createError(dataR["code"] as! Int, description: dataR["description"] as! String, details: dataR["details"] as! String)
-                            
-                            callback(error:errorPa, transaction: nil)
-                            
-                        }
+                        })
                     }
                     else
                     {
-                        callback(error: PaymentezSDKError.createError(error!), transaction:nil)
+                        callback(error: PaymentezSDKError.createError(err!), transaction:nil)
                     }
-                    
-                    
-                })
+                }
+                
+                
                 
                 
             }
@@ -306,9 +380,7 @@ public class PaymentezSDKClient:NSObject
         parameters["auth_timestamp"] = authTimestamp
         
         self.request.makeRequest("/api/cc/verify/", parameters: parameters) { (error, statusCode, responseData) in
-            print(error)
-            print(statusCode)
-            print(responseData)
+            
             if error == nil
             {
                 if statusCode == 200
@@ -348,9 +420,7 @@ public class PaymentezSDKClient:NSObject
         parameters["auth_timestamp"] = authTimestamp
         
         self.request.makeRequest("/api/cc/verify/", parameters: parameters) { (error, statusCode, responseData) in
-            print(error)
-            print(statusCode)
-            print(responseData)
+            
             if error == nil
             {
                 if statusCode == 200
@@ -395,7 +465,7 @@ public class PaymentezSDKClient:NSObject
         }
         
         paramsString = paramsString + authTimestamp + "&" + secretKey
-        print(paramsString)
+        
         let dataIn = paramsString.dataUsingEncoding(NSUTF8StringEncoding)!
         let res = NSMutableData(length: Int(CC_SHA256_DIGEST_LENGTH))
         CC_SHA256(dataIn.bytes, CC_LONG(dataIn.length), UnsafeMutablePointer(res!.mutableBytes))
@@ -403,7 +473,7 @@ public class PaymentezSDKClient:NSObject
         hash = hash.stringByReplacingOccurrencesOfString(" ", withString: "")
         hash = hash.stringByReplacingOccurrencesOfString("<", withString: "")
         hash = hash.stringByReplacingOccurrencesOfString(">", withString: "")
-        print(hash)
+        //print(hash)
         return hash
         
     }

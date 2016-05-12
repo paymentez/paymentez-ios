@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		402544C61CE3959000F35B23 /* PaymentezSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 402544C51CE3959000F35B23 /* PaymentezSDK.framework */; };
+		402544C81CE3971000F35B23 /* PaymentezSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 402544C51CE3959000F35B23 /* PaymentezSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		402544D11CE41F3700F35B23 /* AddCustomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 402544D01CE41F3700F35B23 /* AddCustomViewController.m */; };
+		407B44501CE4DD3900CC9C12 /* PaymentezSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 407B444F1CE4DD3900CC9C12 /* PaymentezSDK.framework */; };
 		408C1C001CE1B50C00B9A2F0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 408C1BFF1CE1B50C00B9A2F0 /* main.m */; };
 		408C1C031CE1B50C00B9A2F0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 408C1C021CE1B50C00B9A2F0 /* AppDelegate.m */; };
 		408C1C061CE1B50C00B9A2F0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 408C1C051CE1B50C00B9A2F0 /* ViewController.m */; };
@@ -15,8 +19,18 @@
 		408C1C0E1CE1B50C00B9A2F0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 408C1C0C1CE1B50C00B9A2F0 /* LaunchScreen.storyboard */; };
 		408C1C191CE1B50C00B9A2F0 /* PaymentezSDKObjCUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 408C1C181CE1B50C00B9A2F0 /* PaymentezSDKObjCUITests.m */; };
 		408C1C301CE24B0000B9A2F0 /* ListCardsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 408C1C2F1CE24B0000B9A2F0 /* ListCardsTableViewController.m */; };
-		408C1C321CE2501100B9A2F0 /* PaymentezSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 408C1C2C1CE24AB700B9A2F0 /* PaymentezSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		408C1C331CE2504100B9A2F0 /* PaymentezSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 408C1C2C1CE24AB700B9A2F0 /* PaymentezSDK.framework */; };
+		40E129541CE424A2006D7F30 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40E129481CE424A2006D7F30 /* Accelerate.framework */; };
+		40E129551CE424A2006D7F30 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40E129491CE424A2006D7F30 /* AudioToolbox.framework */; };
+		40E129561CE424A2006D7F30 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40E1294A1CE424A2006D7F30 /* AVFoundation.framework */; };
+		40E129571CE424A2006D7F30 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40E1294B1CE424A2006D7F30 /* CoreGraphics.framework */; };
+		40E129581CE424A2006D7F30 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40E1294C1CE424A2006D7F30 /* CoreMedia.framework */; };
+		40E129591CE424A2006D7F30 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40E1294D1CE424A2006D7F30 /* CoreVideo.framework */; };
+		40E1295A1CE424A2006D7F30 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40E1294E1CE424A2006D7F30 /* Foundation.framework */; };
+		40E1295B1CE424A2006D7F30 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40E1294F1CE424A2006D7F30 /* MobileCoreServices.framework */; };
+		40E1295C1CE424A2006D7F30 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40E129501CE424A2006D7F30 /* OpenGLES.framework */; };
+		40E1295D1CE424A2006D7F30 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40E129511CE424A2006D7F30 /* QuartzCore.framework */; };
+		40E1295E1CE424A2006D7F30 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40E129521CE424A2006D7F30 /* Security.framework */; };
+		40E1295F1CE424A2006D7F30 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40E129531CE424A2006D7F30 /* UIKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +50,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				408C1C321CE2501100B9A2F0 /* PaymentezSDK.framework in Embed Frameworks */,
+				402544C81CE3971000F35B23 /* PaymentezSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -44,6 +58,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		402544C51CE3959000F35B23 /* PaymentezSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PaymentezSDK.framework; path = /Users/guxsotelo/Documents/paymentez/pmtz_proys/paymentezsdk/PaymentezSDKObjC/PaymentezSDK.framework; sourceTree = "<absolute>"; };
+		402544CD1CE3FF7100F35B23 /* PaymentezSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PaymentezSDK.framework; sourceTree = "<group>"; };
+		402544CF1CE41F3700F35B23 /* AddCustomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddCustomViewController.h; sourceTree = "<group>"; };
+		402544D01CE41F3700F35B23 /* AddCustomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddCustomViewController.m; sourceTree = "<group>"; };
+		407B444F1CE4DD3900CC9C12 /* PaymentezSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PaymentezSDK.framework; sourceTree = "<group>"; };
 		408C1BFB1CE1B50C00B9A2F0 /* PaymentezSDKObjC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PaymentezSDKObjC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		408C1BFF1CE1B50C00B9A2F0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		408C1C011CE1B50C00B9A2F0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -57,9 +76,20 @@
 		408C1C141CE1B50C00B9A2F0 /* PaymentezSDKObjCUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PaymentezSDKObjCUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		408C1C181CE1B50C00B9A2F0 /* PaymentezSDKObjCUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PaymentezSDKObjCUITests.m; sourceTree = "<group>"; };
 		408C1C1A1CE1B50C00B9A2F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		408C1C2C1CE24AB700B9A2F0 /* PaymentezSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PaymentezSDK.framework; sourceTree = "<group>"; };
 		408C1C2E1CE24B0000B9A2F0 /* ListCardsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListCardsTableViewController.h; sourceTree = "<group>"; };
 		408C1C2F1CE24B0000B9A2F0 /* ListCardsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListCardsTableViewController.m; sourceTree = "<group>"; };
+		40E129481CE424A2006D7F30 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		40E129491CE424A2006D7F30 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		40E1294A1CE424A2006D7F30 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		40E1294B1CE424A2006D7F30 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		40E1294C1CE424A2006D7F30 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		40E1294D1CE424A2006D7F30 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		40E1294E1CE424A2006D7F30 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		40E1294F1CE424A2006D7F30 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		40E129501CE424A2006D7F30 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		40E129511CE424A2006D7F30 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		40E129521CE424A2006D7F30 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		40E129531CE424A2006D7F30 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,7 +97,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				408C1C331CE2504100B9A2F0 /* PaymentezSDK.framework in Frameworks */,
+				40E129541CE424A2006D7F30 /* Accelerate.framework in Frameworks */,
+				40E129551CE424A2006D7F30 /* AudioToolbox.framework in Frameworks */,
+				40E129561CE424A2006D7F30 /* AVFoundation.framework in Frameworks */,
+				407B44501CE4DD3900CC9C12 /* PaymentezSDK.framework in Frameworks */,
+				40E129571CE424A2006D7F30 /* CoreGraphics.framework in Frameworks */,
+				40E129581CE424A2006D7F30 /* CoreMedia.framework in Frameworks */,
+				40E129591CE424A2006D7F30 /* CoreVideo.framework in Frameworks */,
+				40E1295A1CE424A2006D7F30 /* Foundation.framework in Frameworks */,
+				40E1295B1CE424A2006D7F30 /* MobileCoreServices.framework in Frameworks */,
+				40E1295C1CE424A2006D7F30 /* OpenGLES.framework in Frameworks */,
+				40E1295D1CE424A2006D7F30 /* QuartzCore.framework in Frameworks */,
+				40E1295E1CE424A2006D7F30 /* Security.framework in Frameworks */,
+				40E1295F1CE424A2006D7F30 /* UIKit.framework in Frameworks */,
+				402544C61CE3959000F35B23 /* PaymentezSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,10 +124,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		407B444E1CE4DD3900CC9C12 /* simulator */ = {
+			isa = PBXGroup;
+			children = (
+				407B444F1CE4DD3900CC9C12 /* PaymentezSDK.framework */,
+			);
+			path = simulator;
+			sourceTree = SOURCE_ROOT;
+		};
 		408C1BF21CE1B50C00B9A2F0 = {
 			isa = PBXGroup;
 			children = (
-				408C1C2C1CE24AB700B9A2F0 /* PaymentezSDK.framework */,
+				40E129481CE424A2006D7F30 /* Accelerate.framework */,
+				40E129491CE424A2006D7F30 /* AudioToolbox.framework */,
+				40E1294A1CE424A2006D7F30 /* AVFoundation.framework */,
+				40E1294B1CE424A2006D7F30 /* CoreGraphics.framework */,
+				40E1294C1CE424A2006D7F30 /* CoreMedia.framework */,
+				40E1294D1CE424A2006D7F30 /* CoreVideo.framework */,
+				40E1294E1CE424A2006D7F30 /* Foundation.framework */,
+				40E1294F1CE424A2006D7F30 /* MobileCoreServices.framework */,
+				40E129501CE424A2006D7F30 /* OpenGLES.framework */,
+				40E129511CE424A2006D7F30 /* QuartzCore.framework */,
+				40E129521CE424A2006D7F30 /* Security.framework */,
+				40E129531CE424A2006D7F30 /* UIKit.framework */,
+				402544CD1CE3FF7100F35B23 /* PaymentezSDK.framework */,
 				408C1BFD1CE1B50C00B9A2F0 /* PaymentezSDKObjC */,
 				408C1C171CE1B50C00B9A2F0 /* PaymentezSDKObjCUITests */,
 				408C1BFC1CE1B50C00B9A2F0 /* Products */,
@@ -103,6 +166,7 @@
 		408C1BFD1CE1B50C00B9A2F0 /* PaymentezSDKObjC */ = {
 			isa = PBXGroup;
 			children = (
+				407B444E1CE4DD3900CC9C12 /* simulator */,
 				408C1C011CE1B50C00B9A2F0 /* AppDelegate.h */,
 				408C1C021CE1B50C00B9A2F0 /* AppDelegate.m */,
 				408C1C041CE1B50C00B9A2F0 /* ViewController.h */,
@@ -114,6 +178,8 @@
 				408C1BFE1CE1B50C00B9A2F0 /* Supporting Files */,
 				408C1C2E1CE24B0000B9A2F0 /* ListCardsTableViewController.h */,
 				408C1C2F1CE24B0000B9A2F0 /* ListCardsTableViewController.m */,
+				402544CF1CE41F3700F35B23 /* AddCustomViewController.h */,
+				402544D01CE41F3700F35B23 /* AddCustomViewController.m */,
 			);
 			path = PaymentezSDKObjC;
 			sourceTree = "<group>";
@@ -185,6 +251,7 @@
 				TargetAttributes = {
 					408C1BFA1CE1B50C00B9A2F0 = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = EPBV43J7PQ;
 					};
 					408C1C131CE1B50C00B9A2F0 = {
 						CreatedOnToolsVersion = 7.3;
@@ -239,6 +306,7 @@
 				408C1C061CE1B50C00B9A2F0 /* ViewController.m in Sources */,
 				408C1C301CE24B0000B9A2F0 /* ListCardsTableViewController.m in Sources */,
 				408C1C031CE1B50C00B9A2F0 /* AppDelegate.m in Sources */,
+				402544D11CE41F3700F35B23 /* AddCustomViewController.m in Sources */,
 				408C1C001CE1B50C00B9A2F0 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -321,6 +389,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -358,6 +427,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -367,14 +437,20 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/simulator",
 				);
 				INFOPLIST_FILE = PaymentezSDKObjC/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"-lc++",
+					"-ObjC",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.paymentez.PaymentezSDKObjC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -384,14 +460,20 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/simulator",
 				);
 				INFOPLIST_FILE = PaymentezSDKObjC/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"-lc++",
+					"-ObjC",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.paymentez.PaymentezSDKObjC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -438,6 +520,7 @@
 				408C1C1F1CE1B50C00B9A2F0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		408C1C201CE1B50C00B9A2F0 /* Build configuration list for PBXNativeTarget "PaymentezSDKObjCUITests" */ = {
 			isa = XCConfigurationList;
@@ -446,6 +529,7 @@
 				408C1C221CE1B50C00B9A2F0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
