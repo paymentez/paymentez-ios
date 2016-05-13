@@ -58,7 +58,15 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		833rWbpzSOrrjDdbbu5i6uq6QlQ=
+		SAqlAJUv5qDZheDqvvO4k/KqItw=
+		</data>
+		<key>Modules/PaymentezSDK.swiftmodule/arm.swiftdoc</key>
+		<data>
+		nYKTWP7XNJWx5qfDLpMZRmXxT9s=
+		</data>
+		<key>Modules/PaymentezSDK.swiftmodule/arm.swiftmodule</key>
+		<data>
+		M89mNNDz3fu8Z8GOSsC8K6YUPz0=
 		</data>
 		<key>Modules/PaymentezSDK.swiftmodule/arm64.swiftdoc</key>
 		<data>
@@ -66,7 +74,7 @@
 		</data>
 		<key>Modules/PaymentezSDK.swiftmodule/arm64.swiftmodule</key>
 		<data>
-		MV2Sc2S7ku0+Fys3c1ySbHKJkWs=
+		/DmO2bKsftDWOhbjgnc9zJc0kTw=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -222,6 +230,28 @@
 			uVsZ+V1slBLJlU1iY4XOezImxiveCPmltcGCKDEme04=
 			</data>
 		</dict>
+		<key>Modules/PaymentezSDK.swiftmodule/arm.swiftdoc</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			nYKTWP7XNJWx5qfDLpMZRmXxT9s=
+			</data>
+			<key>hash2</key>
+			<data>
+			dQll5e9thBCd15CdhE4O+W7RfNYLX/OtdiItcsZ/ehg=
+			</data>
+		</dict>
+		<key>Modules/PaymentezSDK.swiftmodule/arm.swiftmodule</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			M89mNNDz3fu8Z8GOSsC8K6YUPz0=
+			</data>
+			<key>hash2</key>
+			<data>
+			jObzPImgVrHLWk9YFUBSvOLAVdCqMis7PsQWfZUgoxM=
+			</data>
+		</dict>
 		<key>Modules/PaymentezSDK.swiftmodule/arm64.swiftdoc</key>
 		<dict>
 			<key>hash</key>
@@ -237,11 +267,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			MV2Sc2S7ku0+Fys3c1ySbHKJkWs=
+			/DmO2bKsftDWOhbjgnc9zJc0kTw=
 			</data>
 			<key>hash2</key>
 			<data>
-			dMHmsM5iVW4yCQy5lcKtFYFwydcw00IZdo4BOH42QDQ=
+			/rA/BDLoK4SPU5oQ1RRPcIfaTf1uny8AXJcE0lCUVl4=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

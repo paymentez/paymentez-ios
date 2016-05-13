@@ -91,7 +91,7 @@ public class PaymentezSDKClient:NSObject
     
     
     @objc
-    public static func addCardForUser(uid:String,
+    static func addCardForUser(uid:String,
                                       email:String,
                                       expiryYear:Int,
                                       expiryMonth:Int,
@@ -110,7 +110,7 @@ public class PaymentezSDKClient:NSObject
         }
     }
     
-    public static func addCard(uid:String!,
+     static func addCard(uid:String!,
                          email:String!,
                          expiryYear:Int!,
                          expiryMonth:Int!,
@@ -307,7 +307,7 @@ public class PaymentezSDKClient:NSObject
                     if err == nil
                     {
                         self.request.makeRequest("/api/cc/debit/", parameters: parametersDic, responseCallback: { (error, statusCode, responseData) in
-                            print(responseData)
+                            
                             if error == nil
                             {
                                 if statusCode == 200

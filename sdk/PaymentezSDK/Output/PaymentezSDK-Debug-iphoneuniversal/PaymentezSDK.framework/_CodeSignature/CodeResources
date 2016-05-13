@@ -50,7 +50,7 @@
 		</data>
 		<key>Headers/PaymentezSDK-Swift.h</key>
 		<data>
-		JpkhoWEBP0Zg/EMxFidRFZL3raw=
+		bn0YYcR5INtQl0JGC6H7Sl/uTP8=
 		</data>
 		<key>Headers/PaymentezSDK.h</key>
 		<data>
@@ -58,7 +58,15 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		833rWbpzSOrrjDdbbu5i6uq6QlQ=
+		SAqlAJUv5qDZheDqvvO4k/KqItw=
+		</data>
+		<key>Modules/PaymentezSDK.swiftmodule/arm.swiftdoc</key>
+		<data>
+		nYKTWP7XNJWx5qfDLpMZRmXxT9s=
+		</data>
+		<key>Modules/PaymentezSDK.swiftmodule/arm.swiftmodule</key>
+		<data>
+		XJWNpdGzMPR3VHMR2vLaIvu1FIk=
 		</data>
 		<key>Modules/PaymentezSDK.swiftmodule/arm64.swiftdoc</key>
 		<data>
@@ -66,7 +74,7 @@
 		</data>
 		<key>Modules/PaymentezSDK.swiftmodule/arm64.swiftmodule</key>
 		<data>
-		/DmO2bKsftDWOhbjgnc9zJc0kTw=
+		Oku+t2FmwtlW6Dj3gzpkeiLYTHw=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -204,11 +212,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			JpkhoWEBP0Zg/EMxFidRFZL3raw=
+			bn0YYcR5INtQl0JGC6H7Sl/uTP8=
 			</data>
 			<key>hash2</key>
 			<data>
-			fnxA+nWP6QztdxuDTKn/8fjrgaJECBOdL7O1ydyVoQ8=
+			kf3Z6HytkR+65hXxibTOouXYTlU+al/g7jwLhkfCDG0=
 			</data>
 		</dict>
 		<key>Headers/PaymentezSDK.h</key>
@@ -220,6 +228,28 @@
 			<key>hash2</key>
 			<data>
 			uVsZ+V1slBLJlU1iY4XOezImxiveCPmltcGCKDEme04=
+			</data>
+		</dict>
+		<key>Modules/PaymentezSDK.swiftmodule/arm.swiftdoc</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			nYKTWP7XNJWx5qfDLpMZRmXxT9s=
+			</data>
+			<key>hash2</key>
+			<data>
+			dQll5e9thBCd15CdhE4O+W7RfNYLX/OtdiItcsZ/ehg=
+			</data>
+		</dict>
+		<key>Modules/PaymentezSDK.swiftmodule/arm.swiftmodule</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			XJWNpdGzMPR3VHMR2vLaIvu1FIk=
+			</data>
+			<key>hash2</key>
+			<data>
+			4Lr7iEhd5Zun2DJ8uei31tHmspv6tg4RqkzbQpj6/xM=
 			</data>
 		</dict>
 		<key>Modules/PaymentezSDK.swiftmodule/arm64.swiftdoc</key>
@@ -237,11 +267,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			/DmO2bKsftDWOhbjgnc9zJc0kTw=
+			Oku+t2FmwtlW6Dj3gzpkeiLYTHw=
 			</data>
 			<key>hash2</key>
 			<data>
-			/rA/BDLoK4SPU5oQ1RRPcIfaTf1uny8AXJcE0lCUVl4=
+			WEt/NY9N6eAoeYi4OVx4LHeshFraihcFbtj3JlMY0qY=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
