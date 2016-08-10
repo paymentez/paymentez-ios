@@ -29,9 +29,13 @@
     
     //Show an activity indicator
     [PaymentezSDKClient showAddViewControllerForUser:@"gus" email:@"gsotelo@paymentez.com" presenter:self callback:^(PaymentezSDKError *error, BOOL closed, BOOL added) {
-        
-        NSLog(@"%@", error.description);
-        
+        if (error != nil)
+            NSLog(@"%@", error.description);
+        else if (closed)
+            NSLog(@"User closed the modal");
+        else if (added)
+            NSLog(@"Card Added ");
+            
     }];
 }
 

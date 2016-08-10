@@ -50,7 +50,7 @@
 		</data>
 		<key>Headers/PaymentezSDK-Swift.h</key>
 		<data>
-		bn0YYcR5INtQl0JGC6H7Sl/uTP8=
+		JpkhoWEBP0Zg/EMxFidRFZL3raw=
 		</data>
 		<key>Headers/PaymentezSDK.h</key>
 		<data>
@@ -58,7 +58,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		SAqlAJUv5qDZheDqvvO4k/KqItw=
+		L2RExYo48YKZdAc9V2g9jWUBdUY=
 		</data>
 		<key>Modules/PaymentezSDK.swiftmodule/arm.swiftdoc</key>
 		<data>
@@ -66,7 +66,7 @@
 		</data>
 		<key>Modules/PaymentezSDK.swiftmodule/arm.swiftmodule</key>
 		<data>
-		XJWNpdGzMPR3VHMR2vLaIvu1FIk=
+		M89mNNDz3fu8Z8GOSsC8K6YUPz0=
 		</data>
 		<key>Modules/PaymentezSDK.swiftmodule/arm64.swiftdoc</key>
 		<data>
@@ -74,7 +74,7 @@
 		</data>
 		<key>Modules/PaymentezSDK.swiftmodule/arm64.swiftmodule</key>
 		<data>
-		Oku+t2FmwtlW6Dj3gzpkeiLYTHw=
+		/DmO2bKsftDWOhbjgnc9zJc0kTw=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -82,7 +82,7 @@
 		</data>
 		<key>PaymentezAddViewController.nib</key>
 		<data>
-		AB2763mfPaDRy3U8Y4Q8z5ncXBE=
+		PYcChx8mSjXozk3u3i4OKMpewMg=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -212,11 +212,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			bn0YYcR5INtQl0JGC6H7Sl/uTP8=
+			JpkhoWEBP0Zg/EMxFidRFZL3raw=
 			</data>
 			<key>hash2</key>
 			<data>
-			kf3Z6HytkR+65hXxibTOouXYTlU+al/g7jwLhkfCDG0=
+			fnxA+nWP6QztdxuDTKn/8fjrgaJECBOdL7O1ydyVoQ8=
 			</data>
 		</dict>
 		<key>Headers/PaymentezSDK.h</key>
@@ -245,11 +245,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			XJWNpdGzMPR3VHMR2vLaIvu1FIk=
+			M89mNNDz3fu8Z8GOSsC8K6YUPz0=
 			</data>
 			<key>hash2</key>
 			<data>
-			4Lr7iEhd5Zun2DJ8uei31tHmspv6tg4RqkzbQpj6/xM=
+			jObzPImgVrHLWk9YFUBSvOLAVdCqMis7PsQWfZUgoxM=
 			</data>
 		</dict>
 		<key>Modules/PaymentezSDK.swiftmodule/arm64.swiftdoc</key>
@@ -267,11 +267,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			Oku+t2FmwtlW6Dj3gzpkeiLYTHw=
+			/DmO2bKsftDWOhbjgnc9zJc0kTw=
 			</data>
 			<key>hash2</key>
 			<data>
-			WEt/NY9N6eAoeYi4OVx4LHeshFraihcFbtj3JlMY0qY=
+			/rA/BDLoK4SPU5oQ1RRPcIfaTf1uny8AXJcE0lCUVl4=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
@@ -289,11 +289,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			AB2763mfPaDRy3U8Y4Q8z5ncXBE=
+			PYcChx8mSjXozk3u3i4OKMpewMg=
 			</data>
 			<key>hash2</key>
 			<data>
-			idPSc3vCzChD92hozwUFKdnmR722+bwhyAUZQCwFQOI=
+			1yHVSe5So45VxsC6KIBp8HnWySBAluruWjH45U1foXg=
 			</data>
 		</dict>
 	</dict>

@@ -143,6 +143,7 @@ SWIFT_CLASS_NAMED("PaymentezSDKClient")
 @interface PaymentezSDKClient : NSObject
 + (void)setEnvironment:(NSString * _Nonnull)apiCode secretKey:(NSString * _Nonnull)secretKey testMode:(BOOL)testMode;
 + (void)showAddViewControllerForUser:(NSString * _Nonnull)uid email:(NSString * _Nonnull)email presenter:(UIViewController * _Nonnull)presenter callback:(void (^ _Nonnull)(PaymentezSDKError * _Nullable, BOOL, BOOL))callback;
++ (void)addCardForUser:(NSString * _Nonnull)uid email:(NSString * _Nonnull)email expiryYear:(NSInteger)expiryYear expiryMonth:(NSInteger)expiryMonth holderName:(NSString * _Nonnull)holderName cardNumber:(NSString * _Nonnull)cardNumber cvc:(NSString * _Nonnull)cvc callback:(void (^ _Nonnull)(PaymentezSDKError * _Nullable, BOOL))callback;
 + (void)listCards:(NSString * _Null_unspecified)uid callback:(void (^ _Nonnull)(PaymentezSDKError * _Nullable, NSArray<PaymentezCard *> * _Nullable))callback;
 + (void)deleteCard:(NSString * _Nonnull)uid cardReference:(NSString * _Nonnull)cardReference callback:(void (^ _Nonnull)(PaymentezSDKError * _Nullable, BOOL))callback;
 + (void)debitCard:(PaymentezDebitParameters * _Nonnull)parameters callback:(void (^ _Nonnull)(PaymentezSDKError * _Nullable, PaymentezTransaction * _Nullable))callback;

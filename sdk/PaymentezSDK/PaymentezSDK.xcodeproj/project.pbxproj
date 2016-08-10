@@ -369,6 +369,7 @@
 		407B445D1CE5008000CC9C12 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -376,6 +377,7 @@
 		407B445E1CE5008000CC9C12 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -488,6 +490,7 @@
 					"$(PROJECT_DIR)/PaymentezSDK/DeviceCollectorLibrary",
 					"$(PROJECT_DIR)/CardIO",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -517,6 +520,7 @@
 					"$(PROJECT_DIR)/PaymentezSDK/DeviceCollectorLibrary",
 					"$(PROJECT_DIR)/CardIO",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -538,6 +542,7 @@
 				407B445E1CE5008000CC9C12 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		409158D91CE1A01000FE316B /* Build configuration list for PBXProject "PaymentezSDK" */ = {
 			isa = XCConfigurationList;

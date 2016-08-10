@@ -38,19 +38,37 @@ class VerifyViewController: UIViewController {
 
     @IBAction func verifyTrx(sender: AnyObject) {
         self.activityIndicator.startAnimating()
-        PaymentezSDKClient.verifyWithCode(self.transactionId.text!, uid: "test", verificationCode: self.verifyCodetxt.text!) { (error, attemptsRemaining, transaction) in
+        PaymentezSDKClient.verifyWithCode(self.transactionId.text!, uid: "gus", verificationCode: self.verifyCodetxt.text!) { (error, attemptsRemaining, transaction) in
             self.activityIndicator.stopAnimating()
             if transaction != nil
             {
-                print ("verified")
+                dispatch_async(dispatch_get_main_queue(), {
+                    let alertC = UIAlertController(title: "Verified", message: "Success", preferredStyle: UIAlertControllerStyle.Alert)
+                    
+                    let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                    alertC.addAction(defaultAction)
+                    self.presentViewController(alertC, animated: true
+                        , completion: {
+                            
+                    })
+                })
             }
             else
             {
                 if attemptsRemaining > 0 //
                 {
-                    print("you have attempts remaining")
+                    dispatch_async(dispatch_get_main_queue(), {
+                        let alertC = UIAlertController(title: "Attempts Remaining", message: "\(attemptsRemaining)", preferredStyle: UIAlertControllerStyle.Alert)
+                        
+                        let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                        alertC.addAction(defaultAction)
+                        self.presentViewController(alertC, animated: true
+                            , completion: {
+                                
+                        })
+                    })
                 }
-                if error != nil
+                else if error != nil
                 {
                     dispatch_async(dispatch_get_main_queue(), {
                         let alertC = UIAlertController(title: "error \(error!.code)", message: "\(error!.descriptionCode)", preferredStyle: UIAlertControllerStyle.Alert)
@@ -66,4 +84,74 @@ class VerifyViewController: UIViewController {
             }
         }
     }
+    @IBAction func verifyTrxAmount(sender: AnyObject) {
+        self.activityIndicator.startAnimating()
+        var amount = 0.0
+        amount =    (self.verifyCodetxt.text! as NSString).doubleValue
+        
+        if amount != 0.0
+        {
+            PaymentezSDKClient.verifyWithAmount(self.transactionId.text!, uid: "gus", amount: amount) { (error, attemptsRemaining, transaction) in
+                self.activityIndicator.stopAnimating()
+                if transaction != nil
+                {
+                    dispatch_async(dispatch_get_main_queue(), {
+                        let alertC = UIAlertController(title: "Verified", message: "Success", preferredStyle: UIAlertControllerStyle.Alert)
+                        
+                        let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                        alertC.addAction(defaultAction)
+                        self.presentViewController(alertC, animated: true
+                            , completion: {
+                                
+                        })
+                    })
+                }
+                else
+                {
+                    if attemptsRemaining > 0 //
+                    {
+                        dispatch_async(dispatch_get_main_queue(), {
+                            let alertC = UIAlertController(title: "Attempts Remaining", message: "\(attemptsRemaining)", preferredStyle: UIAlertControllerStyle.Alert)
+                            
+                            let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                            alertC.addAction(defaultAction)
+                            self.presentViewController(alertC, animated: true
+                                , completion: {
+                                    
+                            })
+                        })
+                    }
+                    if error != nil
+                    {
+                        dispatch_async(dispatch_get_main_queue(), {
+                            let alertC = UIAlertController(title: "error \(error!.code)", message: "\(error!.descriptionCode)", preferredStyle: UIAlertControllerStyle.Alert)
+                            
+                            let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                            alertC.addAction(defaultAction)
+                            self.presentViewController(alertC, animated: true
+                                , completion: {
+                                    
+                            })
+                        })
+                    }
+                }
+            }
+        }
+        else
+        {
+            dispatch_async(dispatch_get_main_queue(), {
+                    let alertC = UIAlertController(title: "error  incorrect amount", message: "please type a correct amount", preferredStyle: UIAlertControllerStyle.Alert)
+                    
+                    let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                    alertC.addAction(defaultAction)
+                    self.presentViewController(alertC, animated: true
+                        , completion: {
+                            
+                    })
+                })
+        }
+    
+        
+    }
+
 }

@@ -12,6 +12,7 @@ import PaymentezSDK
 class ViewController: UIViewController {
     @IBOutlet weak var amountTextfield: UITextField!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var verifyButton: UIButton!
     var cardReference = "22"
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +29,7 @@ class ViewController: UIViewController {
         parameters.devReference = "1234"
         parameters.vat = 0.10
         parameters.email = "gsotelo@paymentez.com"
-        parameters.uid = "test"
+        parameters.uid = "gus"
         PaymentezSDKClient.debitCard(parameters) { (error, transaction) in
             self.activityIndicator.stopAnimating()
             if error == nil
@@ -48,6 +49,7 @@ class ViewController: UIViewController {
             {
                 if error!.shouldVerify() // if the card should be verified
                 {
+                    self.verifyButton.hidden = false
                     print(error?.getVerifyTrx())
                     dispatch_async(dispatch_get_main_queue(), {
                         let alertC = UIAlertController(title: "error \(error!.code)", message: "Should verify: \(error!.getVerifyTrx())", preferredStyle: UIAlertControllerStyle.Alert)

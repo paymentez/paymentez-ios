@@ -16,13 +16,14 @@ class AddCustomViewController: UIViewController {
     @IBOutlet weak var expiryMonth: UITextField!
     @IBOutlet weak var expiryYear: UITextField!
     @IBOutlet weak var cvcText: UITextField!
+    @IBOutlet weak var verifyButton: UIButton!
     
 
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.verifyButton.hidden = true
         // Do any additional setup after loading the view.
     }
 
@@ -34,7 +35,7 @@ class AddCustomViewController: UIViewController {
     @IBAction func addCard(sender:AnyObject?)
     {
         self.activityIndicator.startAnimating()
-        PaymentezSDKClient.addCard("test", email: "gsotelo@paymentez.com", expiryYear: Int(self.expiryYear.text!), expiryMonth: Int(self.expiryMonth.text!), holderName: self.cardHolder.text!, cardNumber: self.cardNumber.text!, cvc: self.cvcText.text) { (error, added) in
+        PaymentezSDKClient.addCard("gus", email: "gsotelo@paymentez.com", expiryYear: Int(self.expiryYear.text!), expiryMonth: Int(self.expiryMonth.text!), holderName: self.cardHolder.text!, cardNumber: self.cardNumber.text!, cvc: self.cvcText.text) { (error, added) in
             self.activityIndicator.stopAnimating()
             if error != nil
             {
@@ -43,6 +44,7 @@ class AddCustomViewController: UIViewController {
                 print(error?.details)
                 if error!.shouldVerify() // if the card should be verified
                 {
+                    self.verifyButton.hidden = false
                     print(error?.getVerifyTrx())
                     dispatch_async(dispatch_get_main_queue(), {
                         let alertC = UIAlertController(title: "error \(error!.code)", message: "Should verify: \(error!.getVerifyTrx())", preferredStyle: UIAlertControllerStyle.Alert)

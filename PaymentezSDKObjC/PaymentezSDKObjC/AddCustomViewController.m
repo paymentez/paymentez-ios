@@ -47,6 +47,22 @@
         }
         
     }];
+    [PaymentezSDKClient verifyWithCode:@"code" uid:@"your_uid" verificationCode:@"verfiy_Code" callback:^(PaymentezSDKError *error, NSInteger attempts, PaymentezTransaction *transaction) {
+        
+        if(transaction != nil)
+        {
+            //verified
+        }
+        else
+        {
+            if (attempts > 0)
+            {
+                //you still have attempts
+            }
+        }
+        
+    }];
+    
     
 }
 - (IBAction)scanCard:(id)sender {

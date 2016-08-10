@@ -78,12 +78,15 @@ class PaymentezAddViewController: UIViewController, UIWebViewDelegate {
             let cookieJarForUrl = (cookieJar.cookiesForURL(NSURL(string: urlLoaded!)!))
             for cookie in cookieJarForUrl!
             {
+                print(cookie.name)
+                print(cookie.value)
                 if cookie.name == "pmntz_error_message"
                 {
+                    
                     var error:PaymentezSDKError
-                    if cookie.value.rangeOfString("verify") != nil
+                    if (cookie.value.rangeOfString("verify") != nil)
                     {
-                        error = PaymentezSDKError.createError(3, description: "System Error", details: [cookie.value])
+                        error = PaymentezSDKError.createError(3, description: "System Error", details: [cookie.value.stringByReplacingOccurrencesOfString("\"{", withString: "{").stringByReplacingOccurrencesOfString("}\"", withString: "}")], shouldVerify:true, verifyTrx: cookie.value.stringByReplacingOccurrencesOfString("\"{", withString: "{").stringByReplacingOccurrencesOfString("}\"", withString: "}").stringByReplacingOccurrencesOfString("\\\"", withString: "\""))
                     }
                     else
                     {
@@ -103,12 +106,6 @@ class PaymentezAddViewController: UIViewController, UIWebViewDelegate {
                     {
                         self.dismissViewControllerAnimated(true) {
                             self.callback!(error: nil, isClose: false, added: true)
-                        }
-                    }
-                    else
-                    {
-                        self.dismissViewControllerAnimated(true) {
-                            self.callback!(error: PaymentezSDKError.createError(3, description: "System Error", details: "Could not add card"), isClose: false, added: false)
                         }
                     }
                 }

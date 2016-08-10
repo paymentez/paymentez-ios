@@ -91,7 +91,7 @@ public class PaymentezSDKClient:NSObject
     
     
     @objc
-    static func addCardForUser(uid:String,
+    public static func addCardForUser(uid:String,
                                       email:String,
                                       expiryYear:Int,
                                       expiryMonth:Int,
@@ -110,7 +110,7 @@ public class PaymentezSDKClient:NSObject
         }
     }
     
-     static func addCard(uid:String!,
+     public static func addCard(uid:String!,
                          email:String!,
                          expiryYear:Int!,
                          expiryMonth:Int!,
@@ -174,6 +174,7 @@ public class PaymentezSDKClient:NSObject
                                 if statusCode! != 200
                                 {
                                     let dataR = responseData as! [String:AnyObject]
+                                    
                                     let err = PaymentezSDKError.createError(dataR["code"] as! Int, description: dataR["description"] as! String, details: dataR["details"])
                                     callback(error: err, added: false)
                                     
@@ -313,9 +314,17 @@ public class PaymentezSDKClient:NSObject
                                 if statusCode == 200
                                 {
                                     let response = PaymentezTransaction.parseTransaction(responseData as! [String:AnyObject])
-                                    
-                                    callback(error: nil, transaction: response)
-                                    
+                                    print(response.status)
+                                    if response.statusDetail == 1
+                                    {
+                                        
+                                        let error = PaymentezSDKError.createError(3, description: "System Error", details: ["{\"verify_transaction\": \"\(response.transactionId!)\"}"], shouldVerify: true, verifyTrx: "{\"verify_transaction\": \"\(response.transactionId!)\"}")
+                                        callback(error: error, transaction: response)
+                                    }
+                                    else
+                                    {
+                                        callback(error: nil, transaction: response)
+                                    }
                                     
                                     
                                 }

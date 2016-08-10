@@ -30,7 +30,7 @@ class ListCardsTableViewController: UITableViewController {
     func refreshTable()
     {
         self.cardList.removeAll()
-        PaymentezSDKClient.listCards("test") { (error, cardList) in
+        PaymentezSDKClient.listCards("gus") { (error, cardList) in
             
             if error == nil
             {
@@ -131,11 +131,11 @@ class ListCardsTableViewController: UITableViewController {
     @IBAction func addAction(sender:AnyObject?)
     {
        
-        PaymentezSDKClient.showAddViewControllerForUser("test", email: "gsotelo@paymentez.com", presenter: self) { (error, closed, added) in
+        PaymentezSDKClient.showAddViewControllerForUser("gus", email: "gsotelo@paymentez.com", presenter: self) { (error, closed, added) in
             
             if closed // user closed
             {
-                
+                self.refreshTable()
             }
             else if added // was added
             {
@@ -159,6 +159,7 @@ class ListCardsTableViewController: UITableViewController {
                 print(error?.code)
                 print(error?.description)
                 print(error?.details)
+                print(error?.getVerifyTrx())
                 if error!.shouldVerify() // if the card should be verified
                 {
                     print(error?.getVerifyTrx())
@@ -172,11 +173,12 @@ class ListCardsTableViewController: UITableViewController {
                                 
                         })
                     })
+                    self.performSegueWithIdentifier("verifySegue", sender:self)
                 }
                 else
                 {
                     dispatch_async(dispatch_get_main_queue(), {
-                        let alertC = UIAlertController(title: "error \(error!.code)", message: "\(error!.descriptionCode)", preferredStyle: UIAlertControllerStyle.Alert)
+                        let alertC = UIAlertController(title: "error \(error!.code)", message: "\(error!.details)", preferredStyle: UIAlertControllerStyle.Alert)
                         
                         let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
                         alertC.addAction(defaultAction)
@@ -197,7 +199,7 @@ class ListCardsTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if (editingStyle == UITableViewCellEditingStyle.Delete) {
             let card = self.cardList[indexPath.row]
-            PaymentezSDKClient.deleteCard("test", cardReference: card.cardReference!, callback: { (error, wasDeleted) in
+            PaymentezSDKClient.deleteCard("gus", cardReference: card.cardReference!, callback: { (error, wasDeleted) in
                 if wasDeleted
                 {
                     //self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
