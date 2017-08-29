@@ -8,37 +8,37 @@
 
 import Foundation
 
-@objc public class PaymentezDebitParameters:NSObject
+@objc open class PaymentezDebitParameters:NSObject
 
 {
-    public var uid = ""
-    public var cardReference = ""
-    public var productAmount = 0.0
-    public var productDescription = ""
-    public var devReference = ""
-    public var vat = 0.0
-    public var email = ""
-    public var productDiscount = 0.0
-    public var installments = 1
-    public var buyerFiscalNumber = ""
-    public var sellerId = ""
-    public var shippingStreet = ""
-    public var shippingHouseNumber = ""
-    public var shippingCity = ""
-    public var shippingZip = ""
-    public var shippingState = ""
-    public var shippingCountry = ""
-    public var shippingDistrict = ""
-    public var shippingAdditionalAddressInfo = ""
+    open var uid = ""
+    open var cardReference = ""
+    open var productAmount = 0.0
+    open var productDescription = ""
+    open var devReference = ""
+    open var vat = 0.0
+    open var email = ""
+    open var productDiscount = 0.0
+    open var installments = 1
+    open var buyerFiscalNumber = ""
+    open var sellerId = ""
+    open var shippingStreet = ""
+    open var shippingHouseNumber = ""
+    open var shippingCity = ""
+    open var shippingZip = ""
+    open var shippingState = ""
+    open var shippingCountry = ""
+    open var shippingDistrict = ""
+    open var shippingAdditionalAddressInfo = ""
     
     public override init()
     {
         
     }
     
-    func requiredDict() -> [String:AnyObject]
+    func requiredDict() -> [String:Any]
     {
-        var dic = [String:AnyObject]()
+        var dic = [String:Any]()
         dic["card_reference"] =  self.cardReference
         dic["product_amount"] = String(format: "%.2f", self.productAmount)
         dic["product_description"] = self.productDescription
@@ -52,40 +52,40 @@ import Foundation
         }
         if self.installments > 1
         {
-            dic["installments"] = self.installments
+            dic["installments"] = self.installments 
         }
         
         return dic
         
     }
-    func allParamsDict() -> [String:AnyObject]
+    func allParamsDict() -> [String:Any]
     {
-        var dic = [String:AnyObject]()
-        dic["card_reference"] =  self.cardReference
-        dic["product_amount"] = String(format: "%.2f", self.productAmount)
-        dic["product_description"] = self.productDescription
-        dic["dev_reference"] = self.devReference
-        dic["vat"] = String(format: "%.2f", self.vat)
-        dic["email"] = self.email
-        dic["uid"] = self.uid
+        var dic = [String:Any]()
+        dic["card_reference"] =  self.cardReference 
+        dic["product_amount"] = String(format: "%.2f", self.productAmount) 
+        dic["product_description"] = self.productDescription 
+        dic["dev_reference"] = self.devReference 
+        dic["vat"] = String(format: "%.2f", self.vat) 
+        dic["email"] = self.email 
+        dic["uid"] = self.uid 
         if productDiscount > 0.0
         {
-            dic["product_discount"] = String(format: "%.2f", self.productDiscount)
+            dic["product_discount"] = String(format: "%.2f", self.productDiscount) 
         }
         if self.installments > 1
         {
-            dic["installments"] = self.installments
+            dic["installments"] = self.installments 
         }
-        if self.buyerFiscalNumber != ""{dic["buyer_fiscal_number"] = self.buyerFiscalNumber}
-        if self.sellerId != ""{dic["seller_id"] = self.sellerId}
-        if self.shippingStreet != ""{dic["shipping_street"] = self.shippingStreet}
-        if self.shippingHouseNumber != ""{dic["shipping_house_number"] = self.shippingHouseNumber}
-        if self.shippingCity != ""{dic["shipping_city"] = self.shippingCity}
-        if self.shippingZip != ""{dic["shipping_zip"] = self.shippingZip}
-        if self.shippingState != ""{dic["shipping_state"] = self.shippingState}
-        if self.shippingCountry != ""{dic["shipping_country"] = self.shippingCountry}
-        if self.shippingDistrict != ""{dic["shipping_district"] = self.shippingDistrict}
-        if self.shippingAdditionalAddressInfo != ""{dic["shipping_additional_address_info"] = self.shippingAdditionalAddressInfo}
+        if self.buyerFiscalNumber != ""{dic["buyer_fiscal_number"] = self.buyerFiscalNumber }
+        if self.sellerId != ""{dic["seller_id"] = self.sellerId }
+        if self.shippingStreet != ""{dic["shipping_street"] = self.shippingStreet }
+        if self.shippingHouseNumber != ""{dic["shipping_house_number"] = self.shippingHouseNumber }
+        if self.shippingCity != ""{dic["shipping_city"] = self.shippingCity }
+        if self.shippingZip != ""{dic["shipping_zip"] = self.shippingZip }
+        if self.shippingState != ""{dic["shipping_state"] = self.shippingState }
+        if self.shippingCountry != ""{dic["shipping_country"] = self.shippingCountry }
+        if self.shippingDistrict != ""{dic["shipping_district"] = self.shippingDistrict }
+        if self.shippingAdditionalAddressInfo != ""{dic["shipping_additional_address_info"] = self.shippingAdditionalAddressInfo }
         return dic
     }
  
@@ -100,7 +100,7 @@ class PaymentezRequest
     {
         
     }
-    func getUrl(base:String, parameters:NSDictionary) -> String
+    func getUrl(_ base:String, parameters:NSDictionary) -> String
     {
         var completeUrl = self.testUrl + base
         if !testMode{
@@ -109,43 +109,44 @@ class PaymentezRequest
         completeUrl += "?" + encodeParamsGet(parameters)
         return completeUrl
     }
-    func encodeParams(parameters:NSDictionary) ->NSData?
+    func encodeParams(_ parameters:NSDictionary) ->Data?
     {
         var bodyData = ""
         for (key,value) in parameters{
-            let scapedKey = key.stringByAddingPercentEncodingWithAllowedCharacters(
-                .URLHostAllowedCharacterSet())!
-            let scapedValue = value.stringByAddingPercentEncodingWithAllowedCharacters(
-                .URLHostAllowedCharacterSet())!
+            let scapedKey = (key as! String).addingPercentEncoding(
+                withAllowedCharacters: .urlHostAllowed)!
+            let scapedValue = (value as! String).addingPercentEncoding(
+                withAllowedCharacters: .urlHostAllowed)!
             bodyData += "\(scapedKey)=\(scapedValue)&"
         }
         print(bodyData)
-        return bodyData.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
+        return bodyData.data(using: String.Encoding.utf8, allowLossyConversion: true)
     }
-    func encodeParamsGet(parameters:NSDictionary) -> String!
+    func encodeParamsGet(_ parameters:NSDictionary) -> String!
     {
         var bodyData = ""
         for (key,value) in parameters{
-            let scapedKey = key.stringByAddingPercentEncodingWithAllowedCharacters(
-                .URLHostAllowedCharacterSet())!
-            let scapedValue = value.stringByAddingPercentEncodingWithAllowedCharacters(
-                .URLHostAllowedCharacterSet())!
+            let scapedKey = (key as! String).addingPercentEncoding(
+                withAllowedCharacters: .urlHostAllowed)!
+            let scapedValue = (value as! String).addingPercentEncoding(
+                withAllowedCharacters: .urlHostAllowed)!
             bodyData += "\(scapedKey)=\(scapedValue)&"
         }
         
         return bodyData
     }
-    func makeRequest(urlToRequest:String, parameters:NSDictionary, responseCallback:(error:NSError?, statusCode:Int?,responseData:AnyObject?) ->Void)
+    func makeRequest(_ urlToRequest:String, parameters:NSDictionary, responseCallback:@escaping (_ error:NSError?, _ statusCode:Int?,_ responseData:Any?) ->Void)
     {
         var completeUrl = self.testUrl + urlToRequest
         if !testMode{
             completeUrl = self.prodUrl + urlToRequest
         }
         
-        let url:NSURL? = NSURL(string: completeUrl)
-        let session = NSURLSession.sharedSession()
+        let url:URL? = URL(string: completeUrl)
+        let session = URLSession.shared
         
-        let request = NSMutableURLRequest(URL:url!)
+        var request = URLRequest(url:url!)
+        print(url)
         /*do
         {
             
@@ -156,17 +157,19 @@ class PaymentezRequest
             
         }
         */
-        request.HTTPMethod = "POST"
-        request.HTTPBody = encodeParams(parameters)
+        request.httpMethod = "POST"
+        request.httpBody = encodeParams(parameters)
         
-        let task = session.dataTaskWithRequest(request) { (data:NSData?, resp:NSURLResponse?, err:NSError?) -> Void in
-            
+        let task = session.dataTask(with: request){
+            data, resp, err in
+            print(data)
             if err == nil
             {
-                var json:AnyObject? = nil
+                var json:Any? = nil
                 
                 do{
-                    json = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableLeaves)
+                    json = try JSONSerialization.jsonObject(with: data!, options: .mutableLeaves)
+                    print(json)
                 }
                 catch {
                     
@@ -178,38 +181,38 @@ class PaymentezRequest
                     if resp != nil
                     {
                         
-                        responseCallback(error: error, statusCode:(resp as! NSHTTPURLResponse).statusCode,responseData:nil)
+                        responseCallback(error, (resp as! HTTPURLResponse).statusCode,nil)
                     }
                     else
                     {
-                        responseCallback(error: error, statusCode:400,responseData:nil)
+                        responseCallback(error, 400,nil)
                     }
                 }
                 else
                 {
                     
                     print(json)
-                    responseCallback(error: err, statusCode: (resp as! NSHTTPURLResponse).statusCode, responseData:json)
+                    responseCallback(err as NSError?, (resp as! HTTPURLResponse).statusCode, json)
                 }
             }
             else
             {
-                responseCallback(error: err, statusCode: 400, responseData:nil)
+                responseCallback(err as NSError?, 400, nil)
             }
         }
         task.resume()
     }
-    func makeRequestGet(urlToRequest:String, parameters:NSDictionary, responseCallback:(error:NSError?, statusCode:Int?,responseData:AnyObject?) ->Void)
+    func makeRequestGet(_ urlToRequest:String, parameters:NSDictionary, responseCallback:@escaping (_ error:NSError?, _ statusCode:Int?,_ responseData:Any?) ->Void)
     {
         var completeUrl = self.testUrl + urlToRequest
         if !testMode{
             completeUrl = self.prodUrl + urlToRequest
         }
         completeUrl += "?" + encodeParamsGet(parameters)
-        let url:NSURL? = NSURL(string: completeUrl)
-        let session = NSURLSession.sharedSession()
+        let url:URL? = URL(string: completeUrl)
+        let session = URLSession.shared
         
-        let request = NSMutableURLRequest(URL:url!)
+        var request = URLRequest(url:url!)
         /*do
          {
          
@@ -220,16 +223,18 @@ class PaymentezRequest
          
          }
          */
-        request.HTTPMethod = "GET"
+        request.httpMethod = "GET"
         
-        let task = session.dataTaskWithRequest(request) { (data:NSData?, resp:NSURLResponse?, err:NSError?) -> Void in
+        
+        
+        let task = session.dataTask(with: request){ data, resp, err in
             
             if err == nil
             {
-                var json:AnyObject? = nil
+                var json:Any? = nil
                 
                 do{
-                    json = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableLeaves)
+                    json = try JSONSerialization.jsonObject(with: data!, options: .mutableLeaves)
                 }
                 catch {
                     
@@ -238,18 +243,18 @@ class PaymentezRequest
                 if json == nil{
                     let error = NSError(domain: "JSON", code: 400, userInfo: ["parsing" : false])
                     print ("parsing json error")
-                    responseCallback(error: error, statusCode:400,responseData:nil)
+                    responseCallback(error, 400,nil)
                 }
                 else
                 {
                     
                     
-                    responseCallback(error: err, statusCode: (resp as! NSHTTPURLResponse).statusCode, responseData:json)
+                    responseCallback(err as NSError?, (resp as! HTTPURLResponse).statusCode, json)
                 }
             }
             else
             {
-                responseCallback(error: err, statusCode: 400, responseData:nil)
+                responseCallback(err as NSError?, 400, nil)
             }
         }
         task.resume()

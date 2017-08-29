@@ -12,7 +12,7 @@ class PaymentezAddViewController: UIViewController, UIWebViewDelegate {
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     var urlToLoad = ""
-    var callback:((error:PaymentezSDKError?, isClose:Bool, added:Bool) -> Void)? = nil
+    var callback:((_ error:PaymentezSDKError?, _ isClose:Bool, _ added:Bool) -> Void)? = nil
     
     @IBOutlet weak var webView: UIWebView!
     
@@ -21,15 +21,15 @@ class PaymentezAddViewController: UIViewController, UIWebViewDelegate {
         super.init(coder: aDecoder)
         
     }
-    init(callback:(error:PaymentezSDKError?, isClose:Bool, added:Bool) -> Void)
+    init(callback:@escaping (_ error:PaymentezSDKError?, _ isClose:Bool, _ added:Bool) -> Void)
     {
         
         self.urlToLoad = ""
         self.callback = callback
-        let privatePath : NSString? = NSBundle.mainBundle().privateFrameworksPath
+        let privatePath : NSString? = Bundle.main.privateFrameworksPath as NSString?
         if privatePath != nil {
-            let path = privatePath!.stringByAppendingPathComponent("PaymentezSDK.framework")
-            let bundle =  NSBundle(path: path)
+            let path = privatePath!.appendingPathComponent("PaymentezSDK.framework")
+            let bundle =  Bundle(path: path)
             super.init(nibName: "PaymentezAddViewController", bundle: bundle)
         }
         else
@@ -45,12 +45,13 @@ class PaymentezAddViewController: UIViewController, UIWebViewDelegate {
         // Do any additional setup after loading the view.
     }
     
-    func loadUrl(urlToLoad:String)
+    func loadUrl(_ urlToLoad:String)
     {
         self.urlToLoad = urlToLoad
-        let url:NSURL? = NSURL(string: self.urlToLoad)
-        let request = NSMutableURLRequest(URL:url!)
-        webView.loadRequest(request)
+        print(urlToLoad)
+        let url:URL? = URL(string: self.urlToLoad)
+        let request = NSMutableURLRequest(url:url!)
+        webView.loadRequest(request as URLRequest)
     }
 
     override func didReceiveMemoryWarning() {
@@ -59,23 +60,23 @@ class PaymentezAddViewController: UIViewController, UIWebViewDelegate {
     }
     
 
-    @IBAction func closeAction(sender: AnyObject) {
+    @IBAction func closeAction(_ sender: Any) {
         
-        self.dismissViewControllerAnimated(true) { 
-            self.callback!(error: nil, isClose: true, added: false)
+        self.dismiss(animated: true) { 
+            self.callback!(nil, true, false)
         }
     }
     
-    func webViewDidStartLoad(webView: UIWebView) {
+    func webViewDidStartLoad(_ webView: UIWebView) {
         self.activityIndicator.startAnimating()
     }
-    func webViewDidFinishLoad(webView: UIWebView) {
+    func webViewDidFinishLoad(_ webView: UIWebView) {
         self.activityIndicator.stopAnimating()
-        let urlLoaded = self.webView.request?.URL?.absoluteString
-        if urlLoaded!.rangeOfString("save") != nil
+        let urlLoaded = self.webView.request?.url?.absoluteString
+        if urlLoaded!.range(of: "save") != nil
         {
-            let cookieJar = NSHTTPCookieStorage.sharedHTTPCookieStorage()
-            let cookieJarForUrl = (cookieJar.cookiesForURL(NSURL(string: urlLoaded!)!))
+            let cookieJar = HTTPCookieStorage.shared
+            let cookieJarForUrl = (cookieJar.cookies(for: URL(string: urlLoaded!)!))
             for cookie in cookieJarForUrl!
             {
                 print(cookie.name)
@@ -84,9 +85,10 @@ class PaymentezAddViewController: UIViewController, UIWebViewDelegate {
                 {
                     
                     var error:PaymentezSDKError
-                    if (cookie.value.rangeOfString("verify") != nil)
+                    
+                    if (cookie.value.range(of: "verify") != nil)
                     {
-                        error = PaymentezSDKError.createError(3, description: "System Error", details: [cookie.value.stringByReplacingOccurrencesOfString("\"{", withString: "{").stringByReplacingOccurrencesOfString("}\"", withString: "}")], shouldVerify:true, verifyTrx: cookie.value.stringByReplacingOccurrencesOfString("\"{", withString: "{").stringByReplacingOccurrencesOfString("}\"", withString: "}").stringByReplacingOccurrencesOfString("\\\"", withString: "\""))
+                        error = PaymentezSDKError.createError(3, description: "System Error", details: [cookie.value.replacingOccurrences(of: "\"{", with: "{").replacingOccurrences(of: "}\"", with: "}")], shouldVerify:true, verifyTrx: cookie.value.replacingOccurrences(of: "\"{", with: "{").replacingOccurrences(of: "}\"", with: "}").replacingOccurrences(of: "\\\"", with: "\""))
                     }
                     else
                     {
@@ -94,8 +96,8 @@ class PaymentezAddViewController: UIViewController, UIWebViewDelegate {
                     }
                     
                     
-                    self.dismissViewControllerAnimated(true) {
-                        self.callback!(error: error, isClose: false, added: false)
+                    self.dismiss(animated: true) {
+                        self.callback!(error, false, false)
                     }
                     
                 }
@@ -104,8 +106,8 @@ class PaymentezAddViewController: UIViewController, UIWebViewDelegate {
                     
                     if cookie.value == "success" || cookie.value == "true"
                     {
-                        self.dismissViewControllerAnimated(true) {
-                            self.callback!(error: nil, isClose: false, added: true)
+                        self.dismiss(animated: true) {
+                            self.callback!(nil, false, true)
                         }
                     }
                 }

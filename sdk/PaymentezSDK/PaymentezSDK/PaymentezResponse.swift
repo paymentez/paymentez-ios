@@ -7,19 +7,39 @@
 //
 
 import Foundation
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 enum PaymentezSDKTypeAddError:Int
 {
     
-    case Unauthorized = 0
-    case InsuficientParams = 1
-    case InvalidFormat = 2
-    case OperationNotAllowed = 3
-    case InvalidConfiguration = 4
+    case unauthorized = 0
+    case insuficientParams = 1
+    case invalidFormat = 2
+    case operationNotAllowed = 3
+    case invalidConfiguration = 4
 }
 
 enum PaymentezSDKDebitStatus
 {
-    case Authorized
+    case authorized
 }
 
 class PaymentezDebitResponse
@@ -27,27 +47,27 @@ class PaymentezDebitResponse
     var transactionId = ""
     var status:PaymentezSDKDebitStatus?
     var statusDetail = ""
-    var paymentDate:NSDate?
+    var paymentDate:Date?
     var amount = 0.0
-    var carrierData:[String:AnyObject]?
-    var cardData:[String:AnyObject]?
+    var carrierData:[String:Any]?
+    var cardData:[String:Any]?
     
     
 }
 
 
 
-@objc public class PaymentezSDKError:NSObject
+@objc open class PaymentezSDKError:NSObject
 {
-    public var code = 500
-    public var descriptionCode:String = "Internal Error"
-    public var details:AnyObject? = nil
-    public var isVerify = false;
-    public var verifyTrx = "";
+    open var code = 500
+    open var descriptionCode:String = "Internal Error"
+    open var details:Any? = nil
+    open var isVerify = false;
+    open var verifyTrx = "";
     
     
     
-    init(code:Int, description:String, details:AnyObject?)
+    init(code:Int, description:String, details:Any?)
     {
         self.code = code
         self.descriptionCode = description
@@ -55,7 +75,7 @@ class PaymentezDebitResponse
         
     }
     
-    public func shouldVerify()->Bool
+    open func shouldVerify()->Bool
     {
         return isVerify
         /*
@@ -79,7 +99,7 @@ class PaymentezDebitResponse
     }
     
     
-    public func getVerifyTrx() ->String?
+    open func getVerifyTrx() ->String?
     {
         return verifyTrx;
         /*
@@ -101,10 +121,10 @@ class PaymentezDebitResponse
         
     }
     
-    private func convertStringToDictionary(text: String!) -> [String:AnyObject]? {
-        if let data = text.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
+    fileprivate func convertStringToDictionary(_ text: String!) -> [String:Any]? {
+        if let data = text.data(using: String.Encoding.utf8, allowLossyConversion: false) {
             do {
-                let json = try NSJSONSerialization.JSONObjectWithData(data, options: [.AllowFragments, .MutableContainers]) as? [String:AnyObject]
+                let json = try JSONSerialization.jsonObject(with: data, options: [.allowFragments, .mutableContainers]) as? [String:Any]
                 print(json)
                 return json
             } catch let error as NSError  {
@@ -116,23 +136,23 @@ class PaymentezDebitResponse
     }
     
     
-    static func createError(err:NSError) -> PaymentezSDKError
+    static func createError(_ err:NSError) -> PaymentezSDKError
     {
-        return PaymentezSDKError(code: 500, description: err.localizedDescription, details: err.debugDescription)
+        return PaymentezSDKError(code: 500, description: err.localizedDescription, details: err.debugDescription as Any?)
     }
-    static func createError(code:Int, description:String, details:AnyObject?) -> PaymentezSDKError
+    static func createError(_ code:Int, description:String, details:Any?) -> PaymentezSDKError
     {
         let arrDetails = details as? [String]
         if arrDetails?.count > 0 && code == 3
         {
-            if arrDetails![0].rangeOfString("verify_transaction") != nil
+            if arrDetails![0].range(of: "verify_transaction") != nil
             {
                 return PaymentezSDKError.createError(code, description: description, details: details, shouldVerify:true, verifyTrx:arrDetails![0])
             }
         }
         return PaymentezSDKError(code: code, description: description, details: details)
     }
-    static func createError(code:Int, description:String, details:AnyObject?, shouldVerify:Bool, verifyTrx:String) -> PaymentezSDKError
+    static func createError(_ code:Int, description:String, details:Any?, shouldVerify:Bool, verifyTrx:String) -> PaymentezSDKError
     {
         let err = PaymentezSDKError(code: code, description: description, details: details)
         err.isVerify = true
