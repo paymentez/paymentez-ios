@@ -60,64 +60,18 @@ class PaymentezDebitResponse
 @objc open class PaymentezSDKError:NSObject
 {
     open var code = 500
-    open var descriptionCode:String = "Internal Error"
-    open var details:Any? = nil
-    open var isVerify = false;
-    open var verifyTrx = "";
+    open var descriptionData = "Internal Error"
+    open var help:String?
+    open var type:String?
     
     
     
-    init(code:Int, description:String, details:Any?)
+    init(code:Int, description:String, help:String?, type:String?)
     {
         self.code = code
-        self.descriptionCode = description
-        self.details = details
-        
-    }
-    
-    open func shouldVerify()->Bool
-    {
-        return isVerify
-        /*
-        if self.code == 3
-        {
-            let arrDetails = self.details as? [String]
-            if arrDetails?.count > 0
-            {
-                let d = convertStringToDictionary(arrDetails![0])
-                if d == nil
-                {
-                    return false
-                }
-                let verifyTrx = (d!["verify_transaction"] as? String) != nil
-                return verifyTrx
-            }
-        }
-        return false
-        */
-        
-    }
-    
-    
-    open func getVerifyTrx() ->String?
-    {
-        return verifyTrx;
-        /*
-        if !shouldVerify()
-        {
-            return nil
-        }
-        else
-        {
-            let arrDetails = self.details as? [String]
-            if arrDetails?.count > 0
-            {
-                let d = convertStringToDictionary(arrDetails![0])
-                return (d!["verify_transaction"] as! String)
-            }
-
-            return nil
-        }*/
+        self.descriptionData = description
+        self.help = help
+        self.type = type
         
     }
     
@@ -125,7 +79,6 @@ class PaymentezDebitResponse
         if let data = text.data(using: String.Encoding.utf8, allowLossyConversion: false) {
             do {
                 let json = try JSONSerialization.jsonObject(with: data, options: [.allowFragments, .mutableContainers]) as? [String:Any]
-                print(json)
                 return json
             } catch let error as NSError  {
                 print (error)
@@ -138,26 +91,10 @@ class PaymentezDebitResponse
     
     static func createError(_ err:NSError) -> PaymentezSDKError
     {
-        return PaymentezSDKError(code: 500, description: err.localizedDescription, details: err.debugDescription as Any?)
+        return PaymentezSDKError(code: 500, description: err.localizedDescription, help: err.debugDescription, type:nil)
     }
-    static func createError(_ code:Int, description:String, details:Any?) -> PaymentezSDKError
+    static func createError(_ code:Int, description:String, help:String?, type:String?) -> PaymentezSDKError
     {
-        let arrDetails = details as? [String]
-        if arrDetails?.count > 0 && code == 3
-        {
-            if arrDetails![0].range(of: "verify_transaction") != nil
-            {
-                return PaymentezSDKError.createError(code, description: description, details: details, shouldVerify:true, verifyTrx:arrDetails![0])
-            }
-        }
-        return PaymentezSDKError(code: code, description: description, details: details)
-    }
-    static func createError(_ code:Int, description:String, details:Any?, shouldVerify:Bool, verifyTrx:String) -> PaymentezSDKError
-    {
-        let err = PaymentezSDKError(code: code, description: description, details: details)
-        err.isVerify = true
-        let d = err.convertStringToDictionary(verifyTrx)
-        err.verifyTrx = (d!["verify_transaction"] as! String)
-        return err
+        return PaymentezSDKError(code: code, description: description, help: help, type:type)
     }
 }

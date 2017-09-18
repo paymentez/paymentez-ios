@@ -18,13 +18,16 @@ import CommonCrypto
 @objc(PaymentezSDKClient)
 open class PaymentezSDKClient:NSObject
 {
-    
+    static var inProgress = false
     static var  apiCode = ""
     static var  secretKey = ""
     static var enableTestMode = true
     static var request = PaymentezRequest(testMode: true)
     static var kountHandler = PaymentezSecure(testMode: true)
     static var scanner = PaymentezCardScan()
+    
+    
+    
     
     @objc(setEnvironment:secretKey:testMode:)
     open static func setEnvironment(_ apiCode:String, secretKey:String, testMode:Bool)
@@ -37,8 +40,7 @@ open class PaymentezSDKClient:NSObject
     }
     
     
-    @objc
-    open static func showAddViewControllerForUser(_ uid:String, email:String, presenter:UIViewController, callback:@escaping (_ error:PaymentezSDKError?, _ closed:Bool, _ added:Bool)->Void)
+    private static func showAddViewControllerForUser(_ uid:String, email:String, presenter:UIViewController, callback:@escaping (_ error:PaymentezSDKError?, _ closed:Bool, _ added:Bool)->Void)
     {
         let vc = PaymentezAddViewController(callback: { (error, isClose, added) in
             
@@ -46,19 +48,17 @@ open class PaymentezSDKClient:NSObject
             
         })
         presenter.present(vc, animated: true, completion: {
-            PaymentezSecure.getIpAddress { (ipAddress) in
-                DispatchQueue.main.sync
+            DispatchQueue.main.sync
                 {
                     
                     let sessionId = self.kountHandler.generateSessionId()
                     var parameters = ["application_code" : apiCode,
-                        "uid" : uid,
-                        "email" : email,
-                        "session_id": sessionId]
+                                      "uid" : uid,
+                                      "email" : email,
+                                      "session_id": sessionId as Any]  as [String : Any]
                     let authTimestamp = generateAuthTimestamp()
-                    let authToken = generateAuthToken(parameters as [String : Any], authTimestamp: authTimestamp)
+                    let authToken = generateAuthToken(parameters, authTimestamp: authTimestamp)
                     parameters["auth_timestamp"] = authTimestamp
-                    parameters["ip_address"] = ipAddress
                     parameters["auth_token"] = authToken
                     
                     kountHandler.collect(sessionId!) { (err) in
@@ -80,24 +80,135 @@ open class PaymentezSDKClient:NSObject
                         }
                     }
                     
-                }
             }
+            
         })
         
         
     }
     
+    @objc
+    open static func createAddWidget()->PaymentezAddNativeViewController
+    {
+        let vc = PaymentezAddNativeViewController(isWidget: true)
+        
+        return vc
+    }
     
+    
+    @objc open static func createToken(_ card:PaymentezCard, uid:String, email:String,  callback:@escaping (_ error:PaymentezSDKError?, _ cardAdded:PaymentezCard?)->Void)
+    {
+        print(card.cardNumber!)
+        if inProgress
+        {
+            callback(PaymentezSDKError.createError(500, description: "Request in Progress", help: "", type:nil),nil)
+            return
+        }
+        inProgress = true
+        var typeCard = ""
+        switch PaymentezCard.getTypeCard(card.cardNumber!)
+        {
+        case .amex:
+            typeCard = "ax"
+        case .visa:
+            typeCard = "vi"
+        case .masterCard:
+            typeCard = "mc"
+        case .diners:
+            typeCard = "di"
+        default:
+            callback(PaymentezSDKError.createError(403, description: "Card Not Supported", help: "Change Number", type:nil) , nil)
+        }
+        
+        let sessionId = self.kountHandler.generateSessionId()
+        
+        let userParameters = ["email": email, "id": uid]
+        let cardParameters = ["number": card.cardNumber!, "holderName": card.cardHolder!, "expiryMonth": card.expiryMonth!, "expiryYear": Int(card.expiryYear!) as Any, "cvc":card.cvc! as Any, "type": typeCard] as [String : Any]
+        
+        let parameters = ["session_id": sessionId!,
+                          "user": userParameters,
+                          "card": cardParameters
+            ] as [String : Any]
+        kountHandler.collect(sessionId!) { (err) in
+            
+            inProgress = false
+            if err == nil
+            {
+                inProgress = true
+                let token = generateAuthTokenV2()
+                self.request.makeRequestV2("/v2/pci/create_token", parameters: parameters as NSDictionary, token:token) { (error, statusCode, responseData) in
+                    
+                    inProgress = false
+                    if error == nil
+                    {
+                        
+                        if statusCode! != 200
+                        {
+                            let dataR = responseData as! [String:Any]
+                            
+                            let err = PaymentezSDKError.createError(statusCode!, description: dataR["description"] as! String, help: dataR["help"] as? String, type: dataR["type"] as? String)
+                            callback(err, nil)
+                            
+                        }
+                        else
+                        {
+                            let dataR = responseData as! [String:Any]
+                            let cardData = dataR["card"] as! [String:Any]
+                            let cardAdded = PaymentezCard()
+                            cardAdded.bin = cardData["bin"] as? String
+                            cardAdded.termination = cardData["number"] as? String
+                            cardAdded.token = cardData["token"] as? String
+                            cardAdded.expiryYear = card.expiryYear
+                            cardAdded.expiryMonth = card.expiryMonth
+                            cardAdded.trxReference = card.trxReference
+                            cardAdded.status = cardData["status"] as? String
+                            
+                            
+                            if cardAdded.status == "rejected"
+                            {
+                                let error = PaymentezSDKError.createError(statusCode!, description: (cardData["error_message"] as? String)!, help: "", type:nil)
+                                callback(error, cardAdded)
+                            }
+                            else if cardAdded.status == "review"
+                            {
+                                
+                                let error = PaymentezSDKError.createError(statusCode!, description: (cardData["error_message"] as? String)!, help: "", type:nil)
+                                callback(error, cardAdded)
+                            }
+                            else
+                            {
+                                callback(nil, cardAdded)
+                            }
+                            
+                        }
+                    }
+                    else
+                    {
+                        callback(PaymentezSDKError.createError(error!), nil)
+                    }
+                    
+                }
+            }
+            else
+            {
+                callback(PaymentezSDKError.createError(err!), nil)
+                
+            }
+            
+            
+            
+        }
+    }
     
     
     private static func addCardForUser(_ uid:String,
-                                      email:String,
-                                      expiryYear:Int,
-                                      expiryMonth:Int,
-                                      holderName:String,
-                                      cardNumber:String,
-                                      cvc:String,
-                                      callback:@escaping (_ error:PaymentezSDKError?, _ added:Bool)->Void)
+                                       email:String,
+                                       expiryYear:Int,
+                                       expiryMonth:Int,
+                                       holderName:String,
+                                       cardNumber:String,
+                                       cvc:String,
+                                       callback:@escaping (_ error:PaymentezSDKError?, _ added:Bool)->Void)
     {
         addCard(uid, email: email, expiryYear: expiryYear, expiryMonth: expiryMonth, holderName: holderName, cardNumber: cardNumber, cvc: cvc) { (error, added) in
             if error == nil{
@@ -109,23 +220,22 @@ open class PaymentezSDKClient:NSObject
         }
     }
     
-     private static func addCard(_ uid:String!,
-                         email:String!,
-                         expiryYear:Int!,
-                         expiryMonth:Int!,
-                         holderName:String!,
-                         cardNumber:String!,
-                         cvc:String!,
-                         callback:@escaping (_ error:PaymentezSDKError?, _ added:Bool)->Void
-                         
-                        
+    static func addCard(_ uid:String!,
+                        email:String!,
+                        expiryYear:Int!,
+                        expiryMonth:Int!,
+                        holderName:String!,
+                        cardNumber:String!,
+                        cvc:String!,
+                        callback:@escaping (_ error:PaymentezSDKError?, _ added:Bool)->Void
         
         
-
+        
+        
+        
         )
     {
-        PaymentezSecure.getIpAddress { (ipAddress) in
-            DispatchQueue.main.sync
+        DispatchQueue.main.sync
             {
                 var typeCard = ""
                 switch PaymentezCard.getTypeCard(cardNumber)
@@ -139,18 +249,17 @@ open class PaymentezSDKClient:NSObject
                 case .diners:
                     typeCard = "di"
                 default:
-                   // (typeError:PaymentezSDKTypeAddError.insuficientParams, code: 0, description: "Card Not Supported", details: "number")
-                    callback(PaymentezSDKError.createError(0, description: "Card Not Supported", details: "number" ) , false)
+                    // (typeError:PaymentezSDKTypeAddError.insuficientParams, code: 0, description: "Card Not Supported", details: "number")
+                    callback(PaymentezSDKError.createError(0, description: "Card Not Supported", help: "number", type:nil) , false)
                 }
                 
                 let sessionId = self.kountHandler.generateSessionId()
                 var parameters = ["application_code" : apiCode,
-                    "uid" : uid,
-                    "email" : email,
-                    "ip_address": ipAddress,
-                    "session_id": sessionId]
+                                  "uid" : uid,
+                                  "email" : email,
+                                  "session_id": sessionId as Any] as [String : Any]
                 let authTimestamp = generateAuthTimestamp()
-                let authToken = generateAuthToken(parameters as [String : Any], authTimestamp: authTimestamp)
+                let authToken = generateAuthToken(parameters , authTimestamp: authTimestamp)
                 parameters["auth_timestamp"] = authTimestamp
                 parameters["auth_token"] = authToken
                 parameters["expiryYear"] = "\(expiryYear)"
@@ -174,7 +283,7 @@ open class PaymentezSDKClient:NSObject
                                 {
                                     let dataR = responseData as! [String:Any]
                                     
-                                    let err = PaymentezSDKError.createError(dataR["code"] as! Int, description: dataR["description"] as! String, details: dataR["details"])
+                                    let err = PaymentezSDKError.createError(statusCode!, description: dataR["description"] as! String, help: dataR["details"] as? String, type:nil)
                                     callback(err, false)
                                     
                                 }
@@ -197,39 +306,44 @@ open class PaymentezSDKClient:NSObject
                     }
                 }
                 
-            }
         }
         
+        
     }
-
     
-    open static func listCards(_ uid:String!, callback:@escaping (_ error:PaymentezSDKError?, _ cardList:[PaymentezCard]?) ->Void)
+    @objc open static func listCards(_ uid:String!, callback:@escaping (_ error:PaymentezSDKError?, _ cardList:[PaymentezCard]?) ->Void)
     {
-        var parameters = ["application_code" : apiCode,
-                          "uid" : uid]
-        let authTimestamp = generateAuthTimestamp()
-        let authToken = generateAuthToken(parameters as [String : Any], authTimestamp: authTimestamp)
-        parameters["auth_token"] = authToken
-        parameters["auth_timestamp"] = authTimestamp
-        self.request.makeRequestGet("/api/cc/list/", parameters: parameters as NSDictionary) { (error, statusCode, responseData) in
+        listCardsV2(uid) { (error, cards) in
+            callback(error,cards)
+        }
+    }
+    static func listCardsV2(_ uid:String!, callback:@escaping (_ error:PaymentezSDKError?, _ cardList:[PaymentezCard]?) ->Void)
+    {
+        
+        let parameters = ["uid": uid] as [String:Any]
+        let token = generateAuthTokenV2()
+        self.request.makeRequestGetV2("/v2/transaction/list/", parameters: parameters as NSDictionary, token: token) { (error, statusCode, responseData) in
             
             
             
             if error == nil
             {
-                let cardsArray = responseData as! [[String:Any]]
+                let responseObj = responseData as! NSDictionary
+                let cardsArray = responseObj["cards"] as! [[String:Any]]
                 var responseCards = [PaymentezCard]()
                 
                 for card in cardsArray
                 {
                     let pCard = PaymentezCard()
+                    let expiration_date = (card["expiration_date"] as! String).components(separatedBy: "/")
                     pCard.bin = "\(card["bin"]!)"
-                    pCard.cardReference = "\(card["card_reference"]!)"
+                    pCard.token = "\(card["token"]!)"
                     pCard.cardHolder = "\(card["name"]!)"
-                    pCard.expiryMonth = "\(card["expiry_month"]!)"
-                    pCard.expiryYear = "\(card["expiry_year"]!)"
-                    pCard.termination = "\(card["termination"]!)"
+                    pCard.expiryMonth = Int((expiration_date[0]))
+                    pCard.expiryYear = Int((expiration_date[1]))
+                    pCard.termination = "\(card["number"]!)"
                     pCard.type = "\(card["type"]!)"
+                    pCard.status = "\(card["status"]!)"
                     responseCards.append(pCard)
                 }
                 
@@ -238,153 +352,233 @@ open class PaymentezSDKClient:NSObject
             }
             else
             {
-               callback(PaymentezSDKError.createError(error!),nil)
+                callback(PaymentezSDKError.createError(error!),nil)
             }
             
         }
     }
     
-    open static func deleteCard(_ uid:String, cardReference:String, callback:@escaping (_ error:PaymentezSDKError?, _ wasDeleted:Bool) ->Void)
+    private static func deleteCard(_ uid:String, cardReference:String, callback:@escaping (_ error:PaymentezSDKError?, _ wasDeleted:Bool) ->Void)
     {
-        var parameters = ["application_code" : apiCode,
-                          "card_reference" : cardReference,
-                          "uid" : uid]
-        let authTimestamp = generateAuthTimestamp()
-        let authToken = generateAuthToken(parameters as [String : Any], authTimestamp: authTimestamp)
-        parameters["auth_token"] = authToken
-        parameters["auth_timestamp"] = authTimestamp
         
-        self.request.makeRequest("/api/cc/delete/", parameters:parameters as NSDictionary) { (error, statusCode, responseData) in
+        
+        
+        
+        /*
+         var parameters = ["application_code" : apiCode,
+         "card_reference" : cardReference,
+         "uid" : uid]
+         let authTimestamp = generateAuthTimestamp()
+         let authToken = generateAuthToken(parameters as [String : Any], authTimestamp: authTimestamp)
+         parameters["auth_token"] = authToken
+         parameters["auth_timestamp"] = authTimestamp
+         
+         self.request.makeRequest("/api/cc/delete/", parameters:parameters as NSDictionary) { (error, statusCode, responseData) in
+         
+         if error == nil
+         {
+         if statusCode! != 200
+         {
+         let dataR = (responseData as! [String:Any])["errors"] as! [[String:Any]]
+         callback(PaymentezSDKError.createError(dataR[0]["code"] as! Int, description: dataR[0]["description"] as! String, details: dataR[0]["details"] as! String), false)
+         }
+         else
+         {
+         callback(nil, true)
+         }
+         }
+         else
+         {
+         if statusCode! == 200
+         {
+         callback(nil, true)
+         }
+         else
+         {
+         callback(PaymentezSDKError.createError(error!), false)
+         }
+         }
+         }*/
+    }
+    open static func deleteCard(_ uid:String, card:PaymentezCard, callback:@escaping (_ error:PaymentezSDKError?, _ wasDeleted:Bool) ->Void)
+    {
+        if card.token == nil {
+            callback(PaymentezSDKError.createError(400, description: "Incorrect Token", help: nil, type:nil), false)
+        }
+        else
+        {
             
-            if error == nil
-            {
-                if statusCode! != 200
+            let userparams = ["id" : uid]
+            let cardparams = ["token": card.token!]
+            let parameters = ["user": userparams, "card": cardparams] as [String:Any]
+            let token = generateAuthTokenV2()
+            self.request.makeRequestV2("/v2/transaction/delete/", parameters: parameters as NSDictionary, token: token) { (error, statusCode, responseData) in
+                
+                
+                
+                if error == nil
                 {
-                    let dataR = (responseData as! [String:Any])["errors"] as! [[String:Any]]
-                    callback(PaymentezSDKError.createError(dataR[0]["code"] as! Int, description: dataR[0]["description"] as! String, details: dataR[0]["details"] as! String), false)
+                    if statusCode == 200
+                    {
+                        callback(nil,true)
+                    }
+                    else
+                    {
+                        callback(PaymentezSDKError.createError(403, description: "", help: nil, type:nil), false)
+                    }
+                    
                 }
                 else
                 {
-                    callback(nil, true)
+                    callback(PaymentezSDKError.createError(error!),false)
                 }
-            }
-            else
-            {
-                if statusCode! == 200
-                {
-                    callback(nil, true)
-                }
-                else
-                {
-                    callback(PaymentezSDKError.createError(error!), false)
-                }
+                
             }
         }
+        
+        
     }
     
     open static func debitCard(_ parameters:PaymentezDebitParameters, callback: @escaping (_ error:PaymentezSDKError?, _ transaction:PaymentezTransaction?) ->Void)
     {
+        if inProgress
+        {
+            callback(PaymentezSDKError.createError(500, description: "Request in Progress", help: "", type:nil),nil)
+            return
+        }
+        inProgress = true
+        inProgress = false
         
-        PaymentezSecure.getIpAddress { (ipAddress) in
-            DispatchQueue.main.sync
+        let userParams = parameters.requiredUserDict()
+        let cardParams = parameters.requiredCardDict()
+        let productParams =  parameters.requiredProductDict()
+        let shippingParams = parameters.requiredShippingInfoDict()
+        let sessionId = self.kountHandler.generateSessionId()
+        let parametersDic = ["user": userParams, "card": cardParams, "product":productParams, "shipping_info": shippingParams, "session_id": sessionId as Any] as [String : Any]
+        
+        inProgress = true
+        kountHandler.collect(sessionId!) { (err) in
+            
+            inProgress = false
+            if err == nil
             {
-                var parametersDic = parameters.allParamsDict()
-                var requireDict = parameters.requiredDict()
-                parametersDic["application_code"] = apiCode
-                let sessionId = self.kountHandler.generateSessionId()
-                parametersDic["session_id"] = sessionId 
-                parametersDic["ip_address"] = ipAddress 
-                
-                requireDict["application_code"] = apiCode 
-                requireDict["session_id"] = sessionId 
-                requireDict["ip_address"] = ipAddress 
-                
-                let authTimestamp = generateAuthTimestamp()
-                let autToken = generateAuthToken(requireDict, authTimestamp: authTimestamp)
-                parametersDic["auth_timestamp"] = authTimestamp 
-                parametersDic["auth_token"] = autToken 
-                kountHandler.collect(sessionId!) { (err) in
+                inProgress = true
+                self.request.makeRequestV2("/v2/transaction/debit/", parameters: parametersDic as NSDictionary, token: generateAuthTokenV2(), responseCallback: { (error, statusCode, responseData) in
                     
-                    if err == nil
+                    inProgress = false
+                    if error == nil
                     {
-                        self.request.makeRequest("/api/cc/debit/", parameters: parametersDic as NSDictionary, responseCallback: { (error, statusCode, responseData) in
+                        if statusCode == 200
+                        {
+                            let responseD = responseData as! [String:Any]
                             
-                            if error == nil
+                            let response = PaymentezTransaction.parseTransactionV2(responseD["transaction"] as! [String:Any])
+                            print(response.status as Any)
+                            if response.statusDetail == 11
                             {
-                                if statusCode == 200
-                                {
-                                    let response = PaymentezTransaction.parseTransaction(responseData as! [String:Any])
-                                    print(response.status)
-                                    if response.statusDetail == 11
-                                    {
-                                        
-                                        let error = PaymentezSDKError.createError(3, description: "System Error", details: ["{\"verify_transaction\": \"\(response.transactionId!)\"}"], shouldVerify: true, verifyTrx: "{\"verify_transaction\": \"\(response.transactionId!)\"}")
-                                        callback(error, response)
-                                    }
-                                    else
-                                    {
-                                        callback(nil, response)
-                                    }
-                                    
-                                    
-                                }
-                                else
-                                {
-                                    do {
-                                        var dataR = (responseData as! [String:Any])
-                                        if dataR["errors"] != nil
-                                        {
-                                            dataR = dataR["errors"] as! [String:Any]
-                                        }
-                                        let errorPa =  PaymentezSDKError.createError(dataR["code"] as! Int, description: dataR["description"] as! String, details: dataR["details"])
-                                        
-                                        callback(errorPa, nil)
-                                    }
-                                    
-                                }
+                                callback(nil, response)
+                            }
+                            else if response.statusDetail != 3
+                            {
+                                let error = PaymentezSDKError.createError(response.statusDetail as! Int, description: response.message!, help: "", type:nil)
+                                callback(error, response)
                             }
                             else
                             {
-                                callback(PaymentezSDKError.createError(error!), nil)
+                                callback(nil, response)
                             }
                             
                             
-                        })
+                        }
+                        else
+                        {
+                            do {
+                                var dataR = (responseData as! [String:Any])
+                                if dataR["error"] != nil
+                                {
+                                    dataR = dataR["error"] as! [String:Any]
+                                }
+                                let errorPa =  PaymentezSDKError.createError(statusCode!, description: dataR["description"] as! String, help: dataR["help"] as? String, type: dataR["type"] as? String)
+                                
+                                callback(errorPa, nil)
+                            }
+                            
+                        }
                     }
                     else
                     {
-                        callback(PaymentezSDKError.createError(err!), nil)
+                        callback(PaymentezSDKError.createError(error!), nil)
+                    }
+                    
+                    
+                })
+            }
+            else
+            {
+                
+                callback(PaymentezSDKError.createError(err!), nil)
+            }
+        }
+    }
+    @objc open static func refund(_ transactionId:String, callback:@escaping (_ error:PaymentezSDKError?,_ refunded:Bool)->Void)
+        
+    {
+        let transactionparams = ["id": transactionId]
+        let parameters = ["transaction": transactionparams] as [String:Any]
+        let token = generateAuthTokenV2()
+        self.request.makeRequestV2("/v2/transaction/refund/", parameters: parameters as NSDictionary, token: token) { (error, statusCode, responseData) in
+            
+            
+            
+            if error == nil
+            {
+                if statusCode == 200
+                {
+                    var dataR = (responseData as! [String:String])
+                    if dataR["status"] == "success"
+                    {
+                        callback(nil,true)
+                    }
+                    else
+                    {
+                        callback(nil,false)
+                    }
+                    
+                }
+                else
+                {
+                    do {
+                        var dataR = (responseData as! [String:Any])
+                        if dataR["error"] != nil
+                        {
+                            dataR = dataR["error"] as! [String:Any]
+                        }
+                        let errorPa =  PaymentezSDKError.createError(statusCode!, description: dataR["description"] as! String, help: dataR["help"] as? String, type:dataR["type"] as? String)
+                        
+                        callback(errorPa, false)
                     }
                 }
-                
-                
-                
-                
+            }
+            else
+            {
+                callback(PaymentezSDKError.createError(error!), false)
             }
             
-            
         }
-        
-        
-        
-        
-        
     }
     
-    @objc open static func verifyWithCode(_ transactionId:String, uid:String, verificationCode:String, callback:@escaping (_ error:PaymentezSDKError?, _ attemptsRemaining:Int, _ transaction:PaymentezTransaction?)->Void)
     
-    {
-        var parameters = ["application_code" : apiCode,
-                          "transaction_id" : transactionId,
-                          "value": verificationCode,
-                          "type": "BY_AUTH_CODE",
-                          "uid" : uid]
-        let authTimestamp = generateAuthTimestamp()
-        let authToken = generateAuthToken(parameters as [String : Any], authTimestamp: authTimestamp)
-        parameters["auth_token"] = authToken
-        parameters["auth_timestamp"] = authTimestamp
+    
+    @objc open static func verifyWithCode(_ transactionId:String, uid:String, verificationCode:String, callback:@escaping (_ error:PaymentezSDKError?, _ attemptsRemaining:Int, _ transaction:PaymentezTransaction?)->Void)
         
-        self.request.makeRequest("/api/cc/verify/", parameters: parameters as NSDictionary) { (error, statusCode, responseData) in
+    {
+        let userparams = ["id": uid]
+        let transactionparams = ["id": transactionId]
+        let parameters = ["user": userparams, "transaction": transactionparams, "type": "BY_AUTH_CODE", "value":verificationCode] as [String:Any]
+        let token = generateAuthTokenV2()
+        self.request.makeRequestV2("/v2/transaction/verify/", parameters: parameters as NSDictionary, token: token) { (error, statusCode, responseData) in
+            
+            
             
             if error == nil
             {
@@ -395,36 +589,74 @@ open class PaymentezSDKClient:NSObject
                 }
                 else
                 {
-                    let dataR = (responseData as! [String:Any])["errors"] as! [[String:Any]]
-                    
-                    let err =  PaymentezSDKError.createError(dataR[0]["code"] as! Int, description: dataR[0]["description"] as! String, details: dataR[0]["details"])
-                    if err.code == 7 && err.description != "InvalidTransaction"{
-                        let det = err.details as! [String:Any]
-                        let attempts = det["attempts"] as! Int
-                        callback(err, attempts , nil)
+                    do {
+                        var dataR = (responseData as! [String:Any])
+                        if dataR["error"] != nil
+                        {
+                            dataR = dataR["error"] as! [String:Any]
+                        }
+                        let errorPa =  PaymentezSDKError.createError(statusCode!, description: dataR["description"] as! String, help: dataR["help"] as? String, type: dataR["type"] as? String)
+                        
+                        callback(errorPa, 0 , nil)
                     }
-                    callback(err, 0 , nil)
                 }
             }
-            
+            else
+            {
+                callback(PaymentezSDKError.createError(error!), 0 , nil)
+            }
             
         }
+        
+        
+        /*
+         var parameters = ["application_code" : apiCode,
+         "transaction_id" : transactionId,
+         "value": verificationCode,
+         "type": "BY_AUTH_CODE",
+         "uid" : uid]
+         let authTimestamp = generateAuthTimestamp()
+         let authToken = generateAuthToken(parameters as [String : Any], authTimestamp: authTimestamp)
+         parameters["auth_token"] = authToken
+         parameters["auth_timestamp"] = authTimestamp
+         
+         self.request.makeRequest("/api/cc/verify/", parameters: parameters as NSDictionary) { (error, statusCode, responseData) in
+         
+         if error == nil
+         {
+         if statusCode == 200
+         {
+         let transaction = PaymentezTransaction.parseTransaction(responseData)
+         callback(nil, 0, transaction)
+         }
+         else
+         {
+         let dataR = (responseData as! [String:Any])["errors"] as! [[String:Any]]
+         
+         let err =  PaymentezSDKError.createError(dataR[0]["code"] as! Int, description: dataR[0]["description"] as! String, details: dataR[0]["details"])
+         if err.code == 7 && err.description != "InvalidTransaction"{
+         let det = err.details as! [String:Any]
+         let attempts = det["attempts"] as! Int
+         callback(err, attempts , nil)
+         }
+         callback(err, 0 , nil)
+         }
+         }
+         
+         
+         }*/
     }
     
     open static func verifyWithAmount(_ transactionId:String, uid:String, amount:Double, callback:@escaping (_ error:PaymentezSDKError?, _ attemptsRemaining:Int, _ transaction:PaymentezTransaction?)->Void)
         
     {
-        var parameters = ["application_code" : apiCode,
-                          "transaction_id" : transactionId,
-                          "value": String(format: "%.2f", amount),
-                          "type" : "BY_AMOUNT",
-                          "uid" : uid]
-        let authTimestamp = generateAuthTimestamp()
-        let authToken = generateAuthToken(parameters as [String : Any], authTimestamp: authTimestamp)
-        parameters["auth_token"] = authToken
-        parameters["auth_timestamp"] = authTimestamp
-        
-        self.request.makeRequest("/api/cc/verify/", parameters: parameters as NSDictionary) { (error, statusCode, responseData) in
+        let userparams = ["id": uid]
+        let transactionparams = ["id": transactionId]
+        let parameters = ["user": userparams, "transaction": transactionparams, "type": "BY_AMOUNT", "value":String(amount)] as [String:Any]
+        let token = generateAuthTokenV2()
+        self.request.makeRequestV2("/v2/transaction/verify/", parameters: parameters as NSDictionary, token: token) { (error, statusCode, responseData) in
+            
+            
             
             if error == nil
             {
@@ -435,20 +667,63 @@ open class PaymentezSDKClient:NSObject
                 }
                 else
                 {
-                    let dataR = (responseData as! [String:Any])["errors"] as! [[String:Any]]
-                    
-                    let err =  PaymentezSDKError.createError(dataR[0]["code"] as! Int, description: dataR[0]["description"] as! String, details: dataR[0]["details"])
-                    if err.code == 7 && err.description != "InvalidTransaction"{
-                        let det = err.details as! [String:Any]
-                        let attempts = det["attempts"] as! Int
-                        callback(err, attempts , nil)
+                    do {
+                        var dataR = (responseData as! [String:Any])
+                        if dataR["error"] != nil
+                        {
+                            dataR = dataR["error"] as! [String:Any]
+                        }
+                        let errorPa =  PaymentezSDKError.createError(statusCode!, description: dataR["description"] as! String, help: dataR["help"] as? String, type: dataR["type"] as? String)
+                        
+                        callback(errorPa, 0 , nil)
                     }
-                    callback(err, 0 , nil)
                 }
             }
-            
+            else
+            {
+                callback(PaymentezSDKError.createError(error!), 0 , nil)
+            }
             
         }
+        
+        
+        /*
+         var parameters = ["application_code" : apiCode,
+         "transaction_id" : transactionId,
+         "value": String(format: "%.2f", amount),
+         "type" : "BY_AMOUNT",
+         "uid" : uid]
+         let authTimestamp = generateAuthTimestamp()
+         let authToken = generateAuthToken(parameters as [String : Any], authTimestamp: authTimestamp)
+         parameters["auth_token"] = authToken
+         parameters["auth_timestamp"] = authTimestamp
+         
+         self.request.makeRequest("/api/cc/verify/", parameters: parameters as NSDictionary) { (error, statusCode, responseData) in
+         
+         if error == nil
+         {
+         if statusCode == 200
+         {
+         let transaction = PaymentezTransaction.parseTransaction(responseData)
+         callback(nil, 0, transaction)
+         }
+         else
+         {
+         let dataR = (responseData as! [String:Any])["errors"] as! [[String:Any]]
+         
+         let err =  PaymentezSDKError.createError(dataR[0]["code"] as! Int, description: dataR[0]["description"] as! String, details: dataR[0]["details"])
+         if err.code == 7 && err.description != "InvalidTransaction"{
+         let det = err.details as! [String:Any]
+         let attempts = det["attempts"] as! Int
+         callback(err, attempts , nil)
+         }
+         callback(err, 0 , nil)
+         }
+         }
+         
+         
+         }
+         */
     }
     
     
@@ -457,6 +732,24 @@ open class PaymentezSDKClient:NSObject
         let timestamp = (Date()).timeIntervalSince1970
         
         return "\(timestamp.hashValue)"
+    }
+    
+    static fileprivate func generateAuthTokenV2()-> String
+    {
+        let timestamp = self.generateAuthTimestamp()
+        let uniqueString = secretKey + timestamp
+        
+        let dataIn = uniqueString.data(using: String.Encoding.utf8)!
+        let res = NSMutableData(length: Int(CC_SHA256_DIGEST_LENGTH))
+        CC_SHA256((dataIn as NSData).bytes, CC_LONG(dataIn.count), res?.mutableBytes.assumingMemoryBound(to: UInt8.self))
+        var uniqueToken:String = res!.description
+        uniqueToken = uniqueToken.replacingOccurrences(of: " ", with: "")
+        uniqueToken = uniqueToken.replacingOccurrences(of: "<", with: "")
+        uniqueToken = uniqueToken.replacingOccurrences(of: ">", with: "")
+        
+        let tokenPlain = apiCode + ";" + timestamp + ";" + uniqueToken
+        
+        return tokenPlain.base64Encoded()!
     }
     
     static fileprivate func generateAuthToken(_ parameters:[String:Any], authTimestamp:String!) -> String
@@ -483,28 +776,46 @@ open class PaymentezSDKClient:NSObject
         
     }
     
-   
+    
     
     
     @objc open static func scanCard(_ presenterViewController:UIViewController, callback:@escaping (_ userCancelled:Bool, _ number:String?, _ expiry:String?, _ cvv:String?) ->Void)
-    
-        {
-           self.scanner.showScan(presenterViewController) { (infoCard) in
+        
+    {
+        self.scanner.showScan(presenterViewController) { (infoCard) in
             
-                if infoCard == nil
-                {
-                    callback(true, nil, nil, nil)
-                }
-                else
-                {
-                    callback(false, infoCard!.cardNumber, String(format: "%02i/%i",infoCard!.expiryMonth, infoCard!.expiryYear), infoCard!.cvv)
-                    
-                }
-            
+            if infoCard == nil
+            {
+                callback(true, nil, nil, nil)
             }
+            else
+            {
+                callback(false, infoCard!.cardNumber, String(format: "%02i/%i",infoCard!.expiryMonth, infoCard!.expiryYear), infoCard!.cvv)
+                
+            }
+            
+        }
         
     }
     
     
     
+}
+
+extension String {
+    //: ### Base64 encoding a string
+    func base64Encoded() -> String? {
+        if let data = self.data(using: .utf8) {
+            return data.base64EncodedString()
+        }
+        return nil
+    }
+    
+    //: ### Base64 decoding a string
+    func base64Decoded() -> String? {
+        if let data = Data(base64Encoded: self) {
+            return String(data: data, encoding: .utf8)
+        }
+        return nil
+    }
 }

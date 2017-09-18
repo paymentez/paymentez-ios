@@ -88,11 +88,11 @@ class PaymentezAddViewController: UIViewController, UIWebViewDelegate {
                     
                     if (cookie.value.range(of: "verify") != nil)
                     {
-                        error = PaymentezSDKError.createError(3, description: "System Error", details: [cookie.value.replacingOccurrences(of: "\"{", with: "{").replacingOccurrences(of: "}\"", with: "}")], shouldVerify:true, verifyTrx: cookie.value.replacingOccurrences(of: "\"{", with: "{").replacingOccurrences(of: "}\"", with: "}").replacingOccurrences(of: "\\\"", with: "\""))
+                        error = PaymentezSDKError.createError(3, description: cookie.value, help: "System Error", type:nil)
                     }
                     else
                     {
-                        error = PaymentezSDKError.createError(3, description: "System Error", details: cookie.value)
+                        error = PaymentezSDKError.createError(3, description: cookie.value, help: "", type:nil)
                     }
                     
                     

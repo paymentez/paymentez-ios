@@ -88,7 +88,7 @@ class PaymentezSecure: NSObject,DeviceCollectorSDKDelegate
         request.httpMethod = "GET"
         
         
-        let task = session.dataTask(with: request){ data, err, resp in
+        let task = session.dataTask(with: request){ data, resp, err in
             
             if err == nil
             {

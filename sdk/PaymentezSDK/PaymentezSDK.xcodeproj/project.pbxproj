@@ -35,14 +35,12 @@
 		409159171CE1A09100FE316B /* DeviceCollectorSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 409158FD1CE1A09000FE316B /* DeviceCollectorSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		409159181CE1A09100FE316B /* libDeviceCollectorLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 409158FE1CE1A09000FE316B /* libDeviceCollectorLibrary.a */; };
 		409159191CE1A09100FE316B /* DeviceCollectorSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 409158FF1CE1A09100FE316B /* DeviceCollectorSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4091591A1CE1A09100FE316B /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 409159001CE1A09100FE316B /* Info.plist */; };
 		4091591B1CE1A09100FE316B /* libDeviceCollectorLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 409159011CE1A09100FE316B /* libDeviceCollectorLibrary.a */; };
 		4091591C1CE1A09100FE316B /* PaymentezCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409159021CE1A09100FE316B /* PaymentezCard.swift */; };
 		4091591D1CE1A09100FE316B /* PaymentezCardScan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409159031CE1A09100FE316B /* PaymentezCardScan.swift */; };
 		4091591E1CE1A09100FE316B /* PaymentezRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409159041CE1A09100FE316B /* PaymentezRequest.swift */; };
 		4091591F1CE1A09100FE316B /* PaymentezResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409159051CE1A09100FE316B /* PaymentezResponse.swift */; };
 		409159201CE1A09100FE316B /* PaymentezSDK-Bridging-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = 409159061CE1A09100FE316B /* PaymentezSDK-Bridging-Header.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		409159211CE1A09100FE316B /* PaymentezSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 409159071CE1A09100FE316B /* PaymentezSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		409159221CE1A09100FE316B /* PaymentezSDKClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409159081CE1A09100FE316B /* PaymentezSDKClient.swift */; };
 		409159231CE1A09100FE316B /* PaymentezSecure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409159091CE1A09100FE316B /* PaymentezSecure.swift */; };
 		409159241CE1A09100FE316B /* CardIO.h in Headers */ = {isa = PBXBuildFile; fileRef = 4091590B1CE1A09100FE316B /* CardIO.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -62,6 +60,17 @@
 		409159381CE1A59100FE316B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 409159371CE1A59100FE316B /* CoreLocation.framework */; };
 		4091593C1CE1A6A300FE316B /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 409159391CE1A6A300FE316B /* AudioToolbox.framework */; };
 		4091593E1CE1A6A300FE316B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4091593B1CE1A6A300FE316B /* AVFoundation.framework */; };
+		650EB6D31F5F3E510041EB81 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650EB6D21F5F3E510041EB81 /* Extension.swift */; };
+		652927951F587136004A7D4C /* PaymentezAddNativeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652927931F587136004A7D4C /* PaymentezAddNativeViewController.swift */; };
+		652927961F587136004A7D4C /* PaymentezAddNativeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 652927941F587136004A7D4C /* PaymentezAddNativeViewController.xib */; };
+		6529279B1F58B045004A7D4C /* PaymentezAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6529279A1F58B045004A7D4C /* PaymentezAssets.xcassets */; };
+		65AF51C41F5DD6F000E7B4CB /* InputMask.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 652927A01F58D0AA004A7D4C /* InputMask.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		65AF51C51F5DD70600E7B4CB /* InputMask.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 652927A01F58D0AA004A7D4C /* InputMask.framework */; };
+		65AF51CA1F5DDECC00E7B4CB /* SkyFloatingLabelTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AF51C71F5DDECC00E7B4CB /* SkyFloatingLabelTextField.swift */; };
+		65AF51CB1F5DDECC00E7B4CB /* SkyFloatingLabelTextFieldWithIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AF51C81F5DDECC00E7B4CB /* SkyFloatingLabelTextFieldWithIcon.swift */; };
+		65AF51CC1F5DDECC00E7B4CB /* UITextField+fixCaretPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AF51C91F5DDECC00E7B4CB /* UITextField+fixCaretPosition.swift */; };
+		65AF51D01F5F276D00E7B4CB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 65AF51D21F5F276D00E7B4CB /* Localizable.strings */; };
+		65EABEF41F6B8C370062DD31 /* PaymentezSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 409159071CE1A09100FE316B /* PaymentezSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +82,19 @@
 			remoteInfo = PaymentezSDK;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		65AF51C21F5DD38900E7B4CB /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				65AF51C41F5DD6F000E7B4CB /* InputMask.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		402544C91CE3E06A00F35B23 /* PaymentezAddViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentezAddViewController.swift; sourceTree = "<group>"; };
@@ -119,6 +141,18 @@
 		409159391CE1A6A300FE316B /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		4091593A1CE1A6A300FE316B /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
 		4091593B1CE1A6A300FE316B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		650EB6D21F5F3E510041EB81 /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		652927931F587136004A7D4C /* PaymentezAddNativeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentezAddNativeViewController.swift; sourceTree = "<group>"; };
+		652927941F587136004A7D4C /* PaymentezAddNativeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaymentezAddNativeViewController.xib; sourceTree = "<group>"; };
+		6529279A1F58B045004A7D4C /* PaymentezAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = PaymentezAssets.xcassets; sourceTree = "<group>"; };
+		652927A01F58D0AA004A7D4C /* InputMask.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = InputMask.framework; path = PaymentezSDK/lib/InputMask.framework; sourceTree = "<group>"; };
+		652927A21F58D0AC004A7D4C /* Stripe.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Stripe.framework; path = PaymentezSDK/lib/Stripe.framework; sourceTree = "<group>"; };
+		65AF51C71F5DDECC00E7B4CB /* SkyFloatingLabelTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkyFloatingLabelTextField.swift; sourceTree = "<group>"; };
+		65AF51C81F5DDECC00E7B4CB /* SkyFloatingLabelTextFieldWithIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkyFloatingLabelTextFieldWithIcon.swift; sourceTree = "<group>"; };
+		65AF51C91F5DDECC00E7B4CB /* UITextField+fixCaretPosition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+fixCaretPosition.swift"; sourceTree = "<group>"; };
+		65AF51D11F5F276D00E7B4CB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		65AF51D31F5F27E900E7B4CB /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		65AF51D41F5F27FD00E7B4CB /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +161,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				408C1B941CE1A78100B9A2F0 /* Accelerate.framework in Frameworks */,
+				65AF51C51F5DD70600E7B4CB /* InputMask.framework in Frameworks */,
 				408C1B951CE1A78100B9A2F0 /* CoreGraphics.framework in Frameworks */,
 				408C1B961CE1A78100B9A2F0 /* CoreMedia.framework in Frameworks */,
 				408C1B971CE1A78100B9A2F0 /* CoreVideo.framework in Frameworks */,
@@ -170,6 +205,7 @@
 				409158FA1CE1A09000FE316B /* PaymentezSDK */,
 				4091590A1CE1A09100FE316B /* CardIO */,
 				409158E01CE1A01000FE316B /* Products */,
+				6529279F1F58D0A9004A7D4C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -184,6 +220,9 @@
 		409158FA1CE1A09000FE316B /* PaymentezSDK */ = {
 			isa = PBXGroup;
 			children = (
+				65AF51CF1F5F246200E7B4CB /* lang */,
+				65AF51C61F5DDEB800E7B4CB /* FloatTextField */,
+				652927971F58AFEE004A7D4C /* Asset */,
 				409158FB1CE1A09000FE316B /* DeviceCollectorLibrary */,
 				409158FF1CE1A09100FE316B /* DeviceCollectorSDK.h */,
 				409159001CE1A09100FE316B /* Info.plist */,
@@ -200,6 +239,8 @@
 				409158E41CE1A01000FE316B /* Info.plist */,
 				402544C91CE3E06A00F35B23 /* PaymentezAddViewController.swift */,
 				402544CA1CE3E06A00F35B23 /* PaymentezAddViewController.xib */,
+				652927931F587136004A7D4C /* PaymentezAddNativeViewController.swift */,
+				652927941F587136004A7D4C /* PaymentezAddNativeViewController.xib */,
 			);
 			path = PaymentezSDK;
 			sourceTree = "<group>";
@@ -232,6 +273,42 @@
 			path = CardIO;
 			sourceTree = "<group>";
 		};
+		652927971F58AFEE004A7D4C /* Asset */ = {
+			isa = PBXGroup;
+			children = (
+				6529279A1F58B045004A7D4C /* PaymentezAssets.xcassets */,
+			);
+			name = Asset;
+			sourceTree = "<group>";
+		};
+		6529279F1F58D0A9004A7D4C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				652927A21F58D0AC004A7D4C /* Stripe.framework */,
+				652927A01F58D0AA004A7D4C /* InputMask.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		65AF51C61F5DDEB800E7B4CB /* FloatTextField */ = {
+			isa = PBXGroup;
+			children = (
+				65AF51C71F5DDECC00E7B4CB /* SkyFloatingLabelTextField.swift */,
+				65AF51C81F5DDECC00E7B4CB /* SkyFloatingLabelTextFieldWithIcon.swift */,
+				65AF51C91F5DDECC00E7B4CB /* UITextField+fixCaretPosition.swift */,
+			);
+			name = FloatTextField;
+			sourceTree = "<group>";
+		};
+		65AF51CF1F5F246200E7B4CB /* lang */ = {
+			isa = PBXGroup;
+			children = (
+				65AF51D21F5F276D00E7B4CB /* Localizable.strings */,
+				650EB6D21F5F3E510041EB81 /* Extension.swift */,
+			);
+			name = lang;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -245,14 +322,13 @@
 				409159281CE1A09100FE316B /* CardIOPaymentViewControllerDelegate.h in Headers */,
 				4091592B1CE1A09100FE316B /* CardIOViewDelegate.h in Headers */,
 				409159291CE1A09100FE316B /* CardIOUtilities.h in Headers */,
-				409159211CE1A09100FE316B /* PaymentezSDK.h in Headers */,
 				4091592A1CE1A09100FE316B /* CardIOView.h in Headers */,
 				409159171CE1A09100FE316B /* DeviceCollectorSDK.h in Headers */,
 				409159201CE1A09100FE316B /* PaymentezSDK-Bridging-Header.h in Headers */,
 				409159161CE1A09100FE316B /* DeviceCollector-Bridging-Header.h in Headers */,
+				65EABEF41F6B8C370062DD31 /* PaymentezSDK.h in Headers */,
 				409159191CE1A09100FE316B /* DeviceCollectorSDK.h in Headers */,
 				409159251CE1A09100FE316B /* CardIOCreditCardInfo.h in Headers */,
-				409159211CE1A09100FE316B /* PaymentezSDK.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,6 +343,7 @@
 				409158DB1CE1A01000FE316B /* Frameworks */,
 				409158DC1CE1A01000FE316B /* Headers */,
 				409158DD1CE1A01000FE316B /* Resources */,
+				65AF51C21F5DD38900E7B4CB /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -283,7 +360,7 @@
 		409158D61CE1A01000FE316B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = Paymentez;
 				TargetAttributes = {
 					407B445C1CE5008000CC9C12 = {
@@ -301,6 +378,8 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				es,
+				"pt-BR",
 			);
 			mainGroup = 409158D51CE1A01000FE316B;
 			productRefGroup = 409158E01CE1A01000FE316B /* Products */;
@@ -318,8 +397,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65AF51D01F5F276D00E7B4CB /* Localizable.strings in Resources */,
 				402544CC1CE3E06A00F35B23 /* PaymentezAddViewController.xib in Resources */,
-				4091591A1CE1A09100FE316B /* Info.plist in Resources */,
+				6529279B1F58B045004A7D4C /* PaymentezAssets.xcassets in Resources */,
+				652927961F587136004A7D4C /* PaymentezAddNativeViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -347,10 +428,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				409159231CE1A09100FE316B /* PaymentezSecure.swift in Sources */,
+				65AF51CB1F5DDECC00E7B4CB /* SkyFloatingLabelTextFieldWithIcon.swift in Sources */,
 				402544CB1CE3E06A00F35B23 /* PaymentezAddViewController.swift in Sources */,
+				650EB6D31F5F3E510041EB81 /* Extension.swift in Sources */,
 				4091591D1CE1A09100FE316B /* PaymentezCardScan.swift in Sources */,
+				65AF51CC1F5DDECC00E7B4CB /* UITextField+fixCaretPosition.swift in Sources */,
 				409159221CE1A09100FE316B /* PaymentezSDKClient.swift in Sources */,
 				4091591C1CE1A09100FE316B /* PaymentezCard.swift in Sources */,
+				652927951F587136004A7D4C /* PaymentezAddNativeViewController.swift in Sources */,
+				65AF51CA1F5DDECC00E7B4CB /* SkyFloatingLabelTextField.swift in Sources */,
 				4091591F1CE1A09100FE316B /* PaymentezResponse.swift in Sources */,
 				4091591E1CE1A09100FE316B /* PaymentezRequest.swift in Sources */,
 			);
@@ -365,6 +451,19 @@
 			targetProxy = 407B44601CE500A400CC9C12 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		65AF51D21F5F276D00E7B4CB /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				65AF51D11F5F276D00E7B4CB /* en */,
+				65AF51D31F5F27E900E7B4CB /* es */,
+				65AF51D41F5F27FD00E7B4CB /* pt-BR */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		407B445D1CE5008000CC9C12 /* Debug */ = {
@@ -387,6 +486,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -397,8 +497,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -421,7 +523,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -436,6 +538,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -446,8 +549,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -464,9 +569,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -478,10 +584,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/PaymentezSDK/lib",
+				);
 				INFOPLIST_FILE = PaymentezSDK/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -509,10 +620,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/PaymentezSDK/lib",
+				);
 				INFOPLIST_FILE = PaymentezSDK/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

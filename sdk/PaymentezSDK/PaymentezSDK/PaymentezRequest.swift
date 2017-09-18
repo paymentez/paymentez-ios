@@ -12,7 +12,7 @@ import Foundation
 
 {
     open var uid = ""
-    open var cardReference = ""
+    open var token = ""
     open var productAmount = 0.0
     open var productDescription = ""
     open var devReference = ""
@@ -36,10 +36,60 @@ import Foundation
         
     }
     
+    func requiredUserDict() ->[String:Any]
+    {
+        var dic = [String:Any]()
+        dic["id"] = self.uid
+        dic["email"] = self.email
+        if self.buyerFiscalNumber != ""{dic["fiscal_number"] = self.buyerFiscalNumber }
+        return dic
+        
+    }
+    func requiredProductDict()->[String:Any]
+    {
+        var dic = [String:Any]()
+        dic["amount"] = self.productAmount
+        dic["description"] = self.productDescription
+        dic["dev_reference"] = self.devReference
+        dic["vat"] = self.vat
+        
+        
+        if productDiscount > 0.0
+        {
+            dic["product_discount"] = String(format: "%.2f", self.productDiscount)
+        }
+        if self.installments > 1
+        {
+            dic["installments"] = self.installments
+        }
+        
+        return dic
+        
+    }
+    func requiredCardDict()->[String:Any]
+    {
+        var dic = [String:Any]()
+        dic["token"] = self.token
+        return dic
+    }
+    func requiredShippingInfoDict()->[String:Any]
+    {
+        var dic = [String:Any]()
+        if self.shippingStreet != ""{dic["street"] = self.shippingStreet }
+        if self.shippingHouseNumber != ""{dic["house_number"] = self.shippingHouseNumber }
+        if self.shippingCity != ""{dic["city"] = self.shippingCity }
+        if self.shippingZip != ""{dic["zip"] = self.shippingZip }
+        if self.shippingState != ""{dic["state"] = self.shippingState }
+        if self.shippingCountry != ""{dic["country"] = self.shippingCountry }
+        if self.shippingDistrict != ""{dic["district"] = self.shippingDistrict }
+        if self.shippingAdditionalAddressInfo != ""{dic["additional_address_info"] = self.shippingAdditionalAddressInfo }
+        return dic
+    }
+    
     func requiredDict() -> [String:Any]
     {
         var dic = [String:Any]()
-        dic["card_reference"] =  self.cardReference
+        dic["card_reference"] =  self.token
         dic["product_amount"] = String(format: "%.2f", self.productAmount)
         dic["product_description"] = self.productDescription
         dic["dev_reference"] = self.devReference
@@ -61,7 +111,7 @@ import Foundation
     func allParamsDict() -> [String:Any]
     {
         var dic = [String:Any]()
-        dic["card_reference"] =  self.cardReference 
+        dic["card_reference"] =  self.token
         dic["product_amount"] = String(format: "%.2f", self.productAmount) 
         dic["product_description"] = self.productDescription 
         dic["dev_reference"] = self.devReference 
@@ -109,6 +159,19 @@ class PaymentezRequest
         completeUrl += "?" + encodeParamsGet(parameters)
         return completeUrl
     }
+    func encodeParamsJson(_ parameters:NSDictionary) ->Data?
+    {
+        do
+        {
+            
+            let data = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
+            return data
+        }
+        catch {
+            return nil
+        }
+    }
+    
     func encodeParams(_ parameters:NSDictionary) ->Data?
     {
         var bodyData = ""
@@ -146,30 +209,20 @@ class PaymentezRequest
         let session = URLSession.shared
         
         var request = URLRequest(url:url!)
-        print(url)
-        /*do
-        {
-            
-            let data = try NSJSONSerialization.dataWithJSONObject(parameters, options: .PrettyPrinted)
-            request.HTTPBody = data
-        }
-        catch {
-            
-        }
-        */
+        print(url as Any)
         request.httpMethod = "POST"
         request.httpBody = encodeParams(parameters)
         
         let task = session.dataTask(with: request){
             data, resp, err in
-            print(data)
+            print(data as Any)
             if err == nil
             {
                 var json:Any? = nil
                 
                 do{
                     json = try JSONSerialization.jsonObject(with: data!, options: .mutableLeaves)
-                    print(json)
+                    print(json as Any)
                 }
                 catch {
                     
@@ -191,7 +244,7 @@ class PaymentezRequest
                 else
                 {
                     
-                    print(json)
+                    print(json as Any)
                     responseCallback(err as NSError?, (resp as! HTTPURLResponse).statusCode, json)
                 }
             }
@@ -213,15 +266,7 @@ class PaymentezRequest
         let session = URLSession.shared
         
         var request = URLRequest(url:url!)
-        /*do
-         {
-         
-         let data = try NSJSONSerialization.dataWithJSONObject(parameters, options: .PrettyPrinted)
-         request.HTTPBody = data
-         }
-         catch {
-         
-         }
+        /*
          */
         request.httpMethod = "GET"
         
@@ -260,6 +305,123 @@ class PaymentezRequest
         task.resume()
     }
     
+    func makeRequestV2(_ urlToRequest:String, parameters:NSDictionary, token:String, responseCallback:@escaping (_ error:NSError?, _ statusCode:Int?,_ responseData:Any?) ->Void)
+    {
+        var completeUrl = self.testUrl + urlToRequest
+        if !testMode{
+            completeUrl = self.prodUrl + urlToRequest
+        }
+        
+        let url:URL? = URL(string: completeUrl)
+        let session = URLSession.shared
+        
+        var request = URLRequest(url:url!)
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue(token, forHTTPHeaderField: "Auth-Token")
+        
+ 
+        request.httpMethod = "POST"
+        request.httpBody = encodeParamsJson(parameters)
+        
+        let task = session.dataTask(with: request){
+            data, resp, err in
+            print(data as Any)
+            if err == nil
+            {
+                var json:Any? = nil
+                
+                do{
+                    json = try JSONSerialization.jsonObject(with: data!, options: .mutableLeaves)
+                    print(json as Any)
+                }
+                catch {
+                    
+                }
+                
+                if json == nil{
+                    let error = NSError(domain: "JSON", code: 400, userInfo: ["parsing" : false])
+                    print ("parsing json error")
+                    if resp != nil
+                    {
+                        
+                        responseCallback(error, (resp as! HTTPURLResponse).statusCode,nil)
+                    }
+                    else
+                    {
+                        responseCallback(error, 400,nil)
+                    }
+                }
+                else
+                {
+                    
+                    print(json as Any)
+                    responseCallback(err as NSError?, (resp as! HTTPURLResponse).statusCode, json)
+                }
+            }
+            else
+            {
+                responseCallback(err as NSError?, 400, nil)
+            }
+        }
+        task.resume()
+    }
+    func makeRequestGetV2(_ urlToRequest:String, parameters:NSDictionary, token:String, responseCallback:@escaping (_ error:NSError?, _ statusCode:Int?,_ responseData:Any?) ->Void)
+    {
+        var completeUrl = self.testUrl + urlToRequest
+        if !testMode{
+            completeUrl = self.prodUrl + urlToRequest
+        }
+        completeUrl += "?" + encodeParamsGet(parameters)
+        let url:URL? = URL(string: completeUrl)
+        let session = URLSession.shared
+        
+        var request = URLRequest(url:url!)
+        /*do
+         {
+         
+         let data = try NSJSONSerialization.dataWithJSONObject(parameters, options: .PrettyPrinted)
+         request.HTTPBody = data
+         }
+         catch {
+         
+         }
+         */
+        request.httpMethod = "GET"
+        request.setValue(token, forHTTPHeaderField: "Auth-Token")
+        
+        
+        let task = session.dataTask(with: request){ data, resp, err in
+            
+            if err == nil
+            {
+                var json:Any? = nil
+                
+                do{
+                    json = try JSONSerialization.jsonObject(with: data!, options: .mutableLeaves)
+                }
+                catch {
+                    
+                }
+                
+                if json == nil{
+                    let error = NSError(domain: "JSON", code: 400, userInfo: ["parsing" : false])
+                    print ("parsing json error")
+                    responseCallback(error, 400,nil)
+                }
+                else
+                {
+                    
+                    
+                    responseCallback(err as NSError?, (resp as! HTTPURLResponse).statusCode, json)
+                }
+            }
+            else
+            {
+                responseCallback(err as NSError?, 400, nil)
+            }
+        }
+        task.resume()
+    }
     
     
     
