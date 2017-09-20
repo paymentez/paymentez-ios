@@ -32,6 +32,7 @@
 		65ADF22B1F631B7700E93CAB /* StoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65ADF22A1F631B7700E93CAB /* StoreViewController.swift */; };
 		65AF51BC1F5DC8C200E7B4CB /* PaymentezSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 65AF51BA1F5DC8C200E7B4CB /* PaymentezSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		65AF51BF1F5DC9D400E7B4CB /* PaymentezSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65AF51BE1F5DC9D400E7B4CB /* PaymentezSDK.framework */; };
+		65D9F0AB1F718D4700A22D3E /* MyBackendLib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D9F0AA1F718D4700A22D3E /* MyBackendLib.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +89,7 @@
 		65ADF22A1F631B7700E93CAB /* StoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreViewController.swift; sourceTree = "<group>"; };
 		65AF51BA1F5DC8C200E7B4CB /* PaymentezSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PaymentezSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		65AF51BE1F5DC9D400E7B4CB /* PaymentezSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PaymentezSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		65D9F0AA1F718D4700A22D3E /* MyBackendLib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyBackendLib.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +171,7 @@
 				407B44511CE4E52800CC9C12 /* AddCustomViewController.swift */,
 				65ADF22A1F631B7700E93CAB /* StoreViewController.swift */,
 				651D7C121F674DE500E58317 /* UserModel.swift */,
+				65D9F0AA1F718D4700A22D3E /* MyBackendLib.swift */,
 			);
 			path = PaymentezSDKSwift;
 			sourceTree = "<group>";
@@ -290,6 +293,7 @@
 				408C1BCC1CE1AD1500B9A2F0 /* ListCardsTableViewController.swift in Sources */,
 				65ADF22B1F631B7700E93CAB /* StoreViewController.swift in Sources */,
 				408C1BA81CE1AA9600B9A2F0 /* AppDelegate.swift in Sources */,
+				65D9F0AB1F718D4700A22D3E /* MyBackendLib.swift in Sources */,
 				407B44521CE4E52800CC9C12 /* AddCustomViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

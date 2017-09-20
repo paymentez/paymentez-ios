@@ -40,137 +40,137 @@ class StoreViewController: UIViewController {
 
     @IBAction func placeOrder(_ sender: Any) {
         
-        if self.selectedCard != nil
-        {
-            self.activityIndicator.startAnimating()
-            var total = 0.0
-            for p in self.productPrices
-            {
-                total = p + total
-            }
-            let paymentezDebit = PaymentezDebitParameters()
-            paymentezDebit.buyerFiscalNumber = "232323-232323-232"
-            let uuid = UUID().uuidString
-            paymentezDebit.devReference = uuid
-            paymentezDebit.uid = UserModel.uid
-            paymentezDebit.email = UserModel.email
-            paymentezDebit.productAmount = total
-            paymentezDebit.token = self.selectedCard!.token!
-            
-            
-            PaymentezSDKClient.debitCard(paymentezDebit, callback: { (error, trx) in
-                if error != nil
-                {
-                    DispatchQueue.main.async(execute: {
-                        self.activityIndicator.stopAnimating()
-                        let alertC = UIAlertController(title: "Error", message: "code:\(String(describing: error?.code)),type:\(String(describing: error?.type)), status:\(String(describing: error?.descriptionData)), help:\(String(describing: error?.help))", preferredStyle: UIAlertControllerStyle.alert)
-                        
-                        let defaultAction = UIAlertAction(title: "OK", style: .default, handler: { (alertaction) in
-                            
-                        })
-                        alertC.addAction(defaultAction)
-                        self.present(alertC, animated: false, completion: nil)
-                    })
-                }
-                else if let transaction = trx
-                {
-                    DispatchQueue.main.async(execute: {
-                        self.activityIndicator.stopAnimating()
-                        let alertC = UIAlertController(title: "Success", message: "transaction_id:\(String(describing: transaction.transactionId!)), status:\(String(describing: transaction.status!)), authcode:\(String(describing: transaction.authorizationCode)), carrier_code:\(String(describing: transaction.carrierCode))", preferredStyle: UIAlertControllerStyle.alert)
-                        
-                        let defaultAction = UIAlertAction(title: "OK", style: .default, handler: { (alertaction) in
-                            
-                        })
-                        alertC.addAction(defaultAction)
-                        
-                        let defaultAction2 = UIAlertAction(title: "VERIFY", style: .default, handler: { (alertaction) in
-                            let alertController = UIAlertController(title: "Verificar ", message: "Especifica el valor: Monto o valor", preferredStyle: .alert)
-                            alertController.addTextField(configurationHandler: {(_ textField: UITextField) -> Void in
-                                textField.placeholder = "Valor"
-                            })
-                            let verifyActionAmount = UIAlertAction(title: "Verificar por Monto", style: .default, handler: { (alertaction) in
-                                PaymentezSDKClient.verifyWithAmount(transaction.transactionId!, uid: UserModel.uid, amount: Double((alertController.textFields?[0].text!)!)!, callback: { (error, attemptsRemaining, transaction) in
-                                    
-                                    if error == nil
-                                    {
-                                        let alertC = UIAlertController(title: "Vefificada", message: "trx:"+(transaction?.transactionId!)!, preferredStyle: UIAlertControllerStyle.alert)
-                                        
-                                        let defaultAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: { (action) in
-                                        })
-                                        alertC.addAction(defaultAction)
-                                        self.present(alertC, animated: true
-                                            , completion: {
-                                                
-                                        })
-                                    }
-                                    else
-                                    {
-                                        let alertC = UIAlertController(title: "Error en Verificación", message: error?.description, preferredStyle: UIAlertControllerStyle.alert)
-                                        
-                                        let defaultAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: { (action) in
-                                        })
-                                        alertC.addAction(defaultAction)
-                                        self.present(alertC, animated: true
-                                            , completion: {
-                                                
-                                        })
-                                    }
-                                    
-                                })
-                            })
-                            let verifyActionAmount2 = UIAlertAction(title: "Verificar por Código", style: .default, handler: { (alertaction) in
-                                PaymentezSDKClient.verifyWithCode(transaction.transactionId!, uid: UserModel.uid, verificationCode: (alertController.textFields?[0].text!)!, callback: { (error, attemptsRemaining, transaction) in
-                                    
-                                    if error == nil
-                                    {
-                                        let alertC = UIAlertController(title: "Vefificada", message: "trx:"+(transaction?.transactionId!)!, preferredStyle: UIAlertControllerStyle.alert)
-                                        
-                                        let defaultAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: { (action) in
-                                        })
-                                        alertC.addAction(defaultAction)
-                                        self.present(alertC, animated: true
-                                            , completion: {
-                                                
-                                        })
-                                    }
-                                    let alertC = UIAlertController(title: "Error en Verificación", message: error?.description, preferredStyle: UIAlertControllerStyle.alert)
-                                    
-                                    let defaultAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: { (action) in
-                                    })
-                                    alertC.addAction(defaultAction)
-                                    self.present(alertC, animated: true
-                                        , completion: {
-                                            
-                                    })
-                                    
-                                })
-                            })
-                            let verifyClose = UIAlertAction(title: "Cancelar", style: .cancel, handler: { (alertaction) in
-                                
-                            })
-                            alertController.addAction(verifyActionAmount)
-                            alertController.addAction(verifyActionAmount2)
-                            alertController.addAction(verifyClose)
-                            self.present(alertController, animated: true
-                                , completion: {
-                                    
-                            })
-                        })
-                        alertC.addAction(defaultAction2)
-                        self.present(alertC, animated: true
-                            , completion: {
-                                
-                        })
-                    })
-                }
-                
-                
-                
-            })
-            
-            
-            // debit
-        }
+//        if self.selectedCard != nil
+//        {
+//            self.activityIndicator.startAnimating()
+//            var total = 0.0
+//            for p in self.productPrices
+//            {
+//                total = p + total
+//            }
+//            let paymentezDebit = PaymentezDebitParameters()
+//            paymentezDebit.buyerFiscalNumber = "232323-232323-232"
+//            let uuid = UUID().uuidString
+//            paymentezDebit.devReference = uuid
+//            paymentezDebit.uid = UserModel.uid
+//            paymentezDebit.email = UserModel.email
+//            paymentezDebit.productAmount = total
+//            paymentezDebit.token = self.selectedCard!.token!
+//            
+//            
+//            PaymentezSDKClient.debitCard(paymentezDebit, callback: { (error, trx) in
+//                if error != nil
+//                {
+//                    DispatchQueue.main.async(execute: {
+//                        self.activityIndicator.stopAnimating()
+//                        let alertC = UIAlertController(title: "Error", message: "code:\(String(describing: error?.code)),type:\(String(describing: error?.type)), status:\(String(describing: error?.descriptionData)), help:\(String(describing: error?.help))", preferredStyle: UIAlertControllerStyle.alert)
+//                        
+//                        let defaultAction = UIAlertAction(title: "OK", style: .default, handler: { (alertaction) in
+//                            
+//                        })
+//                        alertC.addAction(defaultAction)
+//                        self.present(alertC, animated: false, completion: nil)
+//                    })
+//                }
+//                else if let transaction = trx
+//                {
+//                    DispatchQueue.main.async(execute: {
+//                        self.activityIndicator.stopAnimating()
+//                        let alertC = UIAlertController(title: "Success", message: "transaction_id:\(String(describing: transaction.transactionId!)), status:\(String(describing: transaction.status!)), authcode:\(String(describing: transaction.authorizationCode)), carrier_code:\(String(describing: transaction.carrierCode))", preferredStyle: UIAlertControllerStyle.alert)
+//                        
+//                        let defaultAction = UIAlertAction(title: "OK", style: .default, handler: { (alertaction) in
+//                            
+//                        })
+//                        alertC.addAction(defaultAction)
+//                        
+//                        let defaultAction2 = UIAlertAction(title: "VERIFY", style: .default, handler: { (alertaction) in
+//                            let alertController = UIAlertController(title: "Verificar ", message: "Especifica el valor: Monto o valor", preferredStyle: .alert)
+//                            alertController.addTextField(configurationHandler: {(_ textField: UITextField) -> Void in
+//                                textField.placeholder = "Valor"
+//                            })
+//                            let verifyActionAmount = UIAlertAction(title: "Verificar por Monto", style: .default, handler: { (alertaction) in
+//                                PaymentezSDKClient.verifyWithAmount(transaction.transactionId!, uid: UserModel.uid, amount: Double((alertController.textFields?[0].text!)!)!, callback: { (error, attemptsRemaining, transaction) in
+//                                    
+//                                    if error == nil
+//                                    {
+//                                        let alertC = UIAlertController(title: "Vefificada", message: "trx:"+(transaction?.transactionId!)!, preferredStyle: UIAlertControllerStyle.alert)
+//                                        
+//                                        let defaultAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: { (action) in
+//                                        })
+//                                        alertC.addAction(defaultAction)
+//                                        self.present(alertC, animated: true
+//                                            , completion: {
+//                                                
+//                                        })
+//                                    }
+//                                    else
+//                                    {
+//                                        let alertC = UIAlertController(title: "Error en Verificación", message: error?.description, preferredStyle: UIAlertControllerStyle.alert)
+//                                        
+//                                        let defaultAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: { (action) in
+//                                        })
+//                                        alertC.addAction(defaultAction)
+//                                        self.present(alertC, animated: true
+//                                            , completion: {
+//                                                
+//                                        })
+//                                    }
+//                                    
+//                                })
+//                            })
+//                            let verifyActionAmount2 = UIAlertAction(title: "Verificar por Código", style: .default, handler: { (alertaction) in
+//                                PaymentezSDKClient.verifyWithCode(transaction.transactionId!, uid: UserModel.uid, verificationCode: (alertController.textFields?[0].text!)!, callback: { (error, attemptsRemaining, transaction) in
+//                                    
+//                                    if error == nil
+//                                    {
+//                                        let alertC = UIAlertController(title: "Vefificada", message: "trx:"+(transaction?.transactionId!)!, preferredStyle: UIAlertControllerStyle.alert)
+//                                        
+//                                        let defaultAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: { (action) in
+//                                        })
+//                                        alertC.addAction(defaultAction)
+//                                        self.present(alertC, animated: true
+//                                            , completion: {
+//                                                
+//                                        })
+//                                    }
+//                                    let alertC = UIAlertController(title: "Error en Verificación", message: error?.description, preferredStyle: UIAlertControllerStyle.alert)
+//                                    
+//                                    let defaultAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: { (action) in
+//                                    })
+//                                    alertC.addAction(defaultAction)
+//                                    self.present(alertC, animated: true
+//                                        , completion: {
+//                                            
+//                                    })
+//                                    
+//                                })
+//                            })
+//                            let verifyClose = UIAlertAction(title: "Cancelar", style: .cancel, handler: { (alertaction) in
+//                                
+//                            })
+//                            alertController.addAction(verifyActionAmount)
+//                            alertController.addAction(verifyActionAmount2)
+//                            alertController.addAction(verifyClose)
+//                            self.present(alertController, animated: true
+//                                , completion: {
+//                                    
+//                            })
+//                        })
+//                        alertC.addAction(defaultAction2)
+//                        self.present(alertC, animated: true
+//                            , completion: {
+//                                
+//                        })
+//                    })
+//                }
+//                
+//                
+//                
+//            })
+//            
+//            
+//            // debit
+//        }
     }
     /*
     // MARK: - Navigation

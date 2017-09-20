@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         //PaymentezSDKClient.setEnvironment("AbiColApp", secretKey: "2PmoFfjZJzjKTnuSYCFySMfHlOIBz7", testMode: true)
-        PaymentezSDKClient.setEnvironment("AndroidTest", secretKey: "g4OtMVjQpln84WUx0oyObi5oPgNsTJ", testMode: true)
+        PaymentezSDKClient.setEnvironment("IOSTest-Add", secretKey: "lycd3qt8n4Y50EKCYcA0G2MCyIb9Hr", testMode: true)
         // Override point for customization after application launch.
         let locationManager = CLLocationManager()
         locationManager.requestWhenInUseAuthorization()

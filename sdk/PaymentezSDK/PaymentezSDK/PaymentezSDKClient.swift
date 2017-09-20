@@ -131,71 +131,70 @@ open class PaymentezSDKClient:NSObject
             ] as [String : Any]
         kountHandler.collect(sessionId!) { (err) in
             
-            inProgress = false
+            //inProgress = false
             if err == nil
             {
-                inProgress = true
-                let token = generateAuthTokenV2()
-                self.request.makeRequestV2("/v2/pci/create_token", parameters: parameters as NSDictionary, token:token) { (error, statusCode, responseData) in
+                
+            }
+            else
+            {
+                //callback(PaymentezSDKError.createError(err!), nil)
+                
+            }
+            
+        }
+        inProgress = true
+        let token = generateAuthTokenV2()
+        self.request.makeRequestV2("/v2/pci/create_token", parameters: parameters as NSDictionary, token:token) { (error, statusCode, responseData) in
+            
+            inProgress = false
+            if error == nil
+            {
+                
+                if statusCode! != 200
+                {
+                    let dataR = responseData as! [String:Any]
                     
-                    inProgress = false
-                    if error == nil
+                    let err = PaymentezSDKError.createError(statusCode!, description: dataR["description"] as! String, help: dataR["help"] as? String, type: dataR["type"] as? String)
+                    callback(err, nil)
+                    
+                }
+                else
+                {
+                    let dataR = responseData as! [String:Any]
+                    let cardData = dataR["card"] as! [String:Any]
+                    let cardAdded = PaymentezCard()
+                    cardAdded.bin = cardData["bin"] as? String
+                    cardAdded.termination = cardData["number"] as? String
+                    cardAdded.token = cardData["token"] as? String
+                    cardAdded.expiryYear = card.expiryYear
+                    cardAdded.expiryMonth = card.expiryMonth
+                    cardAdded.trxReference = card.trxReference
+                    cardAdded.status = cardData["status"] as? String
+                    
+                    
+                    if cardAdded.status == "rejected"
+                    {
+                        let error = PaymentezSDKError.createError(statusCode!, description: (cardData["error_message"] as? String)!, help: "", type:nil)
+                        callback(error, cardAdded)
+                    }
+                    else if cardAdded.status == "review"
                     {
                         
-                        if statusCode! != 200
-                        {
-                            let dataR = responseData as! [String:Any]
-                            
-                            let err = PaymentezSDKError.createError(statusCode!, description: dataR["description"] as! String, help: dataR["help"] as? String, type: dataR["type"] as? String)
-                            callback(err, nil)
-                            
-                        }
-                        else
-                        {
-                            let dataR = responseData as! [String:Any]
-                            let cardData = dataR["card"] as! [String:Any]
-                            let cardAdded = PaymentezCard()
-                            cardAdded.bin = cardData["bin"] as? String
-                            cardAdded.termination = cardData["number"] as? String
-                            cardAdded.token = cardData["token"] as? String
-                            cardAdded.expiryYear = card.expiryYear
-                            cardAdded.expiryMonth = card.expiryMonth
-                            cardAdded.trxReference = card.trxReference
-                            cardAdded.status = cardData["status"] as? String
-                            
-                            
-                            if cardAdded.status == "rejected"
-                            {
-                                let error = PaymentezSDKError.createError(statusCode!, description: (cardData["error_message"] as? String)!, help: "", type:nil)
-                                callback(error, cardAdded)
-                            }
-                            else if cardAdded.status == "review"
-                            {
-                                
-                                let error = PaymentezSDKError.createError(statusCode!, description: (cardData["error_message"] as? String)!, help: "", type:nil)
-                                callback(error, cardAdded)
-                            }
-                            else
-                            {
-                                callback(nil, cardAdded)
-                            }
-                            
-                        }
+                        let error = PaymentezSDKError.createError(statusCode!, description: (cardData["error_message"] as? String)!, help: "", type:nil)
+                        callback(error, cardAdded)
                     }
                     else
                     {
-                        callback(PaymentezSDKError.createError(error!), nil)
+                        callback(nil, cardAdded)
                     }
                     
                 }
             }
             else
             {
-                callback(PaymentezSDKError.createError(err!), nil)
-                
+                callback(PaymentezSDKError.createError(error!), nil)
             }
-            
-            
             
         }
     }
@@ -317,7 +316,7 @@ open class PaymentezSDKClient:NSObject
             callback(error,cards)
         }
     }
-    static func listCardsV2(_ uid:String!, callback:@escaping (_ error:PaymentezSDKError?, _ cardList:[PaymentezCard]?) ->Void)
+    internal static func listCardsV2(_ uid:String!, callback:@escaping (_ error:PaymentezSDKError?, _ cardList:[PaymentezCard]?) ->Void)
     {
         
         let parameters = ["uid": uid] as [String:Any]
@@ -358,7 +357,7 @@ open class PaymentezSDKClient:NSObject
         }
     }
     
-    private static func deleteCard(_ uid:String, cardReference:String, callback:@escaping (_ error:PaymentezSDKError?, _ wasDeleted:Bool) ->Void)
+    internal static func deleteCard(_ uid:String, cardReference:String, callback:@escaping (_ error:PaymentezSDKError?, _ wasDeleted:Bool) ->Void)
     {
         
         
@@ -400,7 +399,7 @@ open class PaymentezSDKClient:NSObject
          }
          }*/
     }
-    open static func deleteCard(_ uid:String, card:PaymentezCard, callback:@escaping (_ error:PaymentezSDKError?, _ wasDeleted:Bool) ->Void)
+    internal static func deleteCard(_ uid:String, card:PaymentezCard, callback:@escaping (_ error:PaymentezSDKError?, _ wasDeleted:Bool) ->Void)
     {
         if card.token == nil {
             callback(PaymentezSDKError.createError(400, description: "Incorrect Token", help: nil, type:nil), false)
@@ -439,7 +438,7 @@ open class PaymentezSDKClient:NSObject
         
     }
     
-    open static func debitCard(_ parameters:PaymentezDebitParameters, callback: @escaping (_ error:PaymentezSDKError?, _ transaction:PaymentezTransaction?) ->Void)
+    internal static func debitCard(_ parameters:PaymentezDebitParameters, callback: @escaping (_ error:PaymentezSDKError?, _ transaction:PaymentezTransaction?) ->Void)
     {
         if inProgress
         {
@@ -520,7 +519,7 @@ open class PaymentezSDKClient:NSObject
             }
         }
     }
-    @objc open static func refund(_ transactionId:String, callback:@escaping (_ error:PaymentezSDKError?,_ refunded:Bool)->Void)
+    internal static func refund(_ transactionId:String, callback:@escaping (_ error:PaymentezSDKError?,_ refunded:Bool)->Void)
         
     {
         let transactionparams = ["id": transactionId]
@@ -569,7 +568,7 @@ open class PaymentezSDKClient:NSObject
     
     
     
-    @objc open static func verifyWithCode(_ transactionId:String, uid:String, verificationCode:String, callback:@escaping (_ error:PaymentezSDKError?, _ attemptsRemaining:Int, _ transaction:PaymentezTransaction?)->Void)
+    internal static func verifyWithCode(_ transactionId:String, uid:String, verificationCode:String, callback:@escaping (_ error:PaymentezSDKError?, _ attemptsRemaining:Int, _ transaction:PaymentezTransaction?)->Void)
         
     {
         let userparams = ["id": uid]
@@ -607,47 +606,9 @@ open class PaymentezSDKClient:NSObject
             }
             
         }
-        
-        
-        /*
-         var parameters = ["application_code" : apiCode,
-         "transaction_id" : transactionId,
-         "value": verificationCode,
-         "type": "BY_AUTH_CODE",
-         "uid" : uid]
-         let authTimestamp = generateAuthTimestamp()
-         let authToken = generateAuthToken(parameters as [String : Any], authTimestamp: authTimestamp)
-         parameters["auth_token"] = authToken
-         parameters["auth_timestamp"] = authTimestamp
-         
-         self.request.makeRequest("/api/cc/verify/", parameters: parameters as NSDictionary) { (error, statusCode, responseData) in
-         
-         if error == nil
-         {
-         if statusCode == 200
-         {
-         let transaction = PaymentezTransaction.parseTransaction(responseData)
-         callback(nil, 0, transaction)
-         }
-         else
-         {
-         let dataR = (responseData as! [String:Any])["errors"] as! [[String:Any]]
-         
-         let err =  PaymentezSDKError.createError(dataR[0]["code"] as! Int, description: dataR[0]["description"] as! String, details: dataR[0]["details"])
-         if err.code == 7 && err.description != "InvalidTransaction"{
-         let det = err.details as! [String:Any]
-         let attempts = det["attempts"] as! Int
-         callback(err, attempts , nil)
-         }
-         callback(err, 0 , nil)
-         }
-         }
-         
-         
-         }*/
     }
     
-    open static func verifyWithAmount(_ transactionId:String, uid:String, amount:Double, callback:@escaping (_ error:PaymentezSDKError?, _ attemptsRemaining:Int, _ transaction:PaymentezTransaction?)->Void)
+    internal static func verifyWithAmount(_ transactionId:String, uid:String, amount:Double, callback:@escaping (_ error:PaymentezSDKError?, _ attemptsRemaining:Int, _ transaction:PaymentezTransaction?)->Void)
         
     {
         let userparams = ["id": uid]
@@ -685,45 +646,6 @@ open class PaymentezSDKClient:NSObject
             }
             
         }
-        
-        
-        /*
-         var parameters = ["application_code" : apiCode,
-         "transaction_id" : transactionId,
-         "value": String(format: "%.2f", amount),
-         "type" : "BY_AMOUNT",
-         "uid" : uid]
-         let authTimestamp = generateAuthTimestamp()
-         let authToken = generateAuthToken(parameters as [String : Any], authTimestamp: authTimestamp)
-         parameters["auth_token"] = authToken
-         parameters["auth_timestamp"] = authTimestamp
-         
-         self.request.makeRequest("/api/cc/verify/", parameters: parameters as NSDictionary) { (error, statusCode, responseData) in
-         
-         if error == nil
-         {
-         if statusCode == 200
-         {
-         let transaction = PaymentezTransaction.parseTransaction(responseData)
-         callback(nil, 0, transaction)
-         }
-         else
-         {
-         let dataR = (responseData as! [String:Any])["errors"] as! [[String:Any]]
-         
-         let err =  PaymentezSDKError.createError(dataR[0]["code"] as! Int, description: dataR[0]["description"] as! String, details: dataR[0]["details"])
-         if err.code == 7 && err.description != "InvalidTransaction"{
-         let det = err.details as! [String:Any]
-         let attempts = det["attempts"] as! Int
-         callback(err, attempts , nil)
-         }
-         callback(err, 0 , nil)
-         }
-         }
-         
-         
-         }
-         */
     }
     
     

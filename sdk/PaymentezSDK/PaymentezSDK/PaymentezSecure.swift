@@ -9,34 +9,45 @@
 import Foundation
 import UIKit
 
-class PaymentezSecure: NSObject,DeviceCollectorSDKDelegate
+class PaymentezSecure: NSObject
 
 {
     let targetUrlDev = "https://tst.kaptcha.com/logo.htm"
     let targetUrlProd = "https://ssl.kaptcha.com/logo.htm"
     let merchantId = "500005"
-    let deviceCollector:DeviceCollectorSDK
+    let deviceCollector:KDataCollector = KDataCollector.shared()
     var testMode = true
     var callback:((_ err:NSError?) -> Void)?
     
     init(testMode:Bool)
     {
+        deviceCollector.merchantID = Int(merchantId)!
+        deviceCollector.locationCollectorConfig = KLocationCollectorConfig.requestPermission
+        
+        // KDataCollector.shared().environment = KEnvironment.production
         if(testMode)
         {
-            self.deviceCollector = DeviceCollectorSDK(debugOn: true)
-            
-            self.deviceCollector.setCollectorUrl(targetUrlDev)
+            deviceCollector.environment = KEnvironment.test
+            //self.deviceCollector.setCollectorUrl(targetUrlDev)
         }
         else{
-            self.deviceCollector = DeviceCollectorSDK(debugOn: false)
+            deviceCollector.environment = KEnvironment.production
             
-            self.deviceCollector.setCollectorUrl(targetUrlProd)
+            //self.deviceCollector.setCollectorUrl(targetUrlProd)
         }
         self.callback = nil
         super.init()
-        self.deviceCollector.setDelegate(self)
-        self.deviceCollector.setMerchantId(self.merchantId)
         
+    }
+    
+    open func getSecureSessionId() -> String!
+    {
+        let sessioniD = UUID().uuidString.replacingOccurrences(of: "-", with: "")
+        
+        collect(sessioniD) { (error) in
+            
+        }
+        return sessioniD
     }
     
     func generateSessionId() -> String!
@@ -46,8 +57,10 @@ class PaymentezSecure: NSObject,DeviceCollectorSDKDelegate
     
     func collect(_ sessionId:String, callback:@escaping (_ err:NSError?) -> Void)
     {
-        self.callback = callback
-        self.deviceCollector.collect(sessionId)
+        deviceCollector.collect(forSession: sessionId) { (sessionID, success, error) in
+            callback(error as NSError?)
+            // Add handler code here if desired. The completion block is optional.
+        }
     }
     
     func onCollectorStart() {

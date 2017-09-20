@@ -6,5 +6,5 @@
 //  Copyright © 2016 Paymentez. All rights reserved.
 //
 #import "Todo1.h"
-#import "DeviceCollectorSDK.h"
+#import "KDataCollector.h"
 #import "CardIO.h"
