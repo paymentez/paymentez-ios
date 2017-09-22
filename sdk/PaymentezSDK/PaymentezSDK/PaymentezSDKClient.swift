@@ -86,6 +86,11 @@ open class PaymentezSDKClient:NSObject
         
         
     }
+    @objc
+    open static func getSecureSessionId()->String
+    {
+        return self.kountHandler.getSecureSessionId()
+    }
     
     @objc
     open static func createAddWidget()->PaymentezAddNativeViewController
@@ -123,7 +128,7 @@ open class PaymentezSDKClient:NSObject
         let sessionId = self.kountHandler.generateSessionId()
         
         let userParameters = ["email": email, "id": uid]
-        let cardParameters = ["number": card.cardNumber!, "holderName": card.cardHolder!, "expiryMonth": card.expiryMonth!, "expiryYear": Int(card.expiryYear!) as Any, "cvc":card.cvc! as Any, "type": typeCard] as [String : Any]
+        let cardParameters = ["number": card.cardNumber!, "holder_name": card.cardHolder!, "expiry_month": card.expiryMonth!, "expiry_year": Int(card.expiryYear!) as Any, "cvc":card.cvc! as Any, "type": typeCard] as [String : Any]
         
         let parameters = ["session_id": sessionId!,
                           "user": userParameters,
@@ -145,7 +150,7 @@ open class PaymentezSDKClient:NSObject
         }
         inProgress = true
         let token = generateAuthTokenV2()
-        self.request.makeRequestV2("/v2/pci/create_token", parameters: parameters as NSDictionary, token:token) { (error, statusCode, responseData) in
+        self.request.makeRequestV2("/v2/card/add", parameters: parameters as NSDictionary, token:token) { (error, statusCode, responseData) in
             
             inProgress = false
             if error == nil
@@ -153,7 +158,8 @@ open class PaymentezSDKClient:NSObject
                 
                 if statusCode! != 200
                 {
-                    let dataR = responseData as! [String:Any]
+                    let responseD = responseData as! [String:Any]
+                    let dataR = responseD["error"] as! [String:Any]
                     
                     let err = PaymentezSDKError.createError(statusCode!, description: dataR["description"] as! String, help: dataR["help"] as? String, type: dataR["type"] as? String)
                     callback(err, nil)
@@ -169,19 +175,19 @@ open class PaymentezSDKClient:NSObject
                     cardAdded.token = cardData["token"] as? String
                     cardAdded.expiryYear = card.expiryYear
                     cardAdded.expiryMonth = card.expiryMonth
-                    cardAdded.trxReference = card.trxReference
+                    cardAdded.transactionId = cardData["transaction_id"] as? String
                     cardAdded.status = cardData["status"] as? String
                     
                     
                     if cardAdded.status == "rejected"
                     {
-                        let error = PaymentezSDKError.createError(statusCode!, description: (cardData["error_message"] as? String)!, help: "", type:nil)
+                        let error = PaymentezSDKError.createError(statusCode!, description: (cardData["message"] as? String)!, help: "", type:nil)
                         callback(error, cardAdded)
                     }
                     else if cardAdded.status == "review"
                     {
                         
-                        let error = PaymentezSDKError.createError(statusCode!, description: (cardData["error_message"] as? String)!, help: "", type:nil)
+                        let error = PaymentezSDKError.createError(statusCode!, description: (cardData["message"] as? String)!, help: "", type:nil)
                         callback(error, cardAdded)
                     }
                     else

@@ -13,3 +13,4 @@ extension String {
         return NSLocalizedString(self, tableName: nil, bundle: Bundle(for: PaymentezCard.self), value: "", comment: "")
     }
 }
+

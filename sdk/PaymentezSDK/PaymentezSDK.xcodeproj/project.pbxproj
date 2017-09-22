@@ -59,10 +59,11 @@
 		652927951F587136004A7D4C /* PaymentezAddNativeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652927931F587136004A7D4C /* PaymentezAddNativeViewController.swift */; };
 		652927961F587136004A7D4C /* PaymentezAddNativeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 652927941F587136004A7D4C /* PaymentezAddNativeViewController.xib */; };
 		6529279B1F58B045004A7D4C /* PaymentezAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6529279A1F58B045004A7D4C /* PaymentezAssets.xcassets */; };
+		655DA8101F74D66700099869 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 655DA80E1F74D66700099869 /* Localizable.strings */; };
+		655DA8161F74E74C00099869 /* Localizable.strings in CopyFiles */ = {isa = PBXBuildFile; fileRef = 655DA80E1F74D66700099869 /* Localizable.strings */; };
 		65AF51CA1F5DDECC00E7B4CB /* SkyFloatingLabelTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AF51C71F5DDECC00E7B4CB /* SkyFloatingLabelTextField.swift */; };
 		65AF51CB1F5DDECC00E7B4CB /* SkyFloatingLabelTextFieldWithIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AF51C81F5DDECC00E7B4CB /* SkyFloatingLabelTextFieldWithIcon.swift */; };
 		65AF51CC1F5DDECC00E7B4CB /* UITextField+fixCaretPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AF51C91F5DDECC00E7B4CB /* UITextField+fixCaretPosition.swift */; };
-		65AF51D01F5F276D00E7B4CB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 65AF51D21F5F276D00E7B4CB /* Localizable.strings */; };
 		65DDE2A01F72F242005C0FF9 /* InputMask.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65DDE29F1F72F229005C0FF9 /* InputMask.framework */; };
 		65DDE2A41F72F66A005C0FF9 /* KDataCollector.h in Headers */ = {isa = PBXBuildFile; fileRef = 65DDE2A21F72F66A005C0FF9 /* KDataCollector.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		65DDE2A51F72F66A005C0FF9 /* libKountDataCollector.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65DDE2A31F72F66A005C0FF9 /* libKountDataCollector.a */; };
@@ -86,6 +87,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				655DA8161F74E74C00099869 /* Localizable.strings in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,13 +137,15 @@
 		652927931F587136004A7D4C /* PaymentezAddNativeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentezAddNativeViewController.swift; sourceTree = "<group>"; };
 		652927941F587136004A7D4C /* PaymentezAddNativeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaymentezAddNativeViewController.xib; sourceTree = "<group>"; };
 		6529279A1F58B045004A7D4C /* PaymentezAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = PaymentezAssets.xcassets; sourceTree = "<group>"; };
-		652927A21F58D0AC004A7D4C /* Stripe.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Stripe.framework; path = PaymentezSDK/lib/Stripe.framework; sourceTree = "<group>"; };
+		655DA80F1F74D66700099869 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		655DA8111F74D67200099869 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		655DA8121F74D73D00099869 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		655DA8131F74D74A00099869 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		655DA8141F74D74F00099869 /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		655DA8151F74D85A00099869 /* es-MX */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-MX"; path = "es-MX.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		65AF51C71F5DDECC00E7B4CB /* SkyFloatingLabelTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkyFloatingLabelTextField.swift; sourceTree = "<group>"; };
 		65AF51C81F5DDECC00E7B4CB /* SkyFloatingLabelTextFieldWithIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkyFloatingLabelTextFieldWithIcon.swift; sourceTree = "<group>"; };
 		65AF51C91F5DDECC00E7B4CB /* UITextField+fixCaretPosition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+fixCaretPosition.swift"; sourceTree = "<group>"; };
-		65AF51D11F5F276D00E7B4CB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		65AF51D31F5F27E900E7B4CB /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
-		65AF51D41F5F27FD00E7B4CB /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		65DDE29F1F72F229005C0FF9 /* InputMask.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = InputMask.framework; path = Carthage/Build/iOS/InputMask.framework; sourceTree = "<group>"; };
 		65DDE2A21F72F66A005C0FF9 /* KDataCollector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDataCollector.h; sourceTree = "<group>"; };
 		65DDE2A31F72F66A005C0FF9 /* libKountDataCollector.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libKountDataCollector.a; sourceTree = "<group>"; };
@@ -273,7 +277,6 @@
 		6529279F1F58D0A9004A7D4C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				652927A21F58D0AC004A7D4C /* Stripe.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -291,7 +294,7 @@
 		65AF51CF1F5F246200E7B4CB /* lang */ = {
 			isa = PBXGroup;
 			children = (
-				65AF51D21F5F276D00E7B4CB /* Localizable.strings */,
+				655DA80E1F74D66700099869 /* Localizable.strings */,
 				650EB6D21F5F3E510041EB81 /* Extension.swift */,
 			);
 			name = lang;
@@ -347,7 +350,7 @@
 		409158D61CE1A01000FE316B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = Paymentez;
 				TargetAttributes = {
 					407B445C1CE5008000CC9C12 = {
@@ -365,8 +368,12 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				en,
+				Base,
 				es,
 				"pt-BR",
+				"es-419",
+				"es-MX",
 			);
 			mainGroup = 409158D51CE1A01000FE316B;
 			productRefGroup = 409158E01CE1A01000FE316B /* Products */;
@@ -384,8 +391,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65AF51D01F5F276D00E7B4CB /* Localizable.strings in Resources */,
 				402544CC1CE3E06A00F35B23 /* PaymentezAddViewController.xib in Resources */,
+				655DA8101F74D66700099869 /* Localizable.strings in Resources */,
 				6529279B1F58B045004A7D4C /* PaymentezAssets.xcassets in Resources */,
 				652927961F587136004A7D4C /* PaymentezAddNativeViewController.xib in Resources */,
 			);
@@ -454,12 +461,15 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		65AF51D21F5F276D00E7B4CB /* Localizable.strings */ = {
+		655DA80E1F74D66700099869 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				65AF51D11F5F276D00E7B4CB /* en */,
-				65AF51D31F5F27E900E7B4CB /* es */,
-				65AF51D41F5F27FD00E7B4CB /* pt-BR */,
+				655DA80F1F74D66700099869 /* Base */,
+				655DA8111F74D67200099869 /* en */,
+				655DA8121F74D73D00099869 /* es */,
+				655DA8131F74D74A00099869 /* pt-BR */,
+				655DA8141F74D74F00099869 /* es-419 */,
+				655DA8151F74D85A00099869 /* es-MX */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

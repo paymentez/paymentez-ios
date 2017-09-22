@@ -93,7 +93,7 @@ class PaymentezDebitResponse
     {
         return PaymentezSDKError(code: 500, description: err.localizedDescription, help: err.debugDescription, type:nil)
     }
-    static func createError(_ code:Int, description:String, help:String?, type:String?) -> PaymentezSDKError
+    @objc open static func createError(_ code:Int, description:String, help:String?, type:String?) -> PaymentezSDKError
     {
         return PaymentezSDKError(code: code, description: description, help: help, type:type)
     }

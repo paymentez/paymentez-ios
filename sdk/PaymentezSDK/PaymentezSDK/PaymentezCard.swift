@@ -29,7 +29,7 @@ let REGEX_JCB = "^(?:2131|1800|35[0-9]{3})[0-9]{11}$"
 @objc open class PaymentezCard:NSObject
 {
     open var status:String?
-    open var trxReference:String?
+    open var transactionId:String?
     open var token:String?
     open var cardHolder:String?
     open var termination:String?
@@ -46,7 +46,7 @@ let REGEX_JCB = "^(?:2131|1800|35[0-9]{3})[0-9]{11}$"
         }
     }
     internal var cvc:String?
-    internal var type:String?
+    open var type:String?
     {
         didSet
         {

@@ -19,15 +19,7 @@ class ListCardsTableViewController: UITableViewController {
     var cardList = [PaymentezCard]()
     var cardSelectedDelegate:CardSelectedDelegate?
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-                // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.refreshTable()
@@ -37,9 +29,12 @@ class ListCardsTableViewController: UITableViewController {
     {
         self.cardList.removeAll()
         
-        MyBackendLib.listCard(uid: "1234") { (cardList) in
+        MyBackendLib.listCard(uid: UserModel.uid) { (cardList) in
             self.cardList = cardList!
-            self.tableView.reloadData();
+            DispatchQueue.main.async {
+               self.tableView.reloadData();
+            }
+            
         }
         
         
@@ -92,7 +87,7 @@ class ListCardsTableViewController: UITableViewController {
         let card  = self.cardList[(indexPath as NSIndexPath).row]
         self.cardSelectedDelegate?.cardSelected(card: card)
         self.navigationController?.popViewController(animated: true)
-        //self.performSegue(withIdentifier: "debitSegue", sender: self)
+        
         
     }
     
@@ -108,25 +103,98 @@ class ListCardsTableViewController: UITableViewController {
         var actions = [UITableViewRowAction]()
         if card.status == "review"
         {
-            let editAction = UITableViewRowAction(style: .normal, title: "Verify amount") { (rowAction, indexPath) in
+            let editAction = UITableViewRowAction(style: .normal, title: "Verify") { (rowAction, indexPath) in
+                
+                
+                let alertController = UIAlertController(title: "Verificar ", message: "Especifica el valor: Monto o valor", preferredStyle: .alert)
+                alertController.addTextField(configurationHandler: {(_ textField: UITextField) -> Void in
+                    textField.placeholder = "Valor"
+                })
+                let verifyActionAmount = UIAlertAction(title: "Verificar por Monto", style: .default, handler: { (alertaction) in
+                    MyBackendLib.verifyTrx(uid: UserModel.uid, transactionId: card.transactionId!, type: 0, value: (alertController.textFields?[0].text!)!, callback: { (error, verified) in
+                        
+                        if verified
+                        {
+                            let alertC = UIAlertController(title: "Vefificada", message: "trx:"+(card.transactionId!), preferredStyle: UIAlertControllerStyle.alert)
+                            
+                            let defaultAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: { (action) in
+                            })
+                            alertC.addAction(defaultAction)
+                            self.present(alertC, animated: true
+                                , completion: {
+                                    
+                            })
+                        }
+                        else
+                        {
+                            let alertC = UIAlertController(title: "Error en Verificación", message: error?.description, preferredStyle: UIAlertControllerStyle.alert)
+                            
+                            let defaultAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: { (action) in
+                            })
+                            alertC.addAction(defaultAction)
+                            self.present(alertC, animated: true
+                                , completion: {
+                                    
+                            })
+                        }
+                        
+                    })
+                })
+                let verifyActionAmount2 = UIAlertAction(title: "Verificar por Código", style: .default, handler: { (alertaction) in
+                    MyBackendLib.verifyTrx(uid: UserModel.uid, transactionId: card.transactionId!, type: 1, value: (alertController.textFields?[0].text!)!, callback: { (error, verified) in
+                        
+                        if verified
+                        {
+                            let alertC = UIAlertController(title: "Vefificada", message: "trx:"+(card.transactionId!), preferredStyle: UIAlertControllerStyle.alert)
+                            
+                            let defaultAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: { (action) in
+                            })
+                            alertC.addAction(defaultAction)
+                            self.present(alertC, animated: true
+                                , completion: {
+                                    
+                            })
+                        }
+                        else
+                        {
+                            let alertC = UIAlertController(title: "Error en Verificación", message: error?.description, preferredStyle: UIAlertControllerStyle.alert)
+                            
+                            let defaultAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: { (action) in
+                            })
+                            alertC.addAction(defaultAction)
+                            self.present(alertC, animated: true
+                                , completion: {
+                                    
+                            })
+                        }
+                        
+                    })
+                })
+                let verifyClose = UIAlertAction(title: "Cancelar", style: .cancel, handler: { (alertaction) in
+                    
+                })
+                alertController.addAction(verifyActionAmount)
+                alertController.addAction(verifyActionAmount2)
+                alertController.addAction(verifyClose)
+                self.present(alertController, animated: true
+                    , completion: {
+                        
+                })
                 
                 //DEV BACKEND WITH VERIFY WITH AMOUNT
             }
             editAction.backgroundColor = .blue
-            
-            let editAction2 = UITableViewRowAction(style: .normal, title: "Verify code") { (rowAction, indexPath) in
-               
-                //DEV BACKEND WITH VERIFY WITH CODE
-                
-            }
-            editAction2.backgroundColor = .gray
             actions.append(editAction)
-            actions.append(editAction2)
         }
         let deleteAction = UITableViewRowAction(style: .normal, title: "Delete") { (rowAction, indexPath) in
             let card = self.cardList[(indexPath as NSIndexPath).row]
             
-            //DEV BACKEND CALL WITH DELETE CARD
+            MyBackendLib.deleteCard(uid: UserModel.uid, cardToken: card.token!, callback: { (deleted) in
+                if(deleted)
+                {
+                    self.refreshTable()
+                }
+            })
 
         }
         deleteAction.backgroundColor = .red

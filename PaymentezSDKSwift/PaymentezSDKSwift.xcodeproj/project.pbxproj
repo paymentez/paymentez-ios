@@ -31,7 +31,6 @@
 		651D7C131F674DE500E58317 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651D7C121F674DE500E58317 /* UserModel.swift */; };
 		65ADF22B1F631B7700E93CAB /* StoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65ADF22A1F631B7700E93CAB /* StoreViewController.swift */; };
 		65AF51BC1F5DC8C200E7B4CB /* PaymentezSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 65AF51BA1F5DC8C200E7B4CB /* PaymentezSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		65AF51BF1F5DC9D400E7B4CB /* PaymentezSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65AF51BE1F5DC9D400E7B4CB /* PaymentezSDK.framework */; };
 		65D9F0AB1F718D4700A22D3E /* MyBackendLib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D9F0AA1F718D4700A22D3E /* MyBackendLib.swift */; };
 /* End PBXBuildFile section */
 
@@ -86,9 +85,10 @@
 		408C1BDD1CE1B1D200B9A2F0 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		408C1BDE1CE1B1D200B9A2F0 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		651D7C121F674DE500E58317 /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		655DA8171F74E82000099869 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
+		655DA8181F74E82000099869 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		65ADF22A1F631B7700E93CAB /* StoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreViewController.swift; sourceTree = "<group>"; };
 		65AF51BA1F5DC8C200E7B4CB /* PaymentezSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PaymentezSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		65AF51BE1F5DC9D400E7B4CB /* PaymentezSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PaymentezSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		65D9F0AA1F718D4700A22D3E /* MyBackendLib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyBackendLib.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -98,7 +98,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				408C1BDF1CE1B1D200B9A2F0 /* Accelerate.framework in Frameworks */,
-				65AF51BF1F5DC9D400E7B4CB /* PaymentezSDK.framework in Frameworks */,
 				408C1BE01CE1B1D200B9A2F0 /* AudioToolbox.framework in Frameworks */,
 				408C1BE11CE1B1D200B9A2F0 /* AVFoundation.framework in Frameworks */,
 				408C1BE21CE1B1D200B9A2F0 /* AVKit.framework in Frameworks */,
@@ -128,7 +127,6 @@
 		408C1B9B1CE1AA9600B9A2F0 = {
 			isa = PBXGroup;
 			children = (
-				65AF51BE1F5DC9D400E7B4CB /* PaymentezSDK.framework */,
 				65AF51BA1F5DC8C200E7B4CB /* PaymentezSDK.framework */,
 				408C1BD11CE1B1D200B9A2F0 /* Accelerate.framework */,
 				408C1BD21CE1B1D200B9A2F0 /* AudioToolbox.framework */,
@@ -321,6 +319,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				408C1BAC1CE1AA9600B9A2F0 /* Base */,
+				655DA8171F74E82000099869 /* es */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -329,6 +328,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				408C1BB11CE1AA9600B9A2F0 /* Base */,
+				655DA8181F74E82000099869 /* es */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -340,6 +340,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -385,6 +386,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
