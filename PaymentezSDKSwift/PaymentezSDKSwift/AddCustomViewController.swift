@@ -35,15 +35,18 @@ class AddCustomViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    
+    
     @IBAction func addCard(_ sender:UIButton?)
     {
+        
         
         if let validCard = self.paymentezAddVC.getValidCard() // CHECK IF THE CARD IS VALID, IF THERE IS A VALIDATION ERROR NIL VALUE WILL BE RETURNED
         {
             
             self.activityIndicator.startAnimating()
             sender?.isEnabled = false
-            PaymentezSDKClient.createToken(validCard, uid: UserModel.uid, email: UserModel.email, callback: { (error, cardAdded) in
+            PaymentezSDKClient.add(validCard, uid: UserModel.uid, email: UserModel.email, callback: { (error, cardAdded) in
                 self.activityIndicator.stopAnimating()
                 sender?.isEnabled = true
                 if cardAdded != nil

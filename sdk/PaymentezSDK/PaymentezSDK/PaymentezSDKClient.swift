@@ -23,10 +23,14 @@ open class PaymentezSDKClient:NSObject
     static var  secretKey = ""
     static var enableTestMode = true
     static var request = PaymentezRequest(testMode: true)
-    static var kountHandler = PaymentezSecure(testMode: true)
+    static var kountHandler:PaymentezSecure = PaymentezSecure(testMode: true)
     static var scanner = PaymentezCardScan()
     
-    
+    @objc(setRiskMerchantId:)
+    open static func setRiskMerchantId(_ merchantId:String)
+    {
+        self.kountHandler.merchantId = merchantId
+    }
     
     
     @objc(setEnvironment:secretKey:testMode:)
@@ -36,7 +40,7 @@ open class PaymentezSDKClient:NSObject
         self.secretKey = secretKey
         self.enableTestMode = testMode
         self.request.testMode = testMode
-        self.kountHandler.testMode = testMode
+        self.kountHandler = PaymentezSecure(testMode: testMode)
     }
     
     
@@ -101,7 +105,7 @@ open class PaymentezSDKClient:NSObject
     }
     
     
-    @objc open static func createToken(_ card:PaymentezCard, uid:String, email:String,  callback:@escaping (_ error:PaymentezSDKError?, _ cardAdded:PaymentezCard?)->Void)
+    @objc open static func add(_ card:PaymentezCard, uid:String, email:String,  callback:@escaping (_ error:PaymentezSDKError?, _ cardAdded:PaymentezCard?)->Void)
     {
         print(card.cardNumber!)
         if inProgress

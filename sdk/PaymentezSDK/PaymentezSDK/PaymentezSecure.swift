@@ -14,14 +14,18 @@ class PaymentezSecure: NSObject
 {
     let targetUrlDev = "https://tst.kaptcha.com/logo.htm"
     let targetUrlProd = "https://ssl.kaptcha.com/logo.htm"
-    let merchantId = "500005"
+    var merchantId:String  = "500005"  {
+        didSet
+        {
+            deviceCollector.merchantID = Int(self.merchantId)!
+        }
+    }
     let deviceCollector:KDataCollector = KDataCollector.shared()
     var testMode = true
     var callback:((_ err:NSError?) -> Void)?
     
     init(testMode:Bool)
     {
-        deviceCollector.merchantID = Int(merchantId)!
         deviceCollector.locationCollectorConfig = KLocationCollectorConfig.requestPermission
         
         // KDataCollector.shared().environment = KEnvironment.production

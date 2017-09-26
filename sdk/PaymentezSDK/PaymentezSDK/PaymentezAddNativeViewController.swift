@@ -152,9 +152,6 @@ open class PaymentezAddNativeViewController: UIViewController {
         cvcField.placeholder = "CVC/CVV"
         
         
-        
-        
-        
         //Masked Delegates
         
         self.cardMaskedDelegate = MaskedTextFieldDelegate(format: "[0000]-[0000]-[0000]-[0009]")
@@ -250,7 +247,7 @@ open class PaymentezAddNativeViewController: UIViewController {
             {
                 
                 
-                PaymentezSDKClient.createToken(validCard, uid: "69123", email: "gsotelo@paymentez.com", callback: { (error, cardAdded) in
+                PaymentezSDKClient.add(validCard, uid: "69123", email: "gsotelo@paymentez.com", callback: { (error, cardAdded) in
                     
                     self.delegate?.cardAdded(error, cardAdded)
                 })
