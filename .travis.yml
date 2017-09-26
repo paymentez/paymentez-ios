@@ -15,11 +15,7 @@ before_deploy:
 - carthage archive $FRAMEWORK_NAME
 deploy:
   provider: releases
-  skip_cleanup: true
-  api_key:
-    secure: Po++AoZWN+GiXLq2bg0R2nHkz5aaUmTFieLj5ZcNb3RozDIEe/McyhVpA0ne2xoj100+HEwjCZ+AjOx9XEOIfB2XAEoUQZd5zbCY5BN1t5hTgONRrIhPxztvplxLLKOpwFgUMKd5GY4f32inPIsyXcV7MgjHEUwKdCQiCaokan8f+D+ViJjfKVKODCDStwkvLYD7iMWg2iju/a8AIHiVz4GbBvERLgVWQZC1YAVwB4zENOiRzeYhTmi60uwfAnVIJ0wRQIIsWzVqua+7O3jI1TIo6KgKfzcTVmRN2GlGrIKZK882zGlp207YLsFCyBJSb9tfpTXfM//fGk1AZeUuSQ/J+Fb39UQuqE+OSIxe9BXH9n0O9ryKSzzOHrh8FiVe2+bD7MjaHzLM4Mg+f6pfkKJzwNESKFo1jN1djN0Uzqwbzl8UOY7AgPhDM4LQlS17p0nwCz2/UN6zsOdUm6tTMfuzA6DW1eHMh7+fqwRu31Vs90+EPo2R/uq6BUfwDYHyFTe0wWAN0wTMtwUGm+K9DUyQkf+9QV/4Y06os7zmd+7lbRMacMPVljvWsrueRusQR9meE6CChkrgqHXSY3jKlhtxf1pDrPHlqj1hNxsUX3VvV53CqYk7bL0f6wZbMOJUE1bNJ2Zffs9zG9YDePbCzSQC2SgL/Eq6Ty1Uiw+Qxa8=
+  api_key: d4cabb7bc97f76e02a673fa1a4baace599698eef
   file: "$FRAMEWORK_NAME.framework.zip"
   on:
     repo: guxx/paymentez-ios
-    tags: true
-    
