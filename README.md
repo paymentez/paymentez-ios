@@ -47,7 +47,15 @@ InputMask -> https://github.com/RedMadRobot/input-mask-ios
  2. Drag PaymentezSDK.framework to your project
  3. Add PaymentezSDK.framework to Embeeded Libraries
  
- 
+**Carthage**
+
+If you haven't already, install the latest version of [Carthage](https://github.com/Carthage/Carthage)
+
+Add this to the Cartfile:
+
+``` git "https://github.com/paymentez/paymentez-ios.git" ```
+
+This will add also InputMask framework so you can added to your project
 
 ----------
 **Usage**
