@@ -32,6 +32,8 @@ QuartzCore
 Security
 UIKit
 CommonCrypto
+
+InputMask -> https://github.com/RedMadRobot/input-mask-ios
  
  **Project Configuration**
 -ObjC in other linker flags in target
@@ -43,6 +45,10 @@ CommonCrypto
 
  1. Drag PaymentezSDK.framework to your project
  2. Add PaymentezSDK.framework to Embeeded Libraries
+ 
+ **Carthage**
+ 
+ git "https://github.com/paymentez/paymentez-ios.git"
  
 
 ----------
