@@ -29,8 +29,8 @@
 		408C1BEB1CE1B1D200B9A2F0 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 408C1BDD1CE1B1D200B9A2F0 /* Security.framework */; };
 		408C1BEC1CE1B1D200B9A2F0 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 408C1BDE1CE1B1D200B9A2F0 /* SystemConfiguration.framework */; };
 		651D7C131F674DE500E58317 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651D7C121F674DE500E58317 /* UserModel.swift */; };
-		652830201F7AAF87008421EA /* PaymentezSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6528301F1F7AAF87008421EA /* PaymentezSDK.framework */; };
-		652830211F7AAF87008421EA /* PaymentezSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6528301F1F7AAF87008421EA /* PaymentezSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		6528302D1F7B1313008421EA /* PaymentezSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6528302C1F7B1312008421EA /* PaymentezSDK.framework */; };
+		6528302E1F7B1313008421EA /* PaymentezSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6528302C1F7B1312008421EA /* PaymentezSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		65ADF22B1F631B7700E93CAB /* StoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65ADF22A1F631B7700E93CAB /* StoreViewController.swift */; };
 		65D9F0AB1F718D4700A22D3E /* MyBackendLib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D9F0AA1F718D4700A22D3E /* MyBackendLib.swift */; };
 /* End PBXBuildFile section */
@@ -52,7 +52,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				652830211F7AAF87008421EA /* PaymentezSDK.framework in Embed Frameworks */,
+				6528302E1F7B1313008421EA /* PaymentezSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -87,7 +87,7 @@
 		408C1BDE1CE1B1D200B9A2F0 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		651D7C121F674DE500E58317 /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		6528300E1F7A2DEB008421EA /* InputMask.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = InputMask.framework; path = ../sdk/PaymentezSDK/Carthage/Build/iOS/InputMask.framework; sourceTree = "<group>"; };
-		6528301F1F7AAF87008421EA /* PaymentezSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PaymentezSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6528302C1F7B1312008421EA /* PaymentezSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PaymentezSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		655DA8171F74E82000099869 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
 		655DA8181F74E82000099869 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		65ADF22A1F631B7700E93CAB /* StoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreViewController.swift; sourceTree = "<group>"; };
@@ -100,9 +100,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				408C1BDF1CE1B1D200B9A2F0 /* Accelerate.framework in Frameworks */,
-				652830201F7AAF87008421EA /* PaymentezSDK.framework in Frameworks */,
 				408C1BE01CE1B1D200B9A2F0 /* AudioToolbox.framework in Frameworks */,
 				408C1BE11CE1B1D200B9A2F0 /* AVFoundation.framework in Frameworks */,
+				6528302D1F7B1313008421EA /* PaymentezSDK.framework in Frameworks */,
 				408C1BE21CE1B1D200B9A2F0 /* AVKit.framework in Frameworks */,
 				408C1BE31CE1B1D200B9A2F0 /* CoreGraphics.framework in Frameworks */,
 				408C1BE41CE1B1D200B9A2F0 /* CoreImage.framework in Frameworks */,
@@ -130,7 +130,7 @@
 		408C1B9B1CE1AA9600B9A2F0 = {
 			isa = PBXGroup;
 			children = (
-				6528301F1F7AAF87008421EA /* PaymentezSDK.framework */,
+				6528302C1F7B1312008421EA /* PaymentezSDK.framework */,
 				408C1BD11CE1B1D200B9A2F0 /* Accelerate.framework */,
 				408C1BD21CE1B1D200B9A2F0 /* AudioToolbox.framework */,
 				408C1BD31CE1B1D200B9A2F0 /* AVFoundation.framework */,
