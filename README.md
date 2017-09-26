@@ -43,12 +43,10 @@ InputMask -> https://github.com/RedMadRobot/input-mask-ios
 ----------
 **INSTALLATION**
 
- 1. Drag PaymentezSDK.framework to your project
- 2. Add PaymentezSDK.framework to Embeeded Libraries
+ 1. Build Project PaymentezSDK with the desire configuration simulator or device
+ 2. Drag PaymentezSDK.framework to your project
+ 3. Add PaymentezSDK.framework to Embeeded Libraries
  
- **Carthage**
- 
- git "https://github.com/paymentez/paymentez-ios.git"
  
 
 ----------

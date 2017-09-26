@@ -217,7 +217,7 @@
         }
         static func makeRequestPOST(_ urlToRequest:String, parameters:NSDictionary, responseCallback:@escaping (_ error:NSError?, _ statusCode:Int?,_ responseData:Any?) ->Void)
         {
-            var completeUrl = self.myBackendUrl + urlToRequest
+            let completeUrl = self.myBackendUrl + urlToRequest
             let url:URL? = URL(string: completeUrl)
             let session = URLSession.shared
             
