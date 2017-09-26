@@ -11,87 +11,262 @@ import Foundation
 
 public enum PaymentezCardType
 {
-    case Visa
-    case MasterCard
-    case Amex
-    case Diners
-    case NotSupported
+    case visa
+    case masterCard
+    case amex
+    case diners
+    case discover
+    case jcb
+    case notSupported
 }
 let REGEX_AMEX = "^3[47][0-9]{5,}$"
 let REGEX_VISA = "^4[0-9]{6,}$"
 let REGEX_MASTERCARD = "^5[1-5][0-9]{5,}$"
 let REGEX_DINERS = "^3(?:0[0-5]|[68][0-9])[0-9]{4,}$"
+let REGEX_DISCOVER = "^65[4-9][0-9]{13}|64[4-9][0-9]{13}|6011[0-9]{12}|(622(?:12[6-9]|1[3-9][0-9]|[2-8][0-9][0-9]|9[01][0-9]|92[0-5])[0-9]{10})$"
+let REGEX_JCB = "^(?:2131|1800|35[0-9]{3})[0-9]{11}$"
 
-
-@objc public class PaymentezCard:NSObject
+@objc open class PaymentezCard:NSObject
 {
-    public var cardReference:String?
-    public var type:String?
-    public var cardHolder:String?
-    public var termination:String?
-    public var expiryMonth:String?
-    public var expiryYear:String?
-    public var bin:String?
+    open var status:String?
+    open var transactionId:String?
+    open var token:String?
+    open var cardHolder:String?
+    open var termination:String?
+    open var expiryMonth:Int?
+    open var expiryYear:Int?
+    open var bin:String?
+    open var cardType:PaymentezCardType = .notSupported
+    internal var cardNumber:String? {
+        didSet {
+            if cardNumber != nil
+            {
+                self.cardType = PaymentezCard.getTypeCard(self.cardNumber!)
+            }
+        }
+    }
+    internal var cvc:String?
+    open var type:String?
+    {
+        didSet
+        {
+            if self.type == "vi"
+            {
+                self.cardType = .visa
+                
+            }
+            if self.type == "ax"
+            {
+                self.cardType = .amex
+            }
+            if self.type == "mc"
+            {
+                self.cardType = .masterCard
+            }
+            if self.type == "di"
+            {
+                self.cardType = .diners
+            }
+        }
+    }
+
+
+
+    open static func createCard(cardHolder:String, cardNumber:String, expiryMonth:Int, expiryYear:Int, cvc:String) ->PaymentezCard?
+    {
+        let paymentezCard = PaymentezCard()
+        if getTypeCard(cardNumber) == .notSupported
+        {
+            return nil
+        }
+        let today = Date()
+        let calendar = NSCalendar.current
+        let components = calendar.dateComponents([.month, .year], from: today)
+        
+        let todayMonth = components.month!
+        let todayYear = components.year!
+        
+        if expiryYear < todayYear
+        {
+            return nil
+        }
+        if expiryMonth <= todayMonth && expiryYear == todayYear
+        {
+            return nil
+        }
+        
+        
+        paymentezCard.cardNumber = cardNumber
+        paymentezCard.cardHolder = cardHolder
+        paymentezCard.expiryMonth = expiryMonth
+        paymentezCard.expiryYear = expiryYear
+        paymentezCard.cvc = cvc
+        return paymentezCard
+        
+    }
     
-    public static func getTypeCard(cardNumber:String) -> PaymentezCardType
+    
+    static func validateExpDate(_ expDate:String) -> Bool
+    {
+        let today = Date()
+        let calendar = NSCalendar.current
+        let components = calendar.dateComponents([.month, .year], from: today)
+        
+        let todayMonth = components.month!
+        let todayYear = components.year! - 2000
+        
+        let valExp = expDate.components(separatedBy: "/")
+        if valExp.count > 1
+        {
+            let expYear = Int(valExp[1])!
+            let expMonth = Int(valExp[0])!
+            if expYear > todayYear
+            {
+                return true
+            }
+            else if expYear == todayYear && expMonth > todayMonth && expMonth <= 12
+            {
+                return true
+            }
+        }
+        
+        return false
+    }
+    
+    public func getCardTypeAsset() ->UIImage?
+    {
+        let bundle = Bundle(for: PaymentezCard.self)
+        if cardType == PaymentezCardType.amex
+        {
+            return UIImage(named:"stp_card_amex", in: bundle, compatibleWith: nil)
+        }
+        else if cardType == PaymentezCardType.masterCard
+        {
+            return UIImage(named:"stp_card_mastercard", in: bundle, compatibleWith: nil)
+            
+        }
+        else if cardType == PaymentezCardType.visa
+        {
+            return UIImage(named:"stp_card_mastercard", in: bundle, compatibleWith: nil)
+        }
+        else if cardType == PaymentezCardType.diners
+        {
+            return UIImage(named:"stp_card_diners", in: bundle, compatibleWith: nil)
+        }
+        else if cardType == PaymentezCardType.discover
+        {
+            return UIImage(named:"stp_card_discover", in: bundle, compatibleWith: nil)
+        }
+        else if cardType == PaymentezCardType.jcb
+        {
+            return UIImage(named:"stp_card_jcb", in: bundle, compatibleWith: nil)
+        }
+        else {
+            return UIImage(named: "stp_card_unknown", in: bundle, compatibleWith: nil)
+        }
+
+    }
+    
+    open static func getTypeCard(_ cardNumber:String) -> PaymentezCardType
     {
         if cardNumber.characters.count < 15  || cardNumber.characters.count > 16
         {
-            return PaymentezCardType.NotSupported
+            return PaymentezCardType.notSupported
         }
         let predicateAmex = NSPredicate(format: "SELF MATCHES %@", REGEX_AMEX)
-        if predicateAmex.evaluateWithObject(cardNumber)
+        if predicateAmex.evaluate(with: cardNumber)
         {
-            return PaymentezCardType.Amex
+            return PaymentezCardType.amex
         }
         let predicateVisa = NSPredicate(format: "SELF MATCHES %@", REGEX_VISA)
-        if predicateVisa.evaluateWithObject(cardNumber)
+        if predicateVisa.evaluate(with: cardNumber)
         {
-            return PaymentezCardType.Visa
+            return PaymentezCardType.visa
         }
         let predicateMC = NSPredicate(format: "SELF MATCHES %@", REGEX_MASTERCARD)
-        if predicateMC.evaluateWithObject(cardNumber)
+        if predicateMC.evaluate(with: cardNumber)
         {
-            return PaymentezCardType.MasterCard
+            return PaymentezCardType.masterCard
         }
         let predicateDiners = NSPredicate(format: "SELF MATCHES %@", REGEX_DINERS)
-        if predicateDiners.evaluateWithObject(cardNumber)
+        if predicateDiners.evaluate(with: cardNumber)
         {
-            return PaymentezCardType.Diners
+            return PaymentezCardType.diners
         }
-        return PaymentezCardType.NotSupported
+        let predicateDiscover = NSPredicate(format: "SELF MATCHES %@", REGEX_DISCOVER)
+        if predicateDiscover.evaluate(with: cardNumber)
+        {
+            return PaymentezCardType.discover
+        }
+        let predicateJCB = NSPredicate(format: "SELF MATCHES %@", REGEX_JCB)
+        if predicateJCB.evaluate(with: cardNumber)
+        {
+            return PaymentezCardType.jcb
+        }
+        return PaymentezCardType.notSupported
         
         
     }
     
     
+    
 }
 
-@objc public class PaymentezTransaction:NSObject
+@objc open class PaymentezTransaction:NSObject
 {
-    public var amount:Double?
-    public var paymentDate: NSDate?
-    public var status:Int?
-    public var statusDetail:Int?
-    public var transactionId:String?
-    public var carrierData:[String:AnyObject]?
+    open var authorizationCode:NSNumber?
+    open var amount:Double?
+    open var paymentDate: Date?
+    open var status:String?
+    open var carrierCode:String?
+    open var message:String?
+    open var statusDetail:NSNumber?
+    open var transactionId:String?
+    open var carrierData:[String:Any]?
     
-    static func parseTransaction(data:AnyObject?) ->PaymentezTransaction
+    static func parseTransaction(_ data:Any?) ->PaymentezTransaction
     {
-        _ = data as! [String:AnyObject]
+        let data = data as! [String:Any]
         let trx = PaymentezTransaction()
-        trx.amount = data!["amount"] as? Double
-        trx.status = data!["status"] as? Int
-        trx.statusDetail = data!["status_detail"] as? Int
-        trx.transactionId = data!["transaction_id"] as? String
+        trx.amount = data["amount"] as? Double
+        trx.status = data["status"] as? String
+        trx.statusDetail = data["status_detail"] as? Int as NSNumber?
+        trx.transactionId = data["transaction_id"] as? String
+        trx.carrierData = data["carrier_data"] as? [String:Any]
         
-        trx.carrierData = data!["carrier_data"] as? [String:AnyObject]
-        
-        let dateFormatter = NSDateFormatter()
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
         
-        trx.paymentDate = dateFormatter.dateFromString(data!["payment_date"] as! String)
+        if let paymentdate = (data["payment_date"] as? String)
+        {
+            trx.paymentDate = dateFormatter.date(from: paymentdate)
+        }
+        
         return trx
         
+    }
+    static func parseTransactionV2(_ data:Any?) ->PaymentezTransaction
+    {
+        let data = data as! [String:Any]
+        let trx = PaymentezTransaction()
+        trx.amount = data["amount"] as? Double
+        trx.status = data["status"] as? String
+        trx.statusDetail = data["status_detail"] as? Int as NSNumber?
+        trx.transactionId = data["id"] as? String
+        trx.authorizationCode = data["authorization_code"] as? Int as NSNumber?
+        trx.carrierCode = data["carrier_code"] as? String
+        trx.message = data["message"] as? String
+        
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+        
+        if let paymentdate = (data["payment_date"] as? String)
+        {
+            trx.paymentDate = dateFormatter.date(from: paymentdate)
+        }
+        
+        return trx
+
     }
 }

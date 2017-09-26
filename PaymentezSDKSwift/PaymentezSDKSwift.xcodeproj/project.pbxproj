@@ -8,12 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		407B44521CE4E52800CC9C12 /* AddCustomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407B44511CE4E52800CC9C12 /* AddCustomViewController.swift */; };
-		407B44551CE4E57F00CC9C12 /* PaymentezSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 407B44541CE4E57F00CC9C12 /* PaymentezSDK.framework */; };
-		407B44581CE4E59100CC9C12 /* PaymentezSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 408C1C2A1CE238EE00B9A2F0 /* PaymentezSDK.framework */; };
-		407B44591CE4E59100CC9C12 /* PaymentezSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 408C1C2A1CE238EE00B9A2F0 /* PaymentezSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		407B445B1CE4F31E00CC9C12 /* VerifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407B445A1CE4F31E00CC9C12 /* VerifyViewController.swift */; };
 		408C1BA81CE1AA9600B9A2F0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408C1BA71CE1AA9600B9A2F0 /* AppDelegate.swift */; };
-		408C1BAA1CE1AA9600B9A2F0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408C1BA91CE1AA9600B9A2F0 /* ViewController.swift */; };
 		408C1BAD1CE1AA9600B9A2F0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 408C1BAB1CE1AA9600B9A2F0 /* Main.storyboard */; };
 		408C1BAF1CE1AA9600B9A2F0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 408C1BAE1CE1AA9600B9A2F0 /* Assets.xcassets */; };
 		408C1BB21CE1AA9600B9A2F0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 408C1BB01CE1AA9600B9A2F0 /* LaunchScreen.storyboard */; };
@@ -33,8 +28,11 @@
 		408C1BEA1CE1B1D200B9A2F0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 408C1BDC1CE1B1D200B9A2F0 /* QuartzCore.framework */; };
 		408C1BEB1CE1B1D200B9A2F0 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 408C1BDD1CE1B1D200B9A2F0 /* Security.framework */; };
 		408C1BEC1CE1B1D200B9A2F0 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 408C1BDE1CE1B1D200B9A2F0 /* SystemConfiguration.framework */; };
-		408C1BEF1CE1B30300B9A2F0 /* PaymentezSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 408C1BED1CE1B2A200B9A2F0 /* PaymentezSDK.framework */; };
-		408C1C2B1CE238EE00B9A2F0 /* PaymentezSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 408C1C2A1CE238EE00B9A2F0 /* PaymentezSDK.framework */; };
+		651D7C131F674DE500E58317 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651D7C121F674DE500E58317 /* UserModel.swift */; };
+		652830201F7AAF87008421EA /* PaymentezSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6528301F1F7AAF87008421EA /* PaymentezSDK.framework */; };
+		652830211F7AAF87008421EA /* PaymentezSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6528301F1F7AAF87008421EA /* PaymentezSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		65ADF22B1F631B7700E93CAB /* StoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65ADF22A1F631B7700E93CAB /* StoreViewController.swift */; };
+		65D9F0AB1F718D4700A22D3E /* MyBackendLib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D9F0AA1F718D4700A22D3E /* MyBackendLib.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,13 +46,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		408C1BF11CE1B30300B9A2F0 /* Embed Frameworks */ = {
+		6528301B1F7AAE70008421EA /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				407B44591CE4E59100CC9C12 /* PaymentezSDK.framework in Embed Frameworks */,
+				652830211F7AAF87008421EA /* PaymentezSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -63,11 +61,8 @@
 
 /* Begin PBXFileReference section */
 		407B44511CE4E52800CC9C12 /* AddCustomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCustomViewController.swift; sourceTree = "<group>"; };
-		407B44541CE4E57F00CC9C12 /* PaymentezSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PaymentezSDK.framework; path = /Users/guxsotelo/Documents/paymentez/pmtz_proys/paymentezsdk/PaymentezSDKSwift/simulator/PaymentezSDK.framework; sourceTree = "<absolute>"; };
-		407B445A1CE4F31E00CC9C12 /* VerifyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerifyViewController.swift; sourceTree = "<group>"; };
 		408C1BA41CE1AA9600B9A2F0 /* PaymentezSDKSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PaymentezSDKSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		408C1BA71CE1AA9600B9A2F0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		408C1BA91CE1AA9600B9A2F0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		408C1BAC1CE1AA9600B9A2F0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		408C1BAE1CE1AA9600B9A2F0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		408C1BB11CE1AA9600B9A2F0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -90,8 +85,13 @@
 		408C1BDC1CE1B1D200B9A2F0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		408C1BDD1CE1B1D200B9A2F0 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		408C1BDE1CE1B1D200B9A2F0 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		408C1BED1CE1B2A200B9A2F0 /* PaymentezSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PaymentezSDK.framework; path = /Users/guxsotelo/Documents/paymentez/pmtz_proys/paymentezsdk/PaymentezSDKSwift/PaymentezSDK.framework; sourceTree = "<absolute>"; };
-		408C1C2A1CE238EE00B9A2F0 /* PaymentezSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PaymentezSDK.framework; sourceTree = "<group>"; };
+		651D7C121F674DE500E58317 /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		6528300E1F7A2DEB008421EA /* InputMask.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = InputMask.framework; path = ../sdk/PaymentezSDK/Carthage/Build/iOS/InputMask.framework; sourceTree = "<group>"; };
+		6528301F1F7AAF87008421EA /* PaymentezSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PaymentezSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		655DA8171F74E82000099869 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
+		655DA8181F74E82000099869 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		65ADF22A1F631B7700E93CAB /* StoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreViewController.swift; sourceTree = "<group>"; };
+		65D9F0AA1F718D4700A22D3E /* MyBackendLib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyBackendLib.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,11 +100,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				408C1BDF1CE1B1D200B9A2F0 /* Accelerate.framework in Frameworks */,
-				408C1C2B1CE238EE00B9A2F0 /* PaymentezSDK.framework in Frameworks */,
-				408C1BEF1CE1B30300B9A2F0 /* PaymentezSDK.framework in Frameworks */,
+				652830201F7AAF87008421EA /* PaymentezSDK.framework in Frameworks */,
 				408C1BE01CE1B1D200B9A2F0 /* AudioToolbox.framework in Frameworks */,
 				408C1BE11CE1B1D200B9A2F0 /* AVFoundation.framework in Frameworks */,
-				407B44551CE4E57F00CC9C12 /* PaymentezSDK.framework in Frameworks */,
 				408C1BE21CE1B1D200B9A2F0 /* AVKit.framework in Frameworks */,
 				408C1BE31CE1B1D200B9A2F0 /* CoreGraphics.framework in Frameworks */,
 				408C1BE41CE1B1D200B9A2F0 /* CoreImage.framework in Frameworks */,
@@ -112,7 +110,6 @@
 				408C1BE61CE1B1D200B9A2F0 /* CoreMedia.framework in Frameworks */,
 				408C1BE71CE1B1D200B9A2F0 /* CoreVideo.framework in Frameworks */,
 				408C1BE81CE1B1D200B9A2F0 /* MobileCoreServices.framework in Frameworks */,
-				407B44581CE4E59100CC9C12 /* PaymentezSDK.framework in Frameworks */,
 				408C1BE91CE1B1D200B9A2F0 /* OpenGLES.framework in Frameworks */,
 				408C1BEA1CE1B1D200B9A2F0 /* QuartzCore.framework in Frameworks */,
 				408C1BEB1CE1B1D200B9A2F0 /* Security.framework in Frameworks */,
@@ -133,7 +130,7 @@
 		408C1B9B1CE1AA9600B9A2F0 = {
 			isa = PBXGroup;
 			children = (
-				408C1C2A1CE238EE00B9A2F0 /* PaymentezSDK.framework */,
+				6528301F1F7AAF87008421EA /* PaymentezSDK.framework */,
 				408C1BD11CE1B1D200B9A2F0 /* Accelerate.framework */,
 				408C1BD21CE1B1D200B9A2F0 /* AudioToolbox.framework */,
 				408C1BD31CE1B1D200B9A2F0 /* AVFoundation.framework */,
@@ -151,6 +148,7 @@
 				408C1BA61CE1AA9600B9A2F0 /* PaymentezSDKSwift */,
 				408C1BBB1CE1AA9600B9A2F0 /* PaymentezSDKSwiftUITests */,
 				408C1BA51CE1AA9600B9A2F0 /* Products */,
+				6528300D1F7A2DEB008421EA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -168,13 +166,14 @@
 			children = (
 				408C1BCB1CE1AD1500B9A2F0 /* ListCardsTableViewController.swift */,
 				408C1BA71CE1AA9600B9A2F0 /* AppDelegate.swift */,
-				408C1BA91CE1AA9600B9A2F0 /* ViewController.swift */,
 				408C1BAB1CE1AA9600B9A2F0 /* Main.storyboard */,
 				408C1BAE1CE1AA9600B9A2F0 /* Assets.xcassets */,
 				408C1BB01CE1AA9600B9A2F0 /* LaunchScreen.storyboard */,
 				408C1BB31CE1AA9600B9A2F0 /* Info.plist */,
 				407B44511CE4E52800CC9C12 /* AddCustomViewController.swift */,
-				407B445A1CE4F31E00CC9C12 /* VerifyViewController.swift */,
+				65ADF22A1F631B7700E93CAB /* StoreViewController.swift */,
+				651D7C121F674DE500E58317 /* UserModel.swift */,
+				65D9F0AA1F718D4700A22D3E /* MyBackendLib.swift */,
 			);
 			path = PaymentezSDKSwift;
 			sourceTree = "<group>";
@@ -188,6 +187,14 @@
 			path = PaymentezSDKSwiftUITests;
 			sourceTree = "<group>";
 		};
+		6528300D1F7A2DEB008421EA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6528300E1F7A2DEB008421EA /* InputMask.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -198,7 +205,7 @@
 				408C1BA01CE1AA9600B9A2F0 /* Sources */,
 				408C1BA11CE1AA9600B9A2F0 /* Frameworks */,
 				408C1BA21CE1AA9600B9A2F0 /* Resources */,
-				408C1BF11CE1B30300B9A2F0 /* Embed Frameworks */,
+				6528301B1F7AAE70008421EA /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -234,14 +241,17 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = Paymentez;
 				TargetAttributes = {
 					408C1BA31CE1AA9600B9A2F0 = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = QBSGESLSWZ;
+						LastSwiftMigration = 0830;
 					};
 					408C1BB71CE1AA9600B9A2F0 = {
 						CreatedOnToolsVersion = 7.3;
+						LastSwiftMigration = 0830;
 						TestTargetID = 408C1BA31CE1AA9600B9A2F0;
 					};
 				};
@@ -290,10 +300,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				408C1BAA1CE1AA9600B9A2F0 /* ViewController.swift in Sources */,
+				651D7C131F674DE500E58317 /* UserModel.swift in Sources */,
 				408C1BCC1CE1AD1500B9A2F0 /* ListCardsTableViewController.swift in Sources */,
+				65ADF22B1F631B7700E93CAB /* StoreViewController.swift in Sources */,
 				408C1BA81CE1AA9600B9A2F0 /* AppDelegate.swift in Sources */,
-				407B445B1CE4F31E00CC9C12 /* VerifyViewController.swift in Sources */,
+				65D9F0AB1F718D4700A22D3E /* MyBackendLib.swift in Sources */,
 				407B44521CE4E52800CC9C12 /* AddCustomViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -321,6 +332,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				408C1BAC1CE1AA9600B9A2F0 /* Base */,
+				655DA8171F74E82000099869 /* es */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -329,6 +341,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				408C1BB11CE1AA9600B9A2F0 /* Base */,
+				655DA8181F74E82000099869 /* es */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -340,18 +353,27 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -385,18 +407,27 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -415,6 +446,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -423,17 +455,19 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = QBSGESLSWZ;
+				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/simulator",
 				);
 				INFOPLIST_FILE = PaymentezSDKSwift/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.paymentez.PaymentezSDKSwift;
+				PRODUCT_BUNDLE_IDENTIFIER = com.paymentez.PaymentezSampleSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -441,17 +475,19 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = QBSGESLSWZ;
+				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/simulator",
 				);
 				INFOPLIST_FILE = PaymentezSDKSwift/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.paymentez.PaymentezSDKSwift;
+				PRODUCT_BUNDLE_IDENTIFIER = com.paymentez.PaymentezSampleSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -462,6 +498,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.paymentez.PaymentezSDKSwiftUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = PaymentezSDKSwift;
 			};
 			name = Debug;
@@ -473,6 +510,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.paymentez.PaymentezSDKSwiftUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = PaymentezSDKSwift;
 			};
 			name = Release;

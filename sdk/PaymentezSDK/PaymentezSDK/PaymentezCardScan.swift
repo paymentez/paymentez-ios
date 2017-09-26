@@ -14,7 +14,7 @@ class PaymentezCardScan:NSObject, CardIOPaymentViewControllerDelegate
     //MARK - CardIO
     var viewController:UIViewController?
     
-    var callback:((infoCard:CardIOCreditCardInfo?)->Void)?
+    var callback:((_ infoCard:CardIOCreditCardInfo?)->Void)?
     var scanVc:CardIOPaymentViewController?
     
     override init()
@@ -24,23 +24,23 @@ class PaymentezCardScan:NSObject, CardIOPaymentViewControllerDelegate
         self.scanVc?.hideCardIOLogo = true
     }
     
-    func showScan(vc:UIViewController, callback:(infoCard:CardIOCreditCardInfo?)->Void)
+    func showScan(_ vc:UIViewController, callback:@escaping (_ infoCard:CardIOCreditCardInfo?)->Void)
     
     {
         self.callback = callback
-        vc.presentViewController(self.scanVc!, animated: true, completion: nil)
+        vc.present(self.scanVc!, animated: true, completion: nil)
         
     }
     
     
-    func userDidCancelPaymentViewController(paymentViewController: CardIOPaymentViewController!) {
-        self.scanVc?.dismissViewControllerAnimated(true, completion: nil)
-        callback!(infoCard: nil)
+    func userDidCancel(_ paymentViewController: CardIOPaymentViewController!) {
+        self.scanVc?.dismiss(animated: true, completion: nil)
+        callback!(nil)
         
     }
-    func userDidProvideCreditCardInfo(cardInfo: CardIOCreditCardInfo!, inPaymentViewController paymentViewController: CardIOPaymentViewController!) {
-        self.scanVc?.dismissViewControllerAnimated(true, completion: nil)
-        callback!(infoCard:cardInfo)
+    func userDidProvide(_ cardInfo: CardIOCreditCardInfo!, in paymentViewController: CardIOPaymentViewController!) {
+        self.scanVc?.dismiss(animated: true, completion: nil)
+        callback!(cardInfo)
         
     }
 }

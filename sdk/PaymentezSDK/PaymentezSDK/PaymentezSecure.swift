@@ -9,45 +9,62 @@
 import Foundation
 import UIKit
 
-class PaymentezSecure: NSObject,DeviceCollectorSDKDelegate
+class PaymentezSecure: NSObject
 
 {
     let targetUrlDev = "https://tst.kaptcha.com/logo.htm"
     let targetUrlProd = "https://ssl.kaptcha.com/logo.htm"
-    let merchantId = "500005"
-    let deviceCollector:DeviceCollectorSDK
+    var merchantId:String  = "500005"  {
+        didSet
+        {
+            deviceCollector.merchantID = Int(self.merchantId)!
+        }
+    }
+    let deviceCollector:KDataCollector = KDataCollector.shared()
     var testMode = true
-    var callback:((err:NSError?) -> Void)?
+    var callback:((_ err:NSError?) -> Void)?
     
     init(testMode:Bool)
     {
+        deviceCollector.locationCollectorConfig = KLocationCollectorConfig.requestPermission
+        
+        // KDataCollector.shared().environment = KEnvironment.production
         if(testMode)
         {
-            self.deviceCollector = DeviceCollectorSDK(debugOn: true)
-            
-            self.deviceCollector.setCollectorUrl(targetUrlDev)
+            deviceCollector.environment = KEnvironment.test
+            //self.deviceCollector.setCollectorUrl(targetUrlDev)
         }
         else{
-            self.deviceCollector = DeviceCollectorSDK(debugOn: false)
+            deviceCollector.environment = KEnvironment.production
             
-            self.deviceCollector.setCollectorUrl(targetUrlProd)
+            //self.deviceCollector.setCollectorUrl(targetUrlProd)
         }
         self.callback = nil
         super.init()
-        self.deviceCollector.setDelegate(self)
-        self.deviceCollector.setMerchantId(self.merchantId)
         
+    }
+    
+    open func getSecureSessionId() -> String!
+    {
+        let sessioniD = UUID().uuidString.replacingOccurrences(of: "-", with: "")
+        
+        collect(sessioniD) { (error) in
+            
+        }
+        return sessioniD
     }
     
     func generateSessionId() -> String!
     {
-        return NSUUID().UUIDString.stringByReplacingOccurrencesOfString("-", withString: "")
+        return UUID().uuidString.replacingOccurrences(of: "-", with: "")
     }
     
-    func collect(sessionId:String, callback:(err:NSError?) -> Void)
+    func collect(_ sessionId:String, callback:@escaping (_ err:NSError?) -> Void)
     {
-        self.callback = callback
-        self.deviceCollector.collect(sessionId)
+        deviceCollector.collect(forSession: sessionId) { (sessionID, success, error) in
+            callback(error as NSError?)
+            // Add handler code here if desired. The completion block is optional.
+        }
     }
     
     func onCollectorStart() {
@@ -55,26 +72,26 @@ class PaymentezSecure: NSObject,DeviceCollectorSDKDelegate
     }
     
     func onCollectorSuccess() {
-        self.callback!(err:nil)
+        self.callback!(nil)
     }
     func onCollectorError(errorCode: Int32, withError error: NSError!) {
         
-        self.callback!(err:error)
+        self.callback!(error)
         
     }
-    override func isEqual(anObject: AnyObject?) -> Bool {
+    override func isEqual(_ anObject: Any?) -> Bool {
         return super.isEqual(anObject)
     }
     
-    static func getIpAddress(callback:(ipAddress:String!)->Void)
+    static func getIpAddress(_ callback:@escaping (_ ipAddress:String?)->Void)
     {
         var ip = "127.0.0.1"
         
         let completeUrl = "https://ccapi-stg.paymentez.com/api/cc/ip"
-        let url:NSURL? = NSURL(string: completeUrl)
-        let session = NSURLSession.sharedSession()
+        let url:URL? = URL(string: completeUrl)
+        let session = URLSession.shared
         
-        let request = NSMutableURLRequest(URL:url!)
+        var request = URLRequest(url:url!)
         /*do
          {
          
@@ -85,16 +102,17 @@ class PaymentezSecure: NSObject,DeviceCollectorSDKDelegate
          
          }
          */
-        request.HTTPMethod = "GET"
+        request.httpMethod = "GET"
         
-        let task = session.dataTaskWithRequest(request) { (data:NSData?, resp:NSURLResponse?, err:NSError?) -> Void in
+        
+        let task = session.dataTask(with: request){ data, resp, err in
             
             if err == nil
             {
-                ip = String(data: data!, encoding: NSUTF8StringEncoding)!
+                ip = String(data: data!, encoding: String.Encoding.utf8)!
                 
             }
-            callback(ipAddress: ip)
+            callback(ip)
         }
         task.resume()
     }

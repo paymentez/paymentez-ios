@@ -9,20 +9,18 @@
 import UIKit
 import PaymentezSDK
 
+protocol CardSelectedDelegate
+{
+    func cardSelected(card:PaymentezCard?)
+}
+
 class ListCardsTableViewController: UITableViewController {
 
     var cardList = [PaymentezCard]()
-    var cardSelected = ""
-    override func viewDidLoad() {
-        super.viewDidLoad()
-                // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-    }
+    var cardSelectedDelegate:CardSelectedDelegate?
     
-    override func viewWillAppear(animated: Bool) {
+
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.refreshTable()
 
@@ -30,16 +28,28 @@ class ListCardsTableViewController: UITableViewController {
     func refreshTable()
     {
         self.cardList.removeAll()
-        PaymentezSDKClient.listCards("gus") { (error, cardList) in
+        
+        MyBackendLib.listCard(uid: UserModel.uid) { (cardList) in
+            self.cardList = cardList!
+            DispatchQueue.main.async {
+               self.tableView.reloadData();
+            }
+            
+        }
+        
+        
+        
+        /*PaymentezSDKClient.listCards(UserModel.uid) { (error, cardList) in
             
             if error == nil
             {
                 self.cardList = cardList!
-                self.tableView.reloadData()
+                
+                
             }
             
             
-        }
+        }*/
     }
 
     override func didReceiveMemoryWarning() {
@@ -49,182 +59,151 @@ class ListCardsTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return cardList.count
     }
 
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("cardCell", forIndexPath: indexPath)
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cardCell", for: indexPath)
         
-        let card = self.cardList[indexPath.row]
-        cell.textLabel!.text = card.termination!
-        cell.detailTextLabel!.text = card.cardReference!
+        let card = self.cardList[(indexPath as NSIndexPath).row]
+        cell.textLabel!.text = "****" + card.termination!
+        cell.detailTextLabel!.text = "\(card.expiryMonth!)/\(card.expiryYear!)"
+        cell.imageView?.image = card.getCardTypeAsset()
         // Configure the cell...
 
         return cell
     }
  
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let card  = self.cardList[indexPath.row]
-        self.cardSelected = card.cardReference!
-        self.performSegueWithIdentifier("debitSegue", sender: self)
+        let card  = self.cardList[(indexPath as NSIndexPath).row]
+        self.cardSelectedDelegate?.cardSelected(card: card)
+        self.navigationController?.popViewController(animated: true)
+        
         
     }
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
     
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
-        if segue.identifier == "debitSegue"
-        
-        {
-            let vc = segue.destinationViewController as! ViewController
-            vc.cardReference = self.cardSelected
-        }
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    @IBAction func addAction(sender:AnyObject?)
-    {
-       
-        PaymentezSDKClient.showAddViewControllerForUser("gus", email: "gsotelo@paymentez.com", presenter: self) { (error, closed, added) in
-            
-            if closed // user closed
-            {
-                self.refreshTable()
-            }
-            else if added // was added
-            {
-                print("ADDED SUCCESSFUL")
-                dispatch_async(dispatch_get_main_queue(), {
-                    let alertC = UIAlertController(title: "Success", message: "card added", preferredStyle: UIAlertControllerStyle.Alert)
-                    
-                    let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
-                    alertC.addAction(defaultAction)
-                    self.presentViewController(alertC, animated: true
-                        , completion: {
-                            self.refreshTable()
-                    })
-                })
-                
-                
-                
-            }
-            else if error != nil //there was an error
-            {
-                print(error?.code)
-                print(error?.description)
-                print(error?.details)
-                print(error?.getVerifyTrx())
-                if error!.shouldVerify() // if the card should be verified
-                {
-                    print(error?.getVerifyTrx())
-                    dispatch_async(dispatch_get_main_queue(), {
-                        let alertC = UIAlertController(title: "error \(error!.code)", message: "Should verify: \(error!.getVerifyTrx())", preferredStyle: UIAlertControllerStyle.Alert)
-                        
-                        let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
-                        alertC.addAction(defaultAction)
-                        self.presentViewController(alertC, animated: true
-                            , completion: {
-                                
-                        })
-                    })
-                    self.performSegueWithIdentifier("verifySegue", sender:self)
-                }
-                else
-                {
-                    dispatch_async(dispatch_get_main_queue(), {
-                        let alertC = UIAlertController(title: "error \(error!.code)", message: "\(error!.details)", preferredStyle: UIAlertControllerStyle.Alert)
-                        
-                        let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
-                        alertC.addAction(defaultAction)
-                        self.presentViewController(alertC, animated: true
-                            , completion: {
-                                
-                        })
-                    })
-                }
-            }
-            
-        }
-    }
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
-    
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if (editingStyle == UITableViewCellEditingStyle.Delete) {
-            let card = self.cardList[indexPath.row]
-            PaymentezSDKClient.deleteCard("gus", cardReference: card.cardReference!, callback: { (error, wasDeleted) in
-                if wasDeleted
-                {
-                    //self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-                    self.refreshTable()
-                }
-                else
-                {
-                    if error != nil
-                    {
-                        dispatch_async(dispatch_get_main_queue(), {
-                            let alertC = UIAlertController(title: "error \(error!.code)", message: "\(error!.description)", preferredStyle: UIAlertControllerStyle.Alert)
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+        let card = self.cardList[(indexPath as NSIndexPath).row]
+        var actions = [UITableViewRowAction]()
+        if card.status == "review"
+        {
+            let editAction = UITableViewRowAction(style: .normal, title: "Verify") { (rowAction, indexPath) in
+                
+                
+                let alertController = UIAlertController(title: "Verificar ", message: "Especifica el valor: Monto o valor", preferredStyle: .alert)
+                alertController.addTextField(configurationHandler: {(_ textField: UITextField) -> Void in
+                    textField.placeholder = "Valor"
+                })
+                let verifyActionAmount = UIAlertAction(title: "Verificar por Monto", style: .default, handler: { (alertaction) in
+                    MyBackendLib.verifyTrx(uid: UserModel.uid, transactionId: card.transactionId!, type: 0, value: (alertController.textFields?[0].text!)!, callback: { (error, verified) in
+                        
+                        if verified
+                        {
+                            let alertC = UIAlertController(title: "Vefificada", message: "trx:"+(card.transactionId!), preferredStyle: UIAlertControllerStyle.alert)
                             
-                            let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                            let defaultAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: { (action) in
+                            })
                             alertC.addAction(defaultAction)
-                            self.presentViewController(alertC, animated: true
+                            self.present(alertC, animated: true
                                 , completion: {
                                     
                             })
-                        })
-                    }
+                        }
+                        else
+                        {
+                            let alertC = UIAlertController(title: "Error en Verificación", message: error?.description, preferredStyle: UIAlertControllerStyle.alert)
+                            
+                            let defaultAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: { (action) in
+                            })
+                            alertC.addAction(defaultAction)
+                            self.present(alertC, animated: true
+                                , completion: {
+                                    
+                            })
+                        }
+                        
+                    })
+                })
+                let verifyActionAmount2 = UIAlertAction(title: "Verificar por Código", style: .default, handler: { (alertaction) in
+                    MyBackendLib.verifyTrx(uid: UserModel.uid, transactionId: card.transactionId!, type: 1, value: (alertController.textFields?[0].text!)!, callback: { (error, verified) in
+                        
+                        if verified
+                        {
+                            let alertC = UIAlertController(title: "Vefificada", message: "trx:"+(card.transactionId!), preferredStyle: UIAlertControllerStyle.alert)
+                            
+                            let defaultAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: { (action) in
+                            })
+                            alertC.addAction(defaultAction)
+                            self.present(alertC, animated: true
+                                , completion: {
+                                    
+                            })
+                        }
+                        else
+                        {
+                            let alertC = UIAlertController(title: "Error en Verificación", message: error?.description, preferredStyle: UIAlertControllerStyle.alert)
+                            
+                            let defaultAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: { (action) in
+                            })
+                            alertC.addAction(defaultAction)
+                            self.present(alertC, animated: true
+                                , completion: {
+                                    
+                            })
+                        }
+                        
+                    })
+                })
+                let verifyClose = UIAlertAction(title: "Cancelar", style: .cancel, handler: { (alertaction) in
                     
+                })
+                alertController.addAction(verifyActionAmount)
+                alertController.addAction(verifyActionAmount2)
+                alertController.addAction(verifyClose)
+                self.present(alertController, animated: true
+                    , completion: {
+                        
+                })
+                
+                //DEV BACKEND WITH VERIFY WITH AMOUNT
+            }
+            editAction.backgroundColor = .blue
+            actions.append(editAction)
+        }
+        let deleteAction = UITableViewRowAction(style: .normal, title: "Delete") { (rowAction, indexPath) in
+            let card = self.cardList[(indexPath as NSIndexPath).row]
+            
+            MyBackendLib.deleteCard(uid: UserModel.uid, cardToken: card.token!, callback: { (deleted) in
+                if(deleted)
+                {
+                    self.refreshTable()
                 }
             })
-            // handle delete (by removing the data from your array and updating the tableview)
-        }
-    }
 
+        }
+        deleteAction.backgroundColor = .red
+        actions.append(deleteAction)
+        return actions
+    }
+    
+   
+    
+    
 }
+
