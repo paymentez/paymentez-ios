@@ -1,0 +1,13 @@
+language: swift
+osx_image: xcode9
+xcode_project: sdk/PaymentezSDK/PaymentezSDK.xcodeproj
+xcode_scheme: PaymentezSDK
+script: xcodebuild -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone
+  6,OS=9.3' -project sdk/PaymentezSDK/PaymentezSDK.xcodeproj -scheme PaymentezSDK
+  build test
+deploy:
+  provider: releases
+  api_key: 526d944e7caa6fc03c6c19481f7e1b01011d212a
+  file: "$FRAMEWORK_NAME.framework.zip"
+  on:
+    repo: guxx/paymentez-ios
