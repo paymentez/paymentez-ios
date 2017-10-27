@@ -74,6 +74,7 @@ Setting up your app inside AppDelegate->didFinishLaunchingWithOptions. You shoul
 In order to create a widget you should create a PaymentezAddNativeController from the PaymentezSDKClient. Then add it to the UIView that will be the container of the add form. The min height should be 160 px
 
 The widget can scan with your phones camera the credit card data using card.io.
+![Example](https://developers.paymentez.com/wp-content/uploads/2017/10/ios-example.png)
 
 ```swift
         let paymentezAddVC = PaymentezSDKClient.createAddWidget()
@@ -112,7 +113,7 @@ PaymentezSDKClient.scanCard(self) { (closed, number, expiry, cvv) in
             })
 ```
 
-### Add Card (Just PCI Integrations)
+### Add Card (Only PCI Integrations)
 
 For custom form integrations 
 Fields required
