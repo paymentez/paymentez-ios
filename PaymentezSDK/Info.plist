@@ -20,5 +20,10 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>CFBundleSupportedPlatforms</key>
+	<array>
+		<string>iPhoneOS</string>
+		<string>iPhoneSimulator</string>
+	</array>
 </dict>
 </plist>
