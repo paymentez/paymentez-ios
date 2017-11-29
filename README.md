@@ -57,6 +57,14 @@ Add this to the Cartfile:
 
 This will add also InputMask framework so you can added to your project
 
+**ObjC**
+
+Set ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES
+
+In Build Phases -> Embed Frameworks Uncheck "Copy Only When Installing" 
+
+
+
 ----------
 **Usage**
 
@@ -85,6 +93,17 @@ The widget can scan with your phones camera the credit card data using card.io.
         paymentezAddVC.didMove(toParentViewController: self)
 ```
 
+Objc
+
+```objc
+	self.paymentezAddVC = [PaymentezSDKClient createAddWidget];
+    [self addChildViewController:self.paymentezAddVC];
+    self.paymentezAddVC.view.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.addView.frame.size.height);
+    self.addView.translatesAutoresizingMaskIntoConstraints = YES;
+    [self.addView addSubview:self.paymentezAddVC.view];
+    [self.paymentezAddVC didMoveToParentViewController:self];
+
+```
 Retrive the valid credit card from the PaymentezAddNativeController (Widget):
 
 ```swift
@@ -102,6 +121,27 @@ Retrive the valid credit card from the PaymentezAddNativeController (Widget):
         	})
         }
 ```
+
+Objc
+```objc
+	PaymentezCard *validCard = [self.paymentezAddVC getValidCard];
+    if (validCard != nil) // Check if it is avalid card
+    {
+        
+        [PaymentezSDKClient add:validCard uid:USERMODEL_UID email:USERMODEL_EMAIL callback:^(PaymentezSDKError *error, PaymentezCard *cardAdded) {
+            [sender setEnabled:YES];
+            if(cardAdded != nil) // handle the card status
+            {
+            	
+            }
+            else  //handle the error
+            {
+            
+            }
+        }];
+    }
+```
+
 
 ### Scan Card
 If you want to do the scan yourself.
@@ -128,7 +168,7 @@ Fields required
  
  if card != nil  // A valid card was created
  {
- 	PaymentezSDKClient.createToken(card, uid: "69123", email: "gsotelo@paymentez.com", callback: { (error, cardAdded) in
+ 	PaymentezSDKClient.add(card, uid: "69123", email: "gsotelo@paymentez.com", callback: { (error, cardAdded) in
             
             if cardAdded != nil 
             {
@@ -143,6 +183,28 @@ Fields required
  }
 ```
 
+ObjC
+
+```objc
+	PaymentezCard *validCard = [PaymentezCard createCardWithCardHolder:@"Gustavo Sotelo" cardNumber:@"4111111111111111" expiryMonth:10 expiryYear:2020 cvc:@"123"];
+    if (validCard != nil) // Check if it is avalid card
+    {
+        
+        [PaymentezSDKClient add:validCard uid:USERMODEL_UID email:USERMODEL_EMAIL callback:^(PaymentezSDKError *error, PaymentezCard *cardAdded) {
+            [sender setEnabled:YES];
+            if(cardAdded != nil) // handle the card status
+            {
+            	
+            }
+            else  //handle the error
+            {
+            
+            }
+        }];
+    }
+
+```
+
 
 ### Secure Session Id
 
@@ -150,6 +212,11 @@ Debit actions should be implemented in your own backend. For security reasons we
 
 ```swift
         let sessionId = PaymentezSDKClient.getSecureSessionId()
+```
+Objc
+
+```objc
+	NSString *sessionId = [PaymentezSDKClient getSecureSessionId];
 ```
 
 ### Utils
