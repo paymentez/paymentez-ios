@@ -73,7 +73,7 @@
                         let responseD = responseData as! [String:Any]
                         let transaction = responseD["transaction"] as! [String:Any]
                         let trx = PaymentezTransaction()
-                        trx.amount = transaction["amount"] as? Double
+                        trx.amount = transaction["amount"] as? NSNumber
                         trx.status = transaction["status"] as? String
                         trx.statusDetail = transaction["status_detail"] as? Int as NSNumber?
                         trx.transactionId = transaction["id"] as? String

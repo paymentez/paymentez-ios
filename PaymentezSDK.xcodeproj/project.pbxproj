@@ -64,7 +64,23 @@
 		65AF51CA1F5DDECC00E7B4CB /* SkyFloatingLabelTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AF51C71F5DDECC00E7B4CB /* SkyFloatingLabelTextField.swift */; };
 		65AF51CB1F5DDECC00E7B4CB /* SkyFloatingLabelTextFieldWithIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AF51C81F5DDECC00E7B4CB /* SkyFloatingLabelTextFieldWithIcon.swift */; };
 		65AF51CC1F5DDECC00E7B4CB /* UITextField+fixCaretPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AF51C91F5DDECC00E7B4CB /* UITextField+fixCaretPosition.swift */; };
-		65C3405F1F7A243A00B76EBF /* InputMask.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65C3405E1F7A243900B76EBF /* InputMask.framework */; };
+		65DA34EB1FCF775C005FA69C /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DA34E61FCF775C005FA69C /* String.swift */; };
+		65DA34EC1FCF775C005FA69C /* Compiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DA34E71FCF775C005FA69C /* Compiler.swift */; };
+		65DA34ED1FCF775C005FA69C /* NSCharacterSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DA34E81FCF775C005FA69C /* NSCharacterSet.swift */; };
+		65DA34EE1FCF775C005FA69C /* CaretStringIterator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DA34E91FCF775C005FA69C /* CaretStringIterator.swift */; };
+		65DA34EF1FCF775C005FA69C /* FormatSanitizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DA34EA1FCF775C005FA69C /* FormatSanitizer.swift */; };
+		65DA34FC1FCF777A005FA69C /* FixedState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DA34F01FCF7779005FA69C /* FixedState.swift */; };
+		65DA34FD1FCF777A005FA69C /* InterfaceBuilderSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DA34F11FCF7779005FA69C /* InterfaceBuilderSupport.swift */; };
+		65DA34FE1FCF777A005FA69C /* MaskedTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DA34F21FCF7779005FA69C /* MaskedTextFieldDelegate.swift */; };
+		65DA34FF1FCF777A005FA69C /* CaretString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DA34F31FCF7779005FA69C /* CaretString.swift */; };
+		65DA35001FCF777A005FA69C /* FreeState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DA34F41FCF7779005FA69C /* FreeState.swift */; };
+		65DA35011FCF777A005FA69C /* EOLState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DA34F51FCF7779005FA69C /* EOLState.swift */; };
+		65DA35021FCF777A005FA69C /* Mask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DA34F61FCF7779005FA69C /* Mask.swift */; };
+		65DA35031FCF777A005FA69C /* PolyMaskTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DA34F71FCF7779005FA69C /* PolyMaskTextFieldDelegate.swift */; };
+		65DA35041FCF777A005FA69C /* Next.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DA34F81FCF777A005FA69C /* Next.swift */; };
+		65DA35051FCF777A005FA69C /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DA34F91FCF777A005FA69C /* State.swift */; };
+		65DA35061FCF777A005FA69C /* ValueState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DA34FA1FCF777A005FA69C /* ValueState.swift */; };
+		65DA35071FCF777A005FA69C /* OptionalValueState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DA34FB1FCF777A005FA69C /* OptionalValueState.swift */; };
 		65DDE2A41F72F66A005C0FF9 /* KDataCollector.h in Headers */ = {isa = PBXBuildFile; fileRef = 65DDE2A21F72F66A005C0FF9 /* KDataCollector.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		65DDE2A51F72F66A005C0FF9 /* libKountDataCollector.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65DDE2A31F72F66A005C0FF9 /* libKountDataCollector.a */; };
 		65EABEF41F6B8C370062DD31 /* PaymentezSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 409159071CE1A09100FE316B /* PaymentezSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -146,7 +162,23 @@
 		65AF51C71F5DDECC00E7B4CB /* SkyFloatingLabelTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkyFloatingLabelTextField.swift; sourceTree = "<group>"; };
 		65AF51C81F5DDECC00E7B4CB /* SkyFloatingLabelTextFieldWithIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkyFloatingLabelTextFieldWithIcon.swift; sourceTree = "<group>"; };
 		65AF51C91F5DDECC00E7B4CB /* UITextField+fixCaretPosition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+fixCaretPosition.swift"; sourceTree = "<group>"; };
-		65C3405E1F7A243900B76EBF /* InputMask.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = InputMask.framework; path = Carthage/Build/iOS/InputMask.framework; sourceTree = "<group>"; };
+		65DA34E61FCF775C005FA69C /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = String.swift; path = lib/InputMask/Helper/String.swift; sourceTree = "<group>"; };
+		65DA34E71FCF775C005FA69C /* Compiler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Compiler.swift; path = lib/InputMask/Helper/Compiler.swift; sourceTree = "<group>"; };
+		65DA34E81FCF775C005FA69C /* NSCharacterSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NSCharacterSet.swift; path = lib/InputMask/Helper/NSCharacterSet.swift; sourceTree = "<group>"; };
+		65DA34E91FCF775C005FA69C /* CaretStringIterator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CaretStringIterator.swift; path = lib/InputMask/Helper/CaretStringIterator.swift; sourceTree = "<group>"; };
+		65DA34EA1FCF775C005FA69C /* FormatSanitizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormatSanitizer.swift; path = lib/InputMask/Helper/FormatSanitizer.swift; sourceTree = "<group>"; };
+		65DA34F01FCF7779005FA69C /* FixedState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FixedState.swift; path = lib/InputMask/Model/State/FixedState.swift; sourceTree = "<group>"; };
+		65DA34F11FCF7779005FA69C /* InterfaceBuilderSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InterfaceBuilderSupport.swift; path = lib/InputMask/View/InterfaceBuilderSupport.swift; sourceTree = "<group>"; };
+		65DA34F21FCF7779005FA69C /* MaskedTextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MaskedTextFieldDelegate.swift; path = lib/InputMask/View/MaskedTextFieldDelegate.swift; sourceTree = "<group>"; };
+		65DA34F31FCF7779005FA69C /* CaretString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CaretString.swift; path = lib/InputMask/Model/CaretString.swift; sourceTree = "<group>"; };
+		65DA34F41FCF7779005FA69C /* FreeState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FreeState.swift; path = lib/InputMask/Model/State/FreeState.swift; sourceTree = "<group>"; };
+		65DA34F51FCF7779005FA69C /* EOLState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EOLState.swift; path = lib/InputMask/Model/State/EOLState.swift; sourceTree = "<group>"; };
+		65DA34F61FCF7779005FA69C /* Mask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Mask.swift; path = lib/InputMask/Mask.swift; sourceTree = "<group>"; };
+		65DA34F71FCF7779005FA69C /* PolyMaskTextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PolyMaskTextFieldDelegate.swift; path = lib/InputMask/View/PolyMaskTextFieldDelegate.swift; sourceTree = "<group>"; };
+		65DA34F81FCF777A005FA69C /* Next.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Next.swift; path = lib/InputMask/Model/Next.swift; sourceTree = "<group>"; };
+		65DA34F91FCF777A005FA69C /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = State.swift; path = lib/InputMask/Model/State.swift; sourceTree = "<group>"; };
+		65DA34FA1FCF777A005FA69C /* ValueState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ValueState.swift; path = lib/InputMask/Model/State/ValueState.swift; sourceTree = "<group>"; };
+		65DA34FB1FCF777A005FA69C /* OptionalValueState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OptionalValueState.swift; path = lib/InputMask/Model/State/OptionalValueState.swift; sourceTree = "<group>"; };
 		65DDE2A21F72F66A005C0FF9 /* KDataCollector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDataCollector.h; sourceTree = "<group>"; };
 		65DDE2A31F72F66A005C0FF9 /* libKountDataCollector.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libKountDataCollector.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -167,7 +199,6 @@
 				4091593C1CE1A6A300FE316B /* AudioToolbox.framework in Frameworks */,
 				4091593E1CE1A6A300FE316B /* AVFoundation.framework in Frameworks */,
 				409159381CE1A59100FE316B /* CoreLocation.framework in Frameworks */,
-				65C3405F1F7A243A00B76EBF /* InputMask.framework in Frameworks */,
 				409159361CE1A58900FE316B /* SystemConfiguration.framework in Frameworks */,
 				409159341CE1A58000FE316B /* UIKit.framework in Frameworks */,
 				4091592D1CE1A09100FE316B /* libopencv_core.a in Frameworks */,
@@ -215,6 +246,7 @@
 		409158FA1CE1A09000FE316B /* PaymentezSDK */ = {
 			isa = PBXGroup;
 			children = (
+				65DA34E51FCF7748005FA69C /* InputMask */,
 				65AF51CF1F5F246200E7B4CB /* lang */,
 				65AF51C61F5DDEB800E7B4CB /* FloatTextField */,
 				652927971F58AFEE004A7D4C /* Asset */,
@@ -276,7 +308,6 @@
 		6529279F1F58D0A9004A7D4C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				65C3405E1F7A243900B76EBF /* InputMask.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -298,6 +329,30 @@
 				650EB6D21F5F3E510041EB81 /* Extension.swift */,
 			);
 			name = lang;
+			sourceTree = "<group>";
+		};
+		65DA34E51FCF7748005FA69C /* InputMask */ = {
+			isa = PBXGroup;
+			children = (
+				65DA34F31FCF7779005FA69C /* CaretString.swift */,
+				65DA34F51FCF7779005FA69C /* EOLState.swift */,
+				65DA34F01FCF7779005FA69C /* FixedState.swift */,
+				65DA34F41FCF7779005FA69C /* FreeState.swift */,
+				65DA34F11FCF7779005FA69C /* InterfaceBuilderSupport.swift */,
+				65DA34F61FCF7779005FA69C /* Mask.swift */,
+				65DA34F21FCF7779005FA69C /* MaskedTextFieldDelegate.swift */,
+				65DA34F81FCF777A005FA69C /* Next.swift */,
+				65DA34FB1FCF777A005FA69C /* OptionalValueState.swift */,
+				65DA34F71FCF7779005FA69C /* PolyMaskTextFieldDelegate.swift */,
+				65DA34F91FCF777A005FA69C /* State.swift */,
+				65DA34FA1FCF777A005FA69C /* ValueState.swift */,
+				65DA34E91FCF775C005FA69C /* CaretStringIterator.swift */,
+				65DA34E71FCF775C005FA69C /* Compiler.swift */,
+				65DA34EA1FCF775C005FA69C /* FormatSanitizer.swift */,
+				65DA34E81FCF775C005FA69C /* NSCharacterSet.swift */,
+				65DA34E61FCF775C005FA69C /* String.swift */,
+			);
+			name = InputMask;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -333,7 +388,6 @@
 				409158DC1CE1A01000FE316B /* Headers */,
 				409158DD1CE1A01000FE316B /* Resources */,
 				65AF51C21F5DD38900E7B4CB /* CopyFiles */,
-				652830131F7AABB7008421EA /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -415,21 +469,6 @@
 			shellPath = /bin/sh;
 			shellScript = "######################\n# Options\n######################\n\nREVEAL_ARCHIVE_IN_FINDER=false\n\nFRAMEWORK_NAME=\"${PROJECT_NAME}\"\n\nSIMULATOR_LIBRARY_PATH=\"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${FRAMEWORK_NAME}.framework\"\n\nDEVICE_LIBRARY_PATH=\"${BUILD_DIR}/${CONFIGURATION}-iphoneos/${FRAMEWORK_NAME}.framework\"\n\nUNIVERSAL_LIBRARY_DIR=\"${BUILD_DIR}/${CONFIGURATION}-iphoneuniversal\"\n\nFRAMEWORK=\"${UNIVERSAL_LIBRARY_DIR}/${FRAMEWORK_NAME}.framework\"\n\n\n######################\n# Build Frameworks\n######################\n\nxcodebuild -workspace ${PROJECT_NAME}.xcworkspace -scheme ${PROJECT_NAME} -sdk iphonesimulator -configuration ${CONFIGURATION} clean build CONFIGURATION_BUILD_DIR=${BUILD_DIR}/${CONFIGURATION}-iphonesimulator 2>&1\n\nxcodebuild -workspace ${PROJECT_NAME}.xcworkspace -scheme ${PROJECT_NAME} -sdk iphoneos -configuration ${CONFIGURATION} clean build CONFIGURATION_BUILD_DIR=${BUILD_DIR}/${CONFIGURATION}-iphoneos 2>&1\n\n######################\n# Create directory for universal\n######################\n\nrm -rf \"${UNIVERSAL_LIBRARY_DIR}\"\n\nmkdir \"${UNIVERSAL_LIBRARY_DIR}\"\n\nmkdir \"${FRAMEWORK}\"\n\n\n######################\n# Copy files Framework\n######################\n\ncp -r \"${DEVICE_LIBRARY_PATH}/.\" \"${FRAMEWORK}\"\n\n\n######################\n# Make an universal binary\n######################\n\nlipo \"${SIMULATOR_LIBRARY_PATH}/${FRAMEWORK_NAME}\" \"${DEVICE_LIBRARY_PATH}/${FRAMEWORK_NAME}\" -create -output \"${FRAMEWORK}/${FRAMEWORK_NAME}\" | echo\n\n# For Swift framework, Swiftmodule needs to be copied in the universal framework\nif [ -d \"${SIMULATOR_LIBRARY_PATH}/Modules/${FRAMEWORK_NAME}.swiftmodule/\" ]; then\ncp -f ${SIMULATOR_LIBRARY_PATH}/Modules/${FRAMEWORK_NAME}.swiftmodule/* \"${FRAMEWORK}/Modules/${FRAMEWORK_NAME}.swiftmodule/\" | echo\n                                                                      fi\n                                                                      \n                                                                      if [ -d \"${DEVICE_LIBRARY_PATH}/Modules/${FRAMEWORK_NAME}.swiftmodule/\" ]; then\n                                                                      cp -f ${DEVICE_LIBRARY_PATH}/Modules/${FRAMEWORK_NAME}.swiftmodule/* \"${FRAMEWORK}/Modules/${FRAMEWORK_NAME}.swiftmodule/\" | echo\n                                                                      fi\n                                                                      \n                                                                      ######################\n                                                                      # On Release, copy the result to release directory\n                                                                      ######################\n                                                                      OUTPUT_DIR=\"${PROJECT_DIR}/Output/${FRAMEWORK_NAME}-${CONFIGURATION}-iphoneuniversal/\"\n                                                                      \n                                                                      rm -rf \"$OUTPUT_DIR\"\n                                                                      mkdir -p \"$OUTPUT_DIR\"\n                                                                      \n                                                                      cp -r \"${FRAMEWORK}\" \"$OUTPUT_DIR\"\n                                                                      \n                                                                      if [ ${REVEAL_ARCHIVE_IN_FINDER} = true ]; then\n                                                                      open \"${OUTPUT_DIR}/\"\n                                                                      fi";
 		};
-		652830131F7AABB7008421EA /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/InputMask.framework",
-			);
-			outputPaths = (
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/InputMask.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -438,17 +477,34 @@
 			buildActionMask = 2147483647;
 			files = (
 				409159231CE1A09100FE316B /* PaymentezSecure.swift in Sources */,
+				65DA34FE1FCF777A005FA69C /* MaskedTextFieldDelegate.swift in Sources */,
+				65DA34EB1FCF775C005FA69C /* String.swift in Sources */,
+				65DA34EC1FCF775C005FA69C /* Compiler.swift in Sources */,
+				65DA35031FCF777A005FA69C /* PolyMaskTextFieldDelegate.swift in Sources */,
+				65DA35051FCF777A005FA69C /* State.swift in Sources */,
+				65DA34ED1FCF775C005FA69C /* NSCharacterSet.swift in Sources */,
+				65DA34EE1FCF775C005FA69C /* CaretStringIterator.swift in Sources */,
 				65AF51CB1F5DDECC00E7B4CB /* SkyFloatingLabelTextFieldWithIcon.swift in Sources */,
+				65DA35001FCF777A005FA69C /* FreeState.swift in Sources */,
 				402544CB1CE3E06A00F35B23 /* PaymentezAddViewController.swift in Sources */,
 				650EB6D31F5F3E510041EB81 /* Extension.swift in Sources */,
 				4091591D1CE1A09100FE316B /* PaymentezCardScan.swift in Sources */,
 				65AF51CC1F5DDECC00E7B4CB /* UITextField+fixCaretPosition.swift in Sources */,
 				409159221CE1A09100FE316B /* PaymentezSDKClient.swift in Sources */,
+				65DA34FD1FCF777A005FA69C /* InterfaceBuilderSupport.swift in Sources */,
+				65DA35071FCF777A005FA69C /* OptionalValueState.swift in Sources */,
 				4091591C1CE1A09100FE316B /* PaymentezCard.swift in Sources */,
+				65DA35041FCF777A005FA69C /* Next.swift in Sources */,
 				652927951F587136004A7D4C /* PaymentezAddNativeViewController.swift in Sources */,
 				65AF51CA1F5DDECC00E7B4CB /* SkyFloatingLabelTextField.swift in Sources */,
+				65DA35021FCF777A005FA69C /* Mask.swift in Sources */,
 				4091591F1CE1A09100FE316B /* PaymentezResponse.swift in Sources */,
+				65DA34EF1FCF775C005FA69C /* FormatSanitizer.swift in Sources */,
+				65DA34FC1FCF777A005FA69C /* FixedState.swift in Sources */,
+				65DA35011FCF777A005FA69C /* EOLState.swift in Sources */,
+				65DA35061FCF777A005FA69C /* ValueState.swift in Sources */,
 				4091591E1CE1A09100FE316B /* PaymentezRequest.swift in Sources */,
+				65DA34FF1FCF777A005FA69C /* CaretString.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
