@@ -26,15 +26,15 @@ let REGEX_DINERS = "^3(?:0[0-5]|[68][0-9])[0-9]{4,}$"
 let REGEX_DISCOVER = "^65[4-9][0-9]{13}|64[4-9][0-9]{13}|6011[0-9]{12}|(622(?:12[6-9]|1[3-9][0-9]|[2-8][0-9][0-9]|9[01][0-9]|92[0-5])[0-9]{10})$"
 let REGEX_JCB = "^(?:2131|1800|35[0-9]{3})[0-9]{11}$"
 
-@objc open class PaymentezCard:NSObject
+@objcMembers open class PaymentezCard:NSObject
 {
     open var status:String?
     open var transactionId:String?
     open var token:String?
     open var cardHolder:String?
     open var termination:String?
-    open var expiryMonth:Int?
-    open var expiryYear:Int?
+    open var expiryMonth:String?
+    open var expiryYear:String?
     open var bin:String?
     open var cardType:PaymentezCardType = .notSupported
     internal var cardNumber:String? {
@@ -72,7 +72,7 @@ let REGEX_JCB = "^(?:2131|1800|35[0-9]{3})[0-9]{11}$"
 
 
 
-    open static func createCard(cardHolder:String, cardNumber:String, expiryMonth:Int, expiryYear:Int, cvc:String) ->PaymentezCard?
+    open static func createCard(cardHolder:String, cardNumber:String, expiryMonth:NSInteger, expiryYear:NSInteger, cvc:String) ->PaymentezCard?
     {
         let paymentezCard = PaymentezCard()
         if getTypeCard(cardNumber) == .notSupported
@@ -98,8 +98,8 @@ let REGEX_JCB = "^(?:2131|1800|35[0-9]{3})[0-9]{11}$"
         
         paymentezCard.cardNumber = cardNumber
         paymentezCard.cardHolder = cardHolder
-        paymentezCard.expiryMonth = expiryMonth
-        paymentezCard.expiryYear = expiryYear
+        paymentezCard.expiryMonth = "\(expiryMonth)"
+        paymentezCard.expiryYear = "\(expiryYear)"
         paymentezCard.cvc = cvc
         return paymentezCard
         
@@ -212,10 +212,10 @@ let REGEX_JCB = "^(?:2131|1800|35[0-9]{3})[0-9]{11}$"
     
 }
 
-@objc open class PaymentezTransaction:NSObject
+@objcMembers open class PaymentezTransaction:NSObject
 {
     open var authorizationCode:NSNumber?
-    open var amount:Double?
+    open var amount:NSNumber?
     open var paymentDate: Date?
     open var status:String?
     open var carrierCode:String?
@@ -228,7 +228,7 @@ let REGEX_JCB = "^(?:2131|1800|35[0-9]{3})[0-9]{11}$"
     {
         let data = data as! [String:Any]
         let trx = PaymentezTransaction()
-        trx.amount = data["amount"] as? Double
+        trx.amount = data["amount"] as? NSNumber
         trx.status = data["status"] as? String
         trx.statusDetail = data["status_detail"] as? Int as NSNumber?
         trx.transactionId = data["transaction_id"] as? String
@@ -249,7 +249,7 @@ let REGEX_JCB = "^(?:2131|1800|35[0-9]{3})[0-9]{11}$"
     {
         let data = data as! [String:Any]
         let trx = PaymentezTransaction()
-        trx.amount = data["amount"] as? Double
+        trx.amount = data["amount"] as? NSNumber
         trx.status = data["status"] as? String
         trx.statusDetail = data["status_detail"] as? Int as NSNumber?
         trx.transactionId = data["id"] as? String

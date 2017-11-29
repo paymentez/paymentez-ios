@@ -145,8 +145,8 @@
                             pCard.bin = "\(card["bin"]!)"
                             pCard.token = "\(card["token"]!)"
                             pCard.cardHolder = "\(card["holder_name"]!)"
-                            pCard.expiryMonth = Int(card["expiry_month"] as! String)
-                            pCard.expiryYear = Int(card["expiry_year"] as! String)
+                            pCard.expiryMonth = card["expiry_month"] as! String
+                            pCard.expiryYear = card["expiry_year"] as! String
                             pCard.termination = "\(card["number"]!)"
                             pCard.status = "\(card["status"]!)"
                             pCard.type = "\(card["type"]!)"

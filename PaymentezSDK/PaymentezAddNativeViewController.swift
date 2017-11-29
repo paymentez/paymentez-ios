@@ -10,7 +10,7 @@ import UIKit
 import InputMask
 
 
-public protocol PaymentezCardAddedDelegate
+@objc public protocol PaymentezCardAddedDelegate
 {
     func cardAdded(_ error:PaymentezSDKError?, _ cardAdded:PaymentezCard?)
 }
@@ -47,9 +47,9 @@ open class PaymentezAddNativeViewController: UIViewController {
     
     var paymentezCard:PaymentezCard? = PaymentezCard()
     
-    var isWidget:Bool = true
+    @objc var isWidget:Bool = true
     
-    var delegate:PaymentezCardAddedDelegate?
+    @objc public var addDelegate:PaymentezCardAddedDelegate?
     
     
     var cardType:PaymentezCardType =  PaymentezCardType.notSupported {
@@ -99,7 +99,7 @@ open class PaymentezAddNativeViewController: UIViewController {
         
     }
     
-    init(isWidget:Bool)
+    @objc public init(isWidget:Bool)
     {
         self.isWidget = isWidget
         
@@ -174,7 +174,7 @@ open class PaymentezAddNativeViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    open func getValidCard()->PaymentezCard?
+     @objc open func getValidCard()->PaymentezCard?
     {
         self.paymentezCard?.cardHolder = self.nameField.text
         if self.cvcField.text == nil || self.cvcField.text == ""
@@ -231,8 +231,10 @@ open class PaymentezAddNativeViewController: UIViewController {
                 let valExp = self.expirationField.text!.components(separatedBy: "/")
                 if valExp.count > 1
                 {
-                    self.paymentezCard?.expiryYear = Int(valExp[1])! + 2000
-                    self.paymentezCard?.expiryMonth = Int(valExp[0])
+                    let expiryYear = Int(valExp[1])! + 2000
+                    let expiryMonth = valExp[0]
+                    self.paymentezCard?.expiryYear =  "\(expiryYear)"
+                    self.paymentezCard?.expiryMonth =  expiryMonth
                 }
             }
         }
@@ -249,7 +251,7 @@ open class PaymentezAddNativeViewController: UIViewController {
                 
                 PaymentezSDKClient.add(validCard, uid: "69123", email: "gsotelo@paymentez.com", callback: { (error, cardAdded) in
                     
-                    self.delegate?.cardAdded(error, cardAdded)
+                    self.addDelegate?.cardAdded(error, cardAdded)
                 })
             }
 
@@ -291,8 +293,10 @@ extension PaymentezAddNativeViewController: MaskedTextFieldDelegateListener
                     let valExp = self.expirationField.text!.components(separatedBy: "/")
                     if valExp.count > 1
                     {
-                        self.paymentezCard?.expiryYear = Int(valExp[1])! + 2000
-                        self.paymentezCard?.expiryMonth = Int(valExp[0])
+                        let expiryYear = Int(valExp[1])! + 2000
+                        
+                        self.paymentezCard?.expiryYear =  "\(expiryYear)"
+                        self.paymentezCard?.expiryMonth = valExp[0]
                     }
                 }
                 else

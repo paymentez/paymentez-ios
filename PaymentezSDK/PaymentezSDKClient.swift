@@ -16,7 +16,7 @@ import CommonCrypto
 
 
 @objc(PaymentezSDKClient)
-open class PaymentezSDKClient:NSObject
+@objcMembers open class PaymentezSDKClient:NSObject
 {
     static var inProgress = false
     static var  apiCode = ""
@@ -132,7 +132,7 @@ open class PaymentezSDKClient:NSObject
         let sessionId = self.kountHandler.generateSessionId()
         
         let userParameters = ["email": email, "id": uid]
-        let cardParameters = ["number": card.cardNumber!, "holder_name": card.cardHolder!, "expiry_month": card.expiryMonth!, "expiry_year": Int(card.expiryYear!) as Any, "cvc":card.cvc! as Any, "type": typeCard] as [String : Any]
+        let cardParameters = ["number": card.cardNumber!, "holder_name": card.cardHolder!, "expiry_month": Int(card.expiryMonth!) as Any, "expiry_year": Int(card.expiryYear!) as Any, "cvc":card.cvc! as Any, "type": typeCard] as [String : Any]
         
         let parameters = ["session_id": sessionId!,
                           "user": userParameters,
@@ -348,8 +348,8 @@ open class PaymentezSDKClient:NSObject
                     pCard.bin = "\(card["bin"]!)"
                     pCard.token = "\(card["token"]!)"
                     pCard.cardHolder = "\(card["name"]!)"
-                    pCard.expiryMonth = Int((expiration_date[0]))
-                    pCard.expiryYear = Int((expiration_date[1]))
+                    pCard.expiryMonth = expiration_date[0]
+                    pCard.expiryYear = expiration_date[1]
                     pCard.termination = "\(card["number"]!)"
                     pCard.type = "\(card["type"]!)"
                     pCard.status = "\(card["status"]!)"

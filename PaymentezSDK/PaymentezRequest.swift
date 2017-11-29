@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objc open class PaymentezDebitParameters:NSObject
+@objcMembers open class PaymentezDebitParameters:NSObject
 
 {
     open var uid = ""
