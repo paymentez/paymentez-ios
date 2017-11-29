@@ -57,7 +57,7 @@ class PaymentezDebitResponse
 
 
 
-@objc open class PaymentezSDKError:NSObject
+@objcMembers open class PaymentezSDKError:NSObject
 {
     open var code = 500
     open var descriptionData = "Internal Error"
