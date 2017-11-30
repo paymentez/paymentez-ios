@@ -45,6 +45,7 @@
             [sender setEnabled:YES];
             if(cardAdded != nil)
             {
+                NSLog(@"%@",[cardAdded getJSONString]); // Print JSON sTRUCTURE
                 dispatch_async(dispatch_get_main_queue(), ^{
                 UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"Response" message:[NSString stringWithFormat:@"%@ Added, status:%@", cardAdded.termination, cardAdded.status] preferredStyle:UIAlertControllerStyleAlert];
                 
