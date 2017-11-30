@@ -711,18 +711,23 @@ import CommonCrypto
     
     
     
-    @objc open static func scanCard(_ presenterViewController:UIViewController, callback:@escaping (_ userCancelled:Bool, _ number:String?, _ expiry:String?, _ cvv:String?) ->Void)
+    @objc open static func scanCard(_ presenterViewController:UIViewController, callback:@escaping (_ userCancelled:Bool, _ number:String?, _ expiry:String?, _ cvv:String?,_ card:PaymentezCard?) ->Void)
         
     {
         self.scanner.showScan(presenterViewController) { (infoCard) in
             
             if infoCard == nil
             {
-                callback(true, nil, nil, nil)
+                callback(true, nil, nil, nil, nil)
             }
             else
             {
-                callback(false, infoCard!.cardNumber, String(format: "%02i/%i",infoCard!.expiryMonth, infoCard!.expiryYear), infoCard!.cvv)
+                let card = PaymentezCard()
+                card.cardNumber = infoCard!.cardNumber
+                card.cvc = infoCard!.cvv
+                card.expiryYear = "\(infoCard!.expiryYear)"
+                card.expiryMonth = String(format: "%02i",infoCard!.expiryMonth)
+                callback(false, infoCard!.cardNumber, String(format: "%02i/%i",infoCard!.expiryMonth, infoCard!.expiryYear), infoCard!.cvv, card)
                 
             }
             

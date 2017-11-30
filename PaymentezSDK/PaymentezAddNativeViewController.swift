@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import InputMask
 
 
 @objc public protocol PaymentezCardAddedDelegate
@@ -194,7 +193,7 @@ open class PaymentezAddNativeViewController: UIViewController {
     }
     
     @IBAction func scanCard(_ sender: Any) {
-        PaymentezSDKClient.scanCard(self) { (closed, number, expiry, cvv) in
+        PaymentezSDKClient.scanCard(self) { (closed, number, expiry, cvv, card) in
             if !closed
             {
                 let result: Mask.Result = self.cardMask.apply(

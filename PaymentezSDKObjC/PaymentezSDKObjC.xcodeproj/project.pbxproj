@@ -29,9 +29,6 @@
 		650EDF411FCCC9F300F41A9E /* StoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 650EDF401FCCC9F300F41A9E /* StoreViewController.m */; };
 		6531CB7D1FCE515E000DF60C /* PaymentezSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6531CB7C1FCE515D000DF60C /* PaymentezSDK.framework */; };
 		6531CB7E1FCE515E000DF60C /* PaymentezSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6531CB7C1FCE515D000DF60C /* PaymentezSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		6531CB7F1FCE534A000DF60C /* InputMask.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 659845811FCDC928007A8E9A /* InputMask.framework */; };
-		657A791A1FCE55750031C5EF /* InputMask.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 659845811FCDC928007A8E9A /* InputMask.framework */; };
-		657A791B1FCE55750031C5EF /* InputMask.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 659845811FCDC928007A8E9A /* InputMask.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		659413441FCCFB9100EAE54A /* MyBackendLib.m in Sources */ = {isa = PBXBuildFile; fileRef = 659413431FCCFB9100EAE54A /* MyBackendLib.m */; };
 		6598456C1FCD29C8007A8E9A /* ListCardsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6598456B1FCD29C8007A8E9A /* ListCardsViewController.m */; };
 /* End PBXBuildFile section */
@@ -54,7 +51,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				6531CB7E1FCE515E000DF60C /* PaymentezSDK.framework in Embed Frameworks */,
-				657A791B1FCE55750031C5EF /* InputMask.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -98,7 +94,6 @@
 		6598456A1FCD29C7007A8E9A /* ListCardsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListCardsViewController.h; sourceTree = "<group>"; };
 		6598456B1FCD29C8007A8E9A /* ListCardsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListCardsViewController.m; sourceTree = "<group>"; };
 		659845741FCD4798007A8E9A /* PaymentezSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PaymentezSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		659845811FCDC928007A8E9A /* InputMask.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = InputMask.framework; path = PaymentezSDKObjC/InputMask.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,11 +102,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				40E129541CE424A2006D7F30 /* Accelerate.framework in Frameworks */,
-				6531CB7F1FCE534A000DF60C /* InputMask.framework in Frameworks */,
 				40E129551CE424A2006D7F30 /* AudioToolbox.framework in Frameworks */,
 				40E129561CE424A2006D7F30 /* AVFoundation.framework in Frameworks */,
 				6531CB7D1FCE515E000DF60C /* PaymentezSDK.framework in Frameworks */,
-				657A791A1FCE55750031C5EF /* InputMask.framework in Frameworks */,
 				40E129571CE424A2006D7F30 /* CoreGraphics.framework in Frameworks */,
 				40E129581CE424A2006D7F30 /* CoreMedia.framework in Frameworks */,
 				40E129591CE424A2006D7F30 /* CoreVideo.framework in Frameworks */,
@@ -138,7 +131,6 @@
 			isa = PBXGroup;
 			children = (
 				6531CB7C1FCE515D000DF60C /* PaymentezSDK.framework */,
-				659845811FCDC928007A8E9A /* InputMask.framework */,
 				40E129481CE424A2006D7F30 /* Accelerate.framework */,
 				40E129491CE424A2006D7F30 /* AudioToolbox.framework */,
 				40E1294A1CE424A2006D7F30 /* AVFoundation.framework */,
