@@ -20,11 +20,11 @@ static NSString *myBackendUrl = @"https://example-paymentez-backend.herokuapp.co
 
 + (void) verifyTrxWithId:(NSString*)uid type:(int)type value:(NSString*)val callback:(void (^)(PaymentezSDKError *error, BOOL *verified))callback
 {
-    
+    //TODO implement verify sample
 }
 + (void) deleteCardWithId:(NSString*)uid cardToken:(NSString*)cardToken callback:(void (^)(BOOL *deleted))callback
 {
-    
+    //TODO implement deletecard 
 }
 + (void) debitCardWithId:(NSString*)uid cardToken:(NSString*)cardToken sessionId:(NSString*)sessionId devReference:(NSString*)devReference amount:(double)amount description:(NSString*)description callback:(void (^)(NSError *error, PaymentezTransaction *transaction))callback
 {

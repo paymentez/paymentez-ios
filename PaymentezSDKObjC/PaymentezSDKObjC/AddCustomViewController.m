@@ -45,6 +45,7 @@
             [sender setEnabled:YES];
             if(cardAdded != nil)
             {
+                dispatch_async(dispatch_get_main_queue(), ^{
                 UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"Response" message:[NSString stringWithFormat:@"%@ Added, status:%@", cardAdded.termination, cardAdded.status] preferredStyle:UIAlertControllerStyleAlert];
                 
                 UIAlertAction *alertAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
@@ -52,6 +53,19 @@
                 }];
                 [alertC addAction:alertAction];
                 [self presentViewController:alertC animated:NO completion:nil];
+                });
+            }
+            else
+            {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"Error" message:[NSString stringWithFormat:@"code:%i, description:%@ help:%@",error.code, error.description, error.help]  preferredStyle:UIAlertControllerStyleAlert];
+                    
+                    UIAlertAction *alertAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                        [self.navigationController popViewControllerAnimated:FALSE];
+                    }];
+                    [alertC addAction:alertAction];
+                    [self presentViewController:alertC animated:NO completion:nil];
+                });
             }
         }];
         
@@ -59,6 +73,18 @@
     
 }
 - (IBAction)scanCard:(id)sender {
+    
+    [PaymentezSDKClient scanCard:self callback:^(BOOL userClosed, NSString *cardNumber, NSString *expiryDate, NSString *cvv, PaymentezCard *card) {
+        
+        if (!userClosed)
+        {
+            if (card != nil) // Handle card
+            {
+                
+            }
+                
+        }
+    }];
     
 }
 

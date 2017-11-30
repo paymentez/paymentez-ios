@@ -33,7 +33,6 @@ Security
 UIKit
 CommonCrypto
 
-InputMask -> https://github.com/RedMadRobot/input-mask-ios
  
  **Project Configuration**
 -ObjC in other linker flags in target
@@ -143,14 +142,33 @@ Objc
 ```
 
 
-### Scan Card
-If you want to do the scan yourself.
+### Scan Card 
+If you want to do the scan yourself, using card.io
 
 ```swift
-PaymentezSDKClient.scanCard(self) { (closed, number, expiry, cvv) in
+PaymentezSDKClient.scanCard(self) { (closed, number, expiry, cvv, card) in
             if !closed // user did not closed the scan card dialog
             {
+            	if card != nil  // paymentezcard object to handle the data
+            	{
+            	
+            	}
             })
+```
+
+-ObjC
+```objc
+[PaymentezSDKClient scanCard:self callback:^(BOOL userClosed, NSString *cardNumber, NSString *expiryDate, NSString *cvv, PaymentezCard *card) {
+        
+        if (!userClosed) //user did not close the scan card dialog
+        {
+            if (card != nil) // Handle card
+            {
+                
+            }
+                
+        }
+    }];
 ```
 
 ### Add Card (Only PCI Integrations)
