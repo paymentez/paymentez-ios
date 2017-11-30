@@ -17,7 +17,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    [PaymentezSDKClient setEnvironment:@"TRB-CLIENT" secretKey:@"13EMtNKoQvzYVKMoa7x5mDkw7Kl5EV" testMode:YES];
+    [PaymentezSDKClient setEnvironment:@"IOSTest-Add" secretKey:@"lycd3qt8n4Y50EKCYcA0G2MCyIb9Hr" testMode:YES];
     return YES;
 }
 
