@@ -723,6 +723,7 @@ import CommonCrypto
             else
             {
                 let card = PaymentezCard()
+                
                 card.cardNumber = infoCard!.cardNumber
                 card.cvc = infoCard!.cvv
                 card.expiryYear = "\(infoCard!.expiryYear)"
