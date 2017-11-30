@@ -80,7 +80,14 @@
         {
             if (card != nil) // Handle card
             {
-                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"Response" message:[NSString stringWithFormat:@"%@ Card, cvv:%@, expiry:%@", card.termination, cvv, expiryDate] preferredStyle:UIAlertControllerStyleAlert];
+                    
+                    UIAlertAction *alertAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                    }];
+                    [alertC addAction:alertAction];
+                    [self presentViewController:alertC animated:NO completion:nil];
+                });
             }
                 
         }
