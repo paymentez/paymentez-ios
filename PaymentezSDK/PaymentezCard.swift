@@ -135,6 +135,41 @@ let REGEX_JCB = "^(?:2131|1800|35[0-9]{3})[0-9]{11}$"
         return false
     }
     
+    public func getJSONString() ->String?
+    {
+        var json:Any? = nil
+        do{
+            json = try JSONSerialization.data(withJSONObject: self.getDict(), options: .prettyPrinted)
+        }
+        catch {
+            
+        }
+        if json != nil
+        {
+            let theJSONText = String(data: json as! Data,
+                                     encoding: .ascii)
+            return theJSONText
+        }
+        return nil
+        
+    }
+    
+    public func getDict() -> [String:String?]
+    {
+        let dict = [
+            "bin" : self.bin,
+            "status": self.status,
+            "token": self.token,
+            "expiry_year": self.expiryYear,
+            "expiry_month": self.expiryMonth,
+            "transaction_reference": self.transactionId,
+            "type": self.type,
+            "number": self.termination,
+            "message": ""
+        ]
+        return dict
+    }
+    
     public func getCardTypeAsset() ->UIImage?
     {
         let bundle = Bundle(for: PaymentezCard.self)
@@ -209,6 +244,7 @@ let REGEX_JCB = "^(?:2131|1800|35[0-9]{3})[0-9]{11}$"
         
         
     }
+    
     
     
     
