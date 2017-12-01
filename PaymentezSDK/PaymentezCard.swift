@@ -163,6 +163,7 @@ let REGEX_JCB = "^(?:2131|1800|35[0-9]{3})[0-9]{11}$"
             "expiry_year": self.expiryYear,
             "expiry_month": self.expiryMonth,
             "transaction_reference": self.transactionId,
+            "holder_name": self.cardHolder,
             "type": self.type,
             "number": self.termination,
             "message": ""
