@@ -154,7 +154,7 @@ let REGEX_JCB = "^(?:2131|1800|35[0-9]{3})[0-9]{11}$"
         
     }
     
-    public func getDict() -> [String:String?]
+    public func getDict() -> NSDictionary
     {
         let dict = [
             "bin" : self.bin,
@@ -167,7 +167,7 @@ let REGEX_JCB = "^(?:2131|1800|35[0-9]{3})[0-9]{11}$"
             "number": self.termination,
             "message": ""
         ]
-        return dict
+        return dict as NSDictionary
     }
     
     public func getCardTypeAsset() ->UIImage?
@@ -184,7 +184,7 @@ let REGEX_JCB = "^(?:2131|1800|35[0-9]{3})[0-9]{11}$"
         }
         else if cardType == PaymentezCardType.visa
         {
-            return UIImage(named:"stp_card_mastercard", in: bundle, compatibleWith: nil)
+            return UIImage(named:"stp_card_visa", in: bundle, compatibleWith: nil)
         }
         else if cardType == PaymentezCardType.diners
         {
