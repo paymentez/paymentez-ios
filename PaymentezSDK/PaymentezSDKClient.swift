@@ -179,6 +179,7 @@ import CommonCrypto
                     cardAdded.token = cardData["token"] as? String
                     cardAdded.expiryYear = card.expiryYear
                     cardAdded.expiryMonth = card.expiryMonth
+                    cardAdded.cardHolder = card.cardHolder
                     cardAdded.transactionId = cardData["transaction_reference"] as? String
                     cardAdded.status = cardData["status"] as? String
                     cardAdded.type = cardData["type"] as? String
