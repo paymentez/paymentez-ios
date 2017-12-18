@@ -61,6 +61,7 @@
 		6529279B1F58B045004A7D4C /* PaymentezAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6529279A1F58B045004A7D4C /* PaymentezAssets.xcassets */; };
 		655DA8101F74D66700099869 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 655DA80E1F74D66700099869 /* Localizable.strings */; };
 		655DA8161F74E74C00099869 /* Localizable.strings in CopyFiles */ = {isa = PBXBuildFile; fileRef = 655DA80E1F74D66700099869 /* Localizable.strings */; };
+		658A2DC31FE8325F00B154E6 /* install_dynamic.sh in Resources */ = {isa = PBXBuildFile; fileRef = 658A2DC21FE8325E00B154E6 /* install_dynamic.sh */; };
 		65AF51CA1F5DDECC00E7B4CB /* SkyFloatingLabelTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AF51C71F5DDECC00E7B4CB /* SkyFloatingLabelTextField.swift */; };
 		65AF51CB1F5DDECC00E7B4CB /* SkyFloatingLabelTextFieldWithIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AF51C81F5DDECC00E7B4CB /* SkyFloatingLabelTextFieldWithIcon.swift */; };
 		65AF51CC1F5DDECC00E7B4CB /* UITextField+fixCaretPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AF51C91F5DDECC00E7B4CB /* UITextField+fixCaretPosition.swift */; };
@@ -159,6 +160,7 @@
 		655DA8131F74D74A00099869 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		655DA8141F74D74F00099869 /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		655DA8151F74D85A00099869 /* es-MX */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-MX"; path = "es-MX.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		658A2DC21FE8325E00B154E6 /* install_dynamic.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = install_dynamic.sh; sourceTree = "<group>"; };
 		65AF51C71F5DDECC00E7B4CB /* SkyFloatingLabelTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkyFloatingLabelTextField.swift; sourceTree = "<group>"; };
 		65AF51C81F5DDECC00E7B4CB /* SkyFloatingLabelTextFieldWithIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkyFloatingLabelTextFieldWithIcon.swift; sourceTree = "<group>"; };
 		65AF51C91F5DDECC00E7B4CB /* UITextField+fixCaretPosition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+fixCaretPosition.swift"; sourceTree = "<group>"; };
@@ -246,6 +248,7 @@
 		409158FA1CE1A09000FE316B /* PaymentezSDK */ = {
 			isa = PBXGroup;
 			children = (
+				658A2DC21FE8325E00B154E6 /* install_dynamic.sh */,
 				65DA34E51FCF7748005FA69C /* InputMask */,
 				65AF51CF1F5F246200E7B4CB /* lang */,
 				65AF51C61F5DDEB800E7B4CB /* FloatTextField */,
@@ -446,6 +449,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				658A2DC31FE8325F00B154E6 /* install_dynamic.sh in Resources */,
 				402544CC1CE3E06A00F35B23 /* PaymentezAddViewController.xib in Resources */,
 				655DA8101F74D66700099869 /* Localizable.strings in Resources */,
 				6529279B1F58B045004A7D4C /* PaymentezAssets.xcassets in Resources */,
