@@ -68,29 +68,29 @@ PaymentezSDK is a dynamic framework ([More Info](https://developer.apple.com/lib
 
 - If you want build yourself the SDK or you are using a new version of Swift. Download the project from github and run the following script
 
-```
-sh package.sh
+    ```
+    sh package.sh
 
-```
-This will create a /build folder where there are all the necesary .framework (simulator, iphoneos and universal)
+    ```
+    This will create a /build folder where there are all the necesary .framework (simulator, iphoneos and universal)
 
--Or if you prefer you can download pre-compilled .framework files from [Releases](https://github.com/paymentez/paymentez-ios/releases)
+- Or if you prefer you can download pre-compilled .framework files from [Releases](https://github.com/paymentez/paymentez-ios/releases)
 
 2. Drag the PaymentezSDK.framework (preferably Universal version) To your project and check "Copy Files if needed".
 
-In Target->General : Add PaymentezSDK.framework to Embeeded Libraries and Linked Frameworks and  Libraries
+    In Target->General : Add PaymentezSDK.framework to Embeeded Libraries and Linked Frameworks and  Libraries
 
 3. Update the Build Settings with
 
-Set ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES
+    Set ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES
 
-In Build Phases -> Embed Frameworks Uncheck "Copy Only When Installing"
+    In Build Phases -> Embed Frameworks Uncheck "Copy Only When Installing"
 
 
 4. If you use the Universal version and you want to upload to the appstore. Add Run Script Phase: Target->Build Phases -> + ->New Run Script Phase. And paste the following
-```
-bash "${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/PaymentezSDK.framework/install_dynamic.sh"
-```
+    ```
+    bash "${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/PaymentezSDK.framework/install_dynamic.sh"
+    ```
 
 ----------
 **Usage**
