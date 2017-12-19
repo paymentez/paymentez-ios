@@ -12,7 +12,7 @@ Paymentez SDK IOS
 **Requirements**
 
 - iOS 9.0 or Later
-- Xcode 7
+- Xcode 8
 
 
 
@@ -66,13 +66,14 @@ PaymentezSDK is a dynamic framework ([More Info](https://developer.apple.com/lib
 
 1. Build the SDK and create .framework files
 
-- If you want build yourself the SDK or you are using a new version of Swift. Download the project from github and run the following script
+- If you want build yourself the SDK or you are using a new/beta version of Xcode . Download the project from github and run the following script inside the root folder
 
     ```
     sh package.sh
 
     ```
     This will create a /build folder where there are all the necesary .framework (simulator, iphoneos and universal)
+    
 
 - Or if you prefer you can download pre-compilled .framework files from [Releases](https://github.com/paymentez/paymentez-ios/releases)
 
@@ -91,7 +92,7 @@ PaymentezSDK is a dynamic framework ([More Info](https://developer.apple.com/lib
     ```
     bash "${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/PaymentezSDK.framework/install_dynamic.sh"
     ```
-
+    
 ----------
 **Usage**
 
