@@ -33,7 +33,7 @@ let REGEX_JCB = "^(?:2131|1800|35[0-9]{3})[0-9]{11}$"
     open var token:String?
     open var cardHolder:String?
     open var termination:String?
-    
+    open var isDefault:Bool = false
     open var expiryMonth:String?
     open var expiryYear:String?
     open var bin:String?
