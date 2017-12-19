@@ -60,7 +60,6 @@
 		652927961F587136004A7D4C /* PaymentezAddNativeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 652927941F587136004A7D4C /* PaymentezAddNativeViewController.xib */; };
 		6529279B1F58B045004A7D4C /* PaymentezAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6529279A1F58B045004A7D4C /* PaymentezAssets.xcassets */; };
 		655DA8101F74D66700099869 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 655DA80E1F74D66700099869 /* Localizable.strings */; };
-		655DA8161F74E74C00099869 /* Localizable.strings in CopyFiles */ = {isa = PBXBuildFile; fileRef = 655DA80E1F74D66700099869 /* Localizable.strings */; };
 		658A2DC31FE8325F00B154E6 /* install_dynamic.sh in Resources */ = {isa = PBXBuildFile; fileRef = 658A2DC21FE8325E00B154E6 /* install_dynamic.sh */; };
 		65AF51CA1F5DDECC00E7B4CB /* SkyFloatingLabelTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AF51C71F5DDECC00E7B4CB /* SkyFloatingLabelTextField.swift */; };
 		65AF51CB1F5DDECC00E7B4CB /* SkyFloatingLabelTextFieldWithIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AF51C81F5DDECC00E7B4CB /* SkyFloatingLabelTextFieldWithIcon.swift */; };
@@ -96,19 +95,6 @@
 			remoteInfo = PaymentezSDK;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		65AF51C21F5DD38900E7B4CB /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 8;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				655DA8161F74E74C00099869 /* Localizable.strings in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		402544C91CE3E06A00F35B23 /* PaymentezAddViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentezAddViewController.swift; sourceTree = "<group>"; };
@@ -390,7 +376,6 @@
 				409158DB1CE1A01000FE316B /* Frameworks */,
 				409158DC1CE1A01000FE316B /* Headers */,
 				409158DD1CE1A01000FE316B /* Resources */,
-				65AF51C21F5DD38900E7B4CB /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -558,6 +543,7 @@
 		409158E51CE1A01000FE316B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -610,6 +596,7 @@
 		409158E61CE1A01000FE316B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -656,6 +643,7 @@
 		409158E81CE1A01000FE316B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
@@ -701,6 +689,7 @@
 		409158E91CE1A01000FE316B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
