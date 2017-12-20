@@ -80,6 +80,9 @@ PaymentezSDK is a dynamic framework ([More Info](https://developer.apple.com/lib
 2. Drag the PaymentezSDK.framework (preferably Universal version) To your project and check "Copy Files if needed".
 
     In Target->General : Add PaymentezSDK.framework to Embeeded Libraries and Linked Frameworks and  Libraries
+    
+    ![Example](https://s3.amazonaws.com/cdn.paymentez.com/apps/ios/tutorial2.gif)
+
 
 3. Update the Build Settings with
 
@@ -87,12 +90,14 @@ PaymentezSDK is a dynamic framework ([More Info](https://developer.apple.com/lib
 
     In Build Phases -> Embed Frameworks Uncheck "Copy Only When Installing"
 
+![Example](https://s3.amazonaws.com/cdn.paymentez.com/apps/ios/tutorial3.gif)
 
-4. If you use the Universal version and you want to upload to the appstore. Add Run Script Phase: Target->Build Phases -> + ->New Run Script Phase. And paste the following
+
+4. If you use the Universal version and you want to upload to the appstore. Add Run Script Phase: Target->Build Phases -> + ->New Run Script Phase. And paste the following. Make sure that this build phase is added after Embed Frameworks phase.
     ```
     bash "${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/PaymentezSDK.framework/install_dynamic.sh"
     ```
-    
+    ![Example](https://s3.amazonaws.com/cdn.paymentez.com/apps/ios/tutorial4.gif)
 ----------
 **Usage**
 
