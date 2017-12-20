@@ -93,7 +93,7 @@ PaymentezSDK is a dynamic framework ([More Info](https://developer.apple.com/lib
 ![Example](https://s3.amazonaws.com/cdn.paymentez.com/apps/ios/tutorial3.gif)
 
 
-4. If you use the Universal version and you want to upload to the appstore. Add Run Script Phase: Target->Build Phases -> + ->New Run Script Phase. And paste the following
+4. If you use the Universal version and you want to upload to the appstore. Add Run Script Phase: Target->Build Phases -> + ->New Run Script Phase. And paste the following. Make sure that this build phase is added after Embed Frameworks phase.
     ```
     bash "${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/PaymentezSDK.framework/install_dynamic.sh"
     ```
