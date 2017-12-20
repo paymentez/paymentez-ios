@@ -92,7 +92,7 @@ PaymentezSDK is a dynamic framework ([More Info](https://developer.apple.com/lib
     ```
     bash "${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/PaymentezSDK.framework/install_dynamic.sh"
     ```
-    
+    ![Installation](https://s3.amazonaws.com/cdn.paymentez.com/apps/ios/tutorial.gif)
 ----------
 **Usage**
 
