@@ -1,4 +1,3 @@
-# ccapi-ios-example
 
 **
 
