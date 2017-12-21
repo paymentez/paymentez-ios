@@ -1,18 +1,6 @@
 language: objective-c
 osx_image: xcode9
-xcode_project: sdk/PaymentezSDK/PaymentezSDK.xcodeproj
-xcode_sdk: iphonesimulator9.3
-env:
-  global:
-  - FRAMEWORK_NAME=PaymentezSDK
-before_install:
-- brew update
-- brew outdated carthage || brew upgrade carthage
-before_script:
-- carthage bootstrap
-before_deploy:
-- carthage build --no-skip-current
-- carthage archive $FRAMEWORK_NAME
+script : "sh package.sh"
 deploy:
   provider: releases
   api_key: d4cabb7bc97f76e02a673fa1a4baace599698eef
