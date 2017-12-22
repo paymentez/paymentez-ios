@@ -5,6 +5,6 @@ deploy:
   provider: releases
   api_key:
     secure: k7m5A9YpfZP8NZHV2ybNwDrgAgGnUeGnKUno5aXYB52Aj5xEZby9IDki5p3bLiecCXrjdWLVfZZIM+2JWwlXTevkP5zzzk/1JKYiGA4h+ZEZbmNd5/J2VgvoBI8CvzpaACjkmWXrPe7rC/u4F4X4jb2+mVYrf8vgieJHI7jQpmRAkp9NAnmcu5GKSfys+QcHcS3Q5Qj0Z73oeECdLQgJInv8ymJBNl1+F/LbMozq1P3dMqN/vS+ar0QqDc/iUPv+pgQZKDVIW2HDypBae4+r+gESf4Xl4spwWxuBLrOprVnTb9Y+YA66SbalXSSx/WKPsBsfVj5TgqEk88nfEOExYzPXlTXdBA3lpaPy+uVYDwamPNAQUoG0s19BmhRywun6DTvS+BrYUH6pDX/2clYcizVeDjs3eIncMLcdqhqhL00AmrlIzkGttcLJHVke+s5d85fuoS3Sdyt4q/YQT3PbbF81mE+kUk05ixmhiRAoHPaa3SJdqwKowzdhpvufyxaIr+gTFBF7ZF8YdpZjro+gpY3DxQWcXIuOaXoun94swfqC8T5L9mFVuIlyZHpw8a28HhwcDLoG65O6pq4QaDoNWfEQxKIc/PYuni4cPz4cjI9yiCX5eyODbU5qLPIO+miSCkRrQSRRs1EPWm+5wACG0f7sc8DDNpK1TuWN72/MuW4=
-  file: build/Release-universal/PaymentezSDK.framework
+  file: "PaymentezSDK.tar.gz"
   on:
     repo: guxx/paymentez-ios
