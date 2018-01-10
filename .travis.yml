@@ -1,21 +1,10 @@
 language: objective-c
 osx_image: xcode9
-xcode_project: sdk/PaymentezSDK/PaymentezSDK.xcodeproj
-xcode_sdk: iphonesimulator9.3
-env:
-  global:
-  - FRAMEWORK_NAME=PaymentezSDK
-before_install:
-- brew update
-- brew outdated carthage || brew upgrade carthage
-before_script:
-- carthage bootstrap
-before_deploy:
-- carthage build --no-skip-current
-- carthage archive $FRAMEWORK_NAME
+script: sh package.sh
 deploy:
   provider: releases
-  api_key: d4cabb7bc97f76e02a673fa1a4baace599698eef
-  file: "$FRAMEWORK_NAME.framework.zip"
+  api_key:
+    secure: k7m5A9YpfZP8NZHV2ybNwDrgAgGnUeGnKUno5aXYB52Aj5xEZby9IDki5p3bLiecCXrjdWLVfZZIM+2JWwlXTevkP5zzzk/1JKYiGA4h+ZEZbmNd5/J2VgvoBI8CvzpaACjkmWXrPe7rC/u4F4X4jb2+mVYrf8vgieJHI7jQpmRAkp9NAnmcu5GKSfys+QcHcS3Q5Qj0Z73oeECdLQgJInv8ymJBNl1+F/LbMozq1P3dMqN/vS+ar0QqDc/iUPv+pgQZKDVIW2HDypBae4+r+gESf4Xl4spwWxuBLrOprVnTb9Y+YA66SbalXSSx/WKPsBsfVj5TgqEk88nfEOExYzPXlTXdBA3lpaPy+uVYDwamPNAQUoG0s19BmhRywun6DTvS+BrYUH6pDX/2clYcizVeDjs3eIncMLcdqhqhL00AmrlIzkGttcLJHVke+s5d85fuoS3Sdyt4q/YQT3PbbF81mE+kUk05ixmhiRAoHPaa3SJdqwKowzdhpvufyxaIr+gTFBF7ZF8YdpZjro+gpY3DxQWcXIuOaXoun94swfqC8T5L9mFVuIlyZHpw8a28HhwcDLoG65O6pq4QaDoNWfEQxKIc/PYuni4cPz4cjI9yiCX5eyODbU5qLPIO+miSCkRrQSRRs1EPWm+5wACG0f7sc8DDNpK1TuWN72/MuW4=
+  file: "PaymentezSDK.tar.gz"
   on:
     repo: guxx/paymentez-ios

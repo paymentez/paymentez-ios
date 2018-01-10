@@ -51,7 +51,6 @@ Add this to the Cartfile:
 
 ``` git "https://github.com/paymentez/paymentez-ios.git" ```
 
-This will add also InputMask framework so you can added to your project
 
 **ObjC configuration**
 
