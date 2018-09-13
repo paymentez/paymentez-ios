@@ -394,13 +394,14 @@ class PaymentezRequest
             
             if err == nil
             {
+                print(String(data: data!, encoding: .utf8))
                 var json:Any? = nil
                 
                 do{
                     json = try JSONSerialization.jsonObject(with: data!, options: .mutableLeaves)
                 }
-                catch {
-                    
+                catch  {
+                     print("Unexpected error: \(error).")
                 }
                 
                 if json == nil{

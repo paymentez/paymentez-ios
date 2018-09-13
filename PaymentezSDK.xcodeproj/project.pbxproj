@@ -81,6 +81,7 @@
 		65DA35051FCF777A005FA69C /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DA34F91FCF777A005FA69C /* State.swift */; };
 		65DA35061FCF777A005FA69C /* ValueState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DA34FA1FCF777A005FA69C /* ValueState.swift */; };
 		65DA35071FCF777A005FA69C /* OptionalValueState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DA34FB1FCF777A005FA69C /* OptionalValueState.swift */; };
+		65DB7DF22142FBC2000268AF /* PaymentezConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DB7DF12142FBC2000268AF /* PaymentezConstants.swift */; };
 		65DDE2A41F72F66A005C0FF9 /* KDataCollector.h in Headers */ = {isa = PBXBuildFile; fileRef = 65DDE2A21F72F66A005C0FF9 /* KDataCollector.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		65DDE2A51F72F66A005C0FF9 /* libKountDataCollector.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65DDE2A31F72F66A005C0FF9 /* libKountDataCollector.a */; };
 		65EABEF41F6B8C370062DD31 /* PaymentezSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 409159071CE1A09100FE316B /* PaymentezSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -167,6 +168,7 @@
 		65DA34F91FCF777A005FA69C /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = State.swift; path = lib/InputMask/Model/State.swift; sourceTree = "<group>"; };
 		65DA34FA1FCF777A005FA69C /* ValueState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ValueState.swift; path = lib/InputMask/Model/State/ValueState.swift; sourceTree = "<group>"; };
 		65DA34FB1FCF777A005FA69C /* OptionalValueState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OptionalValueState.swift; path = lib/InputMask/Model/State/OptionalValueState.swift; sourceTree = "<group>"; };
+		65DB7DF12142FBC2000268AF /* PaymentezConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentezConstants.swift; sourceTree = "<group>"; };
 		65DDE2A21F72F66A005C0FF9 /* KDataCollector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDataCollector.h; sourceTree = "<group>"; };
 		65DDE2A31F72F66A005C0FF9 /* libKountDataCollector.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libKountDataCollector.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -242,6 +244,7 @@
 				409158FB1CE1A09000FE316B /* DeviceCollectorLibrary */,
 				409159001CE1A09100FE316B /* Info.plist */,
 				409159021CE1A09100FE316B /* PaymentezCard.swift */,
+				65DB7DF12142FBC2000268AF /* PaymentezConstants.swift */,
 				409159031CE1A09100FE316B /* PaymentezCardScan.swift */,
 				409159041CE1A09100FE316B /* PaymentezRequest.swift */,
 				409159051CE1A09100FE316B /* PaymentezResponse.swift */,
@@ -476,6 +479,7 @@
 				65AF51CB1F5DDECC00E7B4CB /* SkyFloatingLabelTextFieldWithIcon.swift in Sources */,
 				65DA35001FCF777A005FA69C /* FreeState.swift in Sources */,
 				402544CB1CE3E06A00F35B23 /* PaymentezAddViewController.swift in Sources */,
+				65DB7DF22142FBC2000268AF /* PaymentezConstants.swift in Sources */,
 				650EB6D31F5F3E510041EB81 /* Extension.swift in Sources */,
 				4091591D1CE1A09100FE316B /* PaymentezCardScan.swift in Sources */,
 				65AF51CC1F5DDECC00E7B4CB /* UITextField+fixCaretPosition.swift in Sources */,

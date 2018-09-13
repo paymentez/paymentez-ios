@@ -19,3 +19,13 @@
 
 "Add Card" = "Add Card";
 
+"NIP" = "NIP";
+
+"Continue without code" = "Continue without code";
+
+"Continue with NIP" = "Continue with NIP";
+
+"Document Identifier" = "Document Identifier";
+
+"Validate this operation using a temporal unique code that will be sent by SMS or E-email registered at Tuya." = "Validate this operation using a temporal unique code that will be sent by SMS or E-email registered at Tuya.";
+

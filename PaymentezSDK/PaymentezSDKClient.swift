@@ -738,6 +738,24 @@ import CommonCrypto
         
     }
     
+    internal static func validateCard(cardNumber:String, callback:@escaping(_ data:[String:AnyObject]?,_ error:Error? ) ->Void)
+    {
+        let index = cardNumber.index(cardNumber.startIndex, offsetBy: 5)
+        
+        let bin  = String(cardNumber[...index])
+        let url = "/v2/card_bin/"+bin
+        request.makeRequestGetV2(url, parameters: [:], token: generateAuthTokenV2()) { (err, code, data) in
+            
+            if err != nil || code != 200{
+                callback(nil, err)
+            } else{
+                callback(data as? [String:AnyObject], err)
+            }
+        }
+        
+        
+    }
+    
     
     
 }
