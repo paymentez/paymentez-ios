@@ -20,13 +20,35 @@ import UIKit
 
 open class PaymentezAddNativeViewController: UIViewController {
     
-    var baseColor = PaymentezStyle.baseBaseColor
-    var baseFont = PaymentezStyle.font
+    open var backgroundColor:UIColor = .white {
+        didSet{
+            setupColor()
+        }
+    }
+    open var baseColor = PaymentezStyle.baseBaseColor {
+        didSet {
+            setupColor()
+        }
+    }
+    open var baseFont = PaymentezStyle.font {
+        didSet {
+            setupColor()
+        }
+    }
+    open var baseFontColor:UIColor = .black {
+        didSet {
+            setupColor()
+        }
+    }
     var bundle = Bundle(for: PaymentezCard.self)
     var titleString:String  = "Add Card".localized
     var showTuya = false
     internal var isModal = false
-    let showLogo:Bool = true
+    open var showLogo:Bool = true {
+        didSet {
+            self.paymentezLogo.isHidden = !self.showLogo
+        }
+    }
     
     let buttonMessage = ["on":"Continue without code".localized, "off": "Continue with NIP".localized]
     @objc var showNip = true
@@ -271,7 +293,7 @@ open class PaymentezAddNativeViewController: UIViewController {
     }
     
     private func setupColor(){
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = backgroundColor
         //SETUP COLOR
         cardField.selectedLineColor = baseColor
         nameField.selectedLineColor = baseColor
@@ -285,6 +307,33 @@ open class PaymentezAddNativeViewController: UIViewController {
         nameField.selectedTitleColor = baseColor
         expirationField.selectedTitleColor = baseColor
         cvcField.selectedTitleColor = baseColor
+        
+        cardField.textColor = baseFontColor
+        nameField.textColor = baseFontColor
+        expirationField.textColor = baseFontColor
+        cvcField.textColor = baseFontColor
+        documentField.textColor = baseFontColor
+        documentField.textColor = baseFontColor
+        nipField.textColor = baseFontColor
+        nipField.textColor = baseFontColor
+        cardField.textColor = baseFontColor
+        nameField.textColor = baseFontColor
+        expirationField.textColor = baseFontColor
+        cvcField.textColor = baseFontColor
+        
+        cardField.font = baseFont
+        nameField.font = baseFont
+        expirationField.font = baseFont
+        cvcField.font = baseFont
+        documentField.font = baseFont
+        documentField.font = baseFont
+        nipField.font = baseFont
+        nipField.font = baseFont
+        cardField.font = baseFont
+        nameField.font = baseFont
+        expirationField.font = baseFont
+        cvcField.font = baseFont
+        
     }
     
     private func setupMask(){

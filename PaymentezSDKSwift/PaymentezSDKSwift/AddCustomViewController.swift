@@ -24,6 +24,8 @@ class AddCustomViewController: UIViewController {
         
         paymentezAddVC = self.addPaymentezWidget(toView: self.addView, delegate: nil, uid:UserModel.uid, email:UserModel.email)
         
+        paymentezAddVC.baseFontColor = .blue
+        
         // Do any additional setup after loading the view.
     }
     override func didReceiveMemoryWarning() {
@@ -35,8 +37,6 @@ class AddCustomViewController: UIViewController {
     
     @IBAction func addCard(_ sender:UIButton?)
     {
-        
-        
         if let validCard = self.paymentezAddVC.getValidCard() // CHECK IF THE CARD IS VALID, IF THERE IS A VALIDATION ERROR NIL VALUE WILL BE RETURNED
         {
             
