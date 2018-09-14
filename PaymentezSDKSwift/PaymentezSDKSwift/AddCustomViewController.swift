@@ -22,7 +22,7 @@ class AddCustomViewController: UIViewController {
         super.viewDidLoad()
         //PAYMENTEZ WIDGET CREATION
         
-        self.addPaymentezWidget(toView: self.addView, delegate: nil, uid:UserModel.uid, email:UserModel.email)
+        paymentezAddVC = self.addPaymentezWidget(toView: self.addView, delegate: nil, uid:UserModel.uid, email:UserModel.email)
         
         // Do any additional setup after loading the view.
     }

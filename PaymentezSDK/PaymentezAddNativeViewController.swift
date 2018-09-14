@@ -25,12 +25,13 @@ open class PaymentezAddNativeViewController: UIViewController {
     var bundle = Bundle(for: PaymentezCard.self)
     var titleString:String  = "Add Card".localized
     var showTuya = false
+    internal var isModal = false
     let showLogo:Bool = true
     
     let buttonMessage = ["on":"Continue without code".localized, "off": "Continue with NIP".localized]
     @objc var showNip = true
     
-    weak var paymentezCard:PaymentezCard? = PaymentezCard()
+    let paymentezCard:PaymentezCard = PaymentezCard()
     
     var uid:String?
     var email:String?
@@ -132,7 +133,7 @@ open class PaymentezAddNativeViewController: UIViewController {
     
     let smsMessageField: UITextView = {
         let txtView = UITextView()
-//        txtView.text = "Validate this operation using a temporal unique code that will be sent by SMS or E-email registered at Tuya.".localized
+        txtView.text = "Validate this operation using a temporal unique code that will be sent by SMS or E-email registered at Tuya.".localized
         txtView.isEditable = false
         txtView.isSelectable = false
         txtView.isScrollEnabled = false
@@ -185,18 +186,39 @@ open class PaymentezAddNativeViewController: UIViewController {
         return btn
     }()
     
-   
+    let spinner: UIActivityIndicatorView = {
+        let sp = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+        sp.color = PaymentezStyle.baseBaseColor
+        sp.translatesAutoresizingMaskIntoConstraints = false
+        sp.hidesWhenStopped = true
+        sp.startAnimating()
+        return sp
+    }()
+    
+    let spinnerView: UIView = {
+        let view = UIView()
+        view.isHidden = true
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = UIColor.init(red: 1, green: 1, blue: 1, alpha: 0.8)
+        return view
+    }()
     
     
+    // SWITCH
     @objc var isWidget:Bool = true
     
+    //DELEGATE
     @objc public var addDelegate:PaymentezCardAddedDelegate?
     
-    
+    //MASK DELEGATES
     var cardMaskedDelegate: MaskedTextFieldDelegate!
     var expirationMaskedDelegate: MaskedTextFieldDelegate!
     var cvcMaskedField: MaskedTextFieldDelegate!
+    var nameMask: MaskedTextFieldDelegate!
+    var documentMask: MaskedTextFieldDelegate!
+    var nipMaskedField: MaskedTextFieldDelegate!
     
+    //MASK
     var cardMask:Mask = try! Mask(format: "[0000]-[0000]-[0000]-[0009]")
     var expirationMask:Mask = try! Mask(format: "[00]/[00]")
     var cvcMask:Mask = try! Mask(format: "[0009]")
@@ -205,6 +227,7 @@ open class PaymentezAddNativeViewController: UIViewController {
     var cardType:PaymentezCardType =  PaymentezCardType.notSupported {
         didSet {
         
+            self.paymentezCard.cardType = cardType
             DispatchQueue.main.async {
                 // change card
                 if self.cardType == .notSupported {
@@ -221,10 +244,11 @@ open class PaymentezAddNativeViewController: UIViewController {
         
     }
     
-    @objc public init(isWidget:Bool)
+    @objc public init(isWidget:Bool, isModal:Bool = false)
     {
         super.init(nibName: nil, bundle: nil)
         self.isWidget = isWidget
+        self.isModal = isModal
         setupViews()
     }
     
@@ -276,11 +300,19 @@ open class PaymentezAddNativeViewController: UIViewController {
         self.cvcMaskedField = MaskedTextFieldDelegate(format: "[0000]")
         self.cvcMaskedField.listener = self
         self.cvcField.delegate = cvcMaskedField
-        self.nipField.delegate = cvcMaskedField
+        
+        self.nipMaskedField = MaskedTextFieldDelegate(format: "[0000]")
+        self.nipMaskedField.listener = self
+        
+        self.nipField.delegate = nipMaskedField
         
         
+        self.nameField.addTarget(self, action:#selector(self.textfieldDidChange(_:)), for: .editingChanged)
+
         
-        
+        documentMask = MaskedTextFieldDelegate(format:"[-------------------------------------------]")
+        documentMask.listener = self
+        self.documentField.delegate = documentMask
         
         
     }
@@ -296,17 +328,28 @@ open class PaymentezAddNativeViewController: UIViewController {
             self.addButton.addTarget(self, action: #selector(self.addCard(_:)), for: .touchUpInside)
             self.view.addSubview(self.addButton)
             
-            self.addButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -10).isActive = true
+            //self.addButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -10).isActive = true
             self.addButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
             self.addButton.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 10).isActive = true
             self.addButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -10).isActive = true
             
             // Create close button
-            let barBtn = UIBarButtonItem(image: UIImage(named:"icon_close", in: self.bundle, compatibleWith: nil), style: .plain, target: self, action: #selector(close(_:)))
-            barBtn.tintColor = PaymentezStyle.baseFontColor
-            self.navigationItem.rightBarButtonItem = barBtn
+            if isModal {
+                let barBtn = UIBarButtonItem(image: UIImage(named:"icon_close", in: self.bundle, compatibleWith: nil), style: .plain, target: self, action: #selector(close(_:)))
+                barBtn.tintColor = PaymentezStyle.baseFontColor
+                self.navigationItem.rightBarButtonItem = barBtn
+            }
+            
+            let tap = UITapGestureRecognizer(target: self.view, action: #selector(self.view.endEditing(_:)))
+            tap.cancelsTouchesInView = false
+            self.view.addGestureRecognizer(tap)
+            
+            //Configure Spinner
+            
+            self.spinnerView.addSubview(self.spinner)
             
             
+
         }
     }
     private func setupViewLayouts(){
@@ -357,6 +400,20 @@ open class PaymentezAddNativeViewController: UIViewController {
             self.mainView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 10).isActive = true
             // self.mainView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -10).isActive = true
         } else{
+            self.addButton.topAnchor.constraint(equalTo: self.mainView.bottomAnchor, constant: 10).isActive = true
+            
+            
+            self.view.addSubview(self.spinnerView)
+
+            self.spinnerView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 10).isActive = true
+            self.spinnerView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 1).isActive = true
+            self.spinnerView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -1).isActive = true
+            self.spinnerView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -10).isActive = true
+            
+            self.spinner.centerXAnchor.constraint(equalTo: self.spinnerView.centerXAnchor).isActive = true
+            self.spinner.centerYAnchor.constraint(equalTo: self.spinnerView.centerYAnchor).isActive = true
+            self.spinner.heightAnchor.constraint(equalToConstant: 100 ).isActive = true
+            self.spinner.widthAnchor.constraint(equalToConstant: 100 ).isActive = true
             //self.mainView.heightAnchor.constraint(equalToConstant: 250).isActive = true
         }
         
@@ -439,29 +496,29 @@ open class PaymentezAddNativeViewController: UIViewController {
         
         if self.cardType == .alkosto || self.cardType == .exito  //tarjetas tuya
         {
-            guard let _ = self.cvcField.text else {
+            guard let _ = self.paymentezCard.nip  else {
                 return nil
             }
-            guard let _ = self.paymentezCard?.fiscalNumber else {
+            guard let _ = self.paymentezCard.fiscalNumber else {
                 return nil
             }
             
             return self.paymentezCard
             
         }else { // las demás
-            guard let _ = self.cvcField.text else {
+            guard let _ = self.paymentezCard.cvc else {
                 return nil
             }
-            guard let _ = self.paymentezCard?.cardHolder else {
+            guard let _ = self.paymentezCard.cardHolder else {
                 return nil
             }
-            guard let _ = self.paymentezCard?.cardNumber else {
+            guard let _ = self.paymentezCard.cardNumber else {
                 return nil
             }
-            guard let _ = self.paymentezCard?.expiryMonth else {
+            guard let _ = self.paymentezCard.expiryMonth else {
                 return nil
             }
-            guard let _ = self.paymentezCard?.expiryYear else {
+            guard let _ = self.paymentezCard.expiryYear else {
                 return nil
             }
            return self.paymentezCard
@@ -499,17 +556,17 @@ open class PaymentezAddNativeViewController: UIViewController {
                 
                 self.expirationField.text = resultEx.formattedText.string
                 self.cvcField.text = resultCvv.formattedText.string
-                self.paymentezCard?.cvc = self.cvcField.text
+                self.paymentezCard.cvc = self.cvcField.text
                 
-                self.paymentezCard?.cardNumber = self.cardField.text?.replacingOccurrences(of: "-", with: "")
-                self.cardType = PaymentezCard.getTypeCard((self.paymentezCard?.cardNumber)!)
+                self.paymentezCard.cardNumber = self.cardField.text?.replacingOccurrences(of: "-", with: "")
+                self.cardType = PaymentezCard.getTypeCard((self.paymentezCard.cardNumber)!)
                 let valExp = self.expirationField.text!.components(separatedBy: "/")
                 if valExp.count > 1
                 {
                     let expiryYear = Int(valExp[1])! + 2000
                     let expiryMonth = valExp[0]
-                    self.paymentezCard?.expiryYear =  "\(expiryYear)"
-                    self.paymentezCard?.expiryMonth =  expiryMonth
+                    self.paymentezCard.expiryYear =  "\(expiryYear)"
+                    self.paymentezCard.expiryMonth =  expiryMonth
                 }
             }
         }
@@ -524,7 +581,7 @@ open class PaymentezAddNativeViewController: UIViewController {
     }
     
     @objc func addCard(_ sender: Any) {
-        
+        self.view.endEditing(true)
         if !isWidget
         {
             guard let uid  = self.uid else {
@@ -534,13 +591,18 @@ open class PaymentezAddNativeViewController: UIViewController {
                 return
             }
             if let validCard = self.getValidCard() {
+                self.showSpinner()
                 PaymentezSDKClient.add(validCard, uid: uid, email: email, callback: { (error, cardAdded) in
-                    
+                    self.hideSpinner()
                     self.addDelegate?.cardAdded(error, cardAdded)
                 })
             }
         }
     }
+    
+}
+//MARK: Load CardImage
+extension PaymentezAddNativeViewController{
     func loadImageFromUrl(urlString:String){
         guard let url = URL(string: urlString) else{
             return
@@ -565,34 +627,33 @@ extension PaymentezAddNativeViewController: MaskedTextFieldDelegateListener
         
         if textField == self.cardField
         {
-//            if self.cardField.text?.count ?? 0 > 5 {
-//                self.toggleTuya(show:true)
-//            } else{
-//                self.toggleTuya(show:false)
-//            }
             self.cardField.errorMessage = ""
-            //self.cardType = PaymentezCard.getTypeCard(value)
-            self.paymentezCard?.cardNumber = self.cardField.text?.replacingOccurrences(of: "-", with: "")
-            if self.cardField.text?.count ?? 0 > 6 {
+            self.paymentezCard.cardNumber = self.cardField.text?.replacingOccurrences(of: "-", with: "")
+            if value.count >= 6 { // check bin
                 PaymentezCard.validate(cardNumber: (self.cardField.text?.replacingOccurrences(of: "-", with: ""))!) { (cardType, imageUrl, cvvLength, mask) in
                     
-                   
+                   self.cardType = cardType
                     DispatchQueue.main.async {
-                        self.cardType = cardType
+                        
                         if let img = imageUrl{
                             self.loadImageFromUrl(urlString: img)
                         }
                         
                         if cardType == .alkosto || cardType == .exito {
-                            
+    
                             self.toggleTuya(show:true)
                         }else {
                             self.toggleTuya(show:false)
                         }
                     }
                 }
+                if value.count < 15 {
+                    self.cardField.errorMessage = "Invalid".localized
+                }
             } else {
                 self.cardType = .notSupported
+                self.cardField.errorMessage = "Invalid".localized
+                
             }
             
             
@@ -609,14 +670,14 @@ extension PaymentezAddNativeViewController: MaskedTextFieldDelegateListener
                     {
                         let expiryYear = Int(valExp[1])! + 2000
                         
-                        self.paymentezCard?.expiryYear =  "\(expiryYear)"
-                        self.paymentezCard?.expiryMonth = valExp[0]
+                        self.paymentezCard.expiryYear =  "\(expiryYear)"
+                        self.paymentezCard.expiryMonth = valExp[0]
                     }
                 }
                 else
                 {
-                    self.paymentezCard?.expiryYear = nil
-                    self.paymentezCard?.expiryMonth = nil
+                    self.paymentezCard.expiryYear = nil
+                    self.paymentezCard.expiryMonth = nil
                     self.expirationField.errorMessage = "Invalid Date".localized
                 }
                 
@@ -626,38 +687,96 @@ extension PaymentezAddNativeViewController: MaskedTextFieldDelegateListener
         if textField == self.cvcField
         {
             self.cvcField.errorMessage = ""
-            if complete
-            {
                 if (value.count != 3 && self.cardType != .amex) || (value.count != 4 && self.cardType == .amex)
                 {
                     self.cvcField.errorMessage = "Invalid".localized
-                    self.paymentezCard?.cvc = nil
+                    self.paymentezCard.cvc = nil
                 }
                 else
                 {
-                    self.paymentezCard?.cvc = value
+                    self.paymentezCard.cvc = value
                 }
-            }
         }
         if textField == self.documentField{
-            self.paymentezCard?.fiscalNumber = self.documentField.text
+            self.paymentezCard.fiscalNumber = self.documentField.text
         }
         if textField == self.nipField {
             self.nipField.errorMessage = ""
             if value.count != 4{
                 self.nipField.errorMessage = "Invalid".localized
+                self.paymentezCard.nip = nil
             } else {
-                self.paymentezCard?.nip  = self.nipField.text
+                self.paymentezCard.nip  = self.nipField.text
             }
             
+        }
+       
+        if textField == self.documentField{
+            self.documentField.errorMessage = ""
+            if value.count > 3{
+                self.paymentezCard.fiscalNumber = value
+            } else {
+                self.documentField.errorMessage = "Invalid".localized
+                self.paymentezCard.fiscalNumber = nil
+            }
+        }
+        
+    }
+}
+// MARK: TextField Didchange
+extension PaymentezAddNativeViewController {
+    
+    func cancelEditing(){
+        self.nameField.resignFirstResponder()
+        self.cardField.resignFirstResponder()
+        self.cvcField.resignFirstResponder()
+        self.expirationField.resignFirstResponder()
+        self.documentField.resignFirstResponder()
+        self.nipField.resignFirstResponder()
+        
+    }
+    
+    @objc func textfieldDidChange(_ sender:Any){
+        
+        if sender as? SkyFloatingLabelTextField == self.nameField{
+            guard let value = self.nameField.text else {
+                return
+            }
+            self.nameField.errorMessage = ""
+            if value.count > 4{
+                self.paymentezCard.cardHolder = value
+            } else {
+                self.nameField.errorMessage = "Invalid".localized
+                self.paymentezCard.cardHolder = nil
+            }
         }
         
     }
 }
 
+extension PaymentezAddNativeViewController {
+    
+    func showSpinner(){
+        if !isWidget{
+            DispatchQueue.main.async {
+               self.spinnerView.isHidden = false
+            }
+            
+        }
+    }
+    
+    func hideSpinner(){
+        DispatchQueue.main.async {
+            self.spinnerView.isHidden = true
+        }
+        
+    }
+}
+
+
 public extension UIViewController {
     
-    func addPaymentezWidget(toView containerView:UIView,  delegate:PaymentezCardAddedDelegate?, uid:String, email:String){
+    func addPaymentezWidget(toView containerView:UIView,  delegate:PaymentezCardAddedDelegate?, uid:String, email:String) -> PaymentezAddNativeViewController{
         let paymentezAddVC = PaymentezSDKClient.createAddWidget()
         paymentezAddVC.uid = uid
         paymentezAddVC.email = email
@@ -671,9 +790,11 @@ public extension UIViewController {
         paymentezView?.leftAnchor.constraint(equalTo: containerView.leftAnchor).isActive = true
         paymentezView?.rightAnchor.constraint(equalTo: containerView.rightAnchor).isActive = true
         paymentezAddVC.didMove(toParentViewController: self)
+        return paymentezAddVC
     }
     func presentPaymentezViewController(delegate:PaymentezCardAddedDelegate, uid:String, email:String){
-        let paymentezAddVC = PaymentezAddNativeViewController(isWidget: false)
+        let paymentezAddVC = PaymentezAddNativeViewController(isWidget: false, isModal:true)
+        paymentezAddVC.isModal = true
         paymentezAddVC.addDelegate = delegate
         paymentezAddVC.uid = uid
         paymentezAddVC.email = email

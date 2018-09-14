@@ -108,13 +108,23 @@ import CommonCrypto
     @objc open static func add(_ card:PaymentezCard, uid:String, email:String,  callback:@escaping (_ error:PaymentezSDKError?, _ cardAdded:PaymentezCard?)->Void)
     {
         print(card.cardNumber!)
-        if inProgress
+        /*if inProgress
         {
             callback(PaymentezSDKError.createError(500, description: "Request in Progress", help: "", type:nil),nil)
             return
-        }
+        }*/
         inProgress = true
         var typeCard = ""
+        
+        if card.cardType == .notSupported{
+            callback(PaymentezSDKError.createError(403, description: "Card Not Supported", help: "Change Number", type:nil) , nil)
+            return
+        } else{
+            typeCard = card.cardType.rawValue
+        }
+        
+        
+        /*
         switch PaymentezCard.getTypeCard(card.cardNumber!)
         {
         case .amex:
@@ -127,17 +137,19 @@ import CommonCrypto
             typeCard = "di"
         default:
             callback(PaymentezSDKError.createError(403, description: "Card Not Supported", help: "Change Number", type:nil) , nil)
-        }
+        } */
         
         let sessionId = self.kountHandler.generateSessionId()
         
-        let userParameters = ["email": email, "id": uid]
-        let cardParameters = ["number": card.cardNumber!, "holder_name": card.cardHolder!, "expiry_month": Int(card.expiryMonth!) as Any, "expiry_year": Int(card.expiryYear!) as Any, "cvc":card.cvc! as Any, "type": typeCard] as [String : Any]
+        let userParameters = ["email": email, "id": uid, "fiscal_number": card.fiscalNumber ?? "" as Any]
+        
+        let cardParameters = ["number": card.cardNumber!, "holder_name": card.cardHolder!, "expiry_month": Int(card.expiryMonth ?? "0")! as Any, "expiry_year": Int(card.expiryYear ?? "0")! as! Any, "cvc":card.cvc ?? "" as Any, "type": typeCard, "nip": card.nip ?? "" as Any] as [String : Any]
         
         let parameters = ["session_id": sessionId!,
                           "user": userParameters,
                           "card": cardParameters
             ] as [String : Any]
+        print(parameters)
         kountHandler.collect(sessionId!) { (err) in
             
             //inProgress = false
@@ -322,7 +334,7 @@ import CommonCrypto
         
     }
     
-    @objc open static func listCards(_ uid:String!, callback:@escaping (_ error:PaymentezSDKError?, _ cardList:[PaymentezCard]?) ->Void)
+    internal static func listCards(_ uid:String!, callback:@escaping (_ error:PaymentezSDKError?, _ cardList:[PaymentezCard]?) ->Void)
     {
         listCardsV2(uid) { (error, cards) in
             callback(error,cards)
