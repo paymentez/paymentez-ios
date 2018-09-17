@@ -823,7 +823,7 @@ extension PaymentezAddNativeViewController {
 }
 
 
-public extension UIViewController {
+@objc public extension UIViewController {
     
     func addPaymentezWidget(toView containerView:UIView,  delegate:PaymentezCardAddedDelegate?, uid:String, email:String) -> PaymentezAddNativeViewController{
         let paymentezAddVC = PaymentezSDKClient.createAddWidget()
@@ -857,7 +857,7 @@ public extension UIViewController {
     
 }
 
-public extension UINavigationController {
+@objc public extension UINavigationController {
     func pushPaymentezViewController(delegate:PaymentezCardAddedDelegate, uid:String, email:String){
         let paymentezAddVC = PaymentezAddNativeViewController(isWidget: false)
         paymentezAddVC.uid = uid

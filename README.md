@@ -108,31 +108,34 @@ Setting up your app inside AppDelegate->didFinishLaunchingWithOptions. You shoul
 PaymentezSDKClient.setEnvironment("AbiColApp", secretKey: "2PmoFfjZJzjKTnuSYCFySMfHlOIBz7", testMode: true)
 
 
+##Types of implementation
+
+There are 3 ways to present the Add Card Form:
+
+1. As a Widget in a Custom Form
+2. As a Viewcontroller Pushed to your UINavigationController
+3. As a ViewController  presented in Modal
+
+The AddCard Form includes: Card io scan, and card validation.
+
 ###Show AddCard Widget
 
-In order to create a widget you should create a PaymentezAddNativeController from the PaymentezSDKClient. Then add it to the UIView that will be the container of the add form. The min height should be 160 px
+In order to create a widget you should create a PaymentezAddNativeController from the PaymentezSDKClient. Then add it to the UIView that will be the container of the add form. The min height should be 280 px
 
 The widget can scan with your phones camera the credit card data using card.io.
 ![Example](https://developers.paymentez.com/wp-content/uploads/2017/10/ios-example.png)
 
 ```swift
-let paymentezAddVC = PaymentezSDKClient.createAddWidget()
-self.addChildViewController(paymentezAddVC)
-paymentezAddVC.view.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.addView.frame.size.height)
-self.addView.translatesAutoresizingMaskIntoConstraints = true
-self.addView.addSubview(paymentezAddVC.view)
-paymentezAddVC.didMove(toParentViewController: self)
+let paymentezAddVC = self.addPaymentezWidget(toView: self.addView, delegate: nil, uid:UserModel.uid, email:UserModel.email)
+
 ```
 
 Objc
 
 ```objc
-self.paymentezAddVC = [PaymentezSDKClient createAddWidget];
-[self addChildViewController:self.paymentezAddVC];
-self.paymentezAddVC.view.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.addView.frame.size.height);
-self.addView.translatesAutoresizingMaskIntoConstraints = YES;
-[self.addView addSubview:self.paymentezAddVC.view];
-[self.paymentezAddVC didMoveToParentViewController:self];
+
+
+[self addPaymentezWidgetToView:self. addView delegate:self uid:@"myuid" email:@"myemail"];
 
 ```
 Retrive the valid credit card from the PaymentezAddNativeController (Widget):
@@ -172,6 +175,52 @@ else  //handle the error
 }];
 }
 ```
+###Viewcontroller Pushed to your UINavigationController
+
+
+```swift
+self.navigationController?.pushPaymentezViewController(delegate: self, uid: UserModel.uid, email: UserModel.email)
+
+```
+
+Objc
+
+```objc
+
+
+[self.navigationController pushPaymentezViewControllerWithDelegate:self uid:@"myuid" email:@"mymail@mail.com"]`;
+```
+
+###Present as Modal
+
+
+```swift
+self.presentPaymentezViewController(delegate: self, uid: "myuid", email: "myemail@email.com")
+
+```
+
+Objc
+
+```objc
+
+[self presentPaymentezViewControllerWithDelegate:self uid:@"myuid" email:@"myemail@email.com"];
+```
+
+
+###  PaymentezCardAddedDelegate Protocol
+
+If you present the Form as a viewcontroller (push and modal)  you must implement the PaymetnezCardAddedDelegate Protocol in order to handle the states or actions inside the Viewcontroller. If you are using Widget implementation you can handle the actions as described above.
+
+```swift
+protocol PaymentezCardAddedDelegate
+{
+    func cardAdded(_ error:PaymentezSDKError?, _ cardAdded:PaymentezCard?)
+    func viewClosed()
+}
+```
+`func cardAdded(_ error:PaymentezSDKError?, _ cardAdded:PaymentezCard?)`  is called whenever there is an error or a card is added.
+
+`func viewClosed()`  Whenever the modal is closed
 
 
 ### Scan Card

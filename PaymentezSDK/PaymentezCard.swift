@@ -282,11 +282,7 @@ public typealias ValidationCallback = (_ cardType: PaymentezCardType, _ cardImag
                     print("Not card type")
                     return
                 }
-                guard let urlLogo = dataDict["url_logo"] as? String else{
-                    callback(.notSupported, nil, nil, nil)
-                    print("Not url_logo")
-                    return
-                }
+                var urlLogo = dataDict["url_logo_png"] as? String
                 guard let cvvLength = dataDict["cvv_length"] as? Int else{
                     callback(.notSupported, nil, nil, nil)
                     print("Not cvv_length")
