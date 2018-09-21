@@ -102,11 +102,13 @@
 }
 - (IBAction)addCard:(id)sender {
     
-    PaymentezAddNativeViewController *paymentezNative  = [[PaymentezAddNativeViewController alloc] initWithIsWidget:YES];
+    PaymentezAddNativeViewController *paymentezNative  = [[PaymentezAddNativeViewController alloc] initWithIsWidget:YES isModal:NO];
     
     paymentezNative.addDelegate = self;
     
     [self.navigationController pushViewController:paymentezNative animated:TRUE];
+    
+    [self.navigationController pushPaymentezViewControllerWithDelegate:self uid:"myuid" email:"mymail@mail.com"]
     
     
     

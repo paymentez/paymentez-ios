@@ -18,6 +18,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self addPaymentezWidgetToView:self. addView delegate:self uid:"myuid" email:"myemail"]
+    
+    
+   
     self.paymentezAddVC = [PaymentezSDKClient createAddWidget];
     [self addChildViewController:self.paymentezAddVC];
     self.paymentezAddVC.view.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.addView.frame.size.height);

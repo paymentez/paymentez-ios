@@ -27,14 +27,14 @@ import CommonCrypto
     static var scanner = PaymentezCardScan()
     
     @objc(setRiskMerchantId:)
-    open static func setRiskMerchantId(_ merchantId:String)
+    public static func setRiskMerchantId(_ merchantId:String)
     {
         self.kountHandler.merchantId = merchantId
     }
     
     
     @objc(setEnvironment:secretKey:testMode:)
-    open static func setEnvironment(_ apiCode:String, secretKey:String, testMode:Bool)
+    public static func setEnvironment(_ apiCode:String, secretKey:String, testMode:Bool)
     {
         self.apiCode = apiCode
         self.secretKey = secretKey
@@ -91,13 +91,13 @@ import CommonCrypto
         
     }
     @objc
-    open static func getSecureSessionId()->String
+    public static func getSecureSessionId()->String
     {
         return self.kountHandler.getSecureSessionId()
     }
     
     @objc
-    open static func createAddWidget()->PaymentezAddNativeViewController
+    public static func createAddWidget()->PaymentezAddNativeViewController
     {
         let vc = PaymentezAddNativeViewController(isWidget: true)
         
@@ -105,16 +105,24 @@ import CommonCrypto
     }
     
     
-    @objc open static func add(_ card:PaymentezCard, uid:String, email:String,  callback:@escaping (_ error:PaymentezSDKError?, _ cardAdded:PaymentezCard?)->Void)
-    {
-        print(card.cardNumber!)
-        if inProgress
+    @objc public static func add(_ card:PaymentezCard, uid:String, email:String,  callback:@escaping (_ error:PaymentezSDKError?, _ cardAdded:PaymentezCard?)->Void)
+    {        /*if inProgress
         {
             callback(PaymentezSDKError.createError(500, description: "Request in Progress", help: "", type:nil),nil)
             return
-        }
+        }*/
         inProgress = true
         var typeCard = ""
+        
+        if card.cardType == .notSupported{
+            callback(PaymentezSDKError.createError(403, description: "Card Not Supported", help: "Change Number", type:nil) , nil)
+            return
+        } else{
+            typeCard = card.cardType.rawValue
+        }
+        
+        
+        /*
         switch PaymentezCard.getTypeCard(card.cardNumber!)
         {
         case .amex:
@@ -127,17 +135,19 @@ import CommonCrypto
             typeCard = "di"
         default:
             callback(PaymentezSDKError.createError(403, description: "Card Not Supported", help: "Change Number", type:nil) , nil)
-        }
+        } */
         
         let sessionId = self.kountHandler.generateSessionId()
         
-        let userParameters = ["email": email, "id": uid]
-        let cardParameters = ["number": card.cardNumber!, "holder_name": card.cardHolder!, "expiry_month": Int(card.expiryMonth!) as Any, "expiry_year": Int(card.expiryYear!) as Any, "cvc":card.cvc! as Any, "type": typeCard] as [String : Any]
+        let userParameters = ["email": email, "id": uid, "fiscal_number": card.fiscalNumber ?? "" as Any]
+        
+        let cardParameters = ["number": card.cardNumber!, "holder_name": card.cardHolder!, "expiry_month": Int(card.expiryMonth ?? "0")! as Any, "expiry_year": Int(card.expiryYear ?? "0")! as Any, "cvc":card.cvc ?? "" as Any, "type": typeCard, "nip": card.nip ?? "" as Any] as [String : Any]
         
         let parameters = ["session_id": sessionId!,
                           "user": userParameters,
                           "card": cardParameters
             ] as [String : Any]
+        
         kountHandler.collect(sessionId!) { (err) in
             
             //inProgress = false
@@ -187,13 +197,13 @@ import CommonCrypto
                     
                     if cardAdded.status == "rejected"
                     {
-                        let error = PaymentezSDKError.createError(statusCode!, description: (cardData["message"] as? String)!, help: "", type:nil)
+                        let error = PaymentezSDKError.createError(statusCode!, description: (cardData["message"] as? String ?? "")!, help: "", type:nil)
                         callback(error, cardAdded)
                     }
                     else if cardAdded.status == "review"
                     {
                         
-                        let error = PaymentezSDKError.createError(statusCode!, description: (cardData["message"] as? String)!, help: "", type:nil)
+                        let error = PaymentezSDKError.createError(statusCode!, description: (cardData["message"] as? String ?? "")!, help: "", type:nil)
                         callback(error, cardAdded)
                     }
                     else
@@ -273,8 +283,8 @@ import CommonCrypto
                 let authToken = generateAuthToken(parameters , authTimestamp: authTimestamp)
                 parameters["auth_timestamp"] = authTimestamp
                 parameters["auth_token"] = authToken
-                parameters["expiryYear"] = "\(expiryYear)"
-                parameters["expiryMonth"] = "\(expiryMonth)"
+                parameters["expiryYear"] = "\(String(describing: expiryYear))"
+                parameters["expiryMonth"] = "\(String(describing: expiryMonth))"
                 parameters["holderName"] = holderName
                 parameters["number"] = cardNumber
                 parameters["cvc"] = cvc
@@ -322,7 +332,7 @@ import CommonCrypto
         
     }
     
-    @objc open static func listCards(_ uid:String!, callback:@escaping (_ error:PaymentezSDKError?, _ cardList:[PaymentezCard]?) ->Void)
+    internal static func listCards(_ uid:String!, callback:@escaping (_ error:PaymentezSDKError?, _ cardList:[PaymentezCard]?) ->Void)
     {
         listCardsV2(uid) { (error, cards) in
             callback(error,cards)
@@ -484,7 +494,6 @@ import CommonCrypto
                             let responseD = responseData as! [String:Any]
                             
                             let response = PaymentezTransaction.parseTransactionV2(responseD["transaction"] as! [String:Any])
-                            print(response.status as Any)
                             if response.statusDetail == 11
                             {
                                 callback(nil, response)
@@ -713,7 +722,7 @@ import CommonCrypto
     
     
     
-    @objc open static func scanCard(_ presenterViewController:UIViewController, callback:@escaping (_ userCancelled:Bool, _ number:String?, _ expiry:String?, _ cvv:String?,_ card:PaymentezCard?) ->Void)
+    @objc public static func scanCard(_ presenterViewController:UIViewController, callback:@escaping (_ userCancelled:Bool, _ number:String?, _ expiry:String?, _ cvv:String?,_ card:PaymentezCard?) ->Void)
         
     {
         self.scanner.showScan(presenterViewController) { (infoCard) in
@@ -735,6 +744,24 @@ import CommonCrypto
             }
             
         }
+        
+    }
+    
+    internal static func validateCard(cardNumber:String, callback:@escaping(_ data:[String:AnyObject]?,_ error:Error? ) ->Void)
+    {
+        let index = cardNumber.index(cardNumber.startIndex, offsetBy: 5)
+        
+        let bin  = String(cardNumber[...index])
+        let url = "/v2/card_bin/"+bin
+        request.makeRequestGetV2(url, parameters: [:], token: generateAuthTokenV2()) { (err, code, data) in
+            
+            if err != nil || code != 200{
+                callback(nil, err)
+            } else{
+                callback(data as? [String:AnyObject], err)
+            }
+        }
+        
         
     }
     

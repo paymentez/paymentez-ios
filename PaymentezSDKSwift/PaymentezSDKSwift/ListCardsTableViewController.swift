@@ -202,8 +202,58 @@ class ListCardsTableViewController: UITableViewController {
         return actions
     }
     
+    @IBAction func presentAddVC(_ sender:Any?){
+        
+        
+        let alertController = UIAlertController(title: "Selecciona el tipo de vista", message: nil, preferredStyle: .actionSheet)
+        
+        
+        let alertAction = UIAlertAction(title: "Widget in Custom View", style: UIAlertActionStyle.default) { (_) in
+            self.performSegue(withIdentifier: "widgetSegue", sender: self)
+        }
+        let alertAction2 = UIAlertAction(title: "View Controller (Push)", style: UIAlertActionStyle.default) { (_) in
+            self.navigationController?.pushPaymentezViewController(delegate: self, uid: UserModel.uid, email: UserModel.email)
+        }
+        let alertAction3 = UIAlertAction(title: "View Controller (Modal)", style: UIAlertActionStyle.default) { (_) in
+             self.presentPaymentezViewController(delegate: self, uid: UserModel.uid, email: UserModel.email)
+        }
+        
+        alertController.addAction(alertAction)
+        alertController.addAction(alertAction2)
+        alertController.addAction(alertAction3)
+
+        self.present(alertController, animated: true, completion: nil)
+        
+       
+        
+    }
+    
    
     
     
+}
+
+extension ListCardsTableViewController: PaymentezCardAddedDelegate{
+    
+    func cardAdded(_ error: PaymentezSDKError?, _ cardAdded: PaymentezCard?) {
+        //handle status
+        if cardAdded != nil{
+            let alertController = UIAlertController(title: "Card Status", message: cardAdded?.status, preferredStyle: .alert)
+            let alertAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            alertController.addAction(alertAction)
+            self.present(alertController, animated: true)
+            self.refreshTable()
+        }else if  let err = error {
+            let alertController = UIAlertController(title: "error", message: err.type, preferredStyle: .alert)
+            let alertAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            alertController.addAction(alertAction)
+            self.present(alertController, animated: true)
+        }
+        
+        
+    }
+    func viewClosed() {
+        //handle closed
+    }
 }
 

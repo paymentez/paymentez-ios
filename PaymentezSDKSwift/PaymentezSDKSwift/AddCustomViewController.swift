@@ -21,12 +21,14 @@ class AddCustomViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //PAYMENTEZ WIDGET CREATION
-        paymentezAddVC = PaymentezSDKClient.createAddWidget()
-        self.addChildViewController(paymentezAddVC)
-        paymentezAddVC.view.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.addView.frame.size.height)
-        self.addView.translatesAutoresizingMaskIntoConstraints = true
-        self.addView.addSubview(paymentezAddVC.view)
-        paymentezAddVC.didMove(toParentViewController: self)
+        
+        paymentezAddVC = self.addPaymentezWidget(toView: self.addView, delegate: nil, uid:UserModel.uid, email:UserModel.email)
+        
+        /* Change Colors
+        paymentezAddVC.baseFontColor = .orange
+        paymentezAddVC.baseColor = .green
+        paymentezAddVC.backgroundColor = .white
+        paymentezAddVC.showLogo = false*/
         
         // Do any additional setup after loading the view.
     }
@@ -39,8 +41,6 @@ class AddCustomViewController: UIViewController {
     
     @IBAction func addCard(_ sender:UIButton?)
     {
-        
-        
         if let validCard = self.paymentezAddVC.getValidCard() // CHECK IF THE CARD IS VALID, IF THERE IS A VALIDATION ERROR NIL VALUE WILL BE RETURNED
         {
             
@@ -82,15 +82,4 @@ class AddCustomViewController: UIViewController {
             })
         }
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
