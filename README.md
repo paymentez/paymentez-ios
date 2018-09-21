@@ -36,6 +36,7 @@ CommonCrypto
 **Project Configuration**
 -ObjC in other linker flags in target
 -lc++ in target other linker flags
+Disable Bitcode
 
 
 ----------
@@ -120,7 +121,7 @@ The AddCard Form includes: Card io scan, and card validation.
 
 ###Show AddCard Widget
 
-In order to create a widget you should create a PaymentezAddNativeController from the PaymentezSDKClient. Then add it to the UIView that will be the container of the add form. The min height should be 280 px
+In order to create a widget you should create a PaymentezAddNativeController from the PaymentezSDKClient. Then add it to the UIView that will be the container of the add form. The min height should be 300 px (270px without paymentez logo)
 
 The widget can scan with your phones camera the credit card data using card.io.
 ![Example](https://developers.paymentez.com/wp-content/uploads/2017/10/ios-example.png)
@@ -331,7 +332,7 @@ let image = card.getCardTypeAsset()
 }
 ```
 
-Get Card Type
+Get Card Type (Just Amex, Mastercard, Visa, Diners)
 ```swift
 let card = PaymentezCard.createCard(cardHolder:"Gustavo Sotelo", cardNumber:"4111111111111111", expiryMonth:10, expiryYear:2020, cvc:"123")
 if card != nil  // A valid card was created
@@ -348,6 +349,20 @@ default:
 
 }
 ```
+
+###Customize Colors 
+
+
+You can customize widget colors  
+
+```
+paymentezAddVC.baseFontColor = .white
+paymentezAddVC.baseColor = .green
+paymentezAddVC.backgroundColor = .white
+paymentezAddVC.showLogo = false
+
+```
+
 
 ### Building and Running the PaymentezSwift
 

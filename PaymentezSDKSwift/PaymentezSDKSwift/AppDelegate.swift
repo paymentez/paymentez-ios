@@ -9,6 +9,8 @@
 import UIKit
 import PaymentezSDK
 import CoreLocation
+import Fabric
+import Crashlytics
 
 
 @UIApplicationMain
@@ -22,6 +24,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         let locationManager = CLLocationManager()
         locationManager.requestWhenInUseAuthorization()
+        
+        
+        Fabric.with([Crashlytics.self])
+        
         
         /*****************************************
          

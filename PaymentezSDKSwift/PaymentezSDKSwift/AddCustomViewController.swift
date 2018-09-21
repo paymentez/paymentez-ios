@@ -24,7 +24,11 @@ class AddCustomViewController: UIViewController {
         
         paymentezAddVC = self.addPaymentezWidget(toView: self.addView, delegate: nil, uid:UserModel.uid, email:UserModel.email)
         
-        paymentezAddVC.baseFontColor = .blue
+        /* Change Colors
+        paymentezAddVC.baseFontColor = .orange
+        paymentezAddVC.baseColor = .green
+        paymentezAddVC.backgroundColor = .white
+        paymentezAddVC.showLogo = false*/
         
         // Do any additional setup after loading the view.
     }

@@ -53,7 +53,6 @@ public typealias ValidationCallback = (_ cardType: PaymentezCardType, _ cardImag
         didSet {
             if cardNumber != nil
             {
-                self.cardType = PaymentezCard.getTypeCard(self.cardNumber!)
                 self.termination = String(self.cardNumber!.suffix(4))
             }
         }
@@ -93,7 +92,7 @@ public typealias ValidationCallback = (_ cardType: PaymentezCardType, _ cardImag
 
 
 
-    open static func createCard(cardHolder:String, cardNumber:String, expiryMonth:NSInteger, expiryYear:NSInteger, cvc:String) ->PaymentezCard?
+    public static func createCard(cardHolder:String, cardNumber:String, expiryMonth:NSInteger, expiryYear:NSInteger, cvc:String) ->PaymentezCard?
     {
         let paymentezCard = PaymentezCard()
         if getTypeCard(cardNumber) == .notSupported
@@ -224,7 +223,7 @@ public typealias ValidationCallback = (_ cardType: PaymentezCardType, _ cardImag
 
     }
     
-    open static func getTypeCard(_ cardNumber:String) -> PaymentezCardType
+    public static func getTypeCard(_ cardNumber:String) -> PaymentezCardType
     {
         if cardNumber.count < 15  || cardNumber.count > 16
         {
@@ -267,7 +266,7 @@ public typealias ValidationCallback = (_ cardType: PaymentezCardType, _ cardImag
     
     
     
-    open static func validate(cardNumber:String, callback:@escaping ValidationCallback){
+    public static func validate(cardNumber:String, callback:@escaping ValidationCallback){
         
         PaymentezSDKClient.validateCard(cardNumber: cardNumber) { (data, err) in
             if err == nil{
@@ -282,7 +281,7 @@ public typealias ValidationCallback = (_ cardType: PaymentezCardType, _ cardImag
                     print("Not card type")
                     return
                 }
-                var urlLogo = dataDict["url_logo_png"] as? String
+                let urlLogo = dataDict["url_logo_png"] as? String
                 guard let cvvLength = dataDict["cvv_length"] as? Int else{
                     callback(.notSupported, nil, nil, nil)
                     print("Not cvv_length")

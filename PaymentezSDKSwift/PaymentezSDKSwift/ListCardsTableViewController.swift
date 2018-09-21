@@ -236,7 +236,21 @@ class ListCardsTableViewController: UITableViewController {
 extension ListCardsTableViewController: PaymentezCardAddedDelegate{
     
     func cardAdded(_ error: PaymentezSDKError?, _ cardAdded: PaymentezCard?) {
-        self.refreshTable()
+        //handle status
+        if cardAdded != nil{
+            let alertController = UIAlertController(title: "Card Status", message: cardAdded?.status, preferredStyle: .alert)
+            let alertAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            alertController.addAction(alertAction)
+            self.present(alertController, animated: true)
+            self.refreshTable()
+        }else if  let err = error {
+            let alertController = UIAlertController(title: "error", message: err.type, preferredStyle: .alert)
+            let alertAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            alertController.addAction(alertAction)
+            self.present(alertController, animated: true)
+        }
+        
+        
     }
     func viewClosed() {
         //handle closed

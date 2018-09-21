@@ -42,7 +42,7 @@ open class PaymentezAddNativeViewController: UIViewController {
     }
     var bundle = Bundle(for: PaymentezCard.self)
     var titleString:String  = "Add Card".localized
-    var showTuya = false
+   
     internal var isModal = false
     open var showLogo:Bool = true {
         didSet {
@@ -50,8 +50,18 @@ open class PaymentezAddNativeViewController: UIViewController {
         }
     }
     
-    let buttonMessage = ["on":"Continue without code".localized, "off": "Continue with NIP".localized]
-    @objc var showNip = true
+    let buttonMessage = ["off":"Continue without code".localized, "on": "Continue with NIP".localized]
+    private var showNip = true {
+        didSet{
+            self.toggleNip(show: showNip) // show
+        }
+    }
+    private var showTuya = false {
+        didSet {
+            self.toggleTuya(show: self.showTuya)
+        }
+        
+    }
     
     let paymentezCard:PaymentezCard = PaymentezCard()
     
@@ -101,6 +111,7 @@ open class PaymentezAddNativeViewController: UIViewController {
     let otpNipView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = UILayoutConstraintAxis.horizontal
+        stackView.distribution = .fillEqually
         return stackView
     }()
     
@@ -108,6 +119,7 @@ open class PaymentezAddNativeViewController: UIViewController {
     let cardField: SkyFloatingLabelTextField = {
         let field = SkyFloatingLabelTextField()
         field.placeholder = "Card Number".localized
+        field.keyboardType = .numberPad
         return field
     }()
     let cvcField: SkyFloatingLabelTextField = {
@@ -118,6 +130,7 @@ open class PaymentezAddNativeViewController: UIViewController {
     let expirationField: SkyFloatingLabelTextField = {
         let field = SkyFloatingLabelTextField()
         field.placeholder = "Expiration (MM/YY)".localized
+        field.keyboardType = .numberPad
         field.translatesAutoresizingMaskIntoConstraints = false
         return field
     }()
@@ -157,8 +170,10 @@ open class PaymentezAddNativeViewController: UIViewController {
         let txtView = UITextView()
         txtView.text = "Validate this operation using a temporal unique code that will be sent by SMS or E-email registered at Tuya.".localized
         txtView.isEditable = false
+        txtView.textAlignment = .center
         txtView.isSelectable = false
         txtView.isScrollEnabled = false
+        txtView.isHidden = true
         txtView.font = PaymentezStyle.fontExtraSmall
         txtView.textColor = PaymentezStyle.baseFontColor
         txtView.backgroundColor = PaymentezStyle.baseBaseColor
@@ -249,7 +264,7 @@ open class PaymentezAddNativeViewController: UIViewController {
     var cardType:PaymentezCardType =  PaymentezCardType.notSupported {
         didSet {
         
-            self.paymentezCard.cardType = cardType
+            self.paymentezCard.cardType = self.cardType
             DispatchQueue.main.async {
                 // change card
                 if self.cardType == .notSupported {
@@ -434,6 +449,9 @@ open class PaymentezAddNativeViewController: UIViewController {
         
         self.tuyaView.addArrangedSubview(self.documentField)
         self.tuyaView.addArrangedSubview(self.otpNipView)
+        self.tuyaView.addArrangedSubview(self.smsMessageField)
+        
+        
         
         // ADD SUBVIEWS
         self.mainView.addArrangedSubview(self.nameView)
@@ -477,52 +495,47 @@ open class PaymentezAddNativeViewController: UIViewController {
     
     private func toggleTuya(show:Bool){
         
-        if !show && self.showTuya == true{
+        if !show {
             // dismiss
-            self.showTuya = false
             self.tuyaView.isHidden = true
+            self.verificationView.isHidden = false
             self.mainView.insertArrangedSubview(self.verificationView, at: 2)
             self.tuyaView.removeFromSuperview()
-            self.verificationView.isHidden = false
-        } else if show && self.showTuya == false {
+        } else if show {
             // show
             //
             self.tuyaView.isHidden = false
             self.verificationView.isHidden = true
             self.mainView.insertArrangedSubview(self.tuyaView, at: 2)
-            //self.verificationView.removeFromSuperview()
-            self.showTuya = true
+            self.verificationView.removeFromSuperview()
+            self.showNip = true
         }
     }
     
     
     @objc func dismissNip(_ sender:Any){
-        toggleNip(show: false)
+        self.showNip = false
     }
     
     @objc func showNip(_ sender:Any){
-        toggleNip(show: true)
+        self.showNip = true
     }
     
     
     private func toggleNip(show:Bool){
-        if !show && self.showNip == true{
+        if !show {
             // dismiss
+            self.useSMSButton.setTitle(buttonMessage["on"], for: .normal)
             self.nipField.isHidden = true
-            self.useSMSButton.setTitle(buttonMessage["off"], for: .normal)
-            //self.nipField.removeFromSuperview()
-            self.showNip = false
-            self.tuyaView.addArrangedSubview(self.smsMessageField)
+            self.smsMessageField.isHidden = false
             self.useSMSButton.removeTarget(self, action: #selector(dismissNip(_:)), for: .touchUpInside)
             self.useSMSButton.addTarget(self, action: #selector(showNip(_:)), for: .touchUpInside)
-        } else if show && self.showNip == false {
+        } else if show{
             // show
             //
-            self.useSMSButton.setTitle(buttonMessage["on"], for: .normal)
-            self.smsMessageField.removeFromSuperview()
+            self.useSMSButton.setTitle(buttonMessage["off"], for: .normal)
+            self.smsMessageField.isHidden = true
             self.nipField.isHidden = false
-            self.otpNipView.insertArrangedSubview(self.nipField, at: 0)
-            self.showNip = true
             self.useSMSButton.removeTarget(self, action: #selector(showNip(_:)), for: .touchUpInside)
             self.useSMSButton.addTarget(self, action: #selector(dismissNip(_:)), for: .touchUpInside)
         }
@@ -535,20 +548,54 @@ open class PaymentezAddNativeViewController: UIViewController {
     
     //MARK: Card Validation Methods
     
+    private func validateCard(_ cardNumber:String){
+        PaymentezCard.validate(cardNumber: (self.cardField.text?.replacingOccurrences(of: "-", with: ""))!) { (cardType, imageUrl, cvvLength, mask) in
+            
+            self.cardType = cardType
+            DispatchQueue.main.async {
+                
+                if let img = imageUrl{
+                    self.loadImageFromUrl(urlString: img)
+                }
+                if cvvLength == 4{
+                    self.cvcImageView.image = UIImage(named:"stp_card_cvc_amex", in: Bundle(for: PaymentezCard.self), compatibleWith: nil)
+                }else{
+                    self.cvcImageView.image = UIImage(named:"stp_card_cvc", in: Bundle(for: PaymentezCard.self), compatibleWith: nil)
+
+                }
+                if cardType == .alkosto || cardType == .exito {
+                    self.toggleTuya(show:true)
+                }else {
+                    self.toggleTuya(show:false)
+                }
+            }
+        }
+    }
+    
      @objc open func getValidCard()->PaymentezCard?
     {
         
         
-        if self.cardType == .notSupported{
+        if self.paymentezCard.cardType == .notSupported{
             return nil
         }
-        
+        guard let _ = self.paymentezCard.cardHolder else {
+            self.nameField.errorMessage = "Invalid".localized
+            return nil
+        }
+        guard let _ = self.paymentezCard.cardNumber else {
+             self.cardField.errorMessage = "Invalid".localized
+            return nil
+        }
         if self.cardType == .alkosto || self.cardType == .exito  //tarjetas tuya
         {
+            
             guard let _ = self.paymentezCard.nip  else {
+                 self.nipField.errorMessage = "Invalid".localized
                 return nil
             }
             guard let _ = self.paymentezCard.fiscalNumber else {
+                 self.documentField.errorMessage = "Invalid".localized
                 return nil
             }
             
@@ -556,18 +603,15 @@ open class PaymentezAddNativeViewController: UIViewController {
             
         }else { // las demás
             guard let _ = self.paymentezCard.cvc else {
-                return nil
-            }
-            guard let _ = self.paymentezCard.cardHolder else {
-                return nil
-            }
-            guard let _ = self.paymentezCard.cardNumber else {
+                 self.cvcField.errorMessage = "Invalid".localized
                 return nil
             }
             guard let _ = self.paymentezCard.expiryMonth else {
+                 self.expirationField.errorMessage = "Invalid".localized
                 return nil
             }
             guard let _ = self.paymentezCard.expiryYear else {
+                 self.expirationField.errorMessage = "Invalid".localized
                 return nil
             }
            return self.paymentezCard
@@ -580,6 +624,9 @@ open class PaymentezAddNativeViewController: UIViewController {
         PaymentezSDKClient.scanCard(self) { (closed, number, expiry, cvv, card) in
             if !closed
             {
+                guard let cardNumber = number else {
+                    return
+                }
                 let result: Mask.Result = self.cardMask.apply(
                     toText: CaretString(
                         string: number!,
@@ -617,6 +664,16 @@ open class PaymentezAddNativeViewController: UIViewController {
                     self.paymentezCard.expiryYear =  "\(expiryYear)"
                     self.paymentezCard.expiryMonth =  expiryMonth
                 }
+                
+                //Validate Card
+            
+                if cardNumber.count >= 10{
+                    let indexEnd = cardNumber.index(cardNumber.startIndex, offsetBy:10)
+                    self.validateCard(String(cardNumber[..<indexEnd]))
+                } else {
+                    self.validateCard(cardNumber)
+                }
+                
             }
         }
     }
@@ -641,9 +698,19 @@ open class PaymentezAddNativeViewController: UIViewController {
             }
             if let validCard = self.getValidCard() {
                 self.showSpinner()
-                PaymentezSDKClient.add(validCard, uid: uid, email: email, callback: { (error, cardAdded) in
-                    self.hideSpinner()
-                    self.addDelegate?.cardAdded(error, cardAdded)
+                PaymentezSDKClient.add(validCard, uid: uid, email: email, callback: { [weak self] (error, cardAdded) in
+                    self?.hideSpinner()
+                    DispatchQueue.main.async {
+                        if self?.isModal ?? false {
+                            self?.dismiss(animated: true, completion: {
+                                self?.addDelegate?.cardAdded(error, cardAdded)
+                            })
+                        }else{
+                            self?.navigationController?.popViewController(animated: true)
+                            self?.addDelegate?.cardAdded(error, cardAdded)
+                        }
+                    }
+                    
                 })
             }
         }
@@ -678,31 +745,19 @@ extension PaymentezAddNativeViewController: MaskedTextFieldDelegateListener
         {
             self.cardField.errorMessage = ""
             self.paymentezCard.cardNumber = self.cardField.text?.replacingOccurrences(of: "-", with: "")
-            if value.count >= 6 { // check bin
-                PaymentezCard.validate(cardNumber: (self.cardField.text?.replacingOccurrences(of: "-", with: ""))!) { (cardType, imageUrl, cvvLength, mask) in
-                    
-                   self.cardType = cardType
-                    DispatchQueue.main.async {
-                        
-                        if let img = imageUrl{
-                            self.loadImageFromUrl(urlString: img)
-                        }
-                        
-                        if cardType == .alkosto || cardType == .exito {
-    
-                            self.toggleTuya(show:true)
-                        }else {
-                            self.toggleTuya(show:false)
-                        }
-                    }
-                }
+            if value.count >= 6  && value.count <= 10 && self.cardType == .notSupported { // check bin
+                self.validateCard(value)
                 if value.count < 15 {
                     self.cardField.errorMessage = "Invalid".localized
                 }
-            } else {
+            } else if value.count < 6 {
                 self.cardType = .notSupported
                 self.cardField.errorMessage = "Invalid".localized
+                self.toggleTuya(show:false)
                 
+            }
+            if value.count < 15 {
+                self.cardField.errorMessage = "Invalid".localized
             }
             
             

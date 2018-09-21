@@ -28,3 +28,9 @@
 "Document Identifier" = "Documento de Identidad";
 
 "Validate this operation using a temporal unique code that will be sent by SMS or E-email registered at Tuya." = "Valida esta operación usando una clave unica temporal que sera enviada a tu telefono o correo electrónico registrado en Tuya";
+
+"Ok" = "Entendido";
+
+"Card cannot be added" = "La tarjeta no pudo ser agregada";
+
+"Card Added" = "Tarjeta agregada exitosamente";
