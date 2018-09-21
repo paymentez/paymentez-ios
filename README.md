@@ -113,7 +113,7 @@ PaymentezSDKClient.setEnvironment("AbiColApp", secretKey: "2PmoFfjZJzjKTnuSYCFyS
 
 There are 3 ways to present the Add Card Form:
 
-1. As a Widget in a Custom Form
+1. As a Widget in a Custom View
 2. As a Viewcontroller Pushed to your UINavigationController
 3. As a ViewController  presented in Modal
 
@@ -121,7 +121,7 @@ The AddCard Form includes: Card io scan, and card validation.
 
 ###Show AddCard Widget
 
-In order to create a widget you should create a PaymentezAddNativeController from the PaymentezSDKClient. Then add it to the UIView that will be the container of the add form. The min height should be 300 px (270px without paymentez logo)
+In order to create a widget you should create a PaymentezAddNativeController from the PaymentezSDKClient. Then add it to the UIView that will be the container of the Paymentez Form. The min height should be 300 px, and whole screen as width (270px without paymentez logo)
 
 The widget can scan with your phones camera the credit card data using card.io.
 ![Example](https://developers.paymentez.com/wp-content/uploads/2017/10/ios-example.png)
@@ -350,7 +350,7 @@ default:
 }
 ```
 
-###Customize Colors 
+### Customize Look & Feel 
 
 
 You can customize widget colors  
@@ -360,6 +360,7 @@ paymentezAddVC.baseFontColor = .white
 paymentezAddVC.baseColor = .green
 paymentezAddVC.backgroundColor = .white
 paymentezAddVC.showLogo = false
+paymentezAddVC.baseFont = UIFont(name: "Your Font", size: 12) ?? UIFont.systemFont(ofSize: 12)
 
 ```
 

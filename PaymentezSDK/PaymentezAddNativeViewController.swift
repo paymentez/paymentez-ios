@@ -63,6 +63,17 @@ open class PaymentezAddNativeViewController: UIViewController {
         
     }
     
+    private var showOtp = false {
+        didSet{
+            if self.showOtp{
+                self.useSMSButton.isHidden = false
+            } else {
+                
+                self.useSMSButton.isHidden = true
+            }
+        }
+    }
+    
     let paymentezCard:PaymentezCard = PaymentezCard()
     
     var uid:String?
@@ -549,10 +560,12 @@ open class PaymentezAddNativeViewController: UIViewController {
     //MARK: Card Validation Methods
     
     private func validateCard(_ cardNumber:String){
-        PaymentezCard.validate(cardNumber: (self.cardField.text?.replacingOccurrences(of: "-", with: ""))!) { (cardType, imageUrl, cvvLength, mask) in
+        PaymentezCard.validate(cardNumber: (self.cardField.text?.replacingOccurrences(of: "-", with: ""))!) { (cardType, imageUrl, cvvLength, mask, showOtp) in
             
             self.cardType = cardType
             DispatchQueue.main.async {
+                
+                self.showOtp = showOtp
                 
                 if let img = imageUrl{
                     self.loadImageFromUrl(urlString: img)

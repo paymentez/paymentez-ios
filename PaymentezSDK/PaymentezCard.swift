@@ -32,7 +32,7 @@ let REGEX_DISCOVER = "^65[4-9][0-9]{13}|64[4-9][0-9]{13}|6011[0-9]{12}|(622(?:12
 let REGEX_JCB = "^(?:2131|1800|35[0-9]{3})[0-9]{11}$"
 
 
-public typealias ValidationCallback = (_ cardType: PaymentezCardType, _ cardImageUrl:String?, _ cvvLength:Int?, _ maskString:String?) -> Void
+public typealias ValidationCallback = (_ cardType: PaymentezCardType, _ cardImageUrl:String?, _ cvvLength:Int?, _ maskString:String?, _ showOtp:Bool) -> Void
 
 @objcMembers open class PaymentezCard:NSObject
 {
@@ -272,30 +272,31 @@ public typealias ValidationCallback = (_ cardType: PaymentezCardType, _ cardImag
             if err == nil{
                 
                 guard let dataDict = data else {
-                    callback(.notSupported, nil, nil, nil)
+                    callback(.notSupported, nil, nil, nil, false)
                     print("Not supported")
                     return
                 }
                 guard let cardType = dataDict["card_type"] as? String else{
-                    callback(.notSupported, nil, nil, nil)
+                    callback(.notSupported, nil, nil, nil, false)
                     print("Not card type")
                     return
                 }
                 let urlLogo = dataDict["url_logo_png"] as? String
                 guard let cvvLength = dataDict["cvv_length"] as? Int else{
-                    callback(.notSupported, nil, nil, nil)
+                    callback(.notSupported, nil, nil, nil, false)
                     print("Not cvv_length")
                     return
                 }
                 guard let maskString = dataDict["card_mask"] as? String else{
-                    callback(.notSupported, nil, nil, nil)
+                    callback(.notSupported, nil, nil, nil, false)
                     print("Not mask")
                     return
                 }
-                callback(PaymentezCardType(rawValue: cardType) ?? PaymentezCardType(rawValue: "")! , urlLogo, cvvLength, maskString)
+                let showOtp = dataDict["otp"] as? Bool ?? false
+                callback(PaymentezCardType(rawValue: cardType) ?? PaymentezCardType(rawValue: "")! , urlLogo, cvvLength, maskString, showOtp)
                 
             } else{
-                callback(.notSupported, nil, nil, nil)
+                callback(.notSupported, nil, nil, nil, false)
                 
             }
         }

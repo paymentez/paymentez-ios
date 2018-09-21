@@ -29,6 +29,7 @@ class AddCustomViewController: UIViewController {
         paymentezAddVC.baseColor = .green
         paymentezAddVC.backgroundColor = .white
         paymentezAddVC.showLogo = false*/
+      paymentezAddVC.baseFont = UIFont(name: "Helvetica-Neue", size: 12) ?? UIFont.systemFont(ofSize: 12)
         
         // Do any additional setup after loading the view.
     }
