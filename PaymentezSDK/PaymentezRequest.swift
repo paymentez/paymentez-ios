@@ -329,7 +329,7 @@ class PaymentezRequest
                 
                 do{
                     json = try JSONSerialization.jsonObject(with: data!, options: .mutableLeaves)
-                    //print(json as Any)
+                   // print(json as Any)
                 }
                 catch {
                     

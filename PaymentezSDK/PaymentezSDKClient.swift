@@ -193,6 +193,7 @@ import CommonCrypto
                     cardAdded.transactionId = cardData["transaction_reference"] as? String
                     cardAdded.status = cardData["status"] as? String
                     cardAdded.type = cardData["type"] as? String
+                    cardAdded.msg = cardData["message"] as? String
                     
                     
                     if cardAdded.status == "rejected"
@@ -256,7 +257,7 @@ import CommonCrypto
         
         )
     {
-        DispatchQueue.main.sync
+        DispatchQueue.global().sync
             {
                 var typeCard = ""
                 switch PaymentezCard.getTypeCard(cardNumber)

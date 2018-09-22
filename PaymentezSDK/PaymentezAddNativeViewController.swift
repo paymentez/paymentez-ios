@@ -136,6 +136,7 @@ open class PaymentezAddNativeViewController: UIViewController {
     let cvcField: SkyFloatingLabelTextField = {
         let field = SkyFloatingLabelTextField()
         field.placeholder = "CVC/CVV"
+        field.keyboardType = .numberPad
         return field
     }()
     let expirationField: SkyFloatingLabelTextField = {
@@ -156,6 +157,7 @@ open class PaymentezAddNativeViewController: UIViewController {
     let documentField: SkyFloatingLabelTextField = {
         let field = SkyFloatingLabelTextField()
         field.placeholder = "Document Identifier".localized
+        field.keyboardType = .numberPad
         return field
     }()
     
@@ -204,6 +206,7 @@ open class PaymentezAddNativeViewController: UIViewController {
         imageView.image = UIImage(named:"stp_card_unknown", in: Bundle(for: PaymentezCard.self), compatibleWith: nil)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
+        imageView.clipsToBounds = true
 
         return imageView
     }()
@@ -439,6 +442,7 @@ open class PaymentezAddNativeViewController: UIViewController {
         self.cardNumberView.addArrangedSubview(self.scanButton)
         
         self.logoView.widthAnchor.constraint(equalToConstant: 35).isActive = true
+        self.logoView.heightAnchor.constraint(equalToConstant: 35).isActive = true
         //self.logoView.heightAnchor.constraint(equalToConstant: 35).isActive = true
         self.scanButton.widthAnchor.constraint(equalToConstant: 40).isActive = true
         
@@ -741,7 +745,7 @@ extension PaymentezAddNativeViewController{
                 if let imageData = data{
                     DispatchQueue.main.async {
                         
-                        self.logoView.image = UIImage(data: imageData)
+                        self.logoView.image = UIImage(data: imageData) ?? UIImage(named:"stp_card_unknown", in: Bundle(for: PaymentezCard.self), compatibleWith: nil)!
                     }
                 }
             }
