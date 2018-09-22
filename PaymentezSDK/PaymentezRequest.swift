@@ -182,7 +182,6 @@ class PaymentezRequest
                 withAllowedCharacters: .urlHostAllowed)!
             bodyData += "\(scapedKey)=\(scapedValue)&"
         }
-        print(bodyData)
         return bodyData.data(using: String.Encoding.utf8, allowLossyConversion: true)
     }
     func encodeParamsGet(_ parameters:NSDictionary) -> String!
@@ -209,20 +208,18 @@ class PaymentezRequest
         let session = URLSession.shared
         
         var request = URLRequest(url:url!)
-        print(url as Any)
         request.httpMethod = "POST"
         request.httpBody = encodeParams(parameters)
         
         let task = session.dataTask(with: request){
             data, resp, err in
-            print(data as Any)
             if err == nil
             {
                 var json:Any? = nil
                 
                 do{
                     json = try JSONSerialization.jsonObject(with: data!, options: .mutableLeaves)
-                    print(json as Any)
+                    //print(json as Any)
                 }
                 catch {
                     
@@ -244,7 +241,7 @@ class PaymentezRequest
                 else
                 {
                     
-                    print(json as Any)
+                    //print(json as Any)
                     responseCallback(err as NSError?, (resp as! HTTPURLResponse).statusCode, json)
                 }
             }
@@ -325,14 +322,14 @@ class PaymentezRequest
         
         let task = session.dataTask(with: request){
             data, resp, err in
-            print(data as Any)
+            //print(data as Any)
             if err == nil
             {
                 var json:Any? = nil
                 
                 do{
                     json = try JSONSerialization.jsonObject(with: data!, options: .mutableLeaves)
-                    print(json as Any)
+                   // print(json as Any)
                 }
                 catch {
                     
@@ -354,7 +351,7 @@ class PaymentezRequest
                 else
                 {
                     
-                    print(json as Any)
+                    //print(json as Any)
                     responseCallback(err as NSError?, (resp as! HTTPURLResponse).statusCode, json)
                 }
             }
@@ -395,12 +392,12 @@ class PaymentezRequest
             if err == nil
             {
                 var json:Any? = nil
-                
+                //print(json)
                 do{
                     json = try JSONSerialization.jsonObject(with: data!, options: .mutableLeaves)
                 }
-                catch {
-                    
+                catch  {
+                     print("Unexpected error: \(error).")
                 }
                 
                 if json == nil{

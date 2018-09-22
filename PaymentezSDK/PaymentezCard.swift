@@ -9,15 +9,20 @@
 import Foundation
 
 
-public enum PaymentezCardType
+public enum PaymentezCardType: String
 {
-    case visa
-    case masterCard
-    case amex
-    case diners
-    case discover
-    case jcb
-    case notSupported
+    case visa = "vi"
+    case masterCard = "mc"
+    case amex = "ax"
+    case diners = "di"
+    case discover = "dc"
+    case jcb = "jb"
+    case elo = "el"
+    case credisensa = "cs"
+    case solidario = "so"
+    case exito = "ex"
+    case alkosto = "ak"
+    case notSupported = ""
 }
 let REGEX_AMEX = "^3[47][0-9]{5,}$"
 let REGEX_VISA = "^4[0-9]{6,}$"
@@ -26,23 +31,29 @@ let REGEX_DINERS = "^3(?:0[0-5]|[68][0-9])[0-9]{4,}$"
 let REGEX_DISCOVER = "^65[4-9][0-9]{13}|64[4-9][0-9]{13}|6011[0-9]{12}|(622(?:12[6-9]|1[3-9][0-9]|[2-8][0-9][0-9]|9[01][0-9]|92[0-5])[0-9]{10})$"
 let REGEX_JCB = "^(?:2131|1800|35[0-9]{3})[0-9]{11}$"
 
+
+public typealias ValidationCallback = (_ cardType: PaymentezCardType, _ cardImageUrl:String?, _ cvvLength:Int?, _ maskString:String?, _ showOtp:Bool) -> Void
+
 @objcMembers open class PaymentezCard:NSObject
 {
+    
     open var status:String?
     open var transactionId:String?
     open var token:String?
     open var cardHolder:String?
+    open var fiscalNumber: String?
     open var termination:String?
     open var isDefault:Bool = false
     open var expiryMonth:String?
     open var expiryYear:String?
     open var bin:String?
+    open var nip:String?
+    open var msg:String?
     open var cardType:PaymentezCardType = .notSupported
     internal var cardNumber:String? {
         didSet {
             if cardNumber != nil
             {
-                self.cardType = PaymentezCard.getTypeCard(self.cardNumber!)
                 self.termination = String(self.cardNumber!.suffix(4))
             }
         }
@@ -69,12 +80,20 @@ let REGEX_JCB = "^(?:2131|1800|35[0-9]{3})[0-9]{11}$"
             {
                 self.cardType = .diners
             }
+            if self.type == "al"
+            {
+                self.cardType = .alkosto
+            }
+            if self.type == "ex"
+            {
+                self.cardType = .exito
+            }
         }
     }
 
 
 
-    open static func createCard(cardHolder:String, cardNumber:String, expiryMonth:NSInteger, expiryYear:NSInteger, cvc:String) ->PaymentezCard?
+    public static func createCard(cardHolder:String, cardNumber:String, expiryMonth:NSInteger, expiryYear:NSInteger, cvc:String) ->PaymentezCard?
     {
         let paymentezCard = PaymentezCard()
         if getTypeCard(cardNumber) == .notSupported
@@ -205,9 +224,9 @@ let REGEX_JCB = "^(?:2131|1800|35[0-9]{3})[0-9]{11}$"
 
     }
     
-    open static func getTypeCard(_ cardNumber:String) -> PaymentezCardType
+    public static func getTypeCard(_ cardNumber:String) -> PaymentezCardType
     {
-        if cardNumber.characters.count < 15  || cardNumber.characters.count > 16
+        if cardNumber.count < 15  || cardNumber.count > 16
         {
             return PaymentezCardType.notSupported
         }
@@ -244,6 +263,44 @@ let REGEX_JCB = "^(?:2131|1800|35[0-9]{3})[0-9]{11}$"
         return PaymentezCardType.notSupported
         
         
+    }
+    
+    
+    
+    public static func validate(cardNumber:String, callback:@escaping ValidationCallback){
+        
+        PaymentezSDKClient.validateCard(cardNumber: cardNumber) { (data, err) in
+            if err == nil{
+                
+                guard let dataDict = data else {
+                    callback(.notSupported, nil, nil, nil, false)
+                    print("Not supported")
+                    return
+                }
+                guard let cardType = dataDict["card_type"] as? String else{
+                    callback(.notSupported, nil, nil, nil, false)
+                    print("Not card type")
+                    return
+                }
+                let urlLogo = dataDict["url_logo_png"] as? String
+                guard let cvvLength = dataDict["cvv_length"] as? Int else{
+                    callback(.notSupported, nil, nil, nil, false)
+                    print("Not cvv_length")
+                    return
+                }
+                guard let maskString = dataDict["card_mask"] as? String else{
+                    callback(.notSupported, nil, nil, nil, false)
+                    print("Not mask")
+                    return
+                }
+                let showOtp = dataDict["otp"] as? Bool ?? false
+                callback(PaymentezCardType(rawValue: cardType) ?? PaymentezCardType(rawValue: "")! , urlLogo, cvvLength, maskString, showOtp)
+                
+            } else{
+                callback(.notSupported, nil, nil, nil, false)
+                
+            }
+        }
     }
     
     

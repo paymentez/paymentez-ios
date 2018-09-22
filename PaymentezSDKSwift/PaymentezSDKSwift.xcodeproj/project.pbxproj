@@ -33,6 +33,8 @@
 		6528302E1F7B1313008421EA /* PaymentezSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6528302C1F7B1312008421EA /* PaymentezSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		65ADF22B1F631B7700E93CAB /* StoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65ADF22A1F631B7700E93CAB /* StoreViewController.swift */; };
 		65D9F0AB1F718D4700A22D3E /* MyBackendLib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D9F0AA1F718D4700A22D3E /* MyBackendLib.swift */; };
+		65F5609E215178B200F32C05 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65F5609C215178B100F32C05 /* Fabric.framework */; };
+		65F5609F215178B200F32C05 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65F5609D215178B200F32C05 /* Crashlytics.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +94,8 @@
 		655DA8181F74E82000099869 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		65ADF22A1F631B7700E93CAB /* StoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreViewController.swift; sourceTree = "<group>"; };
 		65D9F0AA1F718D4700A22D3E /* MyBackendLib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyBackendLib.swift; sourceTree = "<group>"; };
+		65F5609C215178B100F32C05 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		65F5609D215178B200F32C05 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,9 +107,11 @@
 				408C1BE01CE1B1D200B9A2F0 /* AudioToolbox.framework in Frameworks */,
 				408C1BE11CE1B1D200B9A2F0 /* AVFoundation.framework in Frameworks */,
 				6528302D1F7B1313008421EA /* PaymentezSDK.framework in Frameworks */,
+				65F5609E215178B200F32C05 /* Fabric.framework in Frameworks */,
 				408C1BE21CE1B1D200B9A2F0 /* AVKit.framework in Frameworks */,
 				408C1BE31CE1B1D200B9A2F0 /* CoreGraphics.framework in Frameworks */,
 				408C1BE41CE1B1D200B9A2F0 /* CoreImage.framework in Frameworks */,
+				65F5609F215178B200F32C05 /* Crashlytics.framework in Frameworks */,
 				408C1BE51CE1B1D200B9A2F0 /* CoreLocation.framework in Frameworks */,
 				408C1BE61CE1B1D200B9A2F0 /* CoreMedia.framework in Frameworks */,
 				408C1BE71CE1B1D200B9A2F0 /* CoreVideo.framework in Frameworks */,
@@ -130,6 +136,8 @@
 		408C1B9B1CE1AA9600B9A2F0 = {
 			isa = PBXGroup;
 			children = (
+				65F5609D215178B200F32C05 /* Crashlytics.framework */,
+				65F5609C215178B100F32C05 /* Fabric.framework */,
 				6528302C1F7B1312008421EA /* PaymentezSDK.framework */,
 				408C1BD11CE1B1D200B9A2F0 /* Accelerate.framework */,
 				408C1BD21CE1B1D200B9A2F0 /* AudioToolbox.framework */,
@@ -206,6 +214,7 @@
 				408C1BA11CE1AA9600B9A2F0 /* Frameworks */,
 				408C1BA21CE1AA9600B9A2F0 /* Resources */,
 				6528301B1F7AAE70008421EA /* Embed Frameworks */,
+				65F560A02151794000F32C05 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -248,6 +257,7 @@
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = QBSGESLSWZ;
 						LastSwiftMigration = 0830;
+						ProvisioningStyle = Manual;
 					};
 					408C1BB71CE1AA9600B9A2F0 = {
 						CreatedOnToolsVersion = 7.3;
@@ -294,6 +304,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		65F560A02151794000F32C05 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PROJECT_DIR}/Fabric.framework/run\" dd927e1b6f12efcadba0909b143c721ff81df1cd 6344cb56b937523ee84f1b642504e92a3aa432fad33c651963e222b6221f5f17\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		408C1BA01CE1AA9600B9A2F0 /* Sources */ = {
@@ -455,8 +486,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = QBSGESLSWZ;
-				ENABLE_BITCODE = YES;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -467,6 +500,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.paymentez.PaymentezSampleSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "Develoment Sample";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -475,8 +509,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = QBSGESLSWZ;
-				ENABLE_BITCODE = YES;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -487,6 +523,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.paymentez.PaymentezSampleSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = Sample;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

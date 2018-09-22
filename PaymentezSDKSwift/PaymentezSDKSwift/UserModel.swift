@@ -12,8 +12,8 @@ import PaymentezSDK
 
 class UserModel
 {
-    static let uid = "69123"
+    static var uid = "80086"
     static let email = "gsotelo@paymentez.com"
-    static let name = "Gustavo Sotelo"
+    static var name = "Gustavo Sotelo"
     
 }
