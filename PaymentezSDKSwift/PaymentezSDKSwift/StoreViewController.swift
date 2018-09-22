@@ -154,7 +154,19 @@ extension StoreViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 1
         {
-            self.performSegue(withIdentifier: "listViewController", sender: self)
+                let alert = UIAlertController(title: "UID", message: "Please TYPE UID", preferredStyle: .alert)
+                
+                alert.addTextField(configurationHandler: { (textField) in
+                    textField.placeholder = "Enter UID"
+                })
+                let alertaction = UIAlertAction(title: "OK", style: .default) { (action) in
+                    let firstTextField = alert.textFields![0] as UITextField
+                    UserModel.uid = firstTextField.text ?? UserModel.uid
+                    self.performSegue(withIdentifier: "listViewController", sender: self)
+                }
+                alert.addAction(alertaction)
+            self.present(alert, animated: true)
+            
         }
     }
     func numberOfSections(in tableView: UITableView) -> Int {

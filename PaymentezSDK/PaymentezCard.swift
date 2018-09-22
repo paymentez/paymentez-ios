@@ -48,6 +48,7 @@ public typealias ValidationCallback = (_ cardType: PaymentezCardType, _ cardImag
     open var expiryYear:String?
     open var bin:String?
     open var nip:String?
+    open var msg:String?
     open var cardType:PaymentezCardType = .notSupported
     internal var cardNumber:String? {
         didSet {

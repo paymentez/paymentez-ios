@@ -20,8 +20,12 @@ class ListCardsTableViewController: UITableViewController {
     var cardSelectedDelegate:CardSelectedDelegate?
     
 
+    
+    
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         self.refreshTable()
 
     }
@@ -228,7 +232,7 @@ class ListCardsTableViewController: UITableViewController {
         
     }
     
-   
+    
     
     
 }
@@ -238,13 +242,15 @@ extension ListCardsTableViewController: PaymentezCardAddedDelegate{
     func cardAdded(_ error: PaymentezSDKError?, _ cardAdded: PaymentezCard?) {
         //handle status
         if cardAdded != nil{
-            let alertController = UIAlertController(title: "Card Status", message: cardAdded?.status, preferredStyle: .alert)
+            let statusMsg = "status:\(String(describing: cardAdded?.status)) trx:\(String(describing: cardAdded?.transactionId)) msg:\(String(describing: cardAdded?.msg))"
+            let alertController = UIAlertController(title: "Card Status", message: statusMsg, preferredStyle: .alert)
             let alertAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
             alertController.addAction(alertAction)
             self.present(alertController, animated: true)
             self.refreshTable()
         }else if  let err = error {
-            let alertController = UIAlertController(title: "error", message: err.type, preferredStyle: .alert)
+            let statusMsg = "err:\(String(describing: err.help)) data:\(err.descriptionData) help:\(String(describing: err.type))"
+            let alertController = UIAlertController(title: "error", message: statusMsg, preferredStyle: .alert)
             let alertAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
             alertController.addAction(alertAction)
             self.present(alertController, animated: true)

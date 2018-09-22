@@ -136,6 +136,7 @@ open class PaymentezAddNativeViewController: UIViewController {
     let cvcField: SkyFloatingLabelTextField = {
         let field = SkyFloatingLabelTextField()
         field.placeholder = "CVC/CVV"
+        field.keyboardType = .numberPad
         return field
     }()
     let expirationField: SkyFloatingLabelTextField = {
@@ -156,6 +157,7 @@ open class PaymentezAddNativeViewController: UIViewController {
     let documentField: SkyFloatingLabelTextField = {
         let field = SkyFloatingLabelTextField()
         field.placeholder = "Document Identifier".localized
+        field.keyboardType = .numberPad
         return field
     }()
     
