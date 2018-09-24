@@ -40,6 +40,7 @@ open class PaymentezAddNativeViewController: UIViewController {
             setupColor()
         }
     }
+    
     var bundle = Bundle(for: PaymentezCard.self)
     var titleString:String  = "Add Card".localized
    
@@ -126,6 +127,30 @@ open class PaymentezAddNativeViewController: UIViewController {
         return stackView
     }()
     
+    //CUSTOMIZE TITLE
+    
+    open var nameTitle = "Name of Cardholder".localized{
+        didSet {
+            self.nameField.placeholder = self.nameTitle
+        }
+    }
+    
+    open var cardTitle = "Card Number".localized{
+        didSet {
+            self.cardField.placeholder = self.cardTitle
+        }
+    }
+    
+    open var documentTitle = "Document Identifier".localized{
+        didSet {
+            self.documentField.placeholder = self.documentTitle
+        }
+    }
+    open var invalidNameTitle = "Invalid".localized
+    
+    open var invalidCardTitle = "Invalid Card Number".localized
+    
+    open var invalidDocumentTitle = "Invalid".localized
     
     let cardField: SkyFloatingLabelTextField = {
         let field = SkyFloatingLabelTextField()
@@ -597,19 +622,20 @@ open class PaymentezAddNativeViewController: UIViewController {
             return nil
         }
         guard let _ = self.paymentezCard.cardHolder else {
-            self.nameField.errorMessage = "Invalid".localized
+            self.nameField.errorMessage = self.invalidNameTitle
             return nil
         }
         guard let _ = self.paymentezCard.cardNumber else {
-             self.cardField.errorMessage = "Invalid".localized
+             self.cardField.errorMessage = self.invalidCardTitle
             return nil
         }
         if self.cardType == .alkosto || self.cardType == .exito  //tarjetas tuya
         {
-            
-            guard let _ = self.paymentezCard.nip  else {
-                 self.nipField.errorMessage = "Invalid".localized
-                return nil
+            if showNip{
+                guard let _ = self.paymentezCard.nip  else {
+                    self.nipField.errorMessage = "Invalid".localized
+                    return nil
+                }
             }
             guard let _ = self.paymentezCard.fiscalNumber else {
                  self.documentField.errorMessage = "Invalid".localized
@@ -624,11 +650,11 @@ open class PaymentezAddNativeViewController: UIViewController {
                 return nil
             }
             guard let _ = self.paymentezCard.expiryMonth else {
-                 self.expirationField.errorMessage = "Invalid".localized
+                 self.expirationField.errorMessage = "Invalid Date".localized
                 return nil
             }
             guard let _ = self.paymentezCard.expiryYear else {
-                 self.expirationField.errorMessage = "Invalid".localized
+                 self.expirationField.errorMessage = "Invalid Date".localized
                 return nil
             }
            return self.paymentezCard
@@ -756,25 +782,31 @@ extension PaymentezAddNativeViewController{
 
 extension PaymentezAddNativeViewController: MaskedTextFieldDelegateListener
 {
+    
     public func textField(_ textField: UITextField, didFillMandatoryCharacters complete: Bool, didExtractValue value: String) {
         
         if textField == self.cardField
         {
             self.cardField.errorMessage = ""
             self.paymentezCard.cardNumber = self.cardField.text?.replacingOccurrences(of: "-", with: "")
-            if value.count >= 6  && value.count <= 10 && self.cardType == .notSupported { // check bin
-                self.validateCard(value)
+            if value.count >= 6 && self.cardType == .notSupported  { // check bin
+                if value.count >= 10{
+                    let indexEnd = value.index(value.startIndex, offsetBy:10)
+                    self.validateCard(String(value[..<indexEnd]))
+                } else {
+                    self.validateCard(value)
+                }
                 if value.count < 15 {
-                    self.cardField.errorMessage = "Invalid".localized
+                    self.cardField.errorMessage = self.invalidCardTitle
                 }
             } else if value.count < 6 {
                 self.cardType = .notSupported
-                self.cardField.errorMessage = "Invalid".localized
+                self.cardField.errorMessage = self.invalidCardTitle
                 self.toggleTuya(show:false)
                 
             }
             if value.count < 15 {
-                self.cardField.errorMessage = "Invalid".localized
+                self.cardField.errorMessage = self.invalidCardTitle
             }
             
             
@@ -837,7 +869,7 @@ extension PaymentezAddNativeViewController: MaskedTextFieldDelegateListener
             if value.count > 3{
                 self.paymentezCard.fiscalNumber = value
             } else {
-                self.documentField.errorMessage = "Invalid".localized
+                self.documentField.errorMessage = self.invalidDocumentTitle
                 self.paymentezCard.fiscalNumber = nil
             }
         }

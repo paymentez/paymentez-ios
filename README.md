@@ -8,12 +8,15 @@ Paymentez SDK IOS
 
 
 ----------
-**Requirements**
+### Requirements 
 
+*Version <= 1.4.x*
 - iOS 9.0 or Later
-- Xcode 8
+- Xcode 9
 
-
+*Version >= 1.5.x*
+- iOS 9.0 or Later
+- Xcode 10
 
 
 **Framework Dependencies:**
@@ -30,19 +33,17 @@ OpenGLES
 QuartzCore
 Security
 UIKit
-CommonCrypto
+CommonCrypto (Just for version 1.4)
 
 
 **Project Configuration**
--ObjC in other linker flags in target
--lc++ in target other linker flags
-Disable Bitcode
+- ObjC in other linker flags in target
+- lc++ in target other linker flags
+- Disable Bitcode
 
 
 ----------
-**INSTALLATION**
-
-
+# INSTALLATION
 
 **Carthage**
 
@@ -52,6 +53,10 @@ Add this to the Cartfile:
 
 ``` git "https://github.com/paymentez/paymentez-ios.git" ```
 
+For Beta Versions:
+
+``` git "https://github.com/paymentez/paymentez-ios.git" "master" ```
+
 
 **ObjC configuration**
 
@@ -59,7 +64,7 @@ Set ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES
 
 In Build Phases -> Embed Frameworks Uncheck "Copy Only When Installing"
 
-**Manual Installation**
+# **Manual Installation(Recommended)**
 
 PaymentezSDK is a dynamic framework ([More Info](https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/DynamicLibraries/100-Articles/OverviewOfDynamicLibraries.html)) so you have to build each version for the desire target (simulator and device). To make the integration easy, you can follow these instructions in order to have just one Universal .framework file.
 
@@ -67,36 +72,36 @@ PaymentezSDK is a dynamic framework ([More Info](https://developer.apple.com/lib
 
 - If you want build yourself the SDK or you are using a new/beta version of Xcode . Download the project from github and run the following script inside the root folder
 
-    ```
-    sh package.sh
+```
+sh package.sh
 
-    ```
-    This will create a /build folder where there are all the necesary .framework (simulator, iphoneos and universal)
-    
+```
+This will create a /build folder where there are all the necesary .framework (simulator, iphoneos and universal)
+
 
 - Or if you prefer you can download pre-compilled .framework files from [Releases](https://github.com/paymentez/paymentez-ios/releases)
 
 2. Drag the PaymentezSDK.framework (preferably Universal version) To your project and check "Copy Files if needed".
 
-    In Target->General : Add PaymentezSDK.framework to Embeeded Libraries and Linked Frameworks and  Libraries
-    
-    ![Example](https://s3.amazonaws.com/cdn.paymentez.com/apps/ios/tutorial2.gif)
+In Target->General : Add PaymentezSDK.framework to Embeeded Libraries and Linked Frameworks and  Libraries
+
+![Example](https://s3.amazonaws.com/cdn.paymentez.com/apps/ios/tutorial2.gif)
 
 
 3. Update the Build Settings with
 
-    Set ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES
+Set ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES
 
-    In Build Phases -> Embed Frameworks Uncheck "Copy Only When Installing"
+In Build Phases -> Embed Frameworks Uncheck "Copy Only When Installing"
 
 ![Example](https://s3.amazonaws.com/cdn.paymentez.com/apps/ios/tutorial3.gif)
 
 
 4. If you use the Universal version and you want to upload to the appstore. Add Run Script Phase: Target->Build Phases -> + ->New Run Script Phase. And paste the following. Make sure that this build phase is added after Embed Frameworks phase.
-    ```
-    bash "${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/PaymentezSDK.framework/install_dynamic.sh"
-    ```
-    ![Example](https://s3.amazonaws.com/cdn.paymentez.com/apps/ios/tutorial4.gif)
+```
+bash "${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/PaymentezSDK.framework/install_dynamic.sh"
+```
+![Example](https://s3.amazonaws.com/cdn.paymentez.com/apps/ios/tutorial4.gif)
 ----------
 **Usage**
 
@@ -109,7 +114,7 @@ Setting up your app inside AppDelegate->didFinishLaunchingWithOptions. You shoul
 PaymentezSDKClient.setEnvironment("AbiColApp", secretKey: "2PmoFfjZJzjKTnuSYCFySMfHlOIBz7", testMode: true)
 
 
-##Types of implementation
+# Types of implementation
 
 There are 3 ways to present the Add Card Form:
 
@@ -119,9 +124,11 @@ There are 3 ways to present the Add Card Form:
 
 The AddCard Form includes: Card io scan, and card validation.
 
-###Show AddCard Widget
+## Show AddCard Widget
 
 In order to create a widget you should create a PaymentezAddNativeController from the PaymentezSDKClient. Then add it to the UIView that will be the container of the Paymentez Form. The min height should be 300 px, and whole screen as width (270px without paymentez logo)
+
+**Note:**  *When you are using the Paymentez Form as Widget. The Client custom ViewController will be responsible for the layout and synchronization (aka Spinner or loading)*
 
 The widget can scan with your phones camera the credit card data using card.io.
 ![Example](https://developers.paymentez.com/wp-content/uploads/2017/10/ios-example.png)
@@ -176,7 +183,7 @@ else  //handle the error
 }];
 }
 ```
-###Viewcontroller Pushed to your UINavigationController
+## Pushed to your NavigationController
 
 
 ```swift
@@ -192,7 +199,7 @@ Objc
 [self.navigationController pushPaymentezViewControllerWithDelegate:self uid:@"myuid" email:@"mymail@mail.com"]`;
 ```
 
-###Present as Modal
+## Present as Modal
 
 
 ```swift
@@ -215,8 +222,8 @@ If you present the Form as a viewcontroller (push and modal)  you must implement
 ```swift
 protocol PaymentezCardAddedDelegate
 {
-    func cardAdded(_ error:PaymentezSDKError?, _ cardAdded:PaymentezCard?)
-    func viewClosed()
+func cardAdded(_ error:PaymentezSDKError?, _ cardAdded:PaymentezCard?)
+func viewClosed()
 }
 ```
 `func cardAdded(_ error:PaymentezSDKError?, _ cardAdded:PaymentezCard?)`  is called whenever there is an error or a card is added.
@@ -353,9 +360,9 @@ default:
 ### Customize Look & Feel 
 
 
-You can customize widget colors  
+You can customize widget colors sample 
 
-```
+```swift
 paymentezAddVC.baseFontColor = .white
 paymentezAddVC.baseColor = .green
 paymentezAddVC.backgroundColor = .white
@@ -363,6 +370,17 @@ paymentezAddVC.showLogo = false
 paymentezAddVC.baseFont = UIFont(name: "Your Font", size: 12) ?? UIFont.systemFont(ofSize: 12)
 
 ```
+
+The customizable elements of the form are the following:
+
+- `baseFontColor` : The color of the font of the fields
+- `baseColor`: Color of the lines and titles of the fields
+- `backgroundColor`: Background color of the widget
+- `showLogo`: Enable or disable Paymentez Logo 
+- `baseFont`: Font of the entire form
+- `nameTitle`: String for the custom placeholder for the Name Field
+- `cardTitle`: String for the custom placeholder for the Card Field
+- `invalidCardTitle` String for the error message when a card number is invalid
 
 
 ### Building and Running the PaymentezSwift
