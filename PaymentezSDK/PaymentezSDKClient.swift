@@ -106,42 +106,27 @@ import CommonCrypto
     
     
     @objc public static func add(_ card:PaymentezCard, uid:String, email:String,  callback:@escaping (_ error:PaymentezSDKError?, _ cardAdded:PaymentezCard?)->Void)
-    {        /*if inProgress
-        {
-            callback(PaymentezSDKError.createError(500, description: "Request in Progress", help: "", type:nil),nil)
-            return
-        }*/
+    {
         inProgress = true
-        var typeCard = ""
         
         if card.cardType == .notSupported{
             callback(PaymentezSDKError.createError(403, description: "Card Not Supported", help: "Change Number", type:nil) , nil)
             return
-        } else{
-            typeCard = card.cardType.rawValue
         }
-        
-        
-        /*
-        switch PaymentezCard.getTypeCard(card.cardNumber!)
-        {
-        case .amex:
-            typeCard = "ax"
-        case .visa:
-            typeCard = "vi"
-        case .masterCard:
-            typeCard = "mc"
-        case .diners:
-            typeCard = "di"
-        default:
-            callback(PaymentezSDKError.createError(403, description: "Card Not Supported", help: "Change Number", type:nil) , nil)
-        } */
         
         let sessionId = self.kountHandler.generateSessionId()
         
         let userParameters = ["email": email, "id": uid, "fiscal_number": card.fiscalNumber ?? "" as Any]
         
-        let cardParameters = ["number": card.cardNumber!, "holder_name": card.cardHolder!, "expiry_month": Int(card.expiryMonth ?? "0")! as Any, "expiry_year": Int(card.expiryYear ?? "0")! as Any, "cvc":card.cvc ?? "" as Any, "type": typeCard, "nip": card.nip ?? "" as Any] as [String : Any]
+        var auth_type = "AUTH_CVC"
+        if card.cardType == .alkosto || card.cardType == .exito {
+            auth_type = "AUTH_NIP"
+            if card.nip == nil{
+                auth_type = "AUTH_OTP"
+            }
+        }
+        
+        let cardParameters = ["number": card.cardNumber!, "holder_name": card.cardHolder!, "expiry_month": Int(card.expiryMonth ?? "0")! as Any, "expiry_year": Int(card.expiryYear ?? "0")! as Any, "cvc":card.cvc ?? "" as Any, "type": card.cardType.rawValue, "nip": card.nip ?? "" as Any, "card_auth" : auth_type] as [String : Any]
         
         let parameters = ["session_id": sessionId!,
                           "user": userParameters,
@@ -150,16 +135,6 @@ import CommonCrypto
         
         kountHandler.collect(sessionId!) { (err) in
             
-            //inProgress = false
-            if err == nil
-            {
-                
-            }
-            else
-            {
-                //callback(PaymentezSDKError.createError(err!), nil)
-                
-            }
             
         }
         inProgress = true
