@@ -60,7 +60,14 @@
 		652927961F587136004A7D4C /* PaymentezAddNativeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 652927941F587136004A7D4C /* PaymentezAddNativeViewController.xib */; };
 		6529279B1F58B045004A7D4C /* PaymentezAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6529279A1F58B045004A7D4C /* PaymentezAssets.xcassets */; };
 		655DA8101F74D66700099869 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 655DA80E1F74D66700099869 /* Localizable.strings */; };
+		657A32442289F3F4008C4902 /* MI_SDK_DEVELOPMENT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 657A32432289F3F4008C4902 /* MI_SDK_DEVELOPMENT.framework */; };
 		658A2DC31FE8325F00B154E6 /* install_dynamic.sh in Resources */ = {isa = PBXBuildFile; fileRef = 658A2DC21FE8325E00B154E6 /* install_dynamic.sh */; };
+		65A04EEC228B50D7003F13E3 /* MI_SDK_DEVELOPMENT.framework in Resources */ = {isa = PBXBuildFile; fileRef = 657A32432289F3F4008C4902 /* MI_SDK_DEVELOPMENT.framework */; };
+		65A04EEE228B5275003F13E3 /* MI_SDK_DEVELOPMENT.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 657A32432289F3F4008C4902 /* MI_SDK_DEVELOPMENT.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		65A04EF1228B5506003F13E3 /* modirum_license.json in Resources */ = {isa = PBXBuildFile; fileRef = 65A04EF0228B5506003F13E3 /* modirum_license.json */; };
+		65A04EF3228B5523003F13E3 /* MI_SDK_DEVELOPMENT.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 65A04EF2228B5523003F13E3 /* MI_SDK_DEVELOPMENT.podspec */; };
+		65A04EF4228B5592003F13E3 /* MI_SDK_DEVELOPMENT.podspec in CopyFiles */ = {isa = PBXBuildFile; fileRef = 65A04EF2228B5523003F13E3 /* MI_SDK_DEVELOPMENT.podspec */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		65A04EF5228B5592003F13E3 /* modirum_license.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = 65A04EF0228B5506003F13E3 /* modirum_license.json */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		65AF51CA1F5DDECC00E7B4CB /* SkyFloatingLabelTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AF51C71F5DDECC00E7B4CB /* SkyFloatingLabelTextField.swift */; };
 		65AF51CB1F5DDECC00E7B4CB /* SkyFloatingLabelTextFieldWithIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AF51C81F5DDECC00E7B4CB /* SkyFloatingLabelTextFieldWithIcon.swift */; };
 		65AF51CC1F5DDECC00E7B4CB /* UITextField+fixCaretPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AF51C91F5DDECC00E7B4CB /* UITextField+fixCaretPosition.swift */; };
@@ -96,6 +103,21 @@
 			remoteInfo = PaymentezSDK;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		65A04EED228B5269003F13E3 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				65A04EF4228B5592003F13E3 /* MI_SDK_DEVELOPMENT.podspec in CopyFiles */,
+				65A04EF5228B5592003F13E3 /* modirum_license.json in CopyFiles */,
+				65A04EEE228B5275003F13E3 /* MI_SDK_DEVELOPMENT.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		402544C91CE3E06A00F35B23 /* PaymentezAddViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentezAddViewController.swift; sourceTree = "<group>"; };
@@ -147,7 +169,10 @@
 		655DA8131F74D74A00099869 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		655DA8141F74D74F00099869 /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		655DA8151F74D85A00099869 /* es-MX */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-MX"; path = "es-MX.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		657A32432289F3F4008C4902 /* MI_SDK_DEVELOPMENT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MI_SDK_DEVELOPMENT.framework; sourceTree = "<group>"; };
 		658A2DC21FE8325E00B154E6 /* install_dynamic.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = install_dynamic.sh; sourceTree = "<group>"; };
+		65A04EF0228B5506003F13E3 /* modirum_license.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = modirum_license.json; sourceTree = "<group>"; };
+		65A04EF2228B5523003F13E3 /* MI_SDK_DEVELOPMENT.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MI_SDK_DEVELOPMENT.podspec; sourceTree = "<group>"; };
 		65AF51C71F5DDECC00E7B4CB /* SkyFloatingLabelTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkyFloatingLabelTextField.swift; sourceTree = "<group>"; };
 		65AF51C81F5DDECC00E7B4CB /* SkyFloatingLabelTextFieldWithIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkyFloatingLabelTextFieldWithIcon.swift; sourceTree = "<group>"; };
 		65AF51C91F5DDECC00E7B4CB /* UITextField+fixCaretPosition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+fixCaretPosition.swift"; sourceTree = "<group>"; };
@@ -187,6 +212,7 @@
 				408C1B9A1CE1A78100B9A2F0 /* QuartzCore.framework in Frameworks */,
 				409159321CE1A57500FE316B /* Security.framework in Frameworks */,
 				4091593C1CE1A6A300FE316B /* AudioToolbox.framework in Frameworks */,
+				657A32442289F3F4008C4902 /* MI_SDK_DEVELOPMENT.framework in Frameworks */,
 				4091593E1CE1A6A300FE316B /* AVFoundation.framework in Frameworks */,
 				409159381CE1A59100FE316B /* CoreLocation.framework in Frameworks */,
 				409159361CE1A58900FE316B /* SystemConfiguration.framework in Frameworks */,
@@ -204,6 +230,7 @@
 		409158D51CE1A01000FE316B = {
 			isa = PBXGroup;
 			children = (
+				657A32432289F3F4008C4902 /* MI_SDK_DEVELOPMENT.framework */,
 				408C1B8D1CE1A78100B9A2F0 /* Accelerate.framework */,
 				408C1B8E1CE1A78100B9A2F0 /* CoreGraphics.framework */,
 				408C1B8F1CE1A78100B9A2F0 /* CoreMedia.framework */,
@@ -236,6 +263,7 @@
 		409158FA1CE1A09000FE316B /* PaymentezSDK */ = {
 			isa = PBXGroup;
 			children = (
+				65A04EEF228B52D9003F13E3 /* 3ds */,
 				658A2DC21FE8325E00B154E6 /* install_dynamic.sh */,
 				65DA34E51FCF7748005FA69C /* InputMask */,
 				65AF51CF1F5F246200E7B4CB /* lang */,
@@ -302,6 +330,15 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		65A04EEF228B52D9003F13E3 /* 3ds */ = {
+			isa = PBXGroup;
+			children = (
+				65A04EF2228B5523003F13E3 /* MI_SDK_DEVELOPMENT.podspec */,
+				65A04EF0228B5506003F13E3 /* modirum_license.json */,
+			);
+			name = 3ds;
 			sourceTree = "<group>";
 		};
 		65AF51C61F5DDEB800E7B4CB /* FloatTextField */ = {
@@ -379,6 +416,8 @@
 				409158DB1CE1A01000FE316B /* Frameworks */,
 				409158DC1CE1A01000FE316B /* Headers */,
 				409158DD1CE1A01000FE316B /* Resources */,
+				65A04EED228B5269003F13E3 /* CopyFiles */,
+				65823D7E22B42421006BECFC /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -414,6 +453,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				en,
 				Base,
@@ -438,11 +478,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65A04EEC228B50D7003F13E3 /* MI_SDK_DEVELOPMENT.framework in Resources */,
 				658A2DC31FE8325F00B154E6 /* install_dynamic.sh in Resources */,
+				65A04EF1228B5506003F13E3 /* modirum_license.json in Resources */,
 				402544CC1CE3E06A00F35B23 /* PaymentezAddViewController.xib in Resources */,
 				655DA8101F74D66700099869 /* Localizable.strings in Resources */,
 				6529279B1F58B045004A7D4C /* PaymentezAssets.xcassets in Resources */,
 				652927961F587136004A7D4C /* PaymentezAddNativeViewController.xib in Resources */,
+				65A04EF3228B5523003F13E3 /* MI_SDK_DEVELOPMENT.podspec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -461,6 +504,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "######################\n# Options\n######################\n\nREVEAL_ARCHIVE_IN_FINDER=false\n\nFRAMEWORK_NAME=\"${PROJECT_NAME}\"\n\nSIMULATOR_LIBRARY_PATH=\"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${FRAMEWORK_NAME}.framework\"\n\nDEVICE_LIBRARY_PATH=\"${BUILD_DIR}/${CONFIGURATION}-iphoneos/${FRAMEWORK_NAME}.framework\"\n\nUNIVERSAL_LIBRARY_DIR=\"${BUILD_DIR}/${CONFIGURATION}-iphoneuniversal\"\n\nFRAMEWORK=\"${UNIVERSAL_LIBRARY_DIR}/${FRAMEWORK_NAME}.framework\"\n\n\n######################\n# Build Frameworks\n######################\n\nxcodebuild -workspace ${PROJECT_NAME}.xcworkspace -scheme ${PROJECT_NAME} -sdk iphonesimulator -configuration ${CONFIGURATION} clean build CONFIGURATION_BUILD_DIR=${BUILD_DIR}/${CONFIGURATION}-iphonesimulator 2>&1\n\nxcodebuild -workspace ${PROJECT_NAME}.xcworkspace -scheme ${PROJECT_NAME} -sdk iphoneos -configuration ${CONFIGURATION} clean build CONFIGURATION_BUILD_DIR=${BUILD_DIR}/${CONFIGURATION}-iphoneos 2>&1\n\n######################\n# Create directory for universal\n######################\n\nrm -rf \"${UNIVERSAL_LIBRARY_DIR}\"\n\nmkdir \"${UNIVERSAL_LIBRARY_DIR}\"\n\nmkdir \"${FRAMEWORK}\"\n\n\n######################\n# Copy files Framework\n######################\n\ncp -r \"${DEVICE_LIBRARY_PATH}/.\" \"${FRAMEWORK}\"\n\n\n######################\n# Make an universal binary\n######################\n\nlipo \"${SIMULATOR_LIBRARY_PATH}/${FRAMEWORK_NAME}\" \"${DEVICE_LIBRARY_PATH}/${FRAMEWORK_NAME}\" -create -output \"${FRAMEWORK}/${FRAMEWORK_NAME}\" | echo\n\n# For Swift framework, Swiftmodule needs to be copied in the universal framework\nif [ -d \"${SIMULATOR_LIBRARY_PATH}/Modules/${FRAMEWORK_NAME}.swiftmodule/\" ]; then\ncp -f ${SIMULATOR_LIBRARY_PATH}/Modules/${FRAMEWORK_NAME}.swiftmodule/* \"${FRAMEWORK}/Modules/${FRAMEWORK_NAME}.swiftmodule/\" | echo\n                                                                      fi\n                                                                      \n                                                                      if [ -d \"${DEVICE_LIBRARY_PATH}/Modules/${FRAMEWORK_NAME}.swiftmodule/\" ]; then\n                                                                      cp -f ${DEVICE_LIBRARY_PATH}/Modules/${FRAMEWORK_NAME}.swiftmodule/* \"${FRAMEWORK}/Modules/${FRAMEWORK_NAME}.swiftmodule/\" | echo\n                                                                      fi\n                                                                      \n                                                                      ######################\n                                                                      # On Release, copy the result to release directory\n                                                                      ######################\n                                                                      OUTPUT_DIR=\"${PROJECT_DIR}/Output/${FRAMEWORK_NAME}-${CONFIGURATION}-iphoneuniversal/\"\n                                                                      \n                                                                      rm -rf \"$OUTPUT_DIR\"\n                                                                      mkdir -p \"$OUTPUT_DIR\"\n                                                                      \n                                                                      cp -r \"${FRAMEWORK}\" \"$OUTPUT_DIR\"\n                                                                      \n                                                                      if [ ${REVEAL_ARCHIVE_IN_FINDER} = true ]; then\n                                                                      open \"${OUTPUT_DIR}/\"\n                                                                      fi";
+		};
+		65823D7E22B42421006BECFC /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\ncd $BUILT_PRODUCTS_DIR\n\nmkdir $PROJECT_NAME.framework/Frameworks &>/dev/null\n\nfor framework in *.framework; do\nif [ $framework != $PROJECT_NAME.framework ]; then\ncp -r $framework $PROJECT_NAME.framework/Frameworks/ &>/dev/null\nfi\ndone\n\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -712,11 +772,11 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = QBSGESLSWZ;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";

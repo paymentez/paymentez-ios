@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="TeQ-XZ-Pkf">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="TeQ-XZ-Pkf">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -134,7 +134,7 @@
             </objects>
             <point key="canvasLocation" x="2497.5999999999999" y="2609.5952023988007"/>
         </scene>
-        <!--Cuenta-->
+        <!--Paymentez Organic Boutique-->
         <scene sceneID="tXU-rJ-51W">
             <objects>
                 <viewController id="yvC-bL-fRh" customClass="StoreViewController" customModule="PaymentezSDKSwift" customModuleProvider="target" sceneMemberID="viewController">
@@ -236,13 +236,13 @@
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w2b-mF-Nu0">
                                 <rect key="frame" x="16" y="614" width="343" height="33"/>
-                                <color key="backgroundColor" red="0.0" green="0.59494977680000005" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.0" green="0.59607843137254901" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="33" id="AAh-C8-bWt"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" title="PAGAR"/>
+                                <state key="normal" title="Pay"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="5"/>
@@ -276,7 +276,13 @@
                             <constraint firstItem="w2b-mF-Nu0" firstAttribute="leading" secondItem="6so-m0-8zf" secondAttribute="leading" constant="16" id="xtU-w1-eyb"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Cuenta" id="cpY-9d-46N"/>
+                    <navigationItem key="navigationItem" title="Paymentez Organic Boutique" id="cpY-9d-46N">
+                        <barButtonItem key="rightBarButtonItem" title="Edit" style="plain" id="Uur-Iw-Lqa">
+                            <connections>
+                                <action selector="edit:" destination="yvC-bL-fRh" id="DVR-HM-fus"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="activityIndicator" destination="qAT-SN-TT4" id="Cxa-UB-ITd"/>
                         <outlet property="tableV" destination="0wJ-18-rgi" id="qXv-QO-TO8"/>
@@ -311,6 +317,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="paymentez_store" width="266" height="122"/>
+        <image name="paymentez_store" width="266.5" height="122"/>
     </resources>
 </document>

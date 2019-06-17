@@ -43,7 +43,7 @@ class ListCardsTableViewController: UITableViewController {
         
         
         
-        /*PaymentezSDKClient.listCards(UserModel.uid) { (error, cardList) in
+       /* PaymentezSDKClient.listCards(UserModel.uid) { (error, cardList) in
             
             if error == nil
             {
@@ -207,8 +207,9 @@ class ListCardsTableViewController: UITableViewController {
     }
     
     @IBAction func presentAddVC(_ sender:Any?){
+        self.navigationController?.pushPaymentezViewController(delegate: self, uid: UserModel.uid, email: UserModel.email)
         
-        
+        /*
         let alertController = UIAlertController(title: "Selecciona el tipo de vista", message: nil, preferredStyle: .actionSheet)
         
         
@@ -227,7 +228,7 @@ class ListCardsTableViewController: UITableViewController {
         alertController.addAction(alertAction3)
 
         self.present(alertController, animated: true, completion: nil)
-        
+        */
        
         
     }

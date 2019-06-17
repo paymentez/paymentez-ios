@@ -11,7 +11,9 @@
     
     class MyBackendLib
     {
-        static let myBackendUrl = "https://example-paymentez-backend.herokuapp.com/"
+        //static let myBackendUrl = "https://example-paymentez-backend.herokuapp.com/"
+        
+        static let myBackendUrl = "https://example-java-backend.herokuapp.com/"
         
         static func verifyTrx(uid:String, transactionId:String, type:Int, value:String, callback:@escaping (_ error:PaymentezSDKError?, _ verified:Bool) ->Void)
         {
@@ -176,6 +178,7 @@
                     withAllowedCharacters: .urlHostAllowed)!
                 bodyData += "\(scapedKey)=\(scapedValue)&"
             }
+            
             completeUrl += "?" + bodyData
             let url:URL? = URL(string: completeUrl)
             let session = URLSession.shared

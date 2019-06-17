@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import CommonCrypto
+import MI_SDK_DEVELOPMENT
 
 
 
@@ -25,6 +26,13 @@ import CommonCrypto
     static var request = PaymentezRequest(testMode: true)
     static var kountHandler:PaymentezSecure = PaymentezSecure(testMode: true)
     static var scanner = PaymentezCardScan()
+    static var service : ThreeDSecurev2Service?
+    static var configParam : ConfigParameters?
+    static var uiConfig  : UiCustomization?
+    static let dispatchQueue = DispatchQueue(label: "paymentez.queue")
+    static var progressDialog : ProgressDialog?
+    static var transaction: Transaction?
+    
     
     @objc(setRiskMerchantId:)
     public static func setRiskMerchantId(_ merchantId:String)
@@ -41,6 +49,42 @@ import CommonCrypto
         self.enableTestMode = testMode
         self.request.testMode = testMode
         self.kountHandler = PaymentezSecure(testMode: testMode)
+        initialize3DS()
+       
+        /*dispatchQueue.async {
+            self.service.initialize(configParam, locale:"es", uiCustomization:uiConfig)
+            print(self.service.getWarnings())
+        }*/
+    }
+    
+    private static func getUICustomization3ds() -> UiCustomization{
+        let uiC = UiCustomization()
+        let toolbarCustomization : ToolbarCustomization = ToolbarCustomization()
+        toolbarCustomization.setBackgroundColor("#009800")
+        toolbarCustomization.setTextColor("#FFFFFF")
+        toolbarCustomization.setTextFontSize(20)
+        uiC.setToolbar(toolbarCustomization)
+        
+        return uiC
+    }
+    
+    
+    private static func initialize3DS(){
+        dispatchQueue.async {
+            do{
+                service  = try ThreeDSecurev2Service()
+                configParam  = ConfigParameters()
+                uiConfig  = getUICustomization3ds()
+                
+                service?.initialize(configParam!, locale: nil, uiCustomization: uiConfig!)
+                
+                print(self.service?.getWarnings())
+            }catch{
+                print("Unexpected error: \(error).")
+            }
+        }
+       
+        
     }
     
     
@@ -308,7 +352,7 @@ import CommonCrypto
         
     }
     
-    internal static func listCards(_ uid:String!, callback:@escaping (_ error:PaymentezSDKError?, _ cardList:[PaymentezCard]?) ->Void)
+    @objc public static func listCards(_ uid:String!, callback:@escaping (_ error:PaymentezSDKError?, _ cardList:[PaymentezCard]?) ->Void)
     {
         listCardsV2(uid) { (error, cards) in
             callback(error,cards)
@@ -319,7 +363,7 @@ import CommonCrypto
         
         let parameters = ["uid": uid] as [String:Any]
         let token = generateAuthTokenV2()
-        self.request.makeRequestGetV2("/v2/transaction/list/", parameters: parameters as NSDictionary, token: token) { (error, statusCode, responseData) in
+        self.request.makeRequestGetV2("/v2/card/list/", parameters: parameters as NSDictionary, token: token) { (error, statusCode, responseData) in
             
             
             
@@ -436,7 +480,7 @@ import CommonCrypto
         
     }
     
-    internal static func debitCard(_ parameters:PaymentezDebitParameters, callback: @escaping (_ error:PaymentezSDKError?, _ transaction:PaymentezTransaction?) ->Void)
+    @objc public static func debitCard(_ parameters:PaymentezDebitParameters,_ receiver:Receiver, callback: @escaping (_ error:PaymentezSDKError?, _ transaction:PaymentezTransaction?) ->Void)
     {
         if inProgress
         {
@@ -451,38 +495,71 @@ import CommonCrypto
         let productParams =  parameters.requiredProductDict()
         let shippingParams = parameters.requiredShippingInfoDict()
         let sessionId = self.kountHandler.generateSessionId()
-        let parametersDic = ["user": userParams, "card": cardParams, "product":productParams, "shipping_info": shippingParams, "session_id": sessionId as Any] as [String : Any]
         
+        let parameters3ds = self.auth3DS()
+        
+        
+        
+        let parametersDic = ["user": userParams, "card": cardParams, "order":productParams, "shipping_info": shippingParams, "session_id": sessionId as Any, "extra_params" : parameters3ds as Any] as [String : Any]
+        
+        //let parametersDic = paramsTrx.merging(parameters3ds) { (new, _) in new }
+        print(parametersDic)
         inProgress = true
-        kountHandler.collect(sessionId!) { (err) in
+        
+        /*kountHandler.collect(sessionId!) { (err) in
             
             inProgress = false
+            
             if err == nil
-            {
+            {*/
                 inProgress = true
                 self.request.makeRequestV2("/v2/transaction/debit/", parameters: parametersDic as NSDictionary, token: generateAuthTokenV2(), responseCallback: { (error, statusCode, responseData) in
+                    
                     
                     inProgress = false
                     if error == nil
                     {
                         if statusCode == 200
                         {
-                            let responseD = responseData as! [String:Any]
                             
+                            
+                            let responseD = responseData as! [String:Any]
+                            print(responseD)
+                            let params3DS = responseD["3ds"] as! [String:Any]
+                            let authentication = params3DS["authentication"] as! [String:Any]
+                            let sdkResponse = params3DS["sdk_response"] as! [String:Any]
+                            let responseT  = responseD["transaction"] as! [String:Any]
                             let response = PaymentezTransaction.parseTransactionV2(responseD["transaction"] as! [String:Any])
-                            if response.statusDetail == 11
-                            {
-                                callback(nil, response)
+                            
+                            let status3ds = authentication["status"] as? String ?? "U"
+                            
+                            receiver.msg = responseT.description
+                            
+                            
+                            if status3ds == "C"{
+                                
+                                self.displayChallenge(sdkParameters: sdkResponse, transId: authentication["reference_id"] as! String, receiver:receiver)
+                                
+                            }else{
+                                self.progressDialog?.stop()
+                                receiver.msg += "\n" + authentication.description
+                                /*if response.statusDetail == 11
+                                {
+                                    callback(nil, response)
+                                }
+                                else if response.statusDetail != 3
+                                {
+                                    let error = PaymentezSDKError.createError(response.statusDetail as! Int, description: response.message ?? "", help: "", type:nil)
+                                    callback(error, response)
+                                }
+                                else
+                                {
+                                    callback(nil, response)
+                                }*/
+                                receiver.sendMsg()
+                                
                             }
-                            else if response.statusDetail != 3
-                            {
-                                let error = PaymentezSDKError.createError(response.statusDetail as! Int, description: response.message!, help: "", type:nil)
-                                callback(error, response)
-                            }
-                            else
-                            {
-                                callback(nil, response)
-                            }
+                            
                             
                             
                         }
@@ -490,6 +567,7 @@ import CommonCrypto
                         {
                             do {
                                 var dataR = (responseData as! [String:Any])
+                                print(dataR)
                                 if dataR["error"] != nil
                                 {
                                     dataR = dataR["error"] as! [String:Any]
@@ -508,13 +586,13 @@ import CommonCrypto
                     
                     
                 })
-            }
-            else
-            {
-                
-                callback(PaymentezSDKError.createError(err!), nil)
-            }
-        }
+//            }
+//            else
+//            {
+//
+//                callback(PaymentezSDKError.createError(err!), nil)
+//            }
+//        }
     }
     internal static func refund(_ transactionId:String, callback:@escaping (_ error:PaymentezSDKError?,_ refunded:Bool)->Void)
         
@@ -742,6 +820,95 @@ import CommonCrypto
     }
     
     
+    internal static func displayChallenge(sdkParameters:[String:Any], transId:String, receiver:Receiver){
+        
+        guard let acsSignedContent = sdkParameters["acs_signed_content"] as? String else{
+            return
+        }
+        guard let acsTransId = sdkParameters["acs_trans_id"] as? String else{
+            return
+        }
+        guard let acsReferenceNumber = sdkParameters["acs_reference_number"] as? String else{
+            return
+        }
+        
+        guard let _ = self.transaction else{
+            return
+        }
+        
+        let challengeParameters = ChallengeParameters()
+        challengeParameters.acsSignedContent = acsSignedContent
+        challengeParameters.acsRefNumber = acsReferenceNumber
+        challengeParameters.acsTransactionID = acsTransId
+        
+        
+        let index = transId.index(transId.endIndex, offsetBy: -3)
+        
+        challengeParameters.threeDSServerTransactionID = transId
+        print(String(transId[..<index]))
+        DispatchQueue.main.async {
+            self.transaction!.doChallenge(challengeParameters, challengeStatusReceiver: receiver, timeOut: Int32(10))
+
+        }
+        
+    }
+    
+    @objc internal static func auth3DS() -> [String:Any]{
+        
+        
+        if let trx = service?.createTransaction("MASTERCARD", messageVersion:nil){
+            transaction = trx
+        }else{
+            return [String:Any]()
+        }
+        let authRequestParams : AuthenticationRequestParameters = transaction!.getAuthenticationRequestParameters()
+        let deviceData : String = authRequestParams.deviceData
+        let sdkTransID : String = authRequestParams.sdkTransactionID
+        let sdkAppID : String = authRequestParams.sdkAppID
+        let sdkReferenceNumber : String = authRequestParams.sdkReferenceNumber
+        let messageVersion : String = authRequestParams.messageVersion
+        var sdkEphemPubKey : String = ""
+        
+        self.progressDialog = transaction!.getProgressView()
+        
+        self.progressDialog?.start()
+        
+        
+        
+        do{
+            let jsonPkey = try JSONSerialization.jsonObject(with: authRequestParams.sdkEphemeralPublicKey.data(using: .utf8)!, options: .mutableLeaves)
+            
+            if let jsonData  = jsonPkey as? [String: String]{
+                
+                sdkEphemPubKey += (jsonData["crv"] ?? "" ) + ";"
+                sdkEphemPubKey += (jsonData["kty"] ?? "" ) + ";"
+                sdkEphemPubKey += (jsonData["x"] ?? "" ) + ";"
+                sdkEphemPubKey += (jsonData["y"] ?? "")
+                
+            }
+            
+        }catch{
+            
+        }
+        
+        print(deviceData)
+        print(sdkTransID)
+        print(sdkAppID)
+        print(sdkReferenceNumber)
+        print(messageVersion)
+        
+        let sdkParameters = ["trans_id": sdkTransID, "reference_number": sdkReferenceNumber, "app_id": sdkAppID, "enc_data": deviceData, "max_timeout": 5, "ephem_pub_key": sdkEphemPubKey, "options_IF":3 as Any, "options_UI": "01,02,03,04,05" as Any] as [String:Any]
+        
+        
+        let parameters = ["device_type" : "SDK" as Any, "term_url" : "http://your.url.com/YOUR_3DS_NOTIFICATION_URL"] as [String:Any]
+        
+        print(parameters)
+        
+        return ["threeDS2_data": parameters as Any,  "sdk_info": sdkParameters as Any] as [String:Any]
+        
+    }
+    
+    
     
 }
 
@@ -761,4 +928,55 @@ extension String {
         }
         return nil
     }
+}
+
+@objcMembers open class Receiver:NSObject, ChallengeStatusReceiver{
+    
+    let delegate:ReceiverUI
+    
+    var msg = ""
+    
+     public init(delegate:ReceiverUI) {
+        self.delegate = delegate
+    }
+    public func completed(_ e: CompletionEvent!) {
+        print(e)
+        msg += "TransId = \(e.sdkTransactionID!) \n Status=\(e.transactionStatus!) \n"
+        self.delegate.display(msg: msg)
+        
+    }
+    
+    public func sendMsg(){
+        self.delegate.display(msg: msg)
+    }
+    
+    public func cancelled() {
+        print("cancelled challenge")
+        msg += "\n Challenge Cancelled"
+        self.delegate.display(msg: msg)
+    }
+    
+    public func timedout() {
+        print("timeout")
+        msg += "\n Challenge Timeout"
+        self.delegate.display(msg: msg)
+    }
+    
+    public func protocolError(_ e: ProtocolErrorEvent!) {
+        print(e)
+        msg += "\n Challenge Protocol Error"
+        self.delegate.display(msg: msg)
+    }
+    
+    public func runtimeError(_ e: RuntimeErrorEvent!) {
+        print(e)
+        msg += "\n Challenge Runtime Error"
+        self.delegate.display(msg: msg)
+    }
+    
+    
+}
+
+public protocol ReceiverUI{
+    func display(msg:String)
 }

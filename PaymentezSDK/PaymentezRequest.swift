@@ -143,7 +143,7 @@ import Foundation
 
 class PaymentezRequest
 {
-    let testUrl = "https://ccapi-stg.paymentez.com"
+    let testUrl = "https://ccapi-dev.paymentez.com"
     let prodUrl = "https://ccapi.paymentez.com"
     var testMode = false
     init(testMode:Bool!)
@@ -165,9 +165,11 @@ class PaymentezRequest
         {
             
             let data = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
+            print(String(data: data, encoding: .utf8))
             return data
         }
-        catch {
+        catch let error{
+            print(error)
             return nil
         }
     }
