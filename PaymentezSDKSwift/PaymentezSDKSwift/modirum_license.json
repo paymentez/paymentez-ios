@@ -1,0 +1,13 @@
+{
+"productName" : "MDpay 3DS2 sdk",
+"productVersion" : "1.0.0",
+"issuedDate" : "2019-04-09",
+"licensee" : "Paymentez",
+"expiration" : "never",
+"sdkReferenceNumber" : "3DSSDK74332823FF",
+"packageId" : "ANY",
+"schemes" : ["JCB","AMEX","DINERSCLUB","VISA","MASTERCARD"],
+"platform" : ["iOS"],
+"features" : ["fallback_1.0.2"],
+"licenseKey" : "VUyCQmRQ+GRO6HUC8LRTm+2KGnqB+Wjy1kdl5aWtrwigCHp6YddXWZqa8ao/s7s1XTnFQ2zQC55HG1iplzcraRzuLJpEEBo01axpz5zJmwJMDh0bBiInd55TNF1Ogf7Tq6a5D6v5wv0VHqzl/H4I70xCpJPELv3OyUA8x80LMZSriLoWLHX5uckLpv4TW1iaWrVR6rLrUUubtHTItEfTpqhf90FO7V5TqKdiniXqg7VA1GcoPs/cLq40SCVe69txiOE27YRSrjsHk3Kx0sZ8xVGI14ybsYFuD9+UBGYQ1htnGDEasqYU4aoBCXxD71euGpU1Dv9gG9zrQE+xX0leYw=="
+}

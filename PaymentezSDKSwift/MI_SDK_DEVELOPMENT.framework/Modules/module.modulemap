@@ -1,0 +1,6 @@
+framework module MI_SDK_DEVELOPMENT {
+  umbrella header "MI_SDK_DEVELOPMENT.h"
+
+  export *
+  module * { export * }
+}
