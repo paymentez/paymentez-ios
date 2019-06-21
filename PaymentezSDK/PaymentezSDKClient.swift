@@ -534,6 +534,8 @@ import MI_SDK_DEVELOPMENT
                             let status3ds = authentication["status"] as? String ?? "U"
                             
                             receiver.msg = responseT.description
+                            receiver.paymentezTrx = response.transactionId!
+                            receiver.uid = parameters.uid
                             
                             
                             if status3ds == "C"{
@@ -643,23 +645,24 @@ import MI_SDK_DEVELOPMENT
     
     
     
-    internal static func verifyWithCode(_ transactionId:String, uid:String, verificationCode:String, callback:@escaping (_ error:PaymentezSDKError?, _ attemptsRemaining:Int, _ transaction:PaymentezTransaction?)->Void)
+    internal static func verifyWithCode(_ transactionId:String, uid:String, verificationCode:String, callback:@escaping (_ error:PaymentezSDKError?, _ attemptsRemaining:Int, _ transaction:PaymentezTransaction?,_ responseData:[String:Any]?)->Void)
         
     {
         let userparams = ["id": uid]
         let transactionparams = ["id": transactionId]
-        let parameters = ["user": userparams, "transaction": transactionparams, "type": "BY_AUTH_CODE", "value":verificationCode] as [String:Any]
+        let parameters = ["user": userparams, "transaction": transactionparams, "type": "AUTHENTICATION_CONTINUE", "value":verificationCode, "more_info": true] as [String:Any]
         let token = generateAuthTokenV2()
         self.request.makeRequestV2("/v2/transaction/verify/", parameters: parameters as NSDictionary, token: token) { (error, statusCode, responseData) in
             
-            
+            print(responseData)
             
             if error == nil
             {
                 if statusCode == 200
                 {
-                    let transaction = PaymentezTransaction.parseTransaction(responseData)
-                    callback(nil, 0, transaction)
+                    let responseD = responseData as! [String:Any]
+                    let transaction = PaymentezTransaction.parseTransaction(responseD["transaction"] as! [String:Any])
+                    callback(nil, 0, transaction, responseData as? [String:Any] ?? [String:Any]())
                 }
                 else
                 {
@@ -671,13 +674,13 @@ import MI_SDK_DEVELOPMENT
                         }
                         let errorPa =  PaymentezSDKError.createError(statusCode!, description: dataR["description"] as! String, help: dataR["help"] as? String, type: dataR["type"] as? String)
                         
-                        callback(errorPa, 0 , nil)
+                        callback(errorPa, 0 , nil, responseData as? [String:Any] ?? [String:Any]())
                     }
                 }
             }
             else
             {
-                callback(PaymentezSDKError.createError(error!), 0 , nil)
+                callback(PaymentezSDKError.createError(error!), 0 , nil, responseData as? [String:Any] ?? [String:Any]())
             }
             
         }
@@ -935,6 +938,8 @@ extension String {
     let delegate:ReceiverUI
     
     var msg = ""
+    var paymentezTrx = ""
+    var uid = ""
     
      public init(delegate:ReceiverUI) {
         self.delegate = delegate
@@ -942,7 +947,22 @@ extension String {
     public func completed(_ e: CompletionEvent!) {
         print(e)
         msg += "TransId = \(e.sdkTransactionID!) \n Status=\(e.transactionStatus!) \n"
-        self.delegate.display(msg: msg)
+        
+        if e.transactionStatus ?? "" == "Y"{
+            msg += "After Verify:\n"
+            PaymentezSDKClient.verifyWithCode(paymentezTrx, uid: uid, verificationCode: "") { (error, code, trx, responseData) in
+                
+                if error != nil{
+                    self.msg += error.debugDescription
+                }else if let trx = trx{
+                    self.msg = responseData?.description ?? self.msg
+                }
+                self.delegate.display(msg: self.msg)
+            }
+        }else{
+            self.delegate.display(msg: msg)
+        }
+        
         
     }
     
