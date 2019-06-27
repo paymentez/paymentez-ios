@@ -149,7 +149,7 @@ import MI_SDK_DEVELOPMENT
     }
     
     
-    @objc public static func add(_ card:PaymentezCard, uid:String, email:String,  callback:@escaping (_ error:PaymentezSDKError?, _ cardAdded:PaymentezCard?)->Void)
+    @objc internal static func add(_ card:PaymentezCard, uid:String, email:String,  callback:@escaping (_ error:PaymentezSDKError?, _ cardAdded:PaymentezCard?)->Void)
     {
         inProgress = true
         
@@ -261,7 +261,7 @@ import MI_SDK_DEVELOPMENT
         }
     }
     
-    static func addCard(_ uid:String!,
+   internal static func addCard(_ uid:String!,
                         email:String!,
                         expiryYear:Int!,
                         expiryMonth:Int!,
@@ -480,7 +480,7 @@ import MI_SDK_DEVELOPMENT
         
     }
     
-    @objc public static func debitCard(_ parameters:PaymentezDebitParameters,_ receiver:Receiver, callback: @escaping (_ error:PaymentezSDKError?, _ transaction:PaymentezTransaction?) ->Void)
+    @objc internal static func debitCard(_ parameters:PaymentezDebitParameters,_ receiver:Receiver, callback: @escaping (_ error:PaymentezSDKError?, _ transaction:PaymentezTransaction?) ->Void)
     {
         if inProgress
         {
@@ -496,7 +496,7 @@ import MI_SDK_DEVELOPMENT
         let shippingParams = parameters.requiredShippingInfoDict()
         let sessionId = self.kountHandler.generateSessionId()
         
-        let parameters3ds = self.auth3DS()
+        let parameters3ds = self.getSdkInfo()
         
         
         
@@ -839,6 +839,8 @@ import MI_SDK_DEVELOPMENT
             return
         }
         
+        self.progressDialog = transaction!.getProgressView()
+    
         let challengeParameters = ChallengeParameters()
         challengeParameters.acsSignedContent = acsSignedContent
         challengeParameters.acsRefNumber = acsReferenceNumber
@@ -856,7 +858,7 @@ import MI_SDK_DEVELOPMENT
         
     }
     
-    @objc internal static func auth3DS() -> [String:Any]{
+    @objc public static func getSdkInfo() -> [String:Any]{
         
         
         if let trx = service?.createTransaction("MASTERCARD", messageVersion:nil){
@@ -871,12 +873,6 @@ import MI_SDK_DEVELOPMENT
         let sdkReferenceNumber : String = authRequestParams.sdkReferenceNumber
         let messageVersion : String = authRequestParams.messageVersion
         var sdkEphemPubKey : String = ""
-        
-        self.progressDialog = transaction!.getProgressView()
-        
-        self.progressDialog?.start()
-        
-        
         
         do{
             let jsonPkey = try JSONSerialization.jsonObject(with: authRequestParams.sdkEphemeralPublicKey.data(using: .utf8)!, options: .mutableLeaves)

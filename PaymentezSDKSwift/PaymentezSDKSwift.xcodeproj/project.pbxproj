@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2779604422C5536900C9D4D5 /* PaymentezSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2779604322C5536900C9D4D5 /* PaymentezSDK.framework */; };
 		407B44521CE4E52800CC9C12 /* AddCustomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407B44511CE4E52800CC9C12 /* AddCustomViewController.swift */; };
 		408C1BA81CE1AA9600B9A2F0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408C1BA71CE1AA9600B9A2F0 /* AppDelegate.swift */; };
 		408C1BAD1CE1AA9600B9A2F0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 408C1BAB1CE1AA9600B9A2F0 /* Main.storyboard */; };
@@ -29,9 +30,6 @@
 		408C1BEB1CE1B1D200B9A2F0 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 408C1BDD1CE1B1D200B9A2F0 /* Security.framework */; };
 		408C1BEC1CE1B1D200B9A2F0 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 408C1BDE1CE1B1D200B9A2F0 /* SystemConfiguration.framework */; };
 		651D7C131F674DE500E58317 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651D7C121F674DE500E58317 /* UserModel.swift */; };
-		65A04EF7228B571E003F13E3 /* PaymentezSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65A04EF6228B571E003F13E3 /* PaymentezSDK.framework */; };
-		65A04EF9228B572A003F13E3 /* PaymentezSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65A04EF8228B572A003F13E3 /* PaymentezSDK.framework */; };
-		65A04EFA228B572A003F13E3 /* PaymentezSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 65A04EF8228B572A003F13E3 /* PaymentezSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		65A04F01228C7AEA003F13E3 /* modirum_license.json in Resources */ = {isa = PBXBuildFile; fileRef = 65A04F00228C7AEA003F13E3 /* modirum_license.json */; };
 		65ADF22B1F631B7700E93CAB /* StoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65ADF22A1F631B7700E93CAB /* StoreViewController.swift */; };
 		65D9F0AB1F718D4700A22D3E /* MyBackendLib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D9F0AA1F718D4700A22D3E /* MyBackendLib.swift */; };
@@ -56,7 +54,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				65A04EFA228B572A003F13E3 /* PaymentezSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -64,6 +61,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2779604322C5536900C9D4D5 /* PaymentezSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PaymentezSDK.framework; sourceTree = "<group>"; };
 		407B44511CE4E52800CC9C12 /* AddCustomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCustomViewController.swift; sourceTree = "<group>"; };
 		408C1BA41CE1AA9600B9A2F0 /* PaymentezSDKSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PaymentezSDKSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		408C1BA71CE1AA9600B9A2F0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -92,8 +90,6 @@
 		651D7C121F674DE500E58317 /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		655DA8171F74E82000099869 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
 		655DA8181F74E82000099869 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		65A04EF6228B571E003F13E3 /* PaymentezSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PaymentezSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		65A04EF8228B572A003F13E3 /* PaymentezSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PaymentezSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		65A04F00228C7AEA003F13E3 /* modirum_license.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = modirum_license.json; sourceTree = "<group>"; };
 		65ADF22A1F631B7700E93CAB /* StoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreViewController.swift; sourceTree = "<group>"; };
 		65D9F0AA1F718D4700A22D3E /* MyBackendLib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyBackendLib.swift; sourceTree = "<group>"; };
@@ -111,17 +107,16 @@
 				408C1BE11CE1B1D200B9A2F0 /* AVFoundation.framework in Frameworks */,
 				65F5609E215178B200F32C05 /* Fabric.framework in Frameworks */,
 				408C1BE21CE1B1D200B9A2F0 /* AVKit.framework in Frameworks */,
+				2779604422C5536900C9D4D5 /* PaymentezSDK.framework in Frameworks */,
 				408C1BE31CE1B1D200B9A2F0 /* CoreGraphics.framework in Frameworks */,
 				408C1BE41CE1B1D200B9A2F0 /* CoreImage.framework in Frameworks */,
 				65F5609F215178B200F32C05 /* Crashlytics.framework in Frameworks */,
-				65A04EF7228B571E003F13E3 /* PaymentezSDK.framework in Frameworks */,
 				408C1BE51CE1B1D200B9A2F0 /* CoreLocation.framework in Frameworks */,
 				408C1BE61CE1B1D200B9A2F0 /* CoreMedia.framework in Frameworks */,
 				408C1BE71CE1B1D200B9A2F0 /* CoreVideo.framework in Frameworks */,
 				408C1BE81CE1B1D200B9A2F0 /* MobileCoreServices.framework in Frameworks */,
 				408C1BE91CE1B1D200B9A2F0 /* OpenGLES.framework in Frameworks */,
 				408C1BEA1CE1B1D200B9A2F0 /* QuartzCore.framework in Frameworks */,
-				65A04EF9228B572A003F13E3 /* PaymentezSDK.framework in Frameworks */,
 				408C1BEB1CE1B1D200B9A2F0 /* Security.framework in Frameworks */,
 				408C1BEC1CE1B1D200B9A2F0 /* SystemConfiguration.framework in Frameworks */,
 			);
@@ -140,10 +135,10 @@
 		408C1B9B1CE1AA9600B9A2F0 = {
 			isa = PBXGroup;
 			children = (
-				65A04EF8228B572A003F13E3 /* PaymentezSDK.framework */,
 				65F5609D215178B200F32C05 /* Crashlytics.framework */,
 				65F5609C215178B100F32C05 /* Fabric.framework */,
 				408C1BD11CE1B1D200B9A2F0 /* Accelerate.framework */,
+				2779604322C5536900C9D4D5 /* PaymentezSDK.framework */,
 				408C1BD21CE1B1D200B9A2F0 /* AudioToolbox.framework */,
 				408C1BD31CE1B1D200B9A2F0 /* AVFoundation.framework */,
 				408C1BD41CE1B1D200B9A2F0 /* AVKit.framework */,
@@ -203,7 +198,6 @@
 		6528300D1F7A2DEB008421EA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				65A04EF6228B571E003F13E3 /* PaymentezSDK.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -219,7 +213,7 @@
 				408C1BA11CE1AA9600B9A2F0 /* Frameworks */,
 				408C1BA21CE1AA9600B9A2F0 /* Resources */,
 				6528301B1F7AAE70008421EA /* Embed Frameworks */,
-				65F560A02151794000F32C05 /* ShellScript */,
+				65F560A02151794000F32C05 /* Run Script */,
 				65823D7F22B4D039006BECFC /* ShellScript */,
 				65BA024C22B95CC700CA9A65 /* ShellScript */,
 			);
@@ -350,7 +344,7 @@
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n# skip if we run in debug\nif [ \"$CONFIGURATION\" == \"Debug\" ]; then\necho \"Skip frameworks cleaning in debug version\"\nexit 0\nfi\n\nAPP_PATH=\"${TARGET_BUILD_DIR}/${WRAPPER_NAME}\"\n\n# This script loops through the frameworks embedded in the application and\n# removes unused architectures.\nfind \"$APP_PATH\" -name '*.framework' -type d | while read -r FRAMEWORK\ndo\nFRAMEWORK_EXECUTABLE_NAME=$(defaults read \"$FRAMEWORK/Info.plist\" CFBundleExecutable)\nFRAMEWORK_EXECUTABLE_PATH=\"$FRAMEWORK/$FRAMEWORK_EXECUTABLE_NAME\"\necho \"Executable is $FRAMEWORK_EXECUTABLE_PATH\"\n\nEXTRACTED_ARCHS=()\n\nfor ARCH in $ARCHS\ndo\necho \"Extracting $ARCH from $FRAMEWORK_EXECUTABLE_NAME\"\nlipo -extract \"$ARCH\" \"$FRAMEWORK_EXECUTABLE_PATH\" -o \"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\"\nEXTRACTED_ARCHS+=(\"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\")\ndone\n\necho \"Merging extracted architectures: ${ARCHS}\"\nlipo -o \"$FRAMEWORK_EXECUTABLE_PATH-merged\" -create \"${EXTRACTED_ARCHS[@]}\"\nrm \"${EXTRACTED_ARCHS[@]}\"\n\necho \"Replacing original executable with thinned version\"\nrm \"$FRAMEWORK_EXECUTABLE_PATH\"\nmv \"$FRAMEWORK_EXECUTABLE_PATH-merged\" \"$FRAMEWORK_EXECUTABLE_PATH\"\n\ndone\n";
 		};
-		65F560A02151794000F32C05 /* ShellScript */ = {
+		65F560A02151794000F32C05 /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -360,6 +354,7 @@
 			inputPaths = (
 				"$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
 			);
+			name = "Run Script";
 			outputFileListPaths = (
 			);
 			outputPaths = (

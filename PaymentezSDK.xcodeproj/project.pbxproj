@@ -442,7 +442,7 @@
 					};
 					409158DE1CE1A01000FE316B = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = 96W7255R72;
+						DevelopmentTeam = QBSGESLSWZ;
 						LastSwiftMigration = 0900;
 						ProvisioningStyle = Manual;
 					};
@@ -730,7 +730,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 96W7255R72;
+				DEVELOPMENT_TEAM = QBSGESLSWZ;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
