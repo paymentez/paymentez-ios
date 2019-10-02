@@ -823,7 +823,7 @@ import MI_SDK_DEVELOPMENT
     }
     
     
-    internal static func displayChallenge(sdkParameters:[String:Any], transId:String, receiver:Receiver){
+    @objc public static func displayChallenge(sdkParameters:[String:Any], transId:String, receiver:Receiver){
         
         guard let acsSignedContent = sdkParameters["acs_signed_content"] as? String else{
             return

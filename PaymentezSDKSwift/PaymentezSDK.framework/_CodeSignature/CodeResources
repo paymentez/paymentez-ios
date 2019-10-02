@@ -6,7 +6,7 @@
 	<dict>
 		<key>Assets.car</key>
 		<data>
-		AB2IswJJ6imw6fB4AMco4RFkc9k=
+		CcNXlnpsjPivvzcKAvh+L2UA+Ss=
 		</data>
 		<key>Base.lproj/Localizable.strings</key>
 		<data>
@@ -98,7 +98,7 @@
 		</data>
 		<key>Frameworks/MI_SDK_DEVELOPMENT.framework/MI_SDK_DEVELOPMENT</key>
 		<data>
-		nX2UQakjCzKYgXl1VEFE0x0ciEo=
+		YLASiGw1HUdUxZhgxOsVbq2KBZg=
 		</data>
 		<key>Frameworks/MI_SDK_DEVELOPMENT.framework/NonFinalCRes.json</key>
 		<data>
@@ -214,7 +214,7 @@
 		</data>
 		<key>Headers/PaymentezSDK-Swift.h</key>
 		<data>
-		Dn8su3kIUDPQpswM0D5QTyzTabk=
+		kJTt7nkjrQpoxGn6xm57rlEabHU=
 		</data>
 		<key>Headers/PaymentezSDK.h</key>
 		<data>
@@ -222,7 +222,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		lSVzrYxEbzApwNmuG1ovUETO7Ng=
+		on8NhFGv00gNWe7UK8OnQNWR0BI=
 		</data>
 		<key>MI_SDK_DEVELOPMENT.framework/Assets.car</key>
 		<data>
@@ -566,27 +566,19 @@
 		</data>
 		<key>Modules/PaymentezSDK.swiftmodule/arm.swiftdoc</key>
 		<data>
-		YjEQTmvDg96zWcQQehgLiBQqxNw=
+		YFbjkKcGY2bLJzfeWEXZAuSAs7k=
 		</data>
 		<key>Modules/PaymentezSDK.swiftmodule/arm.swiftmodule</key>
 		<data>
-		8237K+hOgyn/DNMuZ/329S7Sdo4=
+		zbxulAB9yYL9Q+Z91e2oOZgH6lg=
 		</data>
 		<key>Modules/PaymentezSDK.swiftmodule/arm64.swiftdoc</key>
 		<data>
-		0YXdvMc/cNWLYR/swi3aCE1WisU=
+		Z8ptzZMi9rE3m79ULMnfVr1QVyg=
 		</data>
 		<key>Modules/PaymentezSDK.swiftmodule/arm64.swiftmodule</key>
 		<data>
-		XyFEVgH8oDjbeSPdJfy7VGXaq+Y=
-		</data>
-		<key>Modules/PaymentezSDK.swiftmodule/armv7.swiftdoc</key>
-		<data>
-		YjEQTmvDg96zWcQQehgLiBQqxNw=
-		</data>
-		<key>Modules/PaymentezSDK.swiftmodule/armv7.swiftmodule</key>
-		<data>
-		8237K+hOgyn/DNMuZ/329S7Sdo4=
+		/hvlDZkoSGFt07bm8aertucQdto=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -594,11 +586,11 @@
 		</data>
 		<key>PaymentezAddNativeViewController.nib</key>
 		<data>
-		WJlusBpFyFog6X9ekyK7UlmjoT4=
+		qRNGFce9RPlqBcJxer7xCIKl7gY=
 		</data>
 		<key>PaymentezAddViewController.nib</key>
 		<data>
-		nyOLEDG4vBiP+sozWn4Iprg1kEs=
+		8JQvrOUtYhbyShEbU8aVsLaQ92w=
 		</data>
 		<key>en.lproj/Localizable.strings</key>
 		<dict>
@@ -660,11 +652,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			AB2IswJJ6imw6fB4AMco4RFkc9k=
+			CcNXlnpsjPivvzcKAvh+L2UA+Ss=
 			</data>
 			<key>hash2</key>
 			<data>
-			LWfU0vlSkqn83sUISjkL9vgtkKcmWj/ZAzFZkFj1ih8=
+			iC8KFU1Tm4cN8CT26C8BYRJhgxOeGmDNTT8lRfykA7w=
 			</data>
 		</dict>
 		<key>Base.lproj/Localizable.strings</key>
@@ -913,11 +905,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			nX2UQakjCzKYgXl1VEFE0x0ciEo=
+			YLASiGw1HUdUxZhgxOsVbq2KBZg=
 			</data>
 			<key>hash2</key>
 			<data>
-			nRLE8M2dBXlJaPBuCz46Iw+XmmS5461him26EBisNiw=
+			VdFUiPsJc5aan2V217okeWZVab3BGoqIFhUqSOjh5KI=
 			</data>
 		</dict>
 		<key>Frameworks/MI_SDK_DEVELOPMENT.framework/NonFinalCRes.json</key>
@@ -1232,11 +1224,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			Dn8su3kIUDPQpswM0D5QTyzTabk=
+			kJTt7nkjrQpoxGn6xm57rlEabHU=
 			</data>
 			<key>hash2</key>
 			<data>
-			w1H8ywdd4JMJKtlNYFxwGnUzImkWOUupMER7TljE40c=
+			NLa08Aqd4xjh+7VyfGMPpmILTUoCe5AAIVwMKs7l6iI=
 			</data>
 		</dict>
 		<key>Headers/PaymentezSDK.h</key>
@@ -2189,66 +2181,44 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			YjEQTmvDg96zWcQQehgLiBQqxNw=
+			YFbjkKcGY2bLJzfeWEXZAuSAs7k=
 			</data>
 			<key>hash2</key>
 			<data>
-			SDV2C3Bn/S6u1NJ1E9FbU/hmZ25ruWqDN9ZJTMmsUMk=
+			XYbpjkW3oCigK51n0Uu024EKzoZEfWaLrtS4kxrYXUc=
 			</data>
 		</dict>
 		<key>Modules/PaymentezSDK.swiftmodule/arm.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			8237K+hOgyn/DNMuZ/329S7Sdo4=
+			zbxulAB9yYL9Q+Z91e2oOZgH6lg=
 			</data>
 			<key>hash2</key>
 			<data>
-			A8sq5pMzszYbJkOLx+0D2bIA3mK8uUGKxSskT93GRyg=
+			cldVyEQCHcSx5pSrkMqQ/8VAXKbTgtNHxKhSvWaex64=
 			</data>
 		</dict>
 		<key>Modules/PaymentezSDK.swiftmodule/arm64.swiftdoc</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			0YXdvMc/cNWLYR/swi3aCE1WisU=
+			Z8ptzZMi9rE3m79ULMnfVr1QVyg=
 			</data>
 			<key>hash2</key>
 			<data>
-			JhVICvFzw6xIzczwx9eC//WuPjGwhPK/oCrHzyxqzEg=
+			dPKSOoNhWUcV2b91YViaMkF9OrhhdA6mu5Tr+2EXebA=
 			</data>
 		</dict>
 		<key>Modules/PaymentezSDK.swiftmodule/arm64.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			XyFEVgH8oDjbeSPdJfy7VGXaq+Y=
+			/hvlDZkoSGFt07bm8aertucQdto=
 			</data>
 			<key>hash2</key>
 			<data>
-			em25YIxi2dpdgYCU0Ve2NfYyIP707NufAif254+Qlls=
-			</data>
-		</dict>
-		<key>Modules/PaymentezSDK.swiftmodule/armv7.swiftdoc</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			YjEQTmvDg96zWcQQehgLiBQqxNw=
-			</data>
-			<key>hash2</key>
-			<data>
-			SDV2C3Bn/S6u1NJ1E9FbU/hmZ25ruWqDN9ZJTMmsUMk=
-			</data>
-		</dict>
-		<key>Modules/PaymentezSDK.swiftmodule/armv7.swiftmodule</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			8237K+hOgyn/DNMuZ/329S7Sdo4=
-			</data>
-			<key>hash2</key>
-			<data>
-			A8sq5pMzszYbJkOLx+0D2bIA3mK8uUGKxSskT93GRyg=
+			zSaqV0ciiAn1FgkCqZ710ypsqsBlLDOq7JQWof2fZOQ=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
@@ -2266,22 +2236,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			WJlusBpFyFog6X9ekyK7UlmjoT4=
+			qRNGFce9RPlqBcJxer7xCIKl7gY=
 			</data>
 			<key>hash2</key>
 			<data>
-			uAvFixaz8R3K4hkJuF7I43rQ4sgYeaRmX+Kxz+cXfxg=
+			FZHcSDiEdXaGbpsvcobJK4u8jmudjeU4+POuiEYO8nA=
 			</data>
 		</dict>
 		<key>PaymentezAddViewController.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			nyOLEDG4vBiP+sozWn4Iprg1kEs=
+			8JQvrOUtYhbyShEbU8aVsLaQ92w=
 			</data>
 			<key>hash2</key>
 			<data>
-			jj2bPpQgZlOD3Sd6m7wkH+hFXMRMhiW9gmPx1P/Y914=
+			UIbFvcLd05pDceOS7q5CsnoJBfhI4BJd8Jf1dFa0F5w=
 			</data>
 		</dict>
 		<key>en.lproj/Localizable.strings</key>

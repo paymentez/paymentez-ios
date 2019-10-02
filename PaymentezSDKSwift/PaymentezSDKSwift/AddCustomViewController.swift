@@ -48,40 +48,40 @@ class AddCustomViewController: UIViewController {
             
             self.activityIndicator.startAnimating()
             sender?.isEnabled = false
-            PaymentezSDKClient.add(validCard, uid: UserModel.uid, email: UserModel.email, callback: { (error, cardAdded) in
-                self.activityIndicator.stopAnimating()
-                sender?.isEnabled = true
-                if cardAdded != nil
-                {
-                    DispatchQueue.main.async(execute: {
-                        let alertC = UIAlertController(title: "Response", message: "card "+cardAdded!.termination!+"  status:"+cardAdded!.status!, preferredStyle: UIAlertControllerStyle.alert)
-
-                        let defaultAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: { (action) in
-                            
-                            self.navigationController?.popViewController(animated: false)
-                        })
-                        alertC.addAction(defaultAction)
-                        self.present(alertC, animated: true
-                            , completion: {
-                                
-                        })
-                    })
-                }
-                else
-                {
-                    DispatchQueue.main.async(execute: {
-                        let alertC = UIAlertController(title: "Error", message: "error: "+error.debugDescription, preferredStyle: UIAlertControllerStyle.alert)
-                        
-                        let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-                        alertC.addAction(defaultAction)
-                        self.present(alertC, animated: true
-                            , completion: {
-                                
-                        })
-                    })
-                }
-                
-            })
+//            PaymentezSDKClient.add(validCard, uid: UserModel.uid, email: UserModel.email, callback: { (error, cardAdded) in
+//                self.activityIndicator.stopAnimating()
+//                sender?.isEnabled = true
+//                if cardAdded != nil
+//                {
+//                    DispatchQueue.main.async(execute: {
+//                        let alertC = UIAlertController(title: "Response", message: "card "+cardAdded!.termination!+"  status:"+cardAdded!.status!, preferredStyle: UIAlertControllerStyle.alert)
+//
+//                        let defaultAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: { (action) in
+//                            
+//                            self.navigationController?.popViewController(animated: false)
+//                        })
+//                        alertC.addAction(defaultAction)
+//                        self.present(alertC, animated: true
+//                            , completion: {
+//                                
+//                        })
+//                    })
+//                }
+//                else
+//                {
+//                    DispatchQueue.main.async(execute: {
+//                        let alertC = UIAlertController(title: "Error", message: "error: "+error.debugDescription, preferredStyle: UIAlertControllerStyle.alert)
+//                        
+//                        let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+//                        alertC.addAction(defaultAction)
+//                        self.present(alertC, animated: true
+//                            , completion: {
+//                                
+//                        })
+//                    })
+//                }
+//                
+//            })
         }
     }
 }

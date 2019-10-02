@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2779604422C5536900C9D4D5 /* PaymentezSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2779604322C5536900C9D4D5 /* PaymentezSDK.framework */; };
+		27703F8222D7C41F00E96AA3 /* PaymentezSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27703F8022D7C3BE00E96AA3 /* PaymentezSDK.framework */; };
 		407B44521CE4E52800CC9C12 /* AddCustomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407B44511CE4E52800CC9C12 /* AddCustomViewController.swift */; };
 		408C1BA81CE1AA9600B9A2F0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408C1BA71CE1AA9600B9A2F0 /* AppDelegate.swift */; };
 		408C1BAD1CE1AA9600B9A2F0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 408C1BAB1CE1AA9600B9A2F0 /* Main.storyboard */; };
@@ -61,7 +61,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		2779604322C5536900C9D4D5 /* PaymentezSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PaymentezSDK.framework; sourceTree = "<group>"; };
+		27703F8022D7C3BE00E96AA3 /* PaymentezSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PaymentezSDK.framework; sourceTree = "<group>"; };
 		407B44511CE4E52800CC9C12 /* AddCustomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCustomViewController.swift; sourceTree = "<group>"; };
 		408C1BA41CE1AA9600B9A2F0 /* PaymentezSDKSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PaymentezSDKSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		408C1BA71CE1AA9600B9A2F0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -107,7 +107,7 @@
 				408C1BE11CE1B1D200B9A2F0 /* AVFoundation.framework in Frameworks */,
 				65F5609E215178B200F32C05 /* Fabric.framework in Frameworks */,
 				408C1BE21CE1B1D200B9A2F0 /* AVKit.framework in Frameworks */,
-				2779604422C5536900C9D4D5 /* PaymentezSDK.framework in Frameworks */,
+				27703F8222D7C41F00E96AA3 /* PaymentezSDK.framework in Frameworks */,
 				408C1BE31CE1B1D200B9A2F0 /* CoreGraphics.framework in Frameworks */,
 				408C1BE41CE1B1D200B9A2F0 /* CoreImage.framework in Frameworks */,
 				65F5609F215178B200F32C05 /* Crashlytics.framework in Frameworks */,
@@ -138,7 +138,6 @@
 				65F5609D215178B200F32C05 /* Crashlytics.framework */,
 				65F5609C215178B100F32C05 /* Fabric.framework */,
 				408C1BD11CE1B1D200B9A2F0 /* Accelerate.framework */,
-				2779604322C5536900C9D4D5 /* PaymentezSDK.framework */,
 				408C1BD21CE1B1D200B9A2F0 /* AudioToolbox.framework */,
 				408C1BD31CE1B1D200B9A2F0 /* AVFoundation.framework */,
 				408C1BD41CE1B1D200B9A2F0 /* AVKit.framework */,
@@ -198,6 +197,7 @@
 		6528300D1F7A2DEB008421EA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				27703F8022D7C3BE00E96AA3 /* PaymentezSDK.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

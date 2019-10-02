@@ -22,6 +22,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		2753A7FC234466DD001E7343 /* MI_SDK_DEVELOPMENT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2753A7FB234466DC001E7343 /* MI_SDK_DEVELOPMENT.framework */; };
 		402544CB1CE3E06A00F35B23 /* PaymentezAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402544C91CE3E06A00F35B23 /* PaymentezAddViewController.swift */; };
 		402544CC1CE3E06A00F35B23 /* PaymentezAddViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 402544CA1CE3E06A00F35B23 /* PaymentezAddViewController.xib */; };
 		408C1B941CE1A78100B9A2F0 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 408C1B8D1CE1A78100B9A2F0 /* Accelerate.framework */; };
@@ -60,10 +61,7 @@
 		652927961F587136004A7D4C /* PaymentezAddNativeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 652927941F587136004A7D4C /* PaymentezAddNativeViewController.xib */; };
 		6529279B1F58B045004A7D4C /* PaymentezAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6529279A1F58B045004A7D4C /* PaymentezAssets.xcassets */; };
 		655DA8101F74D66700099869 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 655DA80E1F74D66700099869 /* Localizable.strings */; };
-		657A32442289F3F4008C4902 /* MI_SDK_DEVELOPMENT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 657A32432289F3F4008C4902 /* MI_SDK_DEVELOPMENT.framework */; };
 		658A2DC31FE8325F00B154E6 /* install_dynamic.sh in Resources */ = {isa = PBXBuildFile; fileRef = 658A2DC21FE8325E00B154E6 /* install_dynamic.sh */; };
-		65A04EEC228B50D7003F13E3 /* MI_SDK_DEVELOPMENT.framework in Resources */ = {isa = PBXBuildFile; fileRef = 657A32432289F3F4008C4902 /* MI_SDK_DEVELOPMENT.framework */; };
-		65A04EEE228B5275003F13E3 /* MI_SDK_DEVELOPMENT.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 657A32432289F3F4008C4902 /* MI_SDK_DEVELOPMENT.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		65A04EF1228B5506003F13E3 /* modirum_license.json in Resources */ = {isa = PBXBuildFile; fileRef = 65A04EF0228B5506003F13E3 /* modirum_license.json */; };
 		65A04EF3228B5523003F13E3 /* MI_SDK_DEVELOPMENT.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 65A04EF2228B5523003F13E3 /* MI_SDK_DEVELOPMENT.podspec */; };
 		65A04EF4228B5592003F13E3 /* MI_SDK_DEVELOPMENT.podspec in CopyFiles */ = {isa = PBXBuildFile; fileRef = 65A04EF2228B5523003F13E3 /* MI_SDK_DEVELOPMENT.podspec */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -113,13 +111,13 @@
 			files = (
 				65A04EF4228B5592003F13E3 /* MI_SDK_DEVELOPMENT.podspec in CopyFiles */,
 				65A04EF5228B5592003F13E3 /* modirum_license.json in CopyFiles */,
-				65A04EEE228B5275003F13E3 /* MI_SDK_DEVELOPMENT.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2753A7FB234466DC001E7343 /* MI_SDK_DEVELOPMENT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MI_SDK_DEVELOPMENT.framework; sourceTree = "<group>"; };
 		402544C91CE3E06A00F35B23 /* PaymentezAddViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentezAddViewController.swift; sourceTree = "<group>"; };
 		402544CA1CE3E06A00F35B23 /* PaymentezAddViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaymentezAddViewController.xib; sourceTree = "<group>"; };
 		408C1B8D1CE1A78100B9A2F0 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
@@ -169,7 +167,6 @@
 		655DA8131F74D74A00099869 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		655DA8141F74D74F00099869 /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		655DA8151F74D85A00099869 /* es-MX */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-MX"; path = "es-MX.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		657A32432289F3F4008C4902 /* MI_SDK_DEVELOPMENT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MI_SDK_DEVELOPMENT.framework; sourceTree = "<group>"; };
 		658A2DC21FE8325E00B154E6 /* install_dynamic.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = install_dynamic.sh; sourceTree = "<group>"; };
 		65A04EF0228B5506003F13E3 /* modirum_license.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = modirum_license.json; sourceTree = "<group>"; };
 		65A04EF2228B5523003F13E3 /* MI_SDK_DEVELOPMENT.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MI_SDK_DEVELOPMENT.podspec; sourceTree = "<group>"; };
@@ -203,6 +200,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2753A7FC234466DD001E7343 /* MI_SDK_DEVELOPMENT.framework in Frameworks */,
 				408C1B941CE1A78100B9A2F0 /* Accelerate.framework in Frameworks */,
 				408C1B951CE1A78100B9A2F0 /* CoreGraphics.framework in Frameworks */,
 				408C1B961CE1A78100B9A2F0 /* CoreMedia.framework in Frameworks */,
@@ -212,7 +210,6 @@
 				408C1B9A1CE1A78100B9A2F0 /* QuartzCore.framework in Frameworks */,
 				409159321CE1A57500FE316B /* Security.framework in Frameworks */,
 				4091593C1CE1A6A300FE316B /* AudioToolbox.framework in Frameworks */,
-				657A32442289F3F4008C4902 /* MI_SDK_DEVELOPMENT.framework in Frameworks */,
 				4091593E1CE1A6A300FE316B /* AVFoundation.framework in Frameworks */,
 				409159381CE1A59100FE316B /* CoreLocation.framework in Frameworks */,
 				409159361CE1A58900FE316B /* SystemConfiguration.framework in Frameworks */,
@@ -230,7 +227,7 @@
 		409158D51CE1A01000FE316B = {
 			isa = PBXGroup;
 			children = (
-				657A32432289F3F4008C4902 /* MI_SDK_DEVELOPMENT.framework */,
+				2753A7FB234466DC001E7343 /* MI_SDK_DEVELOPMENT.framework */,
 				408C1B8D1CE1A78100B9A2F0 /* Accelerate.framework */,
 				408C1B8E1CE1A78100B9A2F0 /* CoreGraphics.framework */,
 				408C1B8F1CE1A78100B9A2F0 /* CoreMedia.framework */,
@@ -478,7 +475,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65A04EEC228B50D7003F13E3 /* MI_SDK_DEVELOPMENT.framework in Resources */,
 				658A2DC31FE8325F00B154E6 /* install_dynamic.sh in Resources */,
 				65A04EF1228B5506003F13E3 /* modirum_license.json in Resources */,
 				402544CC1CE3E06A00F35B23 /* PaymentezAddViewController.xib in Resources */,
