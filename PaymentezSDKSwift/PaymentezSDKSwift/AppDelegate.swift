@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         let locale = NSLocale.preferredLanguages.first
         PaymentezSDKClient.setEnvironment("IOS-CO-CLIENT", secretKey: "AKKqsezFDHtanNv1G0ARyxb8DiYARE", testMode: true)
         // Override point for customization after application launch.

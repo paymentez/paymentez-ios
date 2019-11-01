@@ -53,9 +53,9 @@ class AddCustomViewController: UIViewController {
                 if cardAdded != nil
                 {
                     DispatchQueue.main.async(execute: {
-                        let alertC = UIAlertController(title: "Response", message: "card "+cardAdded!.termination!+"  status:"+cardAdded!.status!, preferredStyle: UIAlertControllerStyle.alert)
+                        let alertC = UIAlertController(title: "Response", message: "card "+cardAdded!.termination!+"  status:"+cardAdded!.status!, preferredStyle: UIAlertController.Style.alert)
 
-                        let defaultAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: { (action) in
+                        let defaultAction = UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: { (action) in
                             
                             self.navigationController?.popViewController(animated: false)
                         })
@@ -69,7 +69,7 @@ class AddCustomViewController: UIViewController {
                 else
                 {
                     DispatchQueue.main.async(execute: {
-                        let alertC = UIAlertController(title: "Error", message: "error: "+error.debugDescription, preferredStyle: UIAlertControllerStyle.alert)
+                        let alertC = UIAlertController(title: "Error", message: "error: "+error.debugDescription, preferredStyle: UIAlertController.Style.alert)
                         
                         let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
                         alertC.addAction(defaultAction)

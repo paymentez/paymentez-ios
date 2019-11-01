@@ -119,9 +119,9 @@ class ListCardsTableViewController: UITableViewController {
                         
                         if verified
                         {
-                            let alertC = UIAlertController(title: "Vefificada", message: "trx:"+(card.transactionId!), preferredStyle: UIAlertControllerStyle.alert)
+                            let alertC = UIAlertController(title: "Vefificada", message: "trx:"+(card.transactionId!), preferredStyle: UIAlertController.Style.alert)
                             
-                            let defaultAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: { (action) in
+                            let defaultAction = UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: { (action) in
                             })
                             alertC.addAction(defaultAction)
                             self.present(alertC, animated: true
@@ -131,9 +131,9 @@ class ListCardsTableViewController: UITableViewController {
                         }
                         else
                         {
-                            let alertC = UIAlertController(title: "Error en Verificación", message: error?.description, preferredStyle: UIAlertControllerStyle.alert)
+                            let alertC = UIAlertController(title: "Error en Verificación", message: error?.description, preferredStyle: UIAlertController.Style.alert)
                             
-                            let defaultAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: { (action) in
+                            let defaultAction = UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: { (action) in
                             })
                             alertC.addAction(defaultAction)
                             self.present(alertC, animated: true
@@ -149,9 +149,9 @@ class ListCardsTableViewController: UITableViewController {
                         
                         if verified
                         {
-                            let alertC = UIAlertController(title: "Vefificada", message: "trx:"+(card.transactionId!), preferredStyle: UIAlertControllerStyle.alert)
+                            let alertC = UIAlertController(title: "Vefificada", message: "trx:"+(card.transactionId!), preferredStyle: UIAlertController.Style.alert)
                             
-                            let defaultAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: { (action) in
+                            let defaultAction = UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: { (action) in
                             })
                             alertC.addAction(defaultAction)
                             self.present(alertC, animated: true
@@ -161,9 +161,9 @@ class ListCardsTableViewController: UITableViewController {
                         }
                         else
                         {
-                            let alertC = UIAlertController(title: "Error en Verificación", message: error?.description, preferredStyle: UIAlertControllerStyle.alert)
+                            let alertC = UIAlertController(title: "Error en Verificación", message: error?.description, preferredStyle: UIAlertController.Style.alert)
                             
-                            let defaultAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: { (action) in
+                            let defaultAction = UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: { (action) in
                             })
                             alertC.addAction(defaultAction)
                             self.present(alertC, animated: true
@@ -212,13 +212,13 @@ class ListCardsTableViewController: UITableViewController {
         let alertController = UIAlertController(title: "Selecciona el tipo de vista", message: nil, preferredStyle: .actionSheet)
         
         
-        let alertAction = UIAlertAction(title: "Widget in Custom View", style: UIAlertActionStyle.default) { (_) in
+        let alertAction = UIAlertAction(title: "Widget in Custom View", style: UIAlertAction.Style.default) { (_) in
             self.performSegue(withIdentifier: "widgetSegue", sender: self)
         }
-        let alertAction2 = UIAlertAction(title: "View Controller (Push)", style: UIAlertActionStyle.default) { (_) in
+        let alertAction2 = UIAlertAction(title: "View Controller (Push)", style: UIAlertAction.Style.default) { (_) in
             self.navigationController?.pushPaymentezViewController(delegate: self, uid: UserModel.uid, email: UserModel.email)
         }
-        let alertAction3 = UIAlertAction(title: "View Controller (Modal)", style: UIAlertActionStyle.default) { (_) in
+        let alertAction3 = UIAlertAction(title: "View Controller (Modal)", style: UIAlertAction.Style.default) { (_) in
              self.presentPaymentezViewController(delegate: self, uid: UserModel.uid, email: UserModel.email)
         }
         

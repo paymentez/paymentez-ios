@@ -108,7 +108,7 @@
     
     [self.navigationController pushViewController:paymentezNative animated:TRUE];
     
-    [self.navigationController pushPaymentezViewControllerWithDelegate:self uid:"myuid" email:"mymail@mail.com"]
+    [self.navigationController pushPaymentezViewControllerWithDelegate:self uid:@"myuid" email:@"mymail@mail.com"];
     
     
     

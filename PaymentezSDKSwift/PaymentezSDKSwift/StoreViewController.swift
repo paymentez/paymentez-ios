@@ -55,7 +55,7 @@ class StoreViewController: UIViewController {
                     if let transaction = trx
                     {
                         
-                        let alertC = UIAlertController(title: "Success", message: "transaction_id:\(String(describing: transaction.transactionId!)), status:\(String(describing: transaction.status!)), authcode:\(String(describing: transaction.authorizationCode)), carrier_code:\(String(describing: transaction.carrierCode))", preferredStyle: UIAlertControllerStyle.alert)
+                        let alertC = UIAlertController(title: "Success", message: "transaction_id:\(String(describing: transaction.transactionId!)), status:\(String(describing: transaction.status!)), authcode:\(String(describing: transaction.authorizationCode)), carrier_code:\(String(describing: transaction.carrierCode))", preferredStyle: UIAlertController.Style.alert)
                         
                         let defaultAction = UIAlertAction(title: "OK", style: .default, handler: { (alertaction) in
                             
@@ -70,9 +70,9 @@ class StoreViewController: UIViewController {
                                     
                                     if verified
                                     {
-                                        let alertC = UIAlertController(title: "Vefificada", message: "trx:"+(transaction.transactionId!), preferredStyle: UIAlertControllerStyle.alert)
+                                        let alertC = UIAlertController(title: "Vefificada", message: "trx:"+(transaction.transactionId!), preferredStyle: UIAlertController.Style.alert)
                                         
-                                        let defaultAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: { (action) in
+                                        let defaultAction = UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: { (action) in
                                         })
                                         alertC.addAction(defaultAction)
                                         self.present(alertC, animated: true
@@ -82,9 +82,9 @@ class StoreViewController: UIViewController {
                                     }
                                     else
                                     {
-                                        let alertC = UIAlertController(title: "Error en Verificación", message: error?.description, preferredStyle: UIAlertControllerStyle.alert)
+                                        let alertC = UIAlertController(title: "Error en Verificación", message: error?.description, preferredStyle: UIAlertController.Style.alert)
                                         
-                                        let defaultAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: { (action) in
+                                        let defaultAction = UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: { (action) in
                                         })
                                         alertC.addAction(defaultAction)
                                         self.present(alertC, animated: true
@@ -100,9 +100,9 @@ class StoreViewController: UIViewController {
                                     
                                     if verified
                                     {
-                                        let alertC = UIAlertController(title: "Vefificada", message: "trx:"+(transaction.transactionId!), preferredStyle: UIAlertControllerStyle.alert)
+                                        let alertC = UIAlertController(title: "Vefificada", message: "trx:"+(transaction.transactionId!), preferredStyle: UIAlertController.Style.alert)
                                         
-                                        let defaultAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: { (action) in
+                                        let defaultAction = UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: { (action) in
                                         })
                                         alertC.addAction(defaultAction)
                                         self.present(alertC, animated: true
@@ -112,9 +112,9 @@ class StoreViewController: UIViewController {
                                     }
                                     else
                                     {
-                                        let alertC = UIAlertController(title: "Error en Verificación", message: error?.description, preferredStyle: UIAlertControllerStyle.alert)
+                                        let alertC = UIAlertController(title: "Error en Verificación", message: error?.description, preferredStyle: UIAlertController.Style.alert)
                                         
-                                        let defaultAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: { (action) in
+                                        let defaultAction = UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: { (action) in
                                         })
                                         alertC.addAction(defaultAction)
                                         self.present(alertC, animated: true

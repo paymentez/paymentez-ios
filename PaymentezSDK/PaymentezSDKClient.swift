@@ -681,12 +681,23 @@ import CommonCrypto
     static fileprivate func generateAuthTokenV2()-> String
     {
         let timestamp = self.generateAuthTimestamp()
-        let uniqueString = secretKey + timestamp
+        var uniqueString = secretKey + timestamp
         
         let dataIn = uniqueString.data(using: String.Encoding.utf8)!
         let res = NSMutableData(length: Int(CC_SHA256_DIGEST_LENGTH))
-        CC_SHA256((dataIn as NSData).bytes, CC_LONG(dataIn.count), res?.mutableBytes.assumingMemoryBound(to: UInt8.self))
-        var uniqueToken:String = res!.description
+        CC_SHA256((dataIn as NSData).bytes, CC_LONG(dataIn.count)
+            , res?.mutableBytes.assumingMemoryBound(to: UInt8.self))
+        
+        var uniqueToken:String!
+        if #available(iOS 12.3, *) {
+            //iOS 12.3+ code here.
+            uniqueToken = res!.map{ String(format: "%02.2hhx", $0) }.joined()
+        }
+        else {
+            uniqueToken = res!.description
+
+        }
+        //var uniqueToken:String = String(data: dataIn, encoding: .utf8)!
         uniqueToken = uniqueToken.replacingOccurrences(of: " ", with: "")
         uniqueToken = uniqueToken.replacingOccurrences(of: "<", with: "")
         uniqueToken = uniqueToken.replacingOccurrences(of: ">", with: "")
@@ -695,7 +706,7 @@ import CommonCrypto
         
         return tokenPlain.base64Encoded()!
     }
-    
+
     static fileprivate func generateAuthToken(_ parameters:[String:Any], authTimestamp:String!) -> String
     {
         let paramsDict = Array(parameters.keys).sorted(by: {$0 < $1})
@@ -711,7 +722,15 @@ import CommonCrypto
         let dataIn = paramsString.data(using: String.Encoding.utf8)!
         let res = NSMutableData(length: Int(CC_SHA256_DIGEST_LENGTH))
         CC_SHA256((dataIn as NSData).bytes, CC_LONG(dataIn.count), res?.mutableBytes.assumingMemoryBound(to: UInt8.self))
-        var hash:String = res!.description
+        var hash:String!
+        if #available(iOS 12.3, *) {
+             //iOS 12.3+ code here.
+             hash = res!.map{ String(format: "%02.2hhx", $0) }.joined()
+         }
+         else {
+             hash = res!.description
+
+         }
         hash = hash.replacingOccurrences(of: " ", with: "")
         hash = hash.replacingOccurrences(of: "<", with: "")
         hash = hash.replacingOccurrences(of: ">", with: "")
@@ -753,7 +772,7 @@ import CommonCrypto
         let index = cardNumber.index(cardNumber.startIndex, offsetBy: 5)
         
         let bin  = String(cardNumber[...index])
-        let url = "/v2/card_bin/"+bin
+        let url = "/v2/card_bin/\(bin)"
         request.makeRequestGetV2(url, parameters: [:], token: generateAuthTokenV2()) { (err, code, data) in
             
             if err != nil || code != 200{

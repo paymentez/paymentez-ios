@@ -115,13 +115,13 @@ open class PaymentezAddNativeViewController: UIViewController {
     }()
     let tuyaView: UIStackView = {
         let stackView = UIStackView()
-        stackView.axis = UILayoutConstraintAxis.vertical
+        stackView.axis = NSLayoutConstraint.Axis.vertical
         stackView.spacing = 10
         return stackView
     }()
     let otpNipView: UIStackView = {
         let stackView = UIStackView()
-        stackView.axis = UILayoutConstraintAxis.horizontal
+        stackView.axis = NSLayoutConstraint.Axis.horizontal
         stackView.distribution = .fillEqually
         return stackView
     }()
@@ -238,7 +238,7 @@ open class PaymentezAddNativeViewController: UIViewController {
     }()
     
     let spinner: UIActivityIndicatorView = {
-        let sp = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+        let sp = UIActivityIndicatorView(style: .whiteLarge)
         sp.color = PaymentezStyle.baseBaseColor
         sp.translatesAutoresizingMaskIntoConstraints = false
         sp.hidesWhenStopped = true
@@ -902,7 +902,7 @@ extension PaymentezAddNativeViewController {
         paymentezAddVC.uid = uid
         paymentezAddVC.email = email
         paymentezAddVC.addDelegate = delegate
-        self.addChildViewController(paymentezAddVC)
+        self.addChild(paymentezAddVC)
         let paymentezView = paymentezAddVC.view
         paymentezView?.translatesAutoresizingMaskIntoConstraints = false
         containerView.addSubview(paymentezView!)
@@ -910,7 +910,7 @@ extension PaymentezAddNativeViewController {
         paymentezView?.bottomAnchor.constraint(equalTo: containerView.bottomAnchor).isActive = true
         paymentezView?.leftAnchor.constraint(equalTo: containerView.leftAnchor).isActive = true
         paymentezView?.rightAnchor.constraint(equalTo: containerView.rightAnchor).isActive = true
-        paymentezAddVC.didMove(toParentViewController: self)
+        paymentezAddVC.didMove(toParent: self)
         return paymentezAddVC
     }
     func presentPaymentezViewController(delegate:PaymentezCardAddedDelegate, uid:String, email:String){

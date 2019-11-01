@@ -19,7 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self addPaymentezWidgetToView:self. addView delegate:self uid:"myuid" email:"myemail"]
+    [self addPaymentezWidgetToView:self. addView delegate:self uid:@"myuid" email:@"myemail"];
     
     
    
