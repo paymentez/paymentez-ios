@@ -29,8 +29,6 @@
 		408C1BEB1CE1B1D200B9A2F0 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 408C1BDD1CE1B1D200B9A2F0 /* Security.framework */; };
 		408C1BEC1CE1B1D200B9A2F0 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 408C1BDE1CE1B1D200B9A2F0 /* SystemConfiguration.framework */; };
 		651D7C131F674DE500E58317 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651D7C121F674DE500E58317 /* UserModel.swift */; };
-		6528302D1F7B1313008421EA /* PaymentezSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6528302C1F7B1312008421EA /* PaymentezSDK.framework */; };
-		6528302E1F7B1313008421EA /* PaymentezSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6528302C1F7B1312008421EA /* PaymentezSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		65ADF22B1F631B7700E93CAB /* StoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65ADF22A1F631B7700E93CAB /* StoreViewController.swift */; };
 		65D9F0AB1F718D4700A22D3E /* MyBackendLib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D9F0AA1F718D4700A22D3E /* MyBackendLib.swift */; };
 		65F5609E215178B200F32C05 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65F5609C215178B100F32C05 /* Fabric.framework */; };
@@ -46,20 +44,6 @@
 			remoteInfo = PaymentezSDKSwift;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		6528301B1F7AAE70008421EA /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				6528302E1F7B1313008421EA /* PaymentezSDK.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		407B44511CE4E52800CC9C12 /* AddCustomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCustomViewController.swift; sourceTree = "<group>"; };
@@ -106,7 +90,6 @@
 				408C1BDF1CE1B1D200B9A2F0 /* Accelerate.framework in Frameworks */,
 				408C1BE01CE1B1D200B9A2F0 /* AudioToolbox.framework in Frameworks */,
 				408C1BE11CE1B1D200B9A2F0 /* AVFoundation.framework in Frameworks */,
-				6528302D1F7B1313008421EA /* PaymentezSDK.framework in Frameworks */,
 				65F5609E215178B200F32C05 /* Fabric.framework in Frameworks */,
 				408C1BE21CE1B1D200B9A2F0 /* AVKit.framework in Frameworks */,
 				408C1BE31CE1B1D200B9A2F0 /* CoreGraphics.framework in Frameworks */,
@@ -213,7 +196,6 @@
 				408C1BA01CE1AA9600B9A2F0 /* Sources */,
 				408C1BA11CE1AA9600B9A2F0 /* Frameworks */,
 				408C1BA21CE1AA9600B9A2F0 /* Resources */,
-				6528301B1F7AAE70008421EA /* Embed Frameworks */,
 				65F560A02151794000F32C05 /* ShellScript */,
 			);
 			buildRules = (
