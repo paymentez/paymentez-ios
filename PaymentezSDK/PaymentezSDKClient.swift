@@ -689,8 +689,8 @@ import CommonCrypto
             , res?.mutableBytes.assumingMemoryBound(to: UInt8.self))
         
         var uniqueToken:String!
-        if #available(iOS 12.4, *) {
-            //iOS 12.4+ code here.
+        if #available(iOS 13, *) {
+            //iOS 13+ code here.
             uniqueToken = res!.map{ String(format: "%02.2hhx", $0) }.joined()
         }
         else {
@@ -723,8 +723,8 @@ import CommonCrypto
         let res = NSMutableData(length: Int(CC_SHA256_DIGEST_LENGTH))
         CC_SHA256((dataIn as NSData).bytes, CC_LONG(dataIn.count), res?.mutableBytes.assumingMemoryBound(to: UInt8.self))
         var hash:String!
-        if #available(iOS 12.4, *) {
-             //iOS 12.4+ code here.
+        if #available(iOS 13, *) {
+             //iOS 13+ code here.
              hash = res!.map{ String(format: "%02.2hhx", $0) }.joined()
          }
          else {

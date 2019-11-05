@@ -33,6 +33,8 @@
 		65D9F0AB1F718D4700A22D3E /* MyBackendLib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D9F0AA1F718D4700A22D3E /* MyBackendLib.swift */; };
 		65F5609E215178B200F32C05 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65F5609C215178B100F32C05 /* Fabric.framework */; };
 		65F5609F215178B200F32C05 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65F5609D215178B200F32C05 /* Crashlytics.framework */; };
+		9B42D5CB2371D2A8002676C1 /* PaymentezSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B42D5CA2371D2A8002676C1 /* PaymentezSDK.framework */; };
+		9B42D5CC2371D2A8002676C1 /* PaymentezSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9B42D5CA2371D2A8002676C1 /* PaymentezSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +46,20 @@
 			remoteInfo = PaymentezSDKSwift;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		9B42D5CD2371D2A8002676C1 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				9B42D5CC2371D2A8002676C1 /* PaymentezSDK.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		407B44511CE4E52800CC9C12 /* AddCustomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCustomViewController.swift; sourceTree = "<group>"; };
@@ -80,6 +96,7 @@
 		65D9F0AA1F718D4700A22D3E /* MyBackendLib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyBackendLib.swift; sourceTree = "<group>"; };
 		65F5609C215178B100F32C05 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		65F5609D215178B200F32C05 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		9B42D5CA2371D2A8002676C1 /* PaymentezSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PaymentezSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +109,7 @@
 				408C1BE11CE1B1D200B9A2F0 /* AVFoundation.framework in Frameworks */,
 				65F5609E215178B200F32C05 /* Fabric.framework in Frameworks */,
 				408C1BE21CE1B1D200B9A2F0 /* AVKit.framework in Frameworks */,
+				9B42D5CB2371D2A8002676C1 /* PaymentezSDK.framework in Frameworks */,
 				408C1BE31CE1B1D200B9A2F0 /* CoreGraphics.framework in Frameworks */,
 				408C1BE41CE1B1D200B9A2F0 /* CoreImage.framework in Frameworks */,
 				65F5609F215178B200F32C05 /* Crashlytics.framework in Frameworks */,
@@ -181,6 +199,7 @@
 		6528300D1F7A2DEB008421EA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9B42D5CA2371D2A8002676C1 /* PaymentezSDK.framework */,
 				6528300E1F7A2DEB008421EA /* InputMask.framework */,
 			);
 			name = Frameworks;
@@ -197,6 +216,7 @@
 				408C1BA11CE1AA9600B9A2F0 /* Frameworks */,
 				408C1BA21CE1AA9600B9A2F0 /* Resources */,
 				65F560A02151794000F32C05 /* ShellScript */,
+				9B42D5CD2371D2A8002676C1 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -473,7 +493,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = QBSGESLSWZ;
-				ENABLE_BITCODE = YES;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -481,7 +501,7 @@
 				INFOPLIST_FILE = PaymentezSDKSwift/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.paymentez.PaymentezSampleSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Develoment Sample";
@@ -496,7 +516,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = QBSGESLSWZ;
-				ENABLE_BITCODE = YES;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -504,7 +524,7 @@
 				INFOPLIST_FILE = PaymentezSDKSwift/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.paymentez.PaymentezSampleSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Develoment Sample";
