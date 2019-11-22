@@ -673,9 +673,10 @@ import CommonCrypto
     
     static fileprivate func generateAuthTimestamp() -> String
     {
-        let timestamp = (Date()).timeIntervalSince1970
+        let timestamp = Int64((Date()).timeIntervalSince1970)
+        //Int64(self.timeIntervalSince1970 * 1000)
         
-        return "\(timestamp.hashValue)"
+        return "\(timestamp)"
     }
     
     static fileprivate func generateAuthTokenV2()-> String
@@ -773,6 +774,7 @@ import CommonCrypto
         
         let bin  = String(cardNumber[...index])
         let url = "/v2/card_bin/\(bin)"
+        if(cardNumber.count == 6 ){
         request.makeRequestGetV2(url, parameters: [:], token: generateAuthTokenV2()) { (err, code, data) in
             
             if err != nil || code != 200{
@@ -782,7 +784,7 @@ import CommonCrypto
             }
         }
         
-        
+        }
     }
     
     
