@@ -651,10 +651,14 @@ open class PaymentezAddNativeViewController: UIViewController {
                     ),
                     autocomplete: false // you may consider disabling autocompletion for your case
                 )
+                let index = expiry?.index(expiry!.startIndex, offsetBy: 3)
+                let indexEnd = expiry?.index(expiry!.startIndex, offsetBy: 4)
+                var expiryT = expiry
+                expiryT = expiryT?.replacingCharacters(in: index!...indexEnd!, with: "")
                 let resultEx: Mask.Result = self.expirationMask.apply(
                     toText: CaretString(
-                        string: expiry!,
-                        caretPosition: expiry!.endIndex
+                        string: expiryT!,
+                        caretPosition: expiryT!.endIndex
                     ),
                     autocomplete: false // you may consider disabling autocompletion for your case
                 )

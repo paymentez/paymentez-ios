@@ -28,6 +28,7 @@ class PaymentezCardScan:NSObject, CardIOPaymentViewControllerDelegate
     
     {
         self.callback = callback
+        self.scanVc = CardIOPaymentViewController(paymentDelegate: self)
         vc.present(self.scanVc!, animated: true, completion: nil)
         
     }
