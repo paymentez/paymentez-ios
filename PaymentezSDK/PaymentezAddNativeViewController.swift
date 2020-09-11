@@ -768,7 +768,7 @@ extension PaymentezAddNativeViewController: MaskedTextFieldDelegateListener
             self.paymentezCard.cardNumber = self.cardField.text?.replacingOccurrences(of: "-", with: "")
             if value.count >= 6  && value.count <= 10 && self.cardType == .notSupported { // check bin
                 self.validateCard(value)
-                if value.count < 15 {
+                if value.count < 14 {
                     self.cardField.errorMessage = "Invalid".localized
                 }
             } else if value.count < 6 {
@@ -777,7 +777,7 @@ extension PaymentezAddNativeViewController: MaskedTextFieldDelegateListener
                 self.toggleTuya(show:false)
                 
             }
-            if value.count < 15 {
+            if value.count < 14 {
                 self.cardField.errorMessage = "Invalid".localized
             }
             
