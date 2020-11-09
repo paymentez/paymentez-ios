@@ -86,21 +86,21 @@ open class PaymentezAddNativeViewController: UIViewController {
         stackView.spacing = 10
         stackView.distribution = .fill
 
-        stackView.backgroundColor = .red
+        stackView.backgroundColor = .white
         return stackView
     }()
     let nameView: UIStackView = {
         let stackView = UIStackView()
         //stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
-        stackView.backgroundColor = .red
+        stackView.backgroundColor = .white
         stackView.distribution = .fillEqually
         return stackView
     }()
     let cardNumberView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
-        stackView.backgroundColor = .red
+        stackView.backgroundColor = .white
         stackView.spacing = 5
         stackView.distribution = .fill
         return stackView
@@ -108,7 +108,7 @@ open class PaymentezAddNativeViewController: UIViewController {
     let verificationView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
-        stackView.backgroundColor = .red
+        stackView.backgroundColor = .white
         stackView.spacing = 5
         stackView.distribution = .fill
         return stackView
