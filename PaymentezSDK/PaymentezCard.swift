@@ -27,7 +27,7 @@ public enum PaymentezCardType: String
 let REGEX_AMEX = "^3[47][0-9]{5,}$"
 let REGEX_VISA = "^4[0-9]{6,}$"
 let REGEX_MASTERCARD = "^5[1-5][0-9]{5,}$"
-let REGEX_DINERS = "^3(?:0[0-5]|[68][0-9])[0-9]{4,}$"
+let REGEX_DINERS = "^3(?:0[0-5]|[68][0-9])[0-9]{11}$"
 let REGEX_DISCOVER = "^65[4-9][0-9]{13}|64[4-9][0-9]{13}|6011[0-9]{12}|(622(?:12[6-9]|1[3-9][0-9]|[2-8][0-9][0-9]|9[01][0-9]|92[0-5])[0-9]{10})$"
 let REGEX_JCB = "^(?:2131|1800|35[0-9]{3})[0-9]{11}$"
 
@@ -226,7 +226,7 @@ public typealias ValidationCallback = (_ cardType: PaymentezCardType, _ cardImag
     
     public static func getTypeCard(_ cardNumber:String) -> PaymentezCardType
     {
-        if cardNumber.count < 15  || cardNumber.count > 16
+        if cardNumber.count < 14  || cardNumber.count > 16
         {
             return PaymentezCardType.notSupported
         }
