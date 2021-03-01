@@ -2,12 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:PaymentezSDKObjC/PaymentezSDKObjC.xcodeproj">
+      location = "group:PaymentSDKObjC/PaymentSDKObjC.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:PaymentezSDK.xcodeproj">
+      location = "group:PaymentSDK.xcodeproj">
    </FileRef>
    <FileRef
-      location = "container:PaymentezSDKSwift/PaymentezSDKSwift.xcodeproj">
+      location = "container:PaymentSDKSwift/PaymentSDKSwift.xcodeproj">
    </FileRef>
 </Workspace>

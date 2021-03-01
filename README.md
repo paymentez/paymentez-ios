@@ -1,7 +1,6 @@
-
 **
 
-Paymentez SDK IOS
+Payment SDK IOS
 -----------------
 
 **
@@ -66,27 +65,38 @@ In Build Phases -> Embed Frameworks Uncheck "Copy Only When Installing"
 
 # **Manual Installation(Recommended)**
 
-PaymentezSDK is a dynamic framework ([More Info](https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/DynamicLibraries/100-Articles/OverviewOfDynamicLibraries.html)) so you have to build each version for the desire target (simulator and device). To make the integration easy, you can follow these instructions in order to have just one Universal .framework file.
+
+
+
+
+
+
+
+
+SDK is a dynamic framework ([More Info](https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/DynamicLibraries/100-Articles/OverviewOfDynamicLibraries.html)) so you have to build each version for the desire target (simulator and device). To make the integration easy, you can follow these instructions in order to have just one Universal .framework file.
 
 1. Build the SDK and create .framework files
 
-- If you want build yourself the SDK or you are using a new/beta version of Xcode . Download the project from github and run the following script inside the root folder
-
-```
-sh package.sh
-
-```
 This will create a /build folder where there are all the necesary .framework (simulator, iphoneos and universal)
+ 
+- With Target PaymentSDK selected, build the project for any iOS Simulator.
+- With Target PaymentSDK selected, build the project for a physical device.
+
+After
+
+- With the Target PaymentezSDK-Universal,  build the project for any iOS device. 
+- Inside the group Products -> PaymentSDK.framework -> Show in finder
+- Inside the the directory of PaymentSDK.framework, CMD+up
+- You can see three groups, inside the group Release-iosuniversal, you'll find the PaymentSDK.framework
+
+- Or if you prefer you can download pre-compilled .framework files from [Releases](https://github.com/globalpayredeban/globalpayredeban-ios/releases)
 
 
-- Or if you prefer you can download pre-compilled .framework files from [Releases](https://github.com/paymentez/paymentez-ios/releases)
+2. Drag the PaymentSDK.framework To your project and check "Copy Files if needed".
 
-2. Drag the PaymentezSDK.framework (preferably Universal version) To your project and check "Copy Files if needed".
+In Target->General : Add PaymentSDK.framework to Frameworks, Libraries, and Embedded Content
 
-In Target->General : Add PaymentezSDK.framework to Embeeded Libraries and Linked Frameworks and  Libraries
-
-![Example](https://s3.amazonaws.com/cdn.paymentez.com/apps/ios/tutorial2.gif)
-
+In Target->Build Settings : Validate Workspace should be YES
 
 3. Update the Build Settings with
 
@@ -94,24 +104,21 @@ Set ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES
 
 In Build Phases -> Embed Frameworks Uncheck "Copy Only When Installing"
 
-![Example](https://s3.amazonaws.com/cdn.paymentez.com/apps/ios/tutorial3.gif)
-
-
 4. If you use the Universal version and you want to upload to the appstore. Add Run Script Phase: Target->Build Phases -> + ->New Run Script Phase. And paste the following. Make sure that this build phase is added after Embed Frameworks phase.
 ```
-bash "${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/PaymentezSDK.framework/install_dynamic.sh"
+bash "${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/PaymentSDK.framework/install_dynamic.sh"
 ```
-![Example](https://s3.amazonaws.com/cdn.paymentez.com/apps/ios/tutorial4.gif)
+
 ----------
 **Usage**
 
 Importing Swift
 
-import PaymentezSDK
+import PaymentSDK
 
-Setting up your app inside AppDelegate->didFinishLaunchingWithOptions. You should use the Paymentez Client Credentials (Just ADD enabled)
+Setting up your app inside AppDelegate->didFinishLaunchingWithOptions. You should use the Payment Client Credentials (Just ADD enabled)
 
-PaymentezSDKClient.setEnvironment("AbiColApp", secretKey: "2PmoFfjZJzjKTnuSYCFySMfHlOIBz7", testMode: true)
+PaymentSDKClient.setEnvironment("AbiColApp", secretKey: "2PmoFfjZJzjKTnuSYCFySMfHlOIBz7", testMode: true)
 
 
 # Types of implementation
@@ -126,15 +133,15 @@ The AddCard Form includes: Card io scan, and card validation.
 
 ## Show AddCard Widget
 
-In order to create a widget you should create a PaymentezAddNativeController from the PaymentezSDKClient. Then add it to the UIView that will be the container of the Paymentez Form. The min height should be 300 px, and whole screen as width (270px without paymentez logo)
+In order to create a widget you should create a PaymentAddNativeController from the PaymentSDKClient. Then add it to the UIView that will be the container of the Payment Form. The min height should be 300 px, and whole screen as width (270px without payment logo)
 
-**Note:**  *When you are using the Paymentez Form as Widget. The Client custom ViewController will be responsible for the layout and synchronization (aka Spinner or loading)*
+**Note:**  *When you are using the Payment Form as Widget. The Client custom ViewController will be responsible for the layout and synchronization (aka Spinner or loading)*
 
 The widget can scan with your phones camera the credit card data using card.io.
-![Example](https://developers.paymentez.com/wp-content/uploads/2017/10/ios-example.png)
+
 
 ```swift
-let paymentezAddVC = self.addPaymentezWidget(toView: self.addView, delegate: nil, uid:UserModel.uid, email:UserModel.email)
+let paymentAddVC = self.addPaymentWidget(toView: self.addView, delegate: nil, uid:UserModel.uid, email:UserModel.email)
 
 ```
 
@@ -143,16 +150,16 @@ Objc
 ```objc
 
 
-[self addPaymentezWidgetToView:self. addView delegate:self uid:@"myuid" email:@"myemail"];
+[self addPaymentWidgetToView:self. addView delegate:self uid:@"myuid" email:@"myemail"];
 
 ```
-Retrive the valid credit card from the PaymentezAddNativeController (Widget):
+Retrive the valid credit card from the PaymentAddNativeController (Widget):
 
 ```swift
-if let validCard = paymentezAddVC.getValidCard() // CHECK IF THE CARD IS VALID, IF THERE IS A VALIDATION ERROR NIL VALUE WILL BE RETURNED
+if let validCard = paymentAddVC.getValidCard() // CHECK IF THE CARD IS VALID, IF THERE IS A VALIDATION ERROR NIL VALUE WILL BE RETURNED
 {
 sender?.isEnabled = false
-PaymentezSDKClient.createToken(validCard, uid: UserModel.uid, email: UserModel.email, callback: { (error, cardAdded) in
+PaymentSDKClient.createToken(validCard, uid: UserModel.uid, email: UserModel.email, callback: { (error, cardAdded) in
 
 if cardAdded != nil // handle the card status
 {
@@ -166,11 +173,11 @@ else if error != nil //handle the error
 
 Objc
 ```objc
-PaymentezCard *validCard = [self.paymentezAddVC getValidCard];
+PaymentCard *validCard = [self.paymentAddVC getValidCard];
 if (validCard != nil) // Check if it is avalid card
 {
 
-[PaymentezSDKClient add:validCard uid:USERMODEL_UID email:USERMODEL_EMAIL callback:^(PaymentezSDKError *error, PaymentezCard *cardAdded) {
+[PaymentSDKClient add:validCard uid:USERMODEL_UID email:USERMODEL_EMAIL callback:^(PaymentSDKError *error, PaymentCard *cardAdded) {
 [sender setEnabled:YES];
 if(cardAdded != nil) // handle the card status
 {
@@ -187,7 +194,7 @@ else  //handle the error
 
 
 ```swift
-self.navigationController?.pushPaymentezViewController(delegate: self, uid: UserModel.uid, email: UserModel.email)
+self.navigationController?.pushPaymentViewController(delegate: self, uid: UserModel.uid, email: UserModel.email)
 
 ```
 
@@ -196,14 +203,14 @@ Objc
 ```objc
 
 
-[self.navigationController pushPaymentezViewControllerWithDelegate:self uid:@"myuid" email:@"mymail@mail.com"]`;
+[self.navigationController pushPaymentViewControllerWithDelegate:self uid:@"myuid" email:@"mymail@mail.com"]`;
 ```
 
 ## Present as Modal
 
 
 ```swift
-self.presentPaymentezViewController(delegate: self, uid: "myuid", email: "myemail@email.com")
+self.presentPaymentViewController(delegate: self, uid: "myuid", email: "myemail@email.com")
 
 ```
 
@@ -211,22 +218,22 @@ Objc
 
 ```objc
 
-[self presentPaymentezViewControllerWithDelegate:self uid:@"myuid" email:@"myemail@email.com"];
+[self presentPaymentViewControllerWithDelegate:self uid:@"myuid" email:@"myemail@email.com"];
 ```
 
 
-###  PaymentezCardAddedDelegate Protocol
+###  PaymentCardAddedDelegate Protocol
 
 If you present the Form as a viewcontroller (push and modal)  you must implement the PaymetnezCardAddedDelegate Protocol in order to handle the states or actions inside the Viewcontroller. If you are using Widget implementation you can handle the actions as described above.
 
 ```swift
-protocol PaymentezCardAddedDelegate
+protocol PaymentCardAddedDelegate
 {
-func cardAdded(_ error:PaymentezSDKError?, _ cardAdded:PaymentezCard?)
+func cardAdded(_ error:PaymentSDKError?, _ cardAdded:PaymentCard?)
 func viewClosed()
 }
 ```
-`func cardAdded(_ error:PaymentezSDKError?, _ cardAdded:PaymentezCard?)`  is called whenever there is an error or a card is added.
+`func cardAdded(_ error:PaymentSDKError?, _ cardAdded:PaymentCard?)`  is called whenever there is an error or a card is added.
 
 `func viewClosed()`  Whenever the modal is closed
 
@@ -235,10 +242,10 @@ func viewClosed()
 If you want to do the scan yourself, using card.io
 
 ```swift
-PaymentezSDKClient.scanCard(self) { (closed, number, expiry, cvv, card) in
+PaymentSDKClient.scanCard(self) { (closed, number, expiry, cvv, card) in
 if !closed // user did not closed the scan card dialog
 {
-if card != nil  // paymentezcard object to handle the data
+if card != nil  // paymentcard object to handle the data
 {
 
 }
@@ -247,7 +254,7 @@ if card != nil  // paymentezcard object to handle the data
 
 -ObjC
 ```objc
-[PaymentezSDKClient scanCard:self callback:^(BOOL userClosed, NSString *cardNumber, NSString *expiryDate, NSString *cvv, PaymentezCard *card) {
+[PaymentSDKClient scanCard:self callback:^(BOOL userClosed, NSString *cardNumber, NSString *expiryDate, NSString *cvv, PaymentCard *card) {
 
 if (!userClosed) //user did not close the scan card dialog
 {
@@ -271,11 +278,11 @@ Fields required
 + cvc: card security code as a string, e.g. '123'.
 
 ```swift
-let card = PaymentezCard.createCard(cardHolder:"Gustavo Sotelo", cardNumber:"4111111111111111", expiryMonth:10, expiryYear:2020, cvc:"123")
+let card = PaymentCard.createCard(cardHolder:"Gustavo Sotelo", cardNumber:"4111111111111111", expiryMonth:10, expiryYear:2020, cvc:"123")
 
 if card != nil  // A valid card was created
 {
-PaymentezSDKClient.add(card, uid: "69123", email: "gsotelo@paymentez.com", callback: { (error, cardAdded) in
+PaymentSDKClient.add(card, uid: "69123", email: "gsotelo@globalpay.com", callback: { (error, cardAdded) in
 
 if cardAdded != nil
 {
@@ -293,11 +300,11 @@ else
 ObjC
 
 ```objc
-PaymentezCard *validCard = [PaymentezCard createCardWithCardHolder:@"Gustavo Sotelo" cardNumber:@"4111111111111111" expiryMonth:10 expiryYear:2020 cvc:@"123"];
+PaymentCard *validCard = [PaymentCard createCardWithCardHolder:@"Gustavo Sotelo" cardNumber:@"4111111111111111" expiryMonth:10 expiryYear:2020 cvc:@"123"];
 if (validCard != nil) // Check if it is avalid card
 {
 
-[PaymentezSDKClient add:validCard uid:USERMODEL_UID email:USERMODEL_EMAIL callback:^(PaymentezSDKError *error, PaymentezCard *cardAdded) {
+[PaymentSDKClient add:validCard uid:USERMODEL_UID email:USERMODEL_EMAIL callback:^(PaymentSDKError *error, PaymentCard *cardAdded) {
 [sender setEnabled:YES];
 if(cardAdded != nil) // handle the card status
 {
@@ -318,12 +325,12 @@ else  //handle the error
 Debit actions should be implemented in your own backend. For security reasons we provide a secure session id generation, for kount fraud systems. This will collect the device information in background
 
 ```swift
-let sessionId = PaymentezSDKClient.getSecureSessionId()
+let sessionId = PaymentSDKClient.getSecureSessionId()
 ```
 Objc
 
 ```objc
-NSString *sessionId = [PaymentezSDKClient getSecureSessionId];
+NSString *sessionId = [PaymentSDKClient getSecureSessionId];
 ```
 
 ### Utils
@@ -331,7 +338,7 @@ NSString *sessionId = [PaymentezSDKClient getSecureSessionId];
 Get Card Assets
 
 ```swift
-let card = PaymentezCard.createCard(cardHolder:"Gustavo Sotelo", cardNumber:"4111111111111111", expiryMonth:10, expiryYear:2020, cvc:"123")
+let card = PaymentCard.createCard(cardHolder:"Gustavo Sotelo", cardNumber:"4111111111111111", expiryMonth:10, expiryYear:2020, cvc:"123")
 if card != nil  // A valid card was created
 {
 let image = card.getCardTypeAsset()
@@ -341,7 +348,7 @@ let image = card.getCardTypeAsset()
 
 Get Card Type (Just Amex, Mastercard, Visa, Diners)
 ```swift
-let card = PaymentezCard.createCard(cardHolder:"Gustavo Sotelo", cardNumber:"4111111111111111", expiryMonth:10, expiryYear:2020, cvc:"123")
+let card = PaymentCard.createCard(cardHolder:"Gustavo Sotelo", cardNumber:"4111111111111111", expiryMonth:10, expiryYear:2020, cvc:"123")
 if card != nil  // A valid card was created
 {
 switch(card.cardType)
@@ -363,11 +370,11 @@ default:
 You can customize widget colors sample 
 
 ```swift
-paymentezAddVC.baseFontColor = .white
-paymentezAddVC.baseColor = .green
-paymentezAddVC.backgroundColor = .white
-paymentezAddVC.showLogo = false
-paymentezAddVC.baseFont = UIFont(name: "Your Font", size: 12) ?? UIFont.systemFont(ofSize: 12)
+paymentAddVC.baseFontColor = .white
+paymentAddVC.baseColor = .green
+paymentAddVC.backgroundColor = .white
+paymentAddVC.showLogo = false
+paymentAddVC.baseFont = UIFont(name: "Your Font", size: 12) ?? UIFont.systemFont(ofSize: 12)
 
 ```
 
@@ -376,20 +383,19 @@ The customizable elements of the form are the following:
 - `baseFontColor` : The color of the font of the fields
 - `baseColor`: Color of the lines and titles of the fields
 - `backgroundColor`: Background color of the widget
-- `showLogo`: Enable or disable Paymentez Logo 
+- `showLogo`: Enable or disable Payment Logo 
 - `baseFont`: Font of the entire form
 - `nameTitle`: String for the custom placeholder for the Name Field
 - `cardTitle`: String for the custom placeholder for the Card Field
 - `invalidCardTitle` String for the error message when a card number is invalid
 
 
-### Building and Running the PaymentezSwift
+### Building and Running the PaymentSwift
 
-Before you can run the PaymentezStore application, you need to provide it with your APP_CODE, APP_SECRET_KEY and a sample backend.
+Before you can run the PaymentStore application, you need to provide it with your APP_CODE, APP_SECRET_KEY and a sample backend.
 
-1. If you haven't already and APP_CODE and APP_SECRET_KEY, please ask your contact on Paymentez Team for it.
-2. Replace the `PAYMENTEZ_APP_CODE` and `PAYMENTEZ_APP_SECRET_KEY` in your AppDelegate as shown in Usage section
-3. Head to https://github.com/paymentez/example-java-backend and click "Deploy to Heroku" (you may have to sign up for a Heroku account as part of this process). Provide your Paymentez Server Credentials APP_CODE and  APP_SECRET_KEY fields under 'Env'. Click "Deploy for Free".
+1. If you haven't already and APP_CODE and APP_SECRET_KEY, please ask your contact on Payment Team for it.
+2. Replace the `PAYMENT_APP_CODE` and `PAYMENT_APP_SECRET_KEY` in your AppDelegate as shown in Usage section
+3. Head to https://github.com/globalpayredeban/example-java-backend and click "Deploy to Heroku" (you may have to sign up for a Heroku account as part of this process). Provide your Payment Server Credentials APP_CODE and  APP_SECRET_KEY fields under 'Env'. Click "Deploy for Free".
 4. Replace the `BACKEND_URL` variable in the MyBackendLib.swift (inside the variable myBackendUrl) with the app URL Heroku provides you with (e.g. "https://my-example-app.herokuapp.com")
 5. Replace the variables (uid and email) in UserModel.swift  with your own user id reference
-
