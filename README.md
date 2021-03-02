@@ -396,6 +396,6 @@ Before you can run the PaymentStore application, you need to provide it with you
 
 1. If you haven't already and APP_CODE and APP_SECRET_KEY, please ask your contact on Payment Team for it.
 2. Replace the `PAYMENT_APP_CODE` and `PAYMENT_APP_SECRET_KEY` in your AppDelegate as shown in Usage section
-3. Head to https://github.com/globalpayredeban/example-java-backend and click "Deploy to Heroku" (you may have to sign up for a Heroku account as part of this process). Provide your Payment Server Credentials APP_CODE and  APP_SECRET_KEY fields under 'Env'. Click "Deploy for Free".
+3.  Head to https://github.com/paymentez/example-java-backend and click "Deploy to Heroku" (you may have to sign up for a Heroku account as part of this process). Provide your Paymentez Server Credentials APP_CODE and  APP_SECRET_KEY fields under 'Env'. Click "Deploy for Free".
 4. Replace the `BACKEND_URL` variable in the MyBackendLib.swift (inside the variable myBackendUrl) with the app URL Heroku provides you with (e.g. "https://my-example-app.herokuapp.com")
 5. Replace the variables (uid and email) in UserModel.swift  with your own user id reference
