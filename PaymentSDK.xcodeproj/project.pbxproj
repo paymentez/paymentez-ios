@@ -899,7 +899,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.redeban.globalpay;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nuvei.paymentez.sammple;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -949,7 +949,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.redeban.globalpay;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nuvei.paymentez.sammple;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
