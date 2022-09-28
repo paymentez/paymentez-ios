@@ -31,12 +31,7 @@ import Foundation
     open var shippingDistrict = ""
     open var shippingAdditionalAddressInfo = ""
     
-    public override init()
-    {
-        
-    }
-    
-    func requiredUserDict() ->[String:Any]
+    func requiredUserDict() -> [String:Any]
     {
         var dic = [String:Any]()
         dic["id"] = self.uid
@@ -102,7 +97,7 @@ import Foundation
         }
         if self.installments > 1
         {
-            dic["installments"] = self.installments 
+            dic["installments"] = self.installments
         }
         
         return dic
@@ -112,19 +107,19 @@ import Foundation
     {
         var dic = [String:Any]()
         dic["card_reference"] =  self.token
-        dic["product_amount"] = String(format: "%.2f", self.productAmount) 
-        dic["product_description"] = self.productDescription 
-        dic["dev_reference"] = self.devReference 
-        dic["vat"] = String(format: "%.2f", self.vat) 
-        dic["email"] = self.email 
-        dic["uid"] = self.uid 
+        dic["product_amount"] = String(format: "%.2f", self.productAmount)
+        dic["product_description"] = self.productDescription
+        dic["dev_reference"] = self.devReference
+        dic["vat"] = String(format: "%.2f", self.vat)
+        dic["email"] = self.email
+        dic["uid"] = self.uid
         if productDiscount > 0.0
         {
-            dic["product_discount"] = String(format: "%.2f", self.productDiscount) 
+            dic["product_discount"] = String(format: "%.2f", self.productDiscount)
         }
         if self.installments > 1
         {
-            dic["installments"] = self.installments 
+            dic["installments"] = self.installments
         }
         if self.buyerFiscalNumber != ""{dic["buyer_fiscal_number"] = self.buyerFiscalNumber }
         if self.sellerId != ""{dic["seller_id"] = self.sellerId }
@@ -138,7 +133,7 @@ import Foundation
         if self.shippingAdditionalAddressInfo != ""{dic["shipping_additional_address_info"] = self.shippingAdditionalAddressInfo }
         return dic
     }
- 
+    
 }
 
 class PaymentRequest
@@ -159,17 +154,9 @@ class PaymentRequest
         completeUrl += "?" + encodeParamsGet(parameters)
         return completeUrl
     }
-    func encodeParamsJson(_ parameters:NSDictionary) ->Data?
-    {
-        do
-        {
-            
-            let data = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
-            return data
-        }
-        catch {
-            return nil
-        }
+    
+    func encodeParamsJson(_ parameters:NSDictionary) -> Data? {
+        return try? JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
     }
     
     func encodeParams(_ parameters:NSDictionary) ->Data?
@@ -316,7 +303,7 @@ class PaymentRequest
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue(token, forHTTPHeaderField: "Auth-Token")
         
- 
+        
         request.httpMethod = "POST"
         request.httpBody = encodeParamsJson(parameters)
         
@@ -329,7 +316,7 @@ class PaymentRequest
                 
                 do{
                     json = try JSONSerialization.jsonObject(with: data!, options: .mutableLeaves)
-                   // print(json as Any)
+                    // print(json as Any)
                 }
                 catch {
                     
@@ -397,7 +384,7 @@ class PaymentRequest
                     json = try JSONSerialization.jsonObject(with: data!, options: .mutableLeaves)
                 }
                 catch  {
-                     print("Unexpected error: \(error).")
+                    print("Unexpected error: \(error).")
                 }
                 
                 if json == nil{

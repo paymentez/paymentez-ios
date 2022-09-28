@@ -7,35 +7,11 @@
 //
 
 import Foundation
+import UIKit
 
+typealias ValidationCallback = (PaymentBrand?) -> Void
 
-public enum PaymentCardType: String
-{
-    case visa = "vi"
-    case masterCard = "mc"
-    case amex = "ax"
-    case diners = "di"
-    case discover = "dc"
-    case jcb = "jb"
-    case elo = "el"
-    case credisensa = "cs"
-    case solidario = "so"
-    case exito = "ex"
-    case alkosto = "ak"
-    case notSupported = ""
-}
-let REGEX_AMEX = "^3[47][0-9]{5,}$"
-let REGEX_VISA = "^4[0-9]{6,}$"
-let REGEX_MASTERCARD = "^5[1-5][0-9]{5,}$"
-let REGEX_DINERS = "^3(?:0[0-5]|[68][0-9])[0-9]{4,}$"
-let REGEX_DISCOVER = "^65[4-9][0-9]{13}|64[4-9][0-9]{13}|6011[0-9]{12}|(622(?:12[6-9]|1[3-9][0-9]|[2-8][0-9][0-9]|9[01][0-9]|92[0-5])[0-9]{10})$"
-let REGEX_JCB = "^(?:2131|1800|35[0-9]{3})[0-9]{11}$"
-
-
-public typealias ValidationCallback = (_ cardType: PaymentCardType, _ cardImageUrl:String?, _ cvvLength:Int?, _ maskString:String?, _ showOtp:Bool) -> Void
-
-@objcMembers open class PaymentCard:NSObject
-{
+@objcMembers open class PaymentCard: NSObject {
     
     open var status:String?
     open var transactionId:String?
@@ -50,16 +26,15 @@ public typealias ValidationCallback = (_ cardType: PaymentCardType, _ cardImageU
     open var nip:String?
     open var msg:String?
     open var cardType:PaymentCardType = .notSupported
-    internal var cardNumber:String? {
+    internal var cardNumber: String? {
         didSet {
-            if cardNumber != nil
-            {
-                self.termination = String(self.cardNumber!.suffix(4))
+            if let cardNumber = self.cardNumber {
+                self.termination = String(cardNumber.suffix(4))
             }
         }
     }
-    internal var cvc:String?
-    open var type:String?
+    internal var cvc: String?
+    open var type: String?
     {
         didSet
         {
@@ -90,16 +65,15 @@ public typealias ValidationCallback = (_ cardType: PaymentCardType, _ cardImageU
             }
         }
     }
-
-
-
-    public static func createCard(cardHolder:String, cardNumber:String, expiryMonth:NSInteger, expiryYear:NSInteger, cvc:String) ->PaymentCard?
-    {
+    
+    override open var description: String {
+        return "\(status), \(transactionId), \(token), \(cardHolder), \(fiscalNumber), \(termination), \(isDefault), \(expiryMonth), \(expiryYear), \(bin), \(nip), \(msg), \(cardType), \(cardNumber) \(cvc), \(type)"
+    }
+    
+    
+    public static func createCard(cardHolder:String, cardNumber:String, expiryMonth:NSInteger, expiryYear:NSInteger, cvc:String) ->PaymentCard? {
         let paymentCard = PaymentCard()
-        if getTypeCard(cardNumber) == .notSupported
-        {
-            return nil
-        }
+        if getTypeCard(cardNumber) == .notSupported { return nil }
         let today = Date()
         let calendar = NSCalendar.current
         let components = calendar.dateComponents([.month, .year], from: today)
@@ -107,15 +81,8 @@ public typealias ValidationCallback = (_ cardType: PaymentCardType, _ cardImageU
         let todayMonth = components.month!
         let todayYear = components.year!
         
-        if expiryYear < todayYear
-        {
-            return nil
-        }
-        if expiryMonth <= todayMonth && expiryYear == todayYear
-        {
-            return nil
-        }
-        
+        if todayYear < expiryYear { return nil }
+        if expiryYear == todayYear && todayMonth > expiryMonth { return nil }
         
         paymentCard.cardNumber = cardNumber
         paymentCard.cardHolder = cardHolder
@@ -123,12 +90,10 @@ public typealias ValidationCallback = (_ cardType: PaymentCardType, _ cardImageU
         paymentCard.expiryYear = "\(expiryYear)"
         paymentCard.cvc = cvc
         return paymentCard
-        
     }
     
     
-    static func validateExpDate(_ expDate:String) -> Bool
-    {
+    static func validateExpDate(_ expDate:String) -> Bool {
         let today = Date()
         let calendar = NSCalendar.current
         let components = calendar.dateComponents([.month, .year], from: today)
@@ -154,27 +119,15 @@ public typealias ValidationCallback = (_ cardType: PaymentCardType, _ cardImageU
         return false
     }
     
-    public func getJSONString() ->String?
-    {
-        var json:Any? = nil
-        do{
-            json = try JSONSerialization.data(withJSONObject: self.getDict(), options: .prettyPrinted)
-        }
-        catch {
-            
-        }
-        if json != nil
-        {
-            let theJSONText = String(data: json as! Data,
-                                     encoding: .ascii)
+    public func getJSONString() -> String? {
+        if let json = try? JSONSerialization.data(withJSONObject: self.getDict(), options: .prettyPrinted) {
+            let theJSONText = String(data: json, encoding: .ascii)
             return theJSONText
         }
         return nil
-        
     }
     
-    public func getDict() -> NSDictionary
-    {
+    public func getDict() -> NSDictionary {
         let dict = [
             "bin" : self.bin,
             "status": self.status,
@@ -190,7 +143,7 @@ public typealias ValidationCallback = (_ cardType: PaymentCardType, _ cardImageU
         return dict as NSDictionary
     }
     
-    public func getCardTypeAsset() ->UIImage?
+    public func getCardTypeAsset() -> UIImage?
     {
         let bundle = Bundle(for: PaymentCard.self)
         if cardType == PaymentCardType.amex
@@ -221,90 +174,29 @@ public typealias ValidationCallback = (_ cardType: PaymentCardType, _ cardImageU
         else {
             return UIImage(named: "stp_card_unknown", in: bundle, compatibleWith: nil)
         }
-
-    }
-    
-    public static func getTypeCard(_ cardNumber:String) -> PaymentCardType
-    {
-        if cardNumber.count < 15  || cardNumber.count > 16
-        {
-            return PaymentCardType.notSupported
-        }
-        let predicateAmex = NSPredicate(format: "SELF MATCHES %@", REGEX_AMEX)
-        if predicateAmex.evaluate(with: cardNumber)
-        {
-            return PaymentCardType.amex
-        }
-        let predicateVisa = NSPredicate(format: "SELF MATCHES %@", REGEX_VISA)
-        if predicateVisa.evaluate(with: cardNumber)
-        {
-            return PaymentCardType.visa
-        }
-        let predicateMC = NSPredicate(format: "SELF MATCHES %@", REGEX_MASTERCARD)
-        if predicateMC.evaluate(with: cardNumber)
-        {
-            return PaymentCardType.masterCard
-        }
-        let predicateDiners = NSPredicate(format: "SELF MATCHES %@", REGEX_DINERS)
-        if predicateDiners.evaluate(with: cardNumber)
-        {
-            return PaymentCardType.diners
-        }
-        let predicateDiscover = NSPredicate(format: "SELF MATCHES %@", REGEX_DISCOVER)
-        if predicateDiscover.evaluate(with: cardNumber)
-        {
-            return PaymentCardType.discover
-        }
-        let predicateJCB = NSPredicate(format: "SELF MATCHES %@", REGEX_JCB)
-        if predicateJCB.evaluate(with: cardNumber)
-        {
-            return PaymentCardType.jcb
-        }
-        return PaymentCardType.notSupported
-        
         
     }
     
-    
-    
-    public static func validate(cardNumber:String, callback:@escaping ValidationCallback){
-        
-        PaymentSDKClient.validateCard(cardNumber: cardNumber) { (data, err) in
-            if err == nil{
-                
-                guard let dataDict = data else {
-                    callback(.notSupported, nil, nil, nil, false)
-                    print("Not supported")
-                    return
-                }
-                guard let cardType = dataDict["card_type"] as? String else{
-                    callback(.notSupported, nil, nil, nil, false)
-                    print("Not card type")
-                    return
-                }
-                let urlLogo = dataDict["url_logo_png"] as? String
-                guard let cvvLength = dataDict["cvv_length"] as? Int else{
-                    callback(.notSupported, nil, nil, nil, false)
-                    print("Not cvv_length")
-                    return
-                }
-                guard let maskString = dataDict["card_mask"] as? String else{
-                    callback(.notSupported, nil, nil, nil, false)
-                    print("Not mask")
-                    return
-                }
-                let showOtp = dataDict["otp"] as? Bool ?? false
-                callback(PaymentCardType(rawValue: cardType) ?? PaymentCardType(rawValue: "")! , urlLogo, cvvLength, maskString, showOtp)
-                
-            } else{
-                callback(.notSupported, nil, nil, nil, false)
-                
-            }
+    public static func getTypeCard(_ cardNumber:String) -> PaymentCardType {
+        if cardNumber.count < 14  || cardNumber.count > 16 {
+            return .notSupported
         }
+        
+        let brand = BRANDS.first { (brand: PaymentBrand) -> Bool in
+            let predicateAmex = NSPredicate(format: "SELF MATCHES %@", brand.regex)
+            return predicateAmex.evaluate(with: cardNumber)
+        }
+        
+        return brand?.type ?? .notSupported
     }
     
-    
-    
+    static func validate(cardNumber: String, callback: @escaping ValidationCallback){
+        guard let brand = BRANDS.first(where: { $0.prefixes.contains { cardNumber.starts(with: $0) } }) else {
+            callback(nil)
+            return
+        }
+        callback(brand)
+    }
     
 }
 
@@ -363,6 +255,5 @@ public typealias ValidationCallback = (_ cardType: PaymentCardType, _ cardImageU
         }
         
         return trx
-
     }
 }

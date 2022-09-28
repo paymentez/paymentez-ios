@@ -17,7 +17,7 @@
 
 "Invalid CardNumber" = "El número de tarjeta no es válido";
 
-"Add Card" = "Adicionar Tarjeta";
+"Add Card" = "Agregar Tarjeta";
 
 "NIP" = "Clave Tuya";
 
@@ -31,6 +31,6 @@
 
 "Ok" = "Entendido";
 
-"Card cannot be added" = "La tarjeta no pudo ser añadidad";
+"Card cannot be added" = "La tarjeta no pudo ser añadida";
 
 "Card Added" = "Tarjeta agregada exitosamente";

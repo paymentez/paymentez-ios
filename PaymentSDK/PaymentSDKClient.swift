@@ -19,23 +19,20 @@ import CommonCrypto
 @objcMembers open class PaymentSDKClient:NSObject
 {
     static var inProgress = false
-    static var  apiCode = ""
-    static var  secretKey = ""
+    static var apiCode = ""
+    static var secretKey = ""
     static var enableTestMode = true
     static var request = PaymentRequest(testMode: true)
     static var kountHandler:PaymentSecure = PaymentSecure(testMode: true)
-    static var scanner = PaymentCardScan()
     
     @objc(setRiskMerchantId:)
-    public static func setRiskMerchantId(_ merchantId:String)
-    {
+    public static func setRiskMerchantId(_ merchantId:String) {
         self.kountHandler.merchantId = merchantId
     }
     
     
     @objc(setEnvironment:secretKey:testMode:)
-    public static func setEnvironment(_ apiCode:String, secretKey:String, testMode:Bool)
-    {
+    public static func setEnvironment(_ apiCode:String, secretKey:String, testMode:Bool) {
         self.apiCode = apiCode
         self.secretKey = secretKey
         self.enableTestMode = testMode
@@ -43,9 +40,7 @@ import CommonCrypto
         self.kountHandler = PaymentSecure(testMode: testMode)
     }
     
-    
-    private static func showAddViewControllerForUser(_ uid:String, email:String, presenter:UIViewController, callback:@escaping (_ error:PaymentSDKError?, _ closed:Bool, _ added:Bool)->Void)
-    {
+    private static func showAddViewControllerForUser(_ uid:String, email:String, presenter:UIViewController, callback:@escaping (_ error:PaymentSDKError?, _ closed:Bool, _ added:Bool) -> Void) {
         let vc = PaymentAddViewController(callback: { (error, isClose, added) in
             
             callback(error, isClose, added)
@@ -53,35 +48,35 @@ import CommonCrypto
         })
         presenter.present(vc, animated: true, completion: {
             DispatchQueue.main.sync
-                {
-                    
-                    let sessionId = self.kountHandler.generateSessionId()
-                    var parameters = ["application_code" : apiCode,
-                                      "uid" : uid,
-                                      "email" : email,
-                                      "session_id": sessionId as Any]  as [String : Any]
-                    let authTimestamp = generateAuthTimestamp()
-                    let authToken = generateAuthToken(parameters, authTimestamp: authTimestamp)
-                    parameters["auth_timestamp"] = authTimestamp
-                    parameters["auth_token"] = authToken
-                    
-//                    kountHandler.collect(sessionId!) { (err) in
-//
-//                        if err == nil
-//                        {
-//
-//                            let url = self.request.getUrl("/api/cc/add/", parameters:parameters as NSDictionary)
-//                            vc.loadUrl(url)
-//
-////                            self.request.makeRequest("/api/cc/add/creditcard", parameters: parameters as NSDictionary) { (error, statusCode, responseData) in
-//
-//                        }
-//                        else
-//                        {
-//                            callback(PaymentSDKError.createError(err!), false, false)
-//
-//                        }
-//                    }
+            {
+                
+                let sessionId = self.kountHandler.generateSessionId()
+                var parameters = ["application_code" : apiCode,
+                                  "uid" : uid,
+                                  "email" : email,
+                                  "session_id": sessionId as Any]  as [String : Any]
+                let authTimestamp = generateAuthTimestamp()
+                let authToken = generateAuthToken(parameters, authTimestamp: authTimestamp)
+                parameters["auth_timestamp"] = authTimestamp
+                parameters["auth_token"] = authToken
+                
+                //                    kountHandler.collect(sessionId!) { (err) in
+                //
+                //                        if err == nil
+                //                        {
+                //
+                //                            let url = self.request.getUrl("/api/cc/add/", parameters:parameters as NSDictionary)
+                //                            vc.loadUrl(url)
+                //
+                ////                            self.request.makeRequest("/api/cc/add/creditcard", parameters: parameters as NSDictionary) { (error, statusCode, responseData) in
+                //
+                //                        }
+                //                        else
+                //                        {
+                //                            callback(PaymentSDKError.createError(err!), false, false)
+                //
+                //                        }
+                //                    }
                 
                 kountHandler.collect(sessionId!) { (err) in
                     
@@ -132,21 +127,7 @@ import CommonCrypto
         return self.kountHandler.getSecureSessionId()
     }
     
-    @objc
-    public static func createAddWidget()->PaymentAddNativeViewController
-    {
-        let vc = PaymentAddNativeViewController(isWidget: true)
-        
-        return vc
-    }
-    
-    
-    @objc public static func add(_ card:PaymentCard, uid:String, email:String,  callback:@escaping (_ error:PaymentSDKError?, _ cardAdded:PaymentCard?)->Void)
-    {        /*if inProgress
-        {
-            callback(PaymentSDKError.createError(500, description: "Request in Progress", help: "", type:nil),nil)
-            return
-        }*/
+    @objc public static func add(_ card: PaymentCard, uid:String, email:String,  callback:@escaping (_ error: PaymentSDKError?, _ cardAdded: PaymentCard?)->Void) {
         inProgress = true
         var typeCard = ""
         
@@ -157,22 +138,6 @@ import CommonCrypto
             typeCard = card.cardType.rawValue
         }
         
-        
-        /*
-        switch PaymentCard.getTypeCard(card.cardNumber!)
-        {
-        case .amex:
-            typeCard = "ax"
-        case .visa:
-            typeCard = "vi"
-        case .masterCard:
-            typeCard = "mc"
-        case .diners:
-            typeCard = "di"
-        default:
-            callback(PaymentSDKError.createError(403, description: "Card Not Supported", help: "Change Number", type:nil) , nil)
-        } */
-        
         let sessionId = self.kountHandler.generateSessionId()
         
         let userParameters = ["email": email, "id": uid, "fiscal_number": card.fiscalNumber ?? "" as Any]
@@ -182,7 +147,7 @@ import CommonCrypto
         let parameters = ["session_id": sessionId!,
                           "user": userParameters,
                           "card": cardParameters
-            ] as [String : Any]
+        ] as [String : Any]
         
         kountHandler.collect(sessionId!) { (err) in
             
@@ -286,84 +251,84 @@ import CommonCrypto
                         cardNumber:String!,
                         cvc:String!,
                         callback:@escaping (_ error:PaymentSDKError?, _ added:Bool)->Void
-        
-        
-        
-        
-        
-        )
+                        
+                        
+                        
+                        
+                        
+    )
     {
         DispatchQueue.global().sync
+        {
+            var typeCard = ""
+            switch PaymentCard.getTypeCard(cardNumber)
             {
-                var typeCard = ""
-                switch PaymentCard.getTypeCard(cardNumber)
+            case .amex:
+                typeCard = "ax"
+            case .visa:
+                typeCard = "vi"
+            case .masterCard:
+                typeCard = "mc"
+            case .diners:
+                typeCard = "di"
+            default:
+                // (typeError:PaymentSDKTypeAddError.insuficientParams, code: 0, description: "Card Not Supported", details: "number")
+                callback(PaymentSDKError.createError(0, description: "Card Not Supported", help: "number", type:nil) , false)
+            }
+            
+            let sessionId = self.kountHandler.generateSessionId()
+            var parameters = ["application_code" : apiCode,
+                              "uid" : uid,
+                              "email" : email,
+                              "session_id": sessionId as Any] as [String : Any]
+            let authTimestamp = generateAuthTimestamp()
+            let authToken = generateAuthToken(parameters , authTimestamp: authTimestamp)
+            parameters["auth_timestamp"] = authTimestamp
+            parameters["auth_token"] = authToken
+            parameters["expiryYear"] = "\(String(describing: expiryYear))"
+            parameters["expiryMonth"] = "\(String(describing: expiryMonth))"
+            parameters["holderName"] = holderName
+            parameters["number"] = cardNumber
+            parameters["cvc"] = cvc
+            parameters["card_type"] = typeCard
+            
+            kountHandler.collect(sessionId!) { (err) in
+                
+                if err == nil
                 {
-                case .amex:
-                    typeCard = "ax"
-                case .visa:
-                    typeCard = "vi"
-                case .masterCard:
-                    typeCard = "mc"
-                case .diners:
-                    typeCard = "di"
-                default:
-                    // (typeError:PaymentSDKTypeAddError.insuficientParams, code: 0, description: "Card Not Supported", details: "number")
-                    callback(PaymentSDKError.createError(0, description: "Card Not Supported", help: "number", type:nil) , false)
-                }
-                
-                let sessionId = self.kountHandler.generateSessionId()
-                var parameters = ["application_code" : apiCode,
-                                  "uid" : uid,
-                                  "email" : email,
-                                  "session_id": sessionId as Any] as [String : Any]
-                let authTimestamp = generateAuthTimestamp()
-                let authToken = generateAuthToken(parameters , authTimestamp: authTimestamp)
-                parameters["auth_timestamp"] = authTimestamp
-                parameters["auth_token"] = authToken
-                parameters["expiryYear"] = "\(String(describing: expiryYear))"
-                parameters["expiryMonth"] = "\(String(describing: expiryMonth))"
-                parameters["holderName"] = holderName
-                parameters["number"] = cardNumber
-                parameters["cvc"] = cvc
-                parameters["card_type"] = typeCard
-                
-                kountHandler.collect(sessionId!) { (err) in
-                    
-                    if err == nil
-                    {
-                        self.request.makeRequest("/api/cc/add/creditcard", parameters: parameters as NSDictionary) { (error, statusCode, responseData) in
+                    self.request.makeRequest("/api/cc/add/creditcard", parameters: parameters as NSDictionary) { (error, statusCode, responseData) in
+                        
+                        
+                        if error == nil
+                        {
                             
-                            
-                            if error == nil
+                            if statusCode! != 200
                             {
+                                let dataR = responseData as! [String:Any]
                                 
-                                if statusCode! != 200
-                                {
-                                    let dataR = responseData as! [String:Any]
-                                    
-                                    let err = PaymentSDKError.createError(statusCode!, description: dataR["description"] as! String, help: dataR["details"] as? String, type:nil)
-                                    callback(err, false)
-                                    
-                                }
-                                else
-                                {
-                                    callback(nil, true)
-                                }
+                                let err = PaymentSDKError.createError(statusCode!, description: dataR["description"] as! String, help: dataR["details"] as? String, type:nil)
+                                callback(err, false)
+                                
                             }
                             else
                             {
-                                callback(PaymentSDKError.createError(error!), false)
+                                callback(nil, true)
                             }
-                            
                         }
-                    }
-                    else
-                    {
-                        callback(PaymentSDKError.createError(err!), false)
+                        else
+                        {
+                            callback(PaymentSDKError.createError(error!), false)
+                        }
                         
                     }
                 }
-                
+                else
+                {
+                    callback(PaymentSDKError.createError(err!), false)
+                    
+                }
+            }
+            
         }
         
         
@@ -578,7 +543,7 @@ import CommonCrypto
         }
     }
     internal static func refund(_ transactionId:String, callback:@escaping (_ error:PaymentSDKError?,_ refunded:Bool)->Void)
-        
+    
     {
         let transactionparams = ["id": transactionId]
         let parameters = ["transaction": transactionparams] as [String:Any]
@@ -627,7 +592,7 @@ import CommonCrypto
     
     
     internal static func verifyWithCode(_ transactionId:String, uid:String, verificationCode:String, callback:@escaping (_ error:PaymentSDKError?, _ attemptsRemaining:Int, _ transaction:PaymentTransaction?)->Void)
-        
+    
     {
         let userparams = ["id": uid]
         let transactionparams = ["id": transactionId]
@@ -667,7 +632,7 @@ import CommonCrypto
     }
     
     internal static func verifyWithAmount(_ transactionId:String, uid:String, amount:Double, callback:@escaping (_ error:PaymentSDKError?, _ attemptsRemaining:Int, _ transaction:PaymentTransaction?)->Void)
-        
+    
     {
         let userparams = ["id": uid]
         let transactionparams = ["id": transactionId]
@@ -718,32 +683,13 @@ import CommonCrypto
     static fileprivate func generateAuthTokenV2()-> String
     {
         let timestamp = self.generateAuthTimestamp()
-        var uniqueString = secretKey + timestamp
-        
-        let dataIn = uniqueString.data(using: String.Encoding.utf8)!
-        let res = NSMutableData(length: Int(CC_SHA256_DIGEST_LENGTH))
-        CC_SHA256((dataIn as NSData).bytes, CC_LONG(dataIn.count)
-            , res?.mutableBytes.assumingMemoryBound(to: UInt8.self))
-        
-        var uniqueToken:String!
-        if #available(iOS 13, *) {
-            //iOS 13+ code here.
-            uniqueToken = res!.map{ String(format: "%02.2hhx", $0) }.joined()
-        }
-        else {
-            uniqueToken = res!.description
-
-        }
-        //var uniqueToken:String = String(data: dataIn, encoding: .utf8)!
-        uniqueToken = uniqueToken.replacingOccurrences(of: " ", with: "")
-        uniqueToken = uniqueToken.replacingOccurrences(of: "<", with: "")
-        uniqueToken = uniqueToken.replacingOccurrences(of: ">", with: "")
-        
+        let uniqueString = secretKey + timestamp
+        let uniqueToken = uniqueString.sha256()
         let tokenPlain = apiCode + ";" + timestamp + ";" + uniqueToken
         
         return tokenPlain.base64Encoded()!
     }
-
+    
     static fileprivate func generateAuthToken(_ parameters:[String:Any], authTimestamp:String!) -> String
     {
         let paramsDict = Array(parameters.keys).sorted(by: {$0 < $1})
@@ -761,46 +707,17 @@ import CommonCrypto
         CC_SHA256((dataIn as NSData).bytes, CC_LONG(dataIn.count), res?.mutableBytes.assumingMemoryBound(to: UInt8.self))
         var hash:String!
         if #available(iOS 13, *) {
-             //iOS 13+ code here.
-             hash = res!.map{ String(format: "%02.2hhx", $0) }.joined()
-         }
-         else {
-             hash = res!.description
-
-         }
+            //iOS 13+ code here.
+            hash = res!.map{ String(format: "%02.2hhx", $0) }.joined()
+        }
+        else {
+            hash = res!.description
+        }
         hash = hash.replacingOccurrences(of: " ", with: "")
         hash = hash.replacingOccurrences(of: "<", with: "")
         hash = hash.replacingOccurrences(of: ">", with: "")
         //print(hash)
         return hash
-        
-    }
-    
-    
-    
-    
-    @objc public static func scanCard(_ presenterViewController:UIViewController, callback:@escaping (_ userCancelled:Bool, _ number:String?, _ expiry:String?, _ cvv:String?,_ card:PaymentCard?) ->Void)
-        
-    {
-        self.scanner.showScan(presenterViewController) { (infoCard) in
-            
-            if infoCard == nil
-            {
-                callback(true, nil, nil, nil, nil)
-            }
-            else
-            {
-                let card = PaymentCard()
-                
-                card.cardNumber = infoCard!.cardNumber
-                card.cvc = infoCard!.cvv
-                card.expiryYear = "\(infoCard!.expiryYear)"
-                card.expiryMonth = String(format: "%02i",infoCard!.expiryMonth)
-                callback(false, infoCard!.cardNumber, String(format: "%02i/%i",infoCard!.expiryMonth, infoCard!.expiryYear), infoCard!.cvv, card)
-                
-            }
-            
-        }
         
     }
     
@@ -810,7 +727,7 @@ import CommonCrypto
         
         let bin  = String(cardNumber[...index])
         let url = "/v2/card_bin/\(bin)"
-     //   if(cardNumber.count == 6 ){
+        //   if(cardNumber.count == 6 ){
         request.makeRequestGetV2(url, parameters: [:], token: generateAuthTokenV2()) { (err, code, data) in
             
             if err != nil || code != 200{
@@ -820,7 +737,7 @@ import CommonCrypto
             }
         }
         
-    //    }
+        //    }
     }
     
     
@@ -841,5 +758,31 @@ extension String {
             return String(data: data, encoding: .utf8)
         }
         return nil
+    }
+    
+    func sha256() -> String {
+        if let stringData = self.data(using: String.Encoding.utf8) {
+            return hexStringFromData(input: digest(input: stringData as NSData))
+        }
+        return ""
+    }
+    
+    private func digest(input : NSData) -> NSData {
+        let digestLength = Int(CC_SHA256_DIGEST_LENGTH)
+        var hash = [UInt8](repeating: 0, count: digestLength)
+        CC_SHA256(input.bytes, UInt32(input.length), &hash)
+        return NSData(bytes: hash, length: digestLength)
+    }
+    
+    private  func hexStringFromData(input: NSData) -> String {
+        var bytes = [UInt8](repeating: 0, count: input.length)
+        input.getBytes(&bytes, length: input.length)
+        
+        var hexString = ""
+        for byte in bytes {
+            hexString += String(format:"%02x", UInt8(byte))
+        }
+        
+        return hexString
     }
 }
