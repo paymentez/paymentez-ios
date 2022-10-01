@@ -82,6 +82,8 @@ open class PaymentAddNativeViewController: UIViewController {
     
     let mainView: UIStackView = {
         let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
         stackView.spacing = 10
         stackView.distribution = .fill
         
