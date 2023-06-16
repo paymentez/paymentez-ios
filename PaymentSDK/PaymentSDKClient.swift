@@ -10,60 +10,51 @@ import Foundation
 import UIKit
 import CommonCrypto
 
-
-
-
-
-
 @objc(PaymentSDKClient)
-@objcMembers open class PaymentSDKClient:NSObject
-{
+@objcMembers open class PaymentSDKClient: NSObject {
     static var inProgress = false
-    static var  apiCode = ""
-    static var  secretKey = ""
+    static var apiCode = ""
+    static var secretKey = ""
     static var enableTestMode = true
     static var request = PaymentRequest(testMode: true)
     static var kountHandler:PaymentSecure = PaymentSecure(testMode: true)
     static var scanner = PaymentCardScan()
     
     @objc(setRiskMerchantId:)
-    public static func setRiskMerchantId(_ merchantId:String)
-    {
+    public static func setRiskMerchantId(_ merchantId: String) {
         self.kountHandler.merchantId = merchantId
     }
-    
-    
+
     @objc(setEnvironment:secretKey:testMode:)
-    public static func setEnvironment(_ apiCode:String, secretKey:String, testMode:Bool)
-    {
+    public static func setEnvironment(_ apiCode: String, secretKey: String, testMode: Bool) {
         self.apiCode = apiCode
         self.secretKey = secretKey
         self.enableTestMode = testMode
         self.request.testMode = testMode
         self.kountHandler = PaymentSecure(testMode: testMode)
     }
-    
-    
-    private static func showAddViewControllerForUser(_ uid:String, email:String, presenter:UIViewController, callback:@escaping (_ error:PaymentSDKError?, _ closed:Bool, _ added:Bool)->Void)
-    {
+
+    private static func showAddViewControllerForUser(_ uid: String,
+                                                     email: String,
+                                                     presenter: UIViewController,
+                                                     callback: @escaping (_ error: PaymentSDKError?,
+                                                                          _ closed: Bool,
+                                                                          _ added: Bool) -> Void) {
         let vc = PaymentAddViewController(callback: { (error, isClose, added) in
-            
             callback(error, isClose, added)
-            
         })
+
         presenter.present(vc, animated: true, completion: {
-            DispatchQueue.main.sync
-                {
-                    
-                    let sessionId = self.kountHandler.generateSessionId()
-                    var parameters = ["application_code" : apiCode,
-                                      "uid" : uid,
-                                      "email" : email,
-                                      "session_id": sessionId as Any]  as [String : Any]
-                    let authTimestamp = generateAuthTimestamp()
-                    let authToken = generateAuthToken(parameters, authTimestamp: authTimestamp)
-                    parameters["auth_timestamp"] = authTimestamp
-                    parameters["auth_token"] = authToken
+            DispatchQueue.main.sync {
+                let sessionId = self.kountHandler.generateSessionId()
+                var parameters = ["application_code": apiCode,
+                                  "uid": uid,
+                                  "email": email,
+                                  "session_id": sessionId as Any]  as [String: Any]
+                let authTimestamp = generateAuthTimestamp()
+                let authToken = generateAuthToken(parameters, authTimestamp: authTimestamp)
+                parameters["auth_timestamp"] = authTimestamp
+                parameters["auth_token"] = authToken
                     
 //                    kountHandler.collect(sessionId!) { (err) in
 //
@@ -83,81 +74,67 @@ import CommonCrypto
 //                        }
 //                    }
                 
-                kountHandler.collect(sessionId!) { (err) in
-                    
-                    if err == nil
-                    {
-                        self.request.makeRequest("/api/cc/add/", parameters: parameters as NSDictionary) { (error, statusCode, responseData) in
-                            
-                            
-                            if error == nil
-                            {
-                                
-                                if statusCode! != 200
-                                {
-                                    let dataR = responseData as! [String:Any]
-                                    
-                                    let err = PaymentSDKError.createError(statusCode!, description: dataR["description"] as! String, help: dataR["details"] as? String, type:nil)
+                kountHandler.collect(sessionId!) { err in
+                    if err == nil {
+                        self.request.makeRequest(
+                            "/api/cc/add/",
+                            parameters: parameters as NSDictionary
+                        ) { (error, statusCode, responseData) in
+                            if error == nil {
+                                if statusCode! != 200 {
+                                    let dataR = responseData as! [String: Any]
+                                    let err = PaymentSDKError.createError(statusCode!,
+                                                                          description: dataR["description"] as! String,
+                                                                          help: dataR["details"] as? String,
+                                                                          type:nil)
                                     callback(err, false, false)
-                                    
+                                } else {
+                                    callback(nil, false, true)
                                 }
-                                else
-                                {
-                                    callback(nil, false,true)
-                                }
-                            }
-                            else
-                            {
+                            } else {
                                 callback(PaymentSDKError.createError(error!), false, false)
                             }
-                            
                         }
-                    }
-                    else
-                    {
+                    } else {
                         callback(PaymentSDKError.createError(err!), false, false)
-                        
                     }
                 }
-                
             }
-            
         })
-        
-        
     }
+
     @objc
-    public static func getSecureSessionId()->String
-    {
+    public static func getSecureSessionId() -> String {
         return self.kountHandler.getSecureSessionId()
     }
     
     @objc
-    public static func createAddWidget()->PaymentAddNativeViewController
-    {
+    public static func createAddWidget() -> PaymentAddNativeViewController {
         let vc = PaymentAddNativeViewController(isWidget: true)
-        
         return vc
     }
-    
-    
-    @objc public static func add(_ card:PaymentCard, uid:String, email:String,  callback:@escaping (_ error:PaymentSDKError?, _ cardAdded:PaymentCard?)->Void)
-    {        /*if inProgress
+
+    @objc public static func add(_ card: PaymentCard,
+                                 uid:String,
+                                 email:String,
+                                 callback: @escaping(_ error: PaymentSDKError?,
+                                                     _ cardAdded: PaymentCard?) -> Void) {        /*if inProgress
         {
             callback(PaymentSDKError.createError(500, description: "Request in Progress", help: "", type:nil),nil)
             return
         }*/
         inProgress = true
         var typeCard = ""
-        
         if card.cardType == .notSupported{
-            callback(PaymentSDKError.createError(403, description: "Card Not Supported", help: "Change Number", type:nil) , nil)
+            callback(PaymentSDKError.createError(403,
+                                                 description: "Card Not Supported",
+                                                 help: "Change Number",
+                                                 type: nil),
+                     nil)
             return
-        } else{
+        } else {
             typeCard = card.cardType.rawValue
         }
-        
-        
         /*
         switch PaymentCard.getTypeCard(card.cardNumber!)
         {
@@ -174,51 +151,47 @@ import CommonCrypto
         } */
         
         let sessionId = self.kountHandler.generateSessionId()
-        
         let userParameters = ["email": email, "id": uid, "fiscal_number": card.fiscalNumber ?? "" as Any]
-        
-        let cardParameters = ["number": card.cardNumber!, "holder_name": card.cardHolder!, "expiry_month": Int(card.expiryMonth ?? "0")! as Any, "expiry_year": Int(card.expiryYear ?? "0")! as Any, "cvc":card.cvc ?? "" as Any, "type": typeCard, "nip": card.nip ?? "" as Any] as [String : Any]
-        
+
+        let cardParameters = ["number": card.cardNumber!,
+                              "holder_name": card.cardHolder!,
+                              "expiry_month": Int(card.expiryMonth ?? "0")! as Any,
+                              "expiry_year": Int(card.expiryYear ?? "0")! as Any,
+                              "cvc":card.cvc ?? "" as Any,
+                              "type": typeCard, "nip": card.nip ?? "" as Any] as [String : Any]
+
         let parameters = ["session_id": sessionId!,
                           "user": userParameters,
-                          "card": cardParameters
-            ] as [String : Any]
-        
-        kountHandler.collect(sessionId!) { (err) in
-            
+                          "card": cardParameters] as [String : Any]
+
+        kountHandler.collect(sessionId!) { err in
             //inProgress = false
-            if err == nil
-            {
-                
-            }
-            else
-            {
+            if err == nil {
+
+            } else {
                 //callback(PaymentSDKError.createError(err!), nil)
-                
             }
-            
         }
+
         inProgress = true
         let token = generateAuthTokenV2()
-        self.request.makeRequestV2("/v2/card/add", parameters: parameters as NSDictionary, token:token) { (error, statusCode, responseData) in
+        self.request.makeRequestV2("/v2/card/add",
+                                   parameters: parameters as NSDictionary,
+                                   token:token) { (error, statusCode, responseData) in
             
             inProgress = false
-            if error == nil
-            {
-                
-                if statusCode! != 200
-                {
-                    let responseD = responseData as! [String:Any]
-                    let dataR = responseD["error"] as! [String:Any]
-                    
-                    let err = PaymentSDKError.createError(statusCode!, description: dataR["description"] as! String, help: dataR["help"] as? String, type: dataR["type"] as? String)
+            if error == nil {
+                if statusCode! != 200 {
+                    let responseD = responseData as! [String: Any]
+                    let dataR = responseD["error"] as! [String: Any]
+                    let err = PaymentSDKError.createError(statusCode!,
+                                                          description: dataR["description"] as! String,
+                                                          help: dataR["help"] as? String,
+                                                          type: dataR["type"] as? String)
                     callback(err, nil)
-                    
-                }
-                else
-                {
-                    let dataR = responseData as! [String:Any]
-                    let cardData = dataR["card"] as! [String:Any]
+                } else {
+                    let dataR = responseData as! [String: Any]
+                    let cardData = dataR["card"] as! [String: Any]
                     let cardAdded = PaymentCard()
                     cardAdded.bin = cardData["bin"] as? String
                     cardAdded.termination = cardData["number"] as? String
@@ -232,72 +205,60 @@ import CommonCrypto
                     cardAdded.msg = cardData["message"] as? String
                     
                     
-                    if cardAdded.status == "rejected"
-                    {
-                        let error = PaymentSDKError.createError(statusCode!, description: (cardData["message"] as? String ?? "")!, help: "", type:nil)
+                    if cardAdded.status == "rejected" {
+                        let error = PaymentSDKError.createError(statusCode!,
+                                                                description: (cardData["message"] as? String ?? "")!,
+                                                                help: "",
+                                                                type: nil)
                         callback(error, cardAdded)
-                    }
-                    else if cardAdded.status == "review"
-                    {
-                        
-                        let error = PaymentSDKError.createError(statusCode!, description: (cardData["message"] as? String ?? "")!, help: "", type:nil)
+                    } else if cardAdded.status == "review" {
+                        let error = PaymentSDKError.createError(statusCode!,
+                                                                description: (cardData["message"] as? String ?? "")!,
+                                                                help: "",
+                                                                type: nil)
                         callback(error, cardAdded)
-                    }
-                    else
-                    {
+                    } else {
                         callback(nil, cardAdded)
                     }
-                    
                 }
-            }
-            else
-            {
+            } else {
                 callback(PaymentSDKError.createError(error!), nil)
             }
-            
         }
     }
-    
-    
-    private static func addCardForUser(_ uid:String,
-                                       email:String,
-                                       expiryYear:Int,
-                                       expiryMonth:Int,
-                                       holderName:String,
-                                       cardNumber:String,
-                                       cvc:String,
-                                       callback:@escaping (_ error:PaymentSDKError?, _ added:Bool)->Void)
-    {
-        addCard(uid, email: email, expiryYear: expiryYear, expiryMonth: expiryMonth, holderName: holderName, cardNumber: cardNumber, cvc: cvc) { (error, added) in
+
+    private static func addCardForUser(_ uid: String,
+                                       email: String,
+                                       expiryYear: Int,
+                                       expiryMonth: Int,
+                                       holderName: String,
+                                       cardNumber: String,
+                                       cvc: String,
+                                       callback: @escaping (_ error: PaymentSDKError?, _ added: Bool) -> Void) {
+        addCard(uid,
+                email: email,
+                expiryYear: expiryYear,
+                expiryMonth: expiryMonth,
+                holderName: holderName,
+                cardNumber: cardNumber,
+                cvc: cvc) { (error, added) in
             if error == nil{
                 callback(nil, added)
             }
-            
-            
-            
         }
     }
     
-    static func addCard(_ uid:String!,
-                        email:String!,
-                        expiryYear:Int!,
-                        expiryMonth:Int!,
-                        holderName:String!,
-                        cardNumber:String!,
-                        cvc:String!,
-                        callback:@escaping (_ error:PaymentSDKError?, _ added:Bool)->Void
-        
-        
-        
-        
-        
-        )
-    {
-        DispatchQueue.global().sync
-            {
-                var typeCard = ""
-                switch PaymentCard.getTypeCard(cardNumber)
-                {
+    static func addCard(_ uid: String!,
+                        email: String!,
+                        expiryYear: Int!,
+                        expiryMonth: Int!,
+                        holderName: String!,
+                        cardNumber: String!,
+                        cvc: String!,
+                        callback:@escaping (_ error: PaymentSDKError?, _ added: Bool) -> Void) {
+        DispatchQueue.global().sync {
+            var typeCard = ""
+            switch PaymentCard.getTypeCard(cardNumber) {
                 case .amex:
                     typeCard = "ax"
                 case .visa:
