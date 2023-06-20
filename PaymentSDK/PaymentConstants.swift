@@ -8,9 +8,7 @@
 
 import Foundation
 
-
 class PaymentStyle {
-    
     static let baseBaseColor = UIColor(red:0.30, green:0.69, blue:0.31, alpha:1.0)
     static let baseFontColor:UIColor = .white
     static let font = UIFont.systemFont(ofSize: 16)

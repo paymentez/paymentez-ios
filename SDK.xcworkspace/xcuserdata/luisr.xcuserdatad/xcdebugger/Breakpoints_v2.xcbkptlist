@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "D4081766-2650-4B88-8AAD-1FDBBD623CC7"
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "36FD614F-8E3E-4541-A445-D764AC721BE2"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PaymentSDK/PaymentRequest.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "133"
+            endingLineNumber = "133"
+            landmarkName = "PaymentRequest"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0A039345-ED66-47B6-86A8-6F7C839A0310"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PaymentSDK/PaymentSDKClient.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "19"
+            endingLineNumber = "19"
+            landmarkName = "PaymentSDKClient"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "0A039345-ED66-47B6-86A8-6F7C839A0310 - f49f255ef63ff898"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "one-time initialization function for request"
+                  moduleName = "PaymentSDK"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/luisr/Desktop/paymentez-ios-master/PaymentSDK/PaymentSDKClient.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "19"
+                  endingLineNumber = "19"
+                  offsetFromSymbolStart = "7">
+               </Location>
+               <Location
+                  uuid = "0A039345-ED66-47B6-86A8-6F7C839A0310 - 7b3520eca2fc91a"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PaymentSDK.PaymentSDKClient.request.unsafeMutableAddressor : PaymentSDK.PaymentRequest"
+                  moduleName = "PaymentSDK"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/luisr/Desktop/paymentez-ios-master/PaymentSDK/PaymentSDKClient.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "19"
+                  endingLineNumber = "19"
+                  offsetFromSymbolStart = "4">
+               </Location>
+               <Location
+                  uuid = "0A039345-ED66-47B6-86A8-6F7C839A0310 - 46862add5c337ad1"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static PaymentSDK.PaymentSDKClient.request.getter : PaymentSDK.PaymentRequest"
+                  moduleName = "PaymentSDK"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/luisr/Desktop/paymentez-ios-master/PaymentSDK/PaymentSDKClient.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "19"
+                  endingLineNumber = "19"
+                  offsetFromSymbolStart = "83">
+               </Location>
+               <Location
+                  uuid = "0A039345-ED66-47B6-86A8-6F7C839A0310 - eef8ecf562f066dd"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static PaymentSDK.PaymentSDKClient.request.setter : PaymentSDK.PaymentRequest"
+                  moduleName = "PaymentSDK"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/luisr/Desktop/paymentez-ios-master/PaymentSDK/PaymentSDKClient.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "19"
+                  endingLineNumber = "19"
+                  offsetFromSymbolStart = "112">
+               </Location>
+               <Location
+                  uuid = "0A039345-ED66-47B6-86A8-6F7C839A0310 - f7d04c58c7b925ee"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static PaymentSDK.PaymentSDKClient.request.modify : PaymentSDK.PaymentRequest"
+                  moduleName = "PaymentSDK"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/luisr/Desktop/paymentez-ios-master/PaymentSDK/PaymentSDKClient.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "19"
+                  endingLineNumber = "19"
+                  offsetFromSymbolStart = "0">
+               </Location>
+               <Location
+                  uuid = "0A039345-ED66-47B6-86A8-6F7C839A0310 - c13fb93fa7884fc2"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static PaymentSDK.PaymentSDKClient.request.modify : PaymentSDK.PaymentRequest with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "PaymentSDK"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/luisr/Desktop/paymentez-ios-master/PaymentSDK/PaymentSDKClient.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "19"
+                  endingLineNumber = "19"
+                  offsetFromSymbolStart = "15">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
