@@ -5,3 +5,6 @@ sdk/PaymentezSDK/PaymentezSDK.xcodeproj/xcuserdata/gustavosotelo.xcuserdatad/xcs
 
 
 *.xcuserstate
+.DS_STORE
+build/
+xcuserdata/

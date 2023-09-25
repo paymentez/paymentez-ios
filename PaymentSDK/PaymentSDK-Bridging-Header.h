@@ -8,4 +8,3 @@
 #import <InputMask/InputMask.h>
 #import "Todo1.h"
 #import "KDataCollector.h"
-#import "CardIO.h"
